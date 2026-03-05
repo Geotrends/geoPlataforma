@@ -903,8 +903,8 @@ body.page-servicios .navbar.scrolled .logo-img {
     opacity: 1 !important;
     visibility: visible !important;
     width: auto !important;
-    height: 72px !important;
-    max-width: 320px !important;
+    height: 48px !important;
+    max-width: 240px !important;
 }
 
 body.page-servicios .navbar.scrolled .nav-links a,

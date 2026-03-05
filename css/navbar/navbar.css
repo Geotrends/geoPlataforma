@@ -4,7 +4,7 @@
     top: 1rem;
     left: 50%;
     transform: translateX(-50%);
-    padding: 1.25rem 4.5rem;
+    padding: 0.75rem 3rem;
     z-index: 1000;
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
@@ -61,9 +61,9 @@
 }
 
 .logo-img {
-    height: 72px;
+    height: 48px;
     width: auto;
-    max-width: 320px;
+    max-width: 240px;
     object-fit: contain;
     display: block;
     transition: filter 0.22s ease;
@@ -389,6 +389,8 @@
         width: calc(100% - 2rem);
         max-width: none;
         border-radius: 16px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
     }
 
     .navbar.scrolled {
@@ -402,7 +404,7 @@
     }
 
     .logo-img {
-        height: 52px;
+        height: 40px;
     }
 
     /* Menú oculto por defecto; al abrir se muestra debajo en columna */
@@ -413,17 +415,31 @@
         order: 99;
         margin-top: 0.75rem;
         padding-top: 0.75rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.15);
         gap: 0;
         list-style: none;
         max-height: calc(100vh - 120px);
         overflow-y: auto;
+        position: relative;
+    }
+
+    /* Gradiente en lugar de línea sólida */
+    .nav-links::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+        pointer-events: none;
     }
 
     .navbar.nav-mobile-open .nav-links {
         display: flex;
         background: rgba(0, 0, 0, 0.4);
-        border-radius: 0 0 16px 16px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 16px;
         margin-left: 0;
         margin-right: 0;
         margin-top: 0.75rem;
