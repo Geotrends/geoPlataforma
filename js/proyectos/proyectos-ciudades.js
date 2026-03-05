@@ -384,7 +384,24 @@
             e.preventDefault();
             var proyectoId = card.getAttribute('data-proyecto') || '';
             var titulo = card.getAttribute('data-proyecto-titulo') || '';
-            var desc = card.getAttribute('data-proyecto-desc-long') || card.getAttribute('data-proyecto-desc') || '';
+            // Obtener el servicio activo
+            var activeTag = document.querySelector('.proyectos-tag.active');
+            var servicioActivo = activeTag ? (activeTag.getAttribute('data-servicio') || '').trim().toLowerCase() : '';
+            // Usar la descripción específica según el servicio activo, sino la descripción general
+            var desc = '';
+            if (servicioActivo === 'iot' && card.getAttribute('data-proyecto-desc-iot')) {
+                desc = card.getAttribute('data-proyecto-desc-iot');
+            } else if (servicioActivo === 'mapas-ruido' && card.getAttribute('data-proyecto-desc-mapas-ruido')) {
+                desc = card.getAttribute('data-proyecto-desc-mapas-ruido');
+            } else if (servicioActivo === 'webgis' && card.getAttribute('data-proyecto-desc-webgis')) {
+                desc = card.getAttribute('data-proyecto-desc-webgis');
+            } else if (servicioActivo === 'descontaminacion' && card.getAttribute('data-proyecto-desc-descontaminacion')) {
+                desc = card.getAttribute('data-proyecto-desc-descontaminacion');
+            } else if (servicioActivo === 'geoespacial' && card.getAttribute('data-proyecto-desc-geoespacial')) {
+                desc = card.getAttribute('data-proyecto-desc-geoespacial');
+            } else {
+                desc = card.getAttribute('data-proyecto-desc-long') || card.getAttribute('data-proyecto-desc') || '';
+            }
             var categoria = card.getAttribute('data-proyecto-categoria') || '';
             var ano = card.getAttribute('data-proyecto-ano') || '';
             var cliente = card.getAttribute('data-proyecto-cliente') || '';
@@ -426,7 +443,24 @@
             toggleCiudadesCards();
             setTimeout(function() {
                 var titulo = proyectoCard.getAttribute('data-proyecto-titulo') || '';
-                var desc = proyectoCard.getAttribute('data-proyecto-desc-long') || proyectoCard.getAttribute('data-proyecto-desc') || '';
+                // Obtener el servicio activo
+                var activeTag = document.querySelector('.proyectos-tag.active');
+                var servicioActivo = activeTag ? (activeTag.getAttribute('data-servicio') || '').trim().toLowerCase() : '';
+                // Usar la descripción específica según el servicio activo, sino la descripción general
+                var desc = '';
+                if (servicioActivo === 'iot' && proyectoCard.getAttribute('data-proyecto-desc-iot')) {
+                    desc = proyectoCard.getAttribute('data-proyecto-desc-iot');
+                } else if (servicioActivo === 'mapas-ruido' && proyectoCard.getAttribute('data-proyecto-desc-mapas-ruido')) {
+                    desc = proyectoCard.getAttribute('data-proyecto-desc-mapas-ruido');
+                } else if (servicioActivo === 'webgis' && proyectoCard.getAttribute('data-proyecto-desc-webgis')) {
+                    desc = proyectoCard.getAttribute('data-proyecto-desc-webgis');
+                } else if (servicioActivo === 'descontaminacion' && proyectoCard.getAttribute('data-proyecto-desc-descontaminacion')) {
+                    desc = proyectoCard.getAttribute('data-proyecto-desc-descontaminacion');
+                } else if (servicioActivo === 'geoespacial' && proyectoCard.getAttribute('data-proyecto-desc-geoespacial')) {
+                    desc = proyectoCard.getAttribute('data-proyecto-desc-geoespacial');
+                } else {
+                    desc = proyectoCard.getAttribute('data-proyecto-desc-long') || proyectoCard.getAttribute('data-proyecto-desc') || '';
+                }
                 var categoria = proyectoCard.getAttribute('data-proyecto-categoria') || '';
                 var ano = proyectoCard.getAttribute('data-proyecto-ano') || '';
                 var cliente = proyectoCard.getAttribute('data-proyecto-cliente') || '';
