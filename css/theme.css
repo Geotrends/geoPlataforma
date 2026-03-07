@@ -19,23 +19,23 @@
   color: rgba(255, 255, 255, 0.92);
 }
 
-/* Navbar en modo oscuro: se mantiene con transparencia (blur del fondo visible) */
+/* Navbar en modo oscuro: mismo efecto glassmorphism oscuro que las cards de proyectos */
 [data-theme="dark"] .navbar {
   position: relative !important;
   background: rgba(15, 20, 25, 0.25) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  border: none !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: none !important;
 }
 
-/* Navbar scrolled en modo oscuro: mantener transparencia siempre */
+/* Navbar scrolled en modo oscuro: mantener transparencia oscura siempre */
 [data-theme="dark"] .navbar.scrolled,
 [data-theme="dark"] .navbar.scrolled.section-image,
 [data-theme="dark"] .navbar.scrolled.section-dark {
-  background: rgba(15, 20, 25, 0.25) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: rgba(15, 20, 25, 0.35) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: none !important;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2) !important;
 }
 

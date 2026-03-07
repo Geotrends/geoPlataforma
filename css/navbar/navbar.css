@@ -7,30 +7,33 @@
     right: 0;
     z-index: 1000;
     width: 100%;
-    padding: 1rem 2rem;
-    background: transparent;
+    padding: 0.75rem 2rem;
+    background: rgba(15, 20, 25, 0.124);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     transition: all 0.3s ease;
-    border-bottom: 1px solid transparent;
 }
 
 .navbar.scrolled {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--geo-border);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    background: rgba(15, 20, 25, 0.35);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: none;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 }
 
 .navbar.scrolled.section-image {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(15, 20, 25, 0.35);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: none;
 }
 
 .navbar.scrolled.section-dark {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(15, 20, 25, 0.35);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: none;
 }
 
 .nav-container {
@@ -39,7 +42,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 /* Logo */
@@ -52,9 +55,9 @@
 }
 
 .navbar .logo-img {
-    height: 56px;
+    height: 44px;
     width: auto;
-    max-width: 280px;
+    max-width: 200px;
     object-fit: contain;
     transition: filter 0.3s ease;
 }
@@ -77,10 +80,10 @@
 
 .nav-links a {
     display: block;
-    padding: 0.625rem 1rem;
+    padding: 0.5rem 0.875rem;
     color: var(--geo-text);
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 500;
     transition: color 0.2s ease;
     border-radius: 6px;
@@ -109,9 +112,9 @@
 .nav-dropdown-toggle {
     background: none;
     border: none;
-    padding: 0.625rem 1rem;
+    padding: 0.5rem 0.875rem;
     color: var(--geo-text);
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 500;
     cursor: pointer;
     display: flex;
@@ -430,15 +433,22 @@
     }
 }
 
-/* Small Mobile */
-@media (max-width: 480px) {
+/* Tablet pequeña */
+@media (max-width: 900px) {
     .navbar {
-        padding: 0.75rem 1rem;
+        padding: 0.625rem 1.5rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 560px) {
+    .navbar {
+        padding: 0.625rem 1rem;
     }
 
     .navbar .logo-img {
-        height: 44px;
-        max-width: 200px;
+        height: 40px;
+        max-width: 180px;
     }
 
     .nav-container {

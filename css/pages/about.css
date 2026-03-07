@@ -11,25 +11,7 @@
   --about-glass-dark-border: rgba(255, 255, 255, 0.1);
 }
 
-/* Navbar más pequeño en Sobre Nosotros */
-.page-about .navbar {
-  padding: 0.75rem 2rem !important;
-}
-
-.page-about .navbar .logo-img {
-  height: 44px !important;
-  max-width: 200px !important;
-}
-
-.page-about .navbar .nav-links a,
-.page-about .navbar .nav-dropdown-toggle {
-  font-size: 0.95rem !important;
-  padding: 0.5rem 0.875rem !important;
-}
-
-.page-about .navbar .nav-container {
-  gap: 1.5rem !important;
-}
+/* Los estilos del navbar ahora están en navbar.css y se aplican globalmente */
 /*
 .page-about .navbar,
 .page-about .navbar.scrolled {
@@ -90,11 +72,19 @@
   position: relative;
   min-height: 100vh;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: visible; /* Sin scroll interno, solo el del body */
   padding: 0 0 3rem;
   color: var(--about-ink);
   /* Tamaño base igual que la página de inicio */
   font-size: 1rem;
+}
+
+/* Asegurar que body no tenga scroll doble solo en página about */
+body.page-about {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: auto;
+  max-height: none;
 }
 
 /* Fondo: imagen aérea ciudad/valle con blur (igual que en Proyectos) */
@@ -165,6 +155,7 @@
   grid-template-columns: 1fr;
   gap: 1.75rem;
   align-items: start;
+  overflow: visible; /* Sin scroll interno */
 }
 
 /* Tarjetas: blur y tonalidad como Proyectos (glass, sin borde verde, sombreado) */
@@ -199,6 +190,18 @@
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+
+/* Solo permitir scroll en sidebar si es necesario, no en contenedores principales */
+body.page-about .about-layout,
+body.page-about .about-center,
+body.page-about .about-main-card,
+body.page-about .about-panel,
+body.page-about .about-panel-body,
+body.page-about main {
+  overflow: visible !important;
+  max-height: none !important;
+  height: auto !important;
 }
 
 .about-sidebar-recon::-webkit-scrollbar {
@@ -512,6 +515,7 @@
   flex-direction: column;
   gap: 1.25rem;
   min-width: 0;
+  overflow: visible; /* Sin scroll interno */
 }
 
 .about-main-card {
@@ -522,6 +526,7 @@
   border: none;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   padding: 1.75rem 2rem;
+  overflow: visible; /* Sin scroll interno */
 }
 
 .about-tabs {
@@ -570,6 +575,8 @@
   border-radius: 12px;
   padding: 0 0 0;
   transition: opacity 0.18s ease;
+  overflow: visible; /* Sin scroll interno */
+  max-height: none; /* Sin restricción de altura */
 }
 
 /* Mismo tamaño, estilo y sombreado que títulos de inicio; minúscula con primera letra mayúscula */
@@ -594,6 +601,7 @@
   color: rgba(255, 255, 255, 0.92);
   line-height: 1.7;
   font-size: 1.1rem;
+  overflow: visible; /* Sin scroll interno */
 }
 
 .about-panel-body p {
@@ -1658,10 +1666,6 @@
   .about-hero {
     margin-top: 1.75rem; /* Ajuste para tablet */
   }
-  
-  .page-about .navbar {
-    padding: 0.625rem 1.5rem !important;
-  }
 
   .about-recon-clientes-seccion {
     margin-bottom: 1.5rem;
@@ -1686,15 +1690,6 @@
   .about-hero {
     padding: 1.75rem 1rem 1.5rem;
     margin-top: 1.5rem; /* Menos espacio en móvil */
-  }
-  
-  .page-about .navbar {
-    padding: 0.625rem 1rem !important;
-  }
-  
-  .page-about .navbar .logo-img {
-    height: 40px !important;
-    max-width: 180px !important;
   }
 
   .about-hero-title {
