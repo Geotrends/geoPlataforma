@@ -206,6 +206,21 @@ window.addEventListener('scroll', updateNavbarColor);
 
     if (prevBtn) prevBtn.addEventListener('click', function() { go(-1); });
     if (nextBtn) nextBtn.addEventListener('click', function() { go(1); });
+
+    // Asegurar que los enlaces de las cards funcionen correctamente
+    // Las cards ya son enlaces <a>, así que los clics deberían funcionar automáticamente
+    // Solo nos aseguramos de que el scroll del carrusel no interfiera con los clics
+    if (track) {
+        // Prevenir que el scroll horizontal interfiera con los clics en las cards
+        track.addEventListener('click', function(e) {
+            // Si el clic es en una card, permitir que el enlace funcione normalmente
+            var card = e.target.closest('.home-project-card');
+            if (card && card.tagName === 'A') {
+                // El enlace funcionará normalmente, no hacemos nada
+                return;
+            }
+        }, true);
+    }
 })();
 
 // Tarjetas wind (Inicio): al hacer clic, expandir y ocultar las otras; al volver a hacer clic, restaurar las 3

@@ -50,9 +50,9 @@
 }
 .page-about .navbar .nav-dropdown-menu,
 .page-about .navbar.scrolled .nav-dropdown-menu {
-  background: rgba(0, 0, 0, 0.3) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
+  background: #313131 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
 }
@@ -72,8 +72,6 @@
   overflow-x: hidden;
   overflow-y: auto;
   padding: 0 0 3rem;
-  /* Espacio para navbar fixed (logo alto + padding + top) */
-  padding-top: 132px;
   color: var(--about-ink);
   /* Aumentar el tamaño general para que se vea igual de grande que las demás secciones */
   font-size: 1.15rem; /* Aumentar tamaño base de fuente */

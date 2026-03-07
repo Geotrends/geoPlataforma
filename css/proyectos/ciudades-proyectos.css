@@ -1041,7 +1041,7 @@ body.proyecto-panel-open .navbar {
     }
 
     .proyectos-content {
-        padding: 180px 1.5rem 3rem;
+        padding: 2rem 1.5rem 3rem;
     }
     
     /* Reducir padding cuando el dropdown está abierto */

@@ -4,7 +4,7 @@
     flex-direction: column;
     height: 100vh;
     min-height: 100vh;
-    padding-top: 80px; /* espacio para navbar fijo: tags más cerca del navbar */
+    padding-top: 0; /* navbar ahora es relativo, no necesita padding */
     margin-top: 0; /* sin margin-top para acercar más las tags */
     background: #313131;
     gap: 0;
