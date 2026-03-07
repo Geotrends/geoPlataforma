@@ -130,8 +130,8 @@
     min-height: 500px;
     padding: 2.5rem 2rem 2.5rem 2rem;
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-left: none;
@@ -610,8 +610,8 @@
     display: flex;
     flex-direction: column;
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     border-radius: 14px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 12px 28px rgba(255, 255, 255, 0.06);
     overflow: hidden;
@@ -623,8 +623,8 @@
 
 /* Cuando la card está expandida: blur muy fuerte en cada una de las 3 cards */
 .wind-card.expanded .wind-project-card {
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     background: rgba(255, 255, 255, 0.12);
 }
 
@@ -680,16 +680,16 @@
     flex-direction: column;
     gap: 0.4rem;
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     overflow: visible;
     border-radius: 0 0 14px 14px;
 }
 
 /* Blur muy fuerte en el cuerpo de la card cuando está desplegada */
 .wind-card.expanded .wind-project-card-body {
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     background: rgba(255, 255, 255, 0.08);
 }
 
@@ -993,8 +993,8 @@ a.wind-project-card-cta:hover {
         width: 100%;
         min-height: auto;
         background: rgba(10, 14, 26, 0.3);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
         border-radius: 12px;
         padding: 0;
         margin: 0;

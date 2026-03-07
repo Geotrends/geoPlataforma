@@ -222,7 +222,7 @@
     box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.15);
     transform: translate(-50%, 100%);
     transition: transform 0.7s cubic-bezier(0.32, 0.72, 0.38, 1);
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
 }
 .tech-section.tech-panel-open .tech-panel {
@@ -245,13 +245,14 @@
     box-sizing: border-box;
     align-items: center;
     justify-content: flex-start;
+    overflow: hidden;
 }
 .tech-panel-content {
     flex: 1;
     min-height: 0;
     width: 100%;
     padding: 3rem 0 2rem;
-    overflow: visible;
+    overflow: hidden;
     display: flex;
     flex-direction: row;
     gap: 2rem;
@@ -265,7 +266,7 @@
 .tech-panel-desc {
     flex: 0 0 50%;
     order: 1;
-    overflow-y: auto;
+    overflow-y: visible;
     display: flex;
     flex-direction: column;
     gap: 0.95rem;
