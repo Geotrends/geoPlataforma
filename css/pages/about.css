@@ -300,6 +300,9 @@
   max-height: 64px;
   object-fit: contain;
   display: block;
+  filter: brightness(0) invert(1); /* Convertir reconocimientos a blanco */
+  -webkit-filter: brightness(0) invert(1);
+  opacity: 0.9; /* Ligeramente transparente para mejor integración */
 }
 
 .about-recon-card {
@@ -466,6 +469,26 @@
 
 .about-recon-clientes-seccion .about-recon-logo {
   flex-shrink: 0;
+}
+
+/* Lista simple de reconocimientos sin contenedores */
+.about-recon-logos-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 1.25rem;
+  align-items: center;
+  min-width: min-content;
+}
+
+.about-recon-logo-item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .about-recon-clientes-seccion .about-clientes-logos-inline {

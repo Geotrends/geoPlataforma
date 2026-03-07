@@ -21,14 +21,13 @@
         },
         'reconocimientos-clientes': {
             title: 'Reconocimientos y clientes',
-            body: '<section class="about-recon-clientes-seccion" aria-label="Reconocimientos"><h3 class="about-recon-clientes-seccion-title">Reconocimientos</h3>' +
-                '<div class="about-recon-clientes-scroll-wrap"><div class="about-recon-logos-row">' +
-                '<article class="about-recon-logo"><img src="../img_video/sobreNosotros/reconocimientos/image.png" alt="Reconocimiento" class="about-recon-logo-img" width="160" height="80" loading="lazy"></article>' +
-                '<article class="about-recon-logo"><img src="../img_video/sobreNosotros/reconocimientos/image%20copy.png" alt="Reconocimiento" class="about-recon-logo-img" width="160" height="80" loading="lazy"></article>' +
-                '<article class="about-recon-logo"><img src="../img_video/sobreNosotros/reconocimientos/image%20copy%202.png" alt="Reconocimiento" class="about-recon-logo-img" width="160" height="80" loading="lazy"></article>' +
-                '<article class="about-recon-logo"><img src="../img_video/sobreNosotros/reconocimientos/image%20copy%203.png" alt="Reconocimiento" class="about-recon-logo-img" width="160" height="80" loading="lazy"></article>' +
-                '<article class="about-recon-logo"><img src="../img_video/sobreNosotros/reconocimientos/image%20copy%205.png" alt="Reconocimiento" class="about-recon-logo-img" width="160" height="80" loading="lazy"></article>' +
-                '</div></div></section>' +
+            body:                 '<section class="about-recon-clientes-seccion" aria-label="Reconocimientos"><h3 class="about-recon-clientes-seccion-title">Reconocimientos</h3>' +
+                '<div class="about-recon-clientes-scroll-wrap"><ul class="about-recon-logos-list" aria-label="Logos de reconocimientos">' +
+                '<li class="about-recon-logo-item"><img src="../img_video/reconocimientos/rutan.png" alt="RUTAN" class="about-recon-logo-img" width="160" height="80" loading="lazy"></li>' +
+                '<li class="about-recon-logo-item"><img src="../img_video/reconocimientos/ituseed.png" alt="ITUSEED" class="about-recon-logo-img" width="160" height="80" loading="lazy"></li>' +
+                '<li class="about-recon-logo-item"><img src="../img_video/reconocimientos/royal.png" alt="Royal" class="about-recon-logo-img" width="160" height="80" loading="lazy"></li>' +
+                '<li class="about-recon-logo-item"><img src="../img_video/reconocimientos/innpulsa.png" alt="Innpulsa" class="about-recon-logo-img" width="160" height="80" loading="lazy"></li>' +
+                '</ul></div></section>' +
                 '<section class="about-recon-clientes-seccion" aria-label="Clientes"><h3 class="about-recon-clientes-seccion-title">Clientes</h3>' +
                 '<div class="about-recon-clientes-scroll-wrap"><ul class="about-clientes-logos about-clientes-logos-inline" aria-label="Logos de clientes">' +
                 '<li class="about-clientes-logo-item"><img src="../img_video/clientes/udea.png" alt="Universidad de Antioquia" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
