@@ -505,6 +505,58 @@
     margin: 0;
 }
 
+/* Texto "Próximamente" para la card de ID + I */
+.wind-card-proximamente {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+    font-style: italic;
+    transition: opacity 0.18s ease, visibility 0.18s ease, max-height 0.18s ease, padding 0.18s ease, margin 0.18s ease;
+}
+
+.wind-card:hover .wind-card-proximamente {
+    opacity: 1;
+    visibility: visible;
+    max-height: 50px;
+    padding: 0.5rem 0 0;
+    margin-top: 0.25rem;
+}
+
+/* La card de ID + I no debe expandirse, solo hover */
+.wind-card-idi,
+.wind-card[data-idi="true"] {
+    cursor: default;
+}
+
+.wind-card-idi:hover,
+.wind-card[data-idi="true"]:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
+}
+
+.wind-card-idi .wind-card-close,
+.wind-card[data-idi="true"] .wind-card-close {
+    display: none;
+}
+
+.wind-card-idi .wind-inner-carousel-wrap,
+.wind-card[data-idi="true"] .wind-inner-carousel-wrap {
+    display: none;
+}
+
+.wind-card-idi .wind-more-projects,
+.wind-card[data-idi="true"] .wind-more-projects {
+    display: none !important;
+}
+
 /* Wrapper del carrusel interno (flechas solo en responsive) */
 .wind-inner-carousel-wrap {
     position: relative;
@@ -763,6 +815,11 @@ a.wind-project-card-cta:hover {
 
 [data-theme="dark"] .wind-card-desc {
     color: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="dark"] .wind-card-proximamente {
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 [data-theme="dark"] .wind-card.expanded .wind-card-overlay {

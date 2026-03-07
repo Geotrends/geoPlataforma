@@ -237,6 +237,11 @@ window.addEventListener('scroll', updateNavbarColor);
             }
             
             card.addEventListener('click', function(e) {
+                // No expandir si es la card de ID + I
+                if (card.hasAttribute('data-idi') || card.classList.contains('wind-card-idi')) {
+                    return;
+                }
+                
                 // No expandir si se hace clic en elementos específicos
                 if (e.target.closest('.wind-card-close') || 
                     e.target.closest('.wind-project-card') || 
