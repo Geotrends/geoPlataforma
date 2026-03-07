@@ -411,8 +411,8 @@
 
 /* Cuando la card está expandida: aplicar blur a la imagen de fondo */
 .wind-card.expanded .wind-card-img {
-    filter: blur(0);
-    -webkit-filter: blur(0);
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
 }
 
 /* Modo claro: degradado suave abajo para que el texto blanco con sombra se lea bien (estilo Proyectos) */
@@ -696,22 +696,22 @@
     color: rgba(255, 255, 255, 0.95);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
     background: transparent;
-    border: 2px solid var(--geo-military-green);
+    border: 2px solid rgba(255, 255, 255, 0.9);
     border-radius: 9999px;
     align-self: flex-start;
     transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
     text-decoration: none;
 }
 a.wind-project-card-cta:hover {
-    background: var(--geo-military-green-hover-bg);
-    border-color: var(--geo-military-green);
-    color: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 1);
+    color: rgba(255, 255, 255, 1);
     transform: translateX(2px);
 }
 
 .wind-project-card:hover .wind-project-card-cta {
-    background: var(--geo-military-green-hover-bg);
-    border-color: var(--geo-military-green);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 1);
     transform: translateX(2px);
 }
 
