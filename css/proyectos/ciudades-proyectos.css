@@ -690,12 +690,13 @@ body.proyectos-page .navbar .logo-img {
     opacity: 0 !important;
 }
 
-body.proyecto-panel-open .navbar {
+/* Navbar permanece visible cuando el panel está abierto */
+/* body.proyecto-panel-open .navbar {
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
     transition: visibility 0.22s ease, opacity 0.22s ease;
-}
+} */
 
 
 /* Panel más largo, misma transparencia que las cards */

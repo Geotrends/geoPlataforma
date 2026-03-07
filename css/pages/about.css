@@ -11,17 +11,19 @@
   --about-glass-dark-border: rgba(255, 255, 255, 0.1);
 }
 
-/* Navbar con la misma transparencia que el inicio: oscuro, blur, sin borde */
-/* Navbar más delgado y elegante */
+/* Navbar usa los estilos estándar - sin estilos específicos para mantener consistencia */
+/* Estilos específicos comentados para que el navbar sea igual en todas las páginas */
+/*
 .page-about .navbar,
 .page-about .navbar.scrolled {
-  background: rgba(0, 0, 0, 0.3) !important;
+  position: relative !important;
+  background: rgba(0, 0, 0, 0.25) !important;
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
   border: none !important;
   border-radius: 50px !important;
   box-shadow: none !important;
-  padding: 0.75rem 3rem !important; /* Padding más delgado */
+  padding: 0.75rem 3rem !important;
   top: 0.5rem !important;
   width: 98% !important;
   max-width: 1600px !important;
@@ -35,7 +37,7 @@
 .page-about .navbar .logo-img,
 .page-about .navbar.scrolled .logo-img {
   filter: brightness(0) invert(1) !important;
-  height: 48px !important; /* Logo más pequeño */
+  height: 48px !important;
   width: auto !important;
   max-width: 240px !important;
   object-fit: contain !important;
@@ -45,7 +47,7 @@
 .page-about .navbar.scrolled .nav-links a,
 .page-about .navbar.scrolled .nav-dropdown-toggle {
   color: #fff !important;
-  font-size: 1.1rem !important; /* Mismo tamaño de fuente que inicio */
+  font-size: 1.1rem !important;
   font-weight: 500 !important;
 }
 .page-about .navbar .nav-dropdown-menu,
@@ -59,12 +61,13 @@
 .page-about .navbar .nav-dropdown-menu a,
 .page-about .navbar.scrolled .nav-dropdown-menu a {
   color: #fff !important;
-  font-size: 0.9rem !important; /* Mismo tamaño de fuente que inicio */
+  font-size: 0.9rem !important;
 }
 .page-about .navbar .nav-dropdown-menu a:hover,
 .page-about .navbar.scrolled .nav-dropdown-menu a:hover {
   background: rgba(255, 255, 255, 0.1) !important;
 }
+*/
 
 .about-page {
   position: relative;

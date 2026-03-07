@@ -1,0 +1,83 @@
+/* Botón flotante para volver arriba */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background: rgba(49, 49, 49, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-top-btn:hover {
+    background: rgba(49, 49, 49, 0.95);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-top-btn:active {
+    transform: translateY(-1px);
+}
+
+.scroll-top-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: #fff;
+    fill: none;
+    transition: transform 0.2s ease;
+}
+
+.scroll-top-btn:hover svg {
+    transform: translateY(-2px);
+}
+
+/* Modo claro */
+html:not([data-theme="dark"]) .scroll-top-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+html:not([data-theme="dark"]) .scroll-top-btn:hover {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+html:not([data-theme="dark"]) .scroll-top-btn svg {
+    stroke: #313131;
+    fill: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .scroll-top-btn {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 44px;
+        height: 44px;
+    }
+    
+    .scroll-top-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+}
