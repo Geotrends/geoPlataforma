@@ -175,10 +175,10 @@ html:not([data-theme="dark"]) body.page-contacto .contacto-hero {
 .contacto-hero-inner {
   position: relative;
   z-index: 3;
-  width: 98%;
-  max-width: 1600px;
+  width: 100%;
+  max-width: 1400px; /* Mismo ancho que las secciones del home */
   margin: 0 auto;
-  padding: 0 4.5rem;
+  padding: 0 2rem; /* Mismo padding que las secciones del home */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -253,10 +253,10 @@ html:not([data-theme="dark"]) body.page-contacto .contacto-hero {
 }
 
 .contacto-main-wrap {
-  width: 98%;
-  max-width: 1600px;
+  width: 100%;
+  max-width: 1400px; /* Mismo ancho que las secciones del home */
   margin: 0 auto;
-  padding: 0 4.5rem;
+  padding: 0 2rem; /* Mismo padding que las secciones del home */
   display: grid;
   grid-template-columns: 1fr 380px;
   gap: 2rem;
@@ -470,10 +470,10 @@ html:not([data-theme="dark"]) body.page-contacto .contacto-hero {
 }
 
 .contacto-cards-wrap {
-  width: 98%;
-  max-width: 1600px;
+  width: 100%;
+  max-width: 1400px; /* Mismo ancho que las secciones del home */
   margin: 0 auto;
-  padding: 0 4.5rem;
+  padding: 0 2rem; /* Mismo padding que las secciones del home */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;

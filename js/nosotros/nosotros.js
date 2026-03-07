@@ -31,10 +31,16 @@
                 '</div></div></section>' +
                 '<section class="about-recon-clientes-seccion" aria-label="Clientes"><h3 class="about-recon-clientes-seccion-title">Clientes</h3>' +
                 '<div class="about-recon-clientes-scroll-wrap"><ul class="about-clientes-logos about-clientes-logos-inline" aria-label="Logos de clientes">' +
-                '<li class="about-clientes-logo-item"><img src="../img_video/clientes/image.png" alt="Cliente" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
-                '<li class="about-clientes-logo-item"><img src="../img_video/clientes/image%20copy.png" alt="Cliente" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
-                '<li class="about-clientes-logo-item"><img src="../img_video/clientes/image%20copy%202.png" alt="Cliente" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
-                '<li class="about-clientes-logo-item"><img src="../img_video/clientes/image%20copy%203.png" alt="Cliente" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
+                '<li class="about-clientes-logo-item"><img src="../img_video/clientes/udea.png" alt="Universidad de Antioquia" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
+                '<li class="about-clientes-logo-item"><img src="../img_video/clientes/pepsico.png" alt="PepsiCo" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
+                '<li class="about-clientes-logo-item"><img src="../img_video/clientes/colcafe.png" alt="Colcafé" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
+                '<li class="about-clientes-logo-item"><img src="../img_video/clientes/pg.png" alt="Procter & Gamble" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
+                '<li class="about-clientes-logo-item"><img src="../img_video/clientes/aislather.png" alt="Aislather" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
+                '<li class="about-clientes-logo-item"><img src="../img_video/clientes/aqua-terra.png" alt="Aqua & Terra" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
+                '<li class="about-clientes-logo-item"><img src="../img_video/clientes/arclad.png" alt="ARCLAD" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
+                '<li class="about-clientes-logo-item"><img src="../img_video/clientes/usb.png" alt="Universidad de San Buenaventura" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
+                '<li class="about-clientes-logo-item"><img src="../img_video/clientes/envigado.png" alt="Alcaldía de Envigado" class="about-clientes-logo-img about-clientes-logo-envigado" width="120" height="48" loading="lazy"></li>' +
+                '<li class="about-clientes-logo-item"><img src="../img_video/clientes/ing.png" alt="ING" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
                 '</ul></div></section>'
         }
     };

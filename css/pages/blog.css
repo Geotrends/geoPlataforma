@@ -72,10 +72,10 @@ html:not([data-theme="dark"]) body.page-blog .navbar.scrolled .nav-theme-btn:hov
 .blog-section {
   position: relative;
   z-index: 2;
-  width: 98%; /* Mismo ancho que el navbar */
-  max-width: 1700px; /* Un poco más ancho que el navbar (1600px) */
+  width: 100%;
+  max-width: 1400px; /* Mismo ancho que las secciones del home */
   margin: 0 auto;
-  padding: 0 4.5rem; /* Mismo padding que el navbar */
+  padding: 0 2rem; /* Mismo padding que las secciones del home */
 }
 
 .blog-wrap {

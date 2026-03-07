@@ -11,8 +11,25 @@
   --about-glass-dark-border: rgba(255, 255, 255, 0.1);
 }
 
-/* Navbar usa los estilos estándar - sin estilos específicos para mantener consistencia */
-/* Estilos específicos comentados para que el navbar sea igual en todas las páginas */
+/* Navbar más pequeño en Sobre Nosotros */
+.page-about .navbar {
+  padding: 0.75rem 2rem !important;
+}
+
+.page-about .navbar .logo-img {
+  height: 44px !important;
+  max-width: 200px !important;
+}
+
+.page-about .navbar .nav-links a,
+.page-about .navbar .nav-dropdown-toggle {
+  font-size: 0.95rem !important;
+  padding: 0.5rem 0.875rem !important;
+}
+
+.page-about .navbar .nav-container {
+  gap: 1.5rem !important;
+}
 /*
 .page-about .navbar,
 .page-about .navbar.scrolled {
@@ -76,8 +93,8 @@
   overflow-y: auto;
   padding: 0 0 3rem;
   color: var(--about-ink);
-  /* Aumentar el tamaño general para que se vea igual de grande que las demás secciones */
-  font-size: 1.15rem; /* Aumentar tamaño base de fuente */
+  /* Tamaño base igual que la página de inicio */
+  font-size: 1rem;
 }
 
 /* Fondo: imagen aérea ciudad/valle con blur (igual que en Proyectos) */
@@ -108,6 +125,7 @@
   padding: 2.5rem 1.5rem 2rem;
   text-align: center;
   overflow: hidden;
+  margin-top: 2rem; /* Espacio superior para separar del navbar */
 }
 .about-hero-pattern {
   position: absolute;
@@ -135,14 +153,14 @@
   text-transform: uppercase;
 }
 
-/* Layout: un poco más ancho que navbar para más espacio */
+/* Layout: mismo ancho que las secciones del home para consistencia */
 .about-layout {
   position: relative;
   z-index: 1;
-  width: 98%;
-  max-width: 1720px; /* Un tris más corto que 1750px */
-  margin: 0 auto;
-  padding: 0 4.5rem;
+  width: 100%;
+  max-width: 1400px; /* Mismo ancho que las secciones del home */
+  margin: 2rem auto 0; /* Margin-top para separar del navbar */
+  padding: 0 2rem;
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.75rem;
@@ -243,6 +261,16 @@
 .about-sidebar-clientes .about-clientes-logo-img {
   max-width: 120px;
   max-height: 56px;
+  filter: brightness(0) invert(1); /* Convertir logos a blanco */
+  -webkit-filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+/* Logo de Envigado en sidebar también mantiene su color original */
+.about-sidebar-clientes .about-clientes-logo-envigado {
+  filter: none !important;
+  -webkit-filter: none !important;
+  opacity: 1 !important;
 }
 
 .about-recon-logo {
@@ -1461,6 +1489,16 @@
   height: auto;
   object-fit: contain;
   display: block;
+  filter: brightness(0) invert(1); /* Convertir logos a blanco */
+  -webkit-filter: brightness(0) invert(1);
+  opacity: 0.9; /* Ligeramente transparente para mejor integración */
+}
+
+/* Logo de Envigado mantiene su color original */
+.about-clientes-logo-envigado {
+  filter: none !important; /* Sin filtro para mantener colores originales */
+  -webkit-filter: none !important;
+  opacity: 1 !important;
 }
 
 .about-clientes-actions {
@@ -1591,6 +1629,15 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     gap: 1.25rem;
+    margin-top: 1.75rem; /* Ajuste para tablet */
+  }
+  
+  .about-hero {
+    margin-top: 1.75rem; /* Ajuste para tablet */
+  }
+  
+  .page-about .navbar {
+    padding: 0.625rem 1.5rem !important;
   }
 
   .about-recon-clientes-seccion {
@@ -1604,32 +1651,45 @@
 
 @media (max-width: 560px) {
   .about-page {
-    padding-top: 120px;
+    padding-top: 0;
     padding-bottom: 2rem;
   }
 
   .about-layout {
     padding: 0 1rem;
+    margin-top: 1.5rem; /* Ajuste para móvil */
   }
 
   .about-hero {
     padding: 1.75rem 1rem 1.5rem;
+    margin-top: 1.5rem; /* Menos espacio en móvil */
+  }
+  
+  .page-about .navbar {
+    padding: 0.625rem 1rem !important;
+  }
+  
+  .page-about .navbar .logo-img {
+    height: 40px !important;
+    max-width: 180px !important;
   }
 
   .about-hero-title {
     font-size: 1.5rem;
   }
+}
 
   .about-main-card {
     padding: 1.5rem 1.25rem;
   }
 
   .about-tabs {
-    flex-direction: column;
+    flex-direction: row; /* Mantener en fila, no en columna */
+    flex-wrap: wrap; /* Permitir que se envuelvan si es necesario */
   }
 
   .about-tab {
-    width: 100%;
+    width: auto; /* Ancho automático, no 100% */
     text-align: center;
   }
 
