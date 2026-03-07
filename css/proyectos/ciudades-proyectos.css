@@ -96,7 +96,7 @@
     z-index: 2;
     display: flex;
     min-height: 100vh;
-    padding: 280px 4rem 3rem;
+    padding: 100px 4rem 3rem;
     gap: 4rem;
     align-items: center;
 }
@@ -281,8 +281,8 @@
 
 /* Cards de proyectos: en modo claro misma transparencia que los tags (no oscuras); en dark se sobrescribe en theme.css */
 .proyecto-card {
-    flex: 0 0 320px;
-    min-width: 320px;
+    flex: 0 0 260px;
+    min-width: 260px;
     scroll-snap-align: start;
     border-radius: 16px;
     overflow: hidden;
@@ -370,7 +370,7 @@
 
 .proyecto-card-img {
     width: 100%;
-    height: 240px;
+    height: 180px;
     background-size: cover;
     background-position: center;
     background-color: #313131;
@@ -400,7 +400,7 @@
 /* Modo claro: misma transparencia que los tags (rgba blanco + blur), no bloque oscuro */
 .proyecto-card-content {
     flex: 1;
-    padding: 1.5rem;
+    padding: 1.25rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -412,7 +412,7 @@
 }
 
 .proyecto-card-title {
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 700;
     color: #fff;
     text-transform: uppercase;
@@ -422,7 +422,7 @@
 }
 
 .proyecto-card-desc {
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.8);
     margin: 0;
@@ -431,15 +431,15 @@
 /* Tags y barra de búsqueda dentro del contenido principal, sobre la imagen */
 .proyectos-filters-container {
     position: absolute;
-    top: 150px;
+    top: 90px;
     left: 0;
     right: 0;
     z-index: 3;
-    padding: 1.5rem 4rem;
+    padding: 1.5rem 4rem 1rem; /* reducido padding-bottom para más espacio */
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    align-items: center;
+    gap: 1.25rem; /* espacio entre búsqueda y tags */
+    align-items: flex-start; /* cambiado de center a flex-start para alinear a la izquierda */
 }
 
 /* Header móvil para filtros (solo visible en responsive) */
@@ -554,10 +554,18 @@
 
 .proyectos-tags-top {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* cambiado de center a flex-start */
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.6rem; /* reducido de 0.75rem para tags más compactos */
     flex-wrap: wrap;
+    width: 100%;
+    order: 2; /* los tags van después de la búsqueda */
+}
+
+/* Centrar tags solo en ciudades - selector basado en el video source */
+.proyectos-page:has(.proyectos-hero-video source[src*="ciudades"]) .proyectos-tags-top,
+.proyectos-page:has(.proyectos-hero-video source[src*="CIUDADES"]) .proyectos-tags-top {
+    justify-content: center;
 }
 
 /* En responsive, ocultar las tags superiores */
@@ -592,8 +600,8 @@
 }
 
 .proyectos-tag {
-    padding: 0.6rem 1.5rem;
-    font-size: 0.85rem;
+    padding: 0.45rem 1.1rem; /* reducido de 0.6rem 1.5rem */
+    font-size: 0.75rem; /* reducido de 0.85rem */
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -623,27 +631,16 @@
     -webkit-backdrop-filter: blur(20px);
     border-color: rgba(255, 255, 255, 0.4);
     border-width: 2px;
-    transform: translateY(-2px) scale(1.15);
+    transform: translateY(-2px) scale(1.05);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.1);
-    font-size: 0.95rem;
+    font-size: 0.8rem; /* reducido de 0.95rem */
     font-weight: 700;
-    padding: 0.75rem 1.75rem;
+    padding: 0.55rem 1.35rem; /* reducido de 0.75rem 1.75rem */
 }
 
 /* Barra de búsqueda */
 .proyectos-search-bar {
-    display: flex;
-    align-items: center;
-    max-width: 600px;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 999px;
-    padding: 0.75rem 1.5rem;
-    gap: 0.75rem;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    display: none; /* oculta la barra de búsqueda */
 }
 
 .proyectos-search-bar:focus-within {
@@ -683,17 +680,14 @@
 }
 
 /* Cuando el panel está abierto, ocultar el navbar */
-/* Asegurar que el logo se muestre correctamente en proyectos */
+/* Ocultar el logo del navbar en proyectos */
+.proyectos-page .navbar .logo,
 .proyectos-page .navbar .logo-img,
-body.proyectos-page .navbar .logo-img,
-body .navbar .logo-img {
-    filter: brightness(0) invert(1) !important;
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    width: auto !important;
-    height: 72px !important;
-    max-width: 320px !important;
+body.proyectos-page .navbar .logo,
+body.proyectos-page .navbar .logo-img {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
 }
 
 body.proyecto-panel-open .navbar {
@@ -711,7 +705,7 @@ body.proyecto-panel-open .navbar {
     left: auto;
     right: 0;
     width: 100%;
-    max-width: 1280px;
+    max-width: calc(100% - 150px);
     height: 100%;
     min-height: 100vh;
     z-index: 20;
@@ -728,15 +722,16 @@ body.proyecto-panel-open .navbar {
 }
 .proyecto-panel-inner {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     height: 100%;
     min-height: 100vh;
+    align-items: stretch;
 }
 .proyecto-panel-close {
     position: absolute;
     top: 1rem;
-    left: 1rem;
-    right: auto;
+    right: 1rem;
+    left: auto;
     width: 44px;
     height: 44px;
     border: none;
@@ -759,25 +754,24 @@ body.proyecto-panel-open .navbar {
     height: 20px;
 }
 .proyecto-panel-image-wrap {
-    width: 100%;
+    flex: 1 1 65%;
     min-width: 0;
-    flex-shrink: 0;
-    min-height: 45vh;
-    height: 45vh;
+    max-width: 65%;
+    height: 100%;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
+    padding: 1.5rem 1rem;
     position: relative;
+    order: 1;
 }
 .proyecto-panel-carousel-wrap {
     position: relative;
     width: 100%;
     height: 100%;
-    min-height: 45vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -786,7 +780,6 @@ body.proyecto-panel-open .navbar {
     position: relative;
     width: 100%;
     height: 100%;
-    min-height: 45vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -797,7 +790,7 @@ body.proyecto-panel-open .navbar {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 0.5rem;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.22s ease, visibility 0.22s ease;
@@ -810,9 +803,9 @@ body.proyecto-panel-open .navbar {
 .proyecto-panel-carousel-slide .proyecto-panel-img {
     width: 100%;
     height: 100%;
-    max-height: 42vh;
-    object-fit: contain;
+    object-fit: cover;
     display: block;
+    border-radius: 12px;
 }
 .proyecto-panel-carousel-prev,
 .proyecto-panel-carousel-next {
@@ -850,14 +843,16 @@ body.proyecto-panel-open .navbar {
 .proyecto-panel-img {
     width: 100%;
     height: 100%;
-    max-height: 380px;
-    object-fit: contain;
+    object-fit: cover;
     display: block;
+    border-radius: 12px;
 }
 .proyecto-panel-content {
-    flex: 1;
+    flex: 1 1 58%;
+    min-width: 0;
     min-height: 0;
     padding: 2rem 2.5rem 2rem;
+    padding-top: 4rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -865,6 +860,8 @@ body.proyecto-panel-open .navbar {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    order: 2;
+    position: relative;
 }
 .proyecto-panel-title {
     font-size: 1.5rem;
@@ -945,7 +942,7 @@ body.proyecto-panel-open .navbar {
 /* Responsive */
 @media (max-width: 1200px) {
     .proyectos-content {
-        padding: 80px 3rem 120px;
+        padding: 100px 3rem 3rem;
         gap: 3rem;
     }
 
@@ -954,8 +951,8 @@ body.proyecto-panel-open .navbar {
     }
 
     .proyecto-card {
-        flex: 0 0 280px;
-        min-width: 280px;
+        flex: 0 0 240px;
+        min-width: 240px;
     }
 }
 
@@ -978,7 +975,7 @@ body.proyecto-panel-open .navbar {
 
     .proyectos-content {
         flex-direction: column;
-        padding: 400px 2rem 3rem;
+        padding: 200px 2rem 3rem;
         gap: 2rem;
     }
     
@@ -1012,8 +1009,8 @@ body.proyecto-panel-open .navbar {
     }
 
     .proyecto-card {
-        flex: 0 0 260px;
-        min-width: 260px;
+        flex: 0 0 220px;
+        min-width: 220px;
     }
 
     .proyectos-tags-top {
@@ -1044,7 +1041,7 @@ body.proyecto-panel-open .navbar {
     }
 
     .proyectos-content {
-        padding: 380px 1.5rem 3rem;
+        padding: 180px 1.5rem 3rem;
     }
     
     /* Reducir padding cuando el dropdown está abierto */
@@ -1062,8 +1059,8 @@ body.proyecto-panel-open .navbar {
     }
 
     .proyecto-card {
-        flex: 0 0 240px;
-        min-width: 240px;
+        flex: 0 0 200px;
+        min-width: 200px;
     }
 
     .carousel-btn {

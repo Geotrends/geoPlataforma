@@ -4,8 +4,8 @@
     flex-direction: column;
     height: 100vh;
     min-height: 100vh;
-    padding-top: 140px; /* espacio para navbar fijo: óvalos más abajo */
-    margin-top: 2rem; /* margin-top para que no se vea pegado al navbar */
+    padding-top: 80px; /* espacio para navbar fijo: tags más cerca del navbar */
+    margin-top: 0; /* sin margin-top para acercar más las tags */
     background: #313131;
     gap: 0;
 }
@@ -21,7 +21,7 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
 /* Sección superior: óvalos de servicios (estilo Proyectos). Modo claro = fondo blanco */
 .section-services-top {
     flex: 0 0 auto;
-    padding: 1.75rem 2rem 1.25rem;
+    padding: 0.75rem 2rem 0.75rem; /* padding reducido para acercar tags al navbar */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -732,7 +732,7 @@ html:not([data-theme="dark"]) .section-card-image {
 @media (max-width: 900px) {
     .section-view {
         flex-direction: column;
-        padding-top: 70px;
+        padding-top: 60px; /* también reducido en móvil */
     }
 
     /* Orden en pantalla pequeña: tags → título (CIUDADES/INDUSTRIA) → carrusel → descripción */

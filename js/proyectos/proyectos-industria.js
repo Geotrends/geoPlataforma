@@ -1,5 +1,5 @@
 (function() {
-    var INDUSTRIA_IMAGES_BASE = '../../img:video/proyectos/industria/';
+    var INDUSTRIA_IMAGES_BASE = '../../img_video/proyectos/industria/';
     // Proyectos: tags se deslizan y texto izquierda aparece al entrar en vista
     var page = document.querySelector('.proyectos-page');
     if (page) {
@@ -202,7 +202,7 @@
         }
     }, 150);
 
-    /* Asignar imagen de cada tarjeta desde los arrays en data/*.js y base ../../img:video/proyectos/industria/ */
+    /* Asignar imagen de cada tarjeta desde los arrays en data/*.js y base ../../img_video/proyectos/industria/ */
     var arrByName = {
         REFINERIA_CARTAGENA_IMAGES: typeof REFINERIA_CARTAGENA_IMAGES !== 'undefined' ? REFINERIA_CARTAGENA_IMAGES : [],
         ALMA_MAGDALENA_IMAGES: typeof ALMA_MAGDALENA_IMAGES !== 'undefined' ? ALMA_MAGDALENA_IMAGES : [],
@@ -372,46 +372,46 @@
         var folder = '';
         if (proyectoId === 'refineria-cartagena' && typeof REFINERIA_CARTAGENA_IMAGES !== 'undefined' && REFINERIA_CARTAGENA_IMAGES.length) {
             images = REFINERIA_CARTAGENA_IMAGES;
-            base = '../img:video/proyectos/refineria/';
+            base = '../img_video/proyectos/refineria/';
             return { images: images, base: base };
         } else if (proyectoId === 'alma-magdalena' && typeof ALMA_MAGDALENA_IMAGES !== 'undefined' && ALMA_MAGDALENA_IMAGES.length) {
             images = ALMA_MAGDALENA_IMAGES;
             folder = 'almaMagdalena';
         } else if (proyectoId === 'arclad' && typeof ARCLAD_IMAGES !== 'undefined' && ARCLAD_IMAGES.length) {
             images = ARCLAD_IMAGES;
-            base = '../img:video/proyectos/arclad/';
+            base = '../img_video/proyectos/arclad/';
             return { images: images, base: base };
         } else if (proyectoId === 'segovia' && typeof SEGOVIA_IMAGES !== 'undefined' && SEGOVIA_IMAGES.length) {
             images = SEGOVIA_IMAGES;
-            base = '../img:video/proyectos/segovia/';
+            base = '../img_video/proyectos/segovia/';
             return { images: images, base: base };
         } else if (proyectoId === 'ccr-palagua' && typeof CCR_PALAGUA_IMAGES !== 'undefined' && CCR_PALAGUA_IMAGES.length) {
             images = CCR_PALAGUA_IMAGES;
-            base = '../img:video/proyectos/promigas/';
+            base = '../img_video/proyectos/promigas/';
             return { images: images, base: base };
         } else if (proyectoId === 'colcafe' && typeof COLCAFE_IMAGES !== 'undefined' && COLCAFE_IMAGES.length) {
             images = COLCAFE_IMAGES;
-            base = '../img:video/proyectos/colcafe/';
+            base = '../img_video/proyectos/colcafe/';
             return { images: images, base: base };
         } else if (proyectoId === 'cerrejon' && typeof CERREJON_IMAGES !== 'undefined' && CERREJON_IMAGES.length) {
             images = CERREJON_IMAGES;
-            base = '../img:video/proyectos/cerrejon/';
+            base = '../img_video/proyectos/cerrejon/';
             return { images: images, base: base };
         } else if (proyectoId === 'mineros-bic' && typeof MINEROS_BIC_IMAGES !== 'undefined' && MINEROS_BIC_IMAGES.length) {
             images = MINEROS_BIC_IMAGES;
-            base = '../img:video/proyectos/minerosbic/';
+            base = '../img_video/proyectos/minerosbic/';
             return { images: images, base: base };
         } else if (proyectoId === 'p-and-g' && typeof P_AND_G_IMAGES !== 'undefined' && P_AND_G_IMAGES.length) {
             images = P_AND_G_IMAGES;
-            base = '../img:video/proyectos/p&g/';
+            base = '../img_video/proyectos/p&g/';
             return { images: images, base: base };
         } else if (proyectoId === 'pepsico' && typeof PEPSICO_IMAGES !== 'undefined' && PEPSICO_IMAGES.length) {
             images = PEPSICO_IMAGES;
-            base = '../img:video/proyectos/pepsico/';
+            base = '../img_video/proyectos/pepsico/';
             return { images: images, base: base };
         } else if (proyectoId === 'spia' && typeof SPIA_IMAGES !== 'undefined' && SPIA_IMAGES.length) {
             images = SPIA_IMAGES;
-            base = '../img:video/proyectos/spia/';
+            base = '../img_video/proyectos/spia/';
             return { images: images, base: base };
         } else if (proyectoId === 'cornare' && typeof CORNARE_IMAGES !== 'undefined' && CORNARE_IMAGES.length) {
             images = CORNARE_IMAGES;
@@ -428,23 +428,19 @@
         if (!panelCarouselTrack) return;
         panelCarouselTrack.innerHTML = '';
         panelCarouselImages = [];
-        var data = getIndustryImagesAndBase(proyectoId);
-        var images = data.images;
-        var base = data.base;
-        if (images.length === 0) return;
-        panelCarouselImages = images.map(function(f) { return base + encodeURIComponent(f); });
+        // Usar la imagen de clasificación de fuentes de servicios como imagen horizontal única para todos los proyectos
+        var imageSrc = '../img_video/servicios/industria/clasificacionFuentes.webp';
+        panelCarouselImages = [imageSrc];
         var wrap = panelCarouselTrack.closest('.proyecto-panel-carousel-wrap');
-        if (wrap) wrap.classList.toggle('multiple', panelCarouselImages.length > 1);
-        images.forEach(function(f, i) {
+        if (wrap) wrap.classList.remove('multiple'); // Siempre una sola imagen, no múltiple
             var slide = document.createElement('div');
-            slide.className = 'proyecto-panel-carousel-slide' + (i === 0 ? ' active' : '');
+        slide.className = 'proyecto-panel-carousel-slide active';
             var img = document.createElement('img');
-            img.src = base + encodeURIComponent(f);
-            img.alt = titulo + ' - Imagen ' + (i + 1);
+        img.src = imageSrc;
+        img.alt = titulo;
             img.className = 'proyecto-panel-img';
             slide.appendChild(img);
             panelCarouselTrack.appendChild(slide);
-        });
         panelCarouselIndex = 0;
     }
 
@@ -477,7 +473,7 @@
             e.preventDefault();
             var proyectoId = card.getAttribute('data-proyecto') || '';
             var titulo = card.getAttribute('data-proyecto-titulo') || '';
-            var desc = card.getAttribute('data-proyecto-desc') || '';
+            var desc = card.getAttribute('data-proyecto-desc-full') || card.getAttribute('data-proyecto-desc') || '';
             var categoria = card.getAttribute('data-proyecto-categoria') || '';
             var ano = card.getAttribute('data-proyecto-ano') || '';
             var cliente = card.getAttribute('data-proyecto-cliente') || '';
@@ -522,7 +518,7 @@
             var card = document.querySelector('.proyecto-card[data-proyecto="' + openProyectoId + '"]');
             if (card) {
                 var titulo = card.getAttribute('data-proyecto-titulo') || '';
-                var desc = card.getAttribute('data-proyecto-desc') || '';
+                var desc = card.getAttribute('data-proyecto-desc-full') || card.getAttribute('data-proyecto-desc') || '';
                 var categoria = card.getAttribute('data-proyecto-categoria') || '';
                 var ano = card.getAttribute('data-proyecto-ano') || '';
                 var cliente = card.getAttribute('data-proyecto-cliente') || '';
