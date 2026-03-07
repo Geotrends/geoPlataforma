@@ -1,4 +1,4 @@
-/* Sección Geotrends - Home: fondo blanco con imagen */
+/* Sección Geotrends - Home: fondo gris oscuro plano sin degradados */
 .geotrends-section {
     position: relative;
     min-height: 140vh;
@@ -6,8 +6,8 @@
     overflow: hidden;
     display: flex;
     align-items: center;
-    background: #FAFAFA;
-    margin-top: -140px; /* solapa con el sombreado del hero para transición continua */
+    background: #313131;
+    margin-top: 0;
 }
 
 
@@ -40,7 +40,7 @@
     max-width: 720px;
     opacity: 0;
     transform: perspective(900px) rotateY(-22deg) translateX(-24px) scale(0.94);
-    filter: blur(6px);
+    filter: blur(0);
     transition: none;
 }
 
@@ -52,7 +52,7 @@
     0% {
         opacity: 0;
         transform: perspective(900px) rotateY(-22deg) translateX(-24px) scale(0.94);
-        filter: blur(6px);
+        filter: blur(0);
     }
     100% {
         opacity: 1;
@@ -66,17 +66,17 @@
 .geotrends-title {
     font-size: clamp(1.75rem, 3.2vw, 2.5rem);
     font-weight: 700;
-    color: #313131;
+    color: #ffffff;
     margin-bottom: 0.5rem;
     letter-spacing: -0.02em;
     line-height: 1.25;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    text-shadow: none;
 }
 
 .geotrends-subtitle {
     font-size: 0.7rem;
     font-weight: 600;
-    color: rgba(49, 49, 49, 0.65);
+    color: rgba(255, 255, 255, 0.7);
     letter-spacing: 0.12em;
     margin-bottom: 1.25rem;
 }
@@ -84,7 +84,7 @@
 .geotrends-text {
     font-size: 1.1rem;
     line-height: 1.7;
-    color: rgba(49, 49, 49, 0.88);
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 1rem;
     max-width: 100%;
 }
@@ -101,7 +101,7 @@
     font-size: 1rem;
     text-decoration: none;
     border-radius: 9999px;
-    border: 2px solid #ffffff;
+    border: 2px solid var(--geo-military-green);
     cursor: pointer;
     transition: all 0.2s ease;
     align-self: flex-start;
@@ -111,7 +111,7 @@
 .geotrends-cta:active,
 .geotrends-cta:focus {
     background: var(--geo-military-green-hover-bg);
-    border-color: #ffffff;
+    border-color: var(--geo-military-green);
     color: var(--geo-military-green);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(57, 81, 59, 0.2);
@@ -140,7 +140,7 @@
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
     opacity: 0;
     transform: translateX(60px) scale(0.75);
-    filter: blur(4px);
+    filter: blur(0);
     transition: none;
 }
 
@@ -152,7 +152,7 @@
     0% {
         opacity: 0;
         transform: translateX(60px) scale(0.75);
-        filter: blur(4px);
+        filter: blur(0);
     }
     70% {
         opacity: 1;
@@ -236,7 +236,7 @@
         0% {
             opacity: 0;
             transform: translateY(40px) scale(0.8);
-            filter: blur(4px);
+            filter: blur(0);
         }
         70% {
             opacity: 1;

@@ -9,42 +9,14 @@
     align-items: stretch;
 }
 
-/* Fade blanco en la parte superior: igual que hero→geotrends, funde el blanco en esta sección */
+/* Sin fade - fondo plano */
 .wind-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 280px;
-    background: linear-gradient(
-        to bottom,
-        #FAFAFA 0%,
-        rgba(255, 255, 255, 0.92) 20%,
-        rgba(255, 255, 255, 0.55) 50%,
-        rgba(255, 255, 255, 0.2) 78%,
-        transparent 100%
-    );
-    pointer-events: none;
-    z-index: 2;
+    display: none;
 }
 
-/* Transición suave hacia la siguiente sección (mismo tono que Proyectos) */
+/* Sin transición - fondo plano */
 .wind-section::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 120px;
-    background: linear-gradient(to top, 
-        rgba(10, 14, 26, 0.5) 0%,
-        rgba(10, 14, 26, 0.35) 30%,
-        rgba(10, 14, 26, 0.2) 60%,
-        rgba(10, 14, 26, 0.08) 85%,
-        transparent 100%);
-    pointer-events: none;
-    z-index: 2;
+    display: none;
 }
 
 /* Video de fondo (mismo que el hero) */
@@ -69,8 +41,8 @@
     transform: translate(-50%, -50%);
     object-fit: cover;
     pointer-events: none;
-    filter: blur(5px);
-    -webkit-filter: blur(5px);
+    filter: blur(0);
+    -webkit-filter: blur(0);
 }
 
 @media (min-aspect-ratio: 16/9) {
@@ -87,14 +59,14 @@
     }
 }
 
-/* Overlay: en light tono Proyectos; en dark se sobrescribe más abajo */
+/* Overlay: fondo plano sin degradados */
 .wind-section-bg {
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: linear-gradient(135deg, rgba(10, 14, 26, 0.85) 0%, rgba(10, 14, 26, 0.6) 50%, rgba(10, 14, 26, 0.4) 100%);
+    background: rgba(10, 14, 26, 0.85);
     pointer-events: none;
-    transition: backdrop-filter 0.22s ease, -webkit-backdrop-filter 0.22s ease;
+    transition: none;
 }
 
 /* Blur al desplegar: solo en responsive (ver @media max-width: 900px) */
@@ -439,8 +411,8 @@
 
 /* Cuando la card está expandida: aplicar blur a la imagen de fondo */
 .wind-card.expanded .wind-card-img {
-    filter: blur(20px);
-    -webkit-filter: blur(20px);
+    filter: blur(0);
+    -webkit-filter: blur(0);
 }
 
 /* Modo claro: degradado suave abajo para que el texto blanco con sombra se lea bien (estilo Proyectos) */
@@ -743,25 +715,20 @@ a.wind-project-card-cta:hover {
     transform: translateX(2px);
 }
 
-/* ========== Modo oscuro: transparencia oscura (sin glass claro ni sombra blanquecina) ========== */
+/* ========== Modo oscuro: fondo plano sin degradados ========== */
 [data-theme="dark"] .wind-section::after {
-    background: linear-gradient(to top,
-        rgba(6, 10, 18, 0.6) 0%,
-        rgba(6, 10, 18, 0.4) 30%,
-        rgba(6, 10, 18, 0.25) 60%,
-        rgba(6, 10, 18, 0.1) 85%,
-        transparent 100%);
+    display: none;
 }
 
 [data-theme="dark"] .wind-section-bg {
-    background: linear-gradient(135deg, rgba(6, 10, 18, 0.92) 0%, rgba(6, 10, 18, 0.78) 50%, rgba(6, 10, 18, 0.65) 100%);
+    background: rgba(6, 10, 18, 0.92);
 }
 
 /* Misma transparencia oscura que las cards: se ve el fondo, no fondo entero */
 [data-theme="dark"] .wind-intro {
     background: rgba(15, 20, 25, 0.28);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-left: none;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -824,8 +791,8 @@ a.wind-project-card-cta:hover {
 /* Tonalidad oscura pero bien transparente para que se vea el fondo (no fondo entero) */
 [data-theme="dark"] .wind-project-card {
     background: rgba(15, 20, 25, 0.28);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     border-color: rgba(255, 255, 255, 0.12);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
@@ -842,8 +809,8 @@ a.wind-project-card-cta:hover {
 
 [data-theme="dark"] .wind-project-card-body {
     background: rgba(15, 20, 25, 0.15);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 [data-theme="dark"] .wind-card.expanded .wind-project-card-body {
@@ -1010,13 +977,13 @@ a.wind-project-card-cta:hover {
     
     /* Blur al expandir */
     .wind-section.wind-card-expanded .wind-section-bg {
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
     }
 
     .wind-section.wind-card-expanded .wind-video-bg {
-        filter: blur(12px);
-        -webkit-filter: blur(12px);
+        filter: blur(0);
+        -webkit-filter: blur(0);
     }
 
     /* Contenido interno de card expandida - mostrar verticalmente */

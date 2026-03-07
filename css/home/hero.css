@@ -89,8 +89,8 @@
     transform: translate(-50%, -50%);
     object-fit: cover;
     pointer-events: none;
-    filter: blur(5px);
-    -webkit-filter: blur(5px);
+    filter: blur(0);
+    -webkit-filter: blur(0);
 }
 
 /* Asegurar que el video cubra toda el área en diferentes tamaños de pantalla */
@@ -196,7 +196,7 @@
     0% {
         opacity: 0;
         transform: translateY(32px);
-        filter: blur(6px);
+        filter: blur(0);
     }
     100% {
         opacity: 1;
@@ -262,28 +262,9 @@
     height: 18px;
 }
 
-/* Sombreado: el hero se funde en blanco hacia la sección siguiente (sin línea de corte) */
+/* Sin fade - fondo plano */
 .hero-fade-to-white {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 500px;
-    z-index: 3;
-    pointer-events: none;
-    background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgba(255, 255, 255, 0.03) 5%,
-        rgba(255, 255, 255, 0.1) 18%,
-        rgba(255, 255, 255, 0.22) 32%,
-        rgba(255, 255, 255, 0.4) 52%,
-        rgba(255, 255, 255, 0.65) 72%,
-        rgba(255, 255, 255, 0.88) 90%,
-        rgba(255, 255, 255, 0.97) 98%,
-        #FAFAFA 100%
-    );
+    display: none;
 }
 
 /* Hero responsive: tablet */
@@ -336,18 +317,7 @@
         height: 140px;
     }
     .hero-fade-to-white {
-        height: 420px;
-        background: linear-gradient(
-            to bottom,
-            transparent 0%,
-            rgba(255, 255, 255, 0.04) 10%,
-            rgba(255, 255, 255, 0.12) 22%,
-            rgba(255, 255, 255, 0.25) 40%,
-            rgba(255, 255, 255, 0.48) 62%,
-            rgba(255, 255, 255, 0.75) 82%,
-            rgba(255, 255, 255, 0.92) 95%,
-            #FAFAFA 100%
-        );
+        display: none;
     }
 }
 
@@ -359,17 +329,6 @@
         font-size: 1.1rem;
     }
     .hero-fade-to-white {
-        height: 380px;
-        background: linear-gradient(
-            to bottom,
-            transparent 0%,
-            rgba(255, 255, 255, 0.05) 12%,
-            rgba(255, 255, 255, 0.14) 25%,
-            rgba(255, 255, 255, 0.28) 45%,
-            rgba(255, 255, 255, 0.52) 68%,
-            rgba(255, 255, 255, 0.78) 87%,
-            rgba(255, 255, 255, 0.94) 97%,
-            #FAFAFA 100%
-        );
+        display: none;
     }
 }
