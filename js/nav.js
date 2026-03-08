@@ -27,7 +27,15 @@
     var navLinks = document.getElementById('nav-links');
     if (!navbar || !hamburger) return;
 
-    function isMobile() { return window.innerWidth <= 992; }
+    function isMobile() { return window.innerWidth <= 1100; }
+
+    // Crear overlay si no existe
+    var overlay = document.querySelector('.nav-mobile-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'nav-mobile-overlay';
+        document.body.appendChild(overlay);
+    }
 
     function closeMobileMenu() {
         navbar.classList.remove('nav-mobile-open');
@@ -35,6 +43,12 @@
         hamburger.setAttribute('aria-label', 'Abrir menú');
         document.querySelectorAll('.nav-dropdown').forEach(function(d) { d.classList.remove('open'); });
         document.querySelectorAll('.nav-dropdown-item-with-panel').forEach(function(d) { d.classList.remove('sub-open'); });
+        if (overlay) {
+            overlay.classList.remove('active');
+            setTimeout(function() {
+                overlay.style.display = 'none';
+            }, 300);
+        }
     }
 
     hamburger.addEventListener('click', function() {
@@ -46,8 +60,23 @@
             navbar.classList.add('nav-mobile-open');
             hamburger.setAttribute('aria-expanded', 'true');
             hamburger.setAttribute('aria-label', 'Cerrar menú');
+            if (overlay) {
+                overlay.style.display = 'block';
+                setTimeout(function() {
+                    overlay.classList.add('active');
+                }, 10);
+            }
         }
     });
+
+    // Cerrar menú al hacer clic en el overlay
+    if (overlay) {
+        overlay.addEventListener('click', function() {
+            if (isMobile()) {
+                closeMobileMenu();
+            }
+        });
+    }
 
     // Desplegar/plegar subopciones (Ciudades / Industria) al tocar en el menú móvil
     if (navLinks) {
@@ -82,6 +111,21 @@
     }, false);
 
     window.addEventListener('resize', function() {
-        if (!isMobile()) closeMobileMenu();
+        if (!isMobile()) {
+            closeMobileMenu();
+        }
     });
+
+    // Cerrar menú al hacer scroll (opcional, mejora UX)
+    var lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+        if (!isMobile()) return;
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (Math.abs(scrollTop - lastScrollTop) > 50) {
+            if (navbar.classList.contains('nav-mobile-open')) {
+                closeMobileMenu();
+            }
+        }
+        lastScrollTop = scrollTop;
+    }, false);
 })();

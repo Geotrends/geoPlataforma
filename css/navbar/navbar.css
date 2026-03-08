@@ -365,6 +365,8 @@ body.page-contacto .navbar.scrolled.section-dark {
     height: 40px;
     justify-content: center;
     align-items: center;
+    z-index: 1002;
+    position: relative;
 }
 
 .nav-hamburger-bar {
@@ -391,37 +393,70 @@ body.page-contacto .navbar.scrolled.section-dark {
     transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* Mobile Menu */
-@media (max-width: 992px) {
+/* Overlay oscuro cuando el menú móvil está abierto */
+.nav-mobile-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.nav-mobile-overlay.active {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Ocultar enlaces del navbar en pantallas medianas/pequeñas */
+/* Mostrar hamburguesa desde 1100px hacia abajo */
+@media (max-width: 1100px) {
     .nav-hamburger {
         display: flex;
     }
 
+    /* Ocultar enlaces del navbar en pantallas medianas */
     .nav-links {
-        position: absolute;
-        top: calc(100% + 0.5rem);
-        left: 0;
-        right: 0;
+        display: none;
+    }
+
+    /* Mostrar enlaces solo cuando el menú móvil está abierto */
+    .navbar.nav-mobile-open .nav-links {
+        display: flex;
+        position: fixed;
+        top: calc(1rem + 60px);
+        left: 1rem;
+        right: 1rem;
         flex-direction: column;
         align-items: stretch;
         background: var(--geo-bg);
         border: 1px solid var(--geo-border);
         border-radius: 16px;
         padding: 1rem 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease, padding 0.3s ease;
+        max-height: calc(90vh - 80px);
+        overflow-y: auto;
         gap: 0;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-        margin: 0 1.5rem;
+        z-index: 1000;
+        animation: slideDown 0.3s ease-out;
     }
 
-    .navbar.nav-mobile-open .nav-links {
-        max-height: 90vh;
-        overflow-y: auto;
-        padding: 1rem 0;
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
-    
+
     .navbar.nav-mobile-open {
         position: fixed !important;
         top: 0.5rem;
@@ -434,6 +469,8 @@ body.page-contacto .navbar.scrolled.section-dark {
         margin-left: 1rem;
         margin-right: 1rem;
     }
+
+    /* El overlay se controla desde JavaScript con la clase .active */
 
     .nav-links > li {
         border-bottom: 1px solid var(--geo-border);
@@ -505,10 +542,15 @@ body.page-contacto .navbar.scrolled.section-dark {
     .nav-services-panel a {
         padding: 0.75rem 1rem;
     }
+
+    /* Asegurar que el contenedor del navbar se ajuste bien */
+    .nav-container {
+        justify-content: space-between;
+    }
 }
 
-/* Tablet */
-@media (max-width: 1200px) {
+/* Tablet - Ajustes para pantallas medianas */
+@media (max-width: 1200px) and (min-width: 1101px) {
     .nav-container {
         padding: 0.625rem 1.25rem;
         border-radius: 40px;
@@ -523,7 +565,7 @@ body.page-contacto .navbar.scrolled.section-dark {
     .nav-links a,
     .nav-dropdown-toggle {
         padding: 0.5rem 0.75rem;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 }
 
@@ -538,6 +580,11 @@ body.page-contacto .navbar.scrolled.section-dark {
         border-radius: 40px;
         margin-left: 1.5rem;
         margin-right: 1.5rem;
+    }
+
+    /* Ajustar posición del menú móvil en tablets */
+    .navbar.nav-mobile-open .nav-links {
+        top: calc(0.75rem + 60px);
     }
 }
 
@@ -558,5 +605,28 @@ body.page-contacto .navbar.scrolled.section-dark {
     .navbar .logo-img {
         height: 40px;
         max-width: 180px;
+    }
+
+    /* Ajustar posición del menú móvil en móviles pequeños */
+    .navbar.nav-mobile-open .nav-links {
+        top: calc(0.5rem + 60px);
+        left: 0.5rem;
+        right: 0.5rem;
+        max-height: calc(90vh - 70px);
+    }
+
+    .navbar.nav-mobile-open .nav-container {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    /* Ajustar tamaño del hamburguesa en móvil */
+    .nav-hamburger {
+        width: 36px;
+        height: 36px;
+    }
+
+    .nav-hamburger-bar {
+        width: 22px;
     }
 }
