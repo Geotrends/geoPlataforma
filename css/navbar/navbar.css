@@ -1,39 +1,34 @@
 /* Navbar - Base styles */
 
 .navbar {
-    position: relative !important;
-    top: 0;
+    position: absolute !important;
+    top: 1rem;
     left: 0;
     right: 0;
     z-index: 1000;
     width: 100%;
-    padding: 0.75rem 2rem;
-    background: rgba(15, 20, 25, 0.124);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     transition: all 0.3s ease;
+    pointer-events: none;
 }
 
-.navbar.scrolled {
-    background: rgba(15, 20, 25, 0.35);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: none;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+.navbar .nav-container {
+    pointer-events: auto;
 }
 
-.navbar.scrolled.section-image {
-    background: rgba(15, 20, 25, 0.35);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: none;
-}
-
-.navbar.scrolled.section-dark {
-    background: rgba(15, 20, 25, 0.35);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: none;
+/* En páginas sin hero (navbar con clase scrolled desde el inicio), mantener fixed */
+/* Usamos un selector más compatible que :has() */
+body.page-servicios .navbar,
+body.page-about .navbar,
+body.page-blog .navbar,
+body.page-contacto .navbar,
+body.page-proyectos .navbar {
+    position: fixed !important;
+    top: 1rem;
 }
 
 .nav-container {
@@ -43,6 +38,53 @@
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(15, 20, 25, 0.28);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50px;
+    box-shadow: none;
+    transition: all 0.3s ease;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.navbar.scrolled {
+    position: fixed !important;
+    top: 1rem;
+}
+
+.navbar.scrolled .nav-container {
+    background: rgba(15, 20, 25, 0.28);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: none;
+}
+
+.navbar.scrolled.section-image {
+    position: fixed !important;
+    top: 1rem;
+}
+
+.navbar.scrolled.section-image .nav-container {
+    background: rgba(15, 20, 25, 0.28);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.navbar.scrolled.section-dark {
+    position: fixed !important;
+    top: 1rem;
+}
+
+.navbar.scrolled.section-dark .nav-container {
+    background: rgba(15, 20, 25, 0.28);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 /* Logo */
@@ -325,24 +367,40 @@
 
     .nav-links {
         position: absolute;
-        top: 100%;
+        top: calc(100% + 0.5rem);
         left: 0;
         right: 0;
         flex-direction: column;
         align-items: stretch;
         background: var(--geo-bg);
-        border-top: 1px solid var(--geo-border);
+        border: 1px solid var(--geo-border);
+        border-radius: 16px;
         padding: 1rem 0;
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease, padding 0.3s ease;
         gap: 0;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        margin: 0 1.5rem;
     }
 
     .navbar.nav-mobile-open .nav-links {
         max-height: 90vh;
         overflow-y: auto;
         padding: 1rem 0;
+    }
+    
+    .navbar.nav-mobile-open {
+        position: fixed !important;
+        top: 0.5rem;
+        left: 0;
+        right: 0;
+        z-index: 1001;
+    }
+    
+    .navbar.nav-mobile-open .nav-container {
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
 
     .nav-links > li {
@@ -420,7 +478,10 @@
 /* Tablet */
 @media (max-width: 1200px) {
     .nav-container {
-        padding: 0 1.5rem;
+        padding: 0.625rem 1.25rem;
+        border-radius: 40px;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
     }
 
     .nav-links {
@@ -437,22 +498,33 @@
 /* Tablet pequeña */
 @media (max-width: 900px) {
     .navbar {
-        padding: 0.625rem 1.5rem;
+        top: 0.75rem;
+    }
+    
+    .nav-container {
+        padding: 0.625rem 1.25rem;
+        border-radius: 40px;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
     }
 }
 
 /* Small Mobile */
 @media (max-width: 560px) {
     .navbar {
-        padding: 0.625rem 1rem;
+        top: 0.5rem;
+    }
+    
+    .nav-container {
+        padding: 0.5rem 1rem;
+        border-radius: 35px;
+        gap: 1rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
 
     .navbar .logo-img {
         height: 40px;
         max-width: 180px;
-    }
-
-    .nav-container {
-        gap: 1rem;
     }
 }

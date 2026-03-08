@@ -19,24 +19,45 @@
   color: rgba(255, 255, 255, 0.92);
 }
 
+/* En la página de inicio, el body debe ser transparente para que se vea la animación */
+body:has(.hero),
+body:has(.hero-section) {
+  background: transparent !important;
+}
+
+/* Fallback: si no hay hero, mantener fondo gris */
+body:not(:has(.hero)):not(:has(.hero-section)) {
+  background: #313131;
+}
+
 /* Navbar en modo oscuro: mismo efecto glassmorphism oscuro que las cards de proyectos */
 [data-theme="dark"] .navbar {
   position: relative !important;
-  background: rgba(15, 20, 25, 0.25) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   border-bottom: none !important;
 }
 
-/* Navbar scrolled en modo oscuro: mantener transparencia oscura siempre */
-[data-theme="dark"] .navbar.scrolled,
-[data-theme="dark"] .navbar.scrolled.section-image,
-[data-theme="dark"] .navbar.scrolled.section-dark {
-  background: rgba(15, 20, 25, 0.35) !important;
+/* Navbar scrolled en modo oscuro: mantener transparencia oscura siempre (misma que cards de proyectos) */
+[data-theme="dark"] .navbar .nav-container {
+  background: rgba(15, 20, 25, 0.28) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
-  border-bottom: none !important;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 50px !important;
+  box-shadow: none !important;
+}
+
+[data-theme="dark"] .navbar.scrolled .nav-container,
+[data-theme="dark"] .navbar.scrolled.section-image .nav-container,
+[data-theme="dark"] .navbar.scrolled.section-dark .nav-container {
+  background: rgba(15, 20, 25, 0.28) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 50px !important;
+  box-shadow: none !important;
 }
 
 [data-theme="dark"] .navbar .logo {
@@ -98,6 +119,27 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
+/* Modo claro: navbar con bordes redondeados y transparencia */
+html:not([data-theme="dark"]) .navbar .nav-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  box-shadow: none;
+}
+
+html:not([data-theme="dark"]) .navbar.scrolled .nav-container,
+html:not([data-theme="dark"]) .navbar.scrolled.section-image .nav-container,
+html:not([data-theme="dark"]) .navbar.scrolled.section-dark .nav-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  box-shadow: none;
+}
+
 /* Modo claro: desplegables siempre blancos (sin depender del scroll/sección) */
 html:not([data-theme="dark"]) .navbar .nav-dropdown-menu,
 html:not([data-theme="dark"]) .navbar:not(.scrolled) .nav-dropdown-menu,
@@ -141,7 +183,8 @@ html:not([data-theme="dark"]) .navbar .nav-services-panel a:hover {
 /* Menú móvil (hamburguesa): fondo y texto en modo claro para que se lea */
 html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-links {
   background: var(--geo-bg);
-  border-top-color: var(--geo-border);
+  border: 1px solid var(--geo-border);
+  border-radius: 16px;
 }
 
 html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-links > li {
@@ -176,8 +219,12 @@ html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel a {
 }
 
 [data-theme="dark"] .navbar.nav-mobile-open .nav-links {
-  background: rgba(20, 26, 32, 0.98);
-  border-top-color: rgba(255, 255, 255, 0.1);
+  background: rgba(15, 20, 25, 0.28);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 [data-theme="dark"] .navbar.nav-mobile-open .nav-links > li {

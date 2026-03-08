@@ -1,4 +1,14 @@
 /* Hero - Home: frase centrada, navbar transparente, imagen de fondo con overlay */
+/* Asegurar que el body en la página de inicio sea transparente */
+body:has(.hero) {
+    background: transparent !important;
+}
+
+/* Asegurar que no haya espacio antes del hero */
+body:has(.hero) .navbar {
+    position: absolute !important;
+}
+
 .hero {
     position: relative;
     min-height: 100vh;
@@ -6,9 +16,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 6rem 2rem 4rem;
+    padding: 0 2rem 4rem;
     overflow: hidden;
-    background: #313131;
+    background: transparent;
+    margin: 0;
+    padding-top: 0;
+    top: 0;
+    width: 100%;
+    margin-top: 0;
 }
 
 /* Sin transición en la parte inferior - corte directo */
@@ -32,8 +47,11 @@
 /* Luma AI embed - animación de fondo */
 .hero-luma-wrap {
     position: absolute;
-    inset: 0;
-    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -108,14 +126,14 @@
     }
 }
 
-/* Sombreado arriba para legibilidad del navbar transparente */
+/* Sombreado arriba para legibilidad del navbar transparente - reducido para que no cubra la animación */
 .hero-top-shade {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 200px;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.15) 50%, transparent 100%);
+    height: 120px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 50%, transparent 100%);
     z-index: 1;
     pointer-events: none;
 }
@@ -126,6 +144,7 @@
     z-index: 2;
     max-width: 900px;
     text-align: center;
+    margin-top: 4rem;
 }
 
 /* Logo delineado: globo + datos (solo trazo) – entrada dinámica */
