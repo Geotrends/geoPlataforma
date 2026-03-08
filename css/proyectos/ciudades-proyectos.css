@@ -544,6 +544,54 @@ body:has(.proyectos-page) {
     justify-content: center;
 }
 
+/* Navbar horizontal con scroll para tags en Industria - selector basado en el video source */
+.proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top,
+.proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top {
+    display: flex;
+    flex-wrap: nowrap; /* No permitir que se envuelvan */
+    overflow-x: auto; /* Scroll horizontal */
+    overflow-y: hidden;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding-bottom: 0.5rem; /* Espacio para la scrollbar */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+}
+
+/* Estilizar scrollbar para Industria - Webkit (Chrome, Safari, Edge) */
+.proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top::-webkit-scrollbar,
+.proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top::-webkit-scrollbar {
+    height: 6px;
+}
+
+.proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top::-webkit-scrollbar-track,
+.proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+}
+
+.proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top::-webkit-scrollbar-thumb,
+.proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    transition: background 0.2s ease;
+}
+
+.proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top::-webkit-scrollbar-thumb:hover,
+.proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+/* Asegurar que los tags en Industria no se reduzcan */
+.proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tag,
+.proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tag {
+    flex-shrink: 0; /* No permitir que los tags se reduzcan */
+    white-space: nowrap; /* No permitir que el texto se divida */
+}
+
 /* En responsive, mostrar las tags directamente (sin menú desplegable) */
 @media (max-width: 900px) {
     /* Ocultar el menú desplegable (header y dropdown) */
@@ -560,6 +608,15 @@ body:has(.proyectos-page) {
         display: flex !important;
         order: 1;
         margin-bottom: 0.5rem;
+    }
+    
+    /* Navbar horizontal con scroll para Industria en responsive */
+    .proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top,
+    .proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top {
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        overflow-y: hidden;
+        padding-bottom: 0.75rem; /* Más espacio para la scrollbar en móvil */
     }
     
     .proyectos-filters-container {
