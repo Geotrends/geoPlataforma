@@ -85,6 +85,12 @@ html:not([data-theme="dark"]) body.page-contacto .navbar.scrolled .nav-theme-btn
   background: rgba(0, 0, 0, 0.12);
 }
 
+/* Icono de hamburguesa blanco en página Contacto */
+body.page-contacto .navbar .nav-hamburger-bar,
+body.page-contacto .navbar.scrolled .nav-hamburger-bar {
+  background: #fff !important;
+}
+
 html:not([data-theme="dark"]) body.page-contacto .contacto-page {
   background: #FAFAFA;
 }
