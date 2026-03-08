@@ -537,7 +537,19 @@
         padding: 1.75rem 2rem 2rem;
     }
     .tech-panel-content {
-        gap: 1rem;
+        flex-direction: column !important; /* Columna en responsive: descripción arriba, imagen abajo */
+        gap: 1.5rem;
+    }
+    .tech-panel-desc {
+        flex: 0 0 auto !important; /* No ocupar espacio flexible */
+        order: 1 !important; /* Descripción primero */
+        width: 100%;
+    }
+    .tech-panel-img-wrap {
+        flex: 0 0 auto !important; /* No ocupar espacio flexible */
+        order: 2 !important; /* Imagen después */
+        align-self: stretch;
+        width: 100%;
     }
     .tech-panel-title {
         font-size: 1.2rem;
@@ -579,17 +591,21 @@
         padding: 1.5rem 1.5rem 1.5rem;
     }
     .tech-panel-content {
-        grid-template-columns: 1fr;
-        gap: 0.6rem;
+        flex-direction: column !important; /* Columna en responsive: descripción arriba, imagen abajo */
+        gap: 1.25rem;
     }
     .tech-panel-desc {
+        flex: 0 0 auto !important; /* No ocupar espacio flexible */
         max-height: none;
         overflow-y: visible;
-        order: 1;
+        order: 1 !important; /* Descripción primero */
+        width: 100%;
     }
     .tech-panel-img-wrap {
-        order: 2;
-        align-self: start;
+        flex: 0 0 auto !important; /* No ocupar espacio flexible */
+        order: 2 !important; /* Imagen después */
+        align-self: stretch;
+        width: 100%;
     }
 }
 
@@ -628,13 +644,19 @@
         padding: 1.25rem 1rem 1rem;
     }
     .tech-panel-content {
-        gap: 0.5rem;
+        flex-direction: column !important; /* Columna en responsive: descripción arriba, imagen abajo */
+        gap: 1rem;
     }
     .tech-panel-desc {
-        order: 1;
+        flex: 0 0 auto !important; /* No ocupar espacio flexible */
+        order: 1 !important; /* Descripción primero */
+        width: 100%;
     }
     .tech-panel-img-wrap {
-        order: 2;
+        flex: 0 0 auto !important; /* No ocupar espacio flexible */
+        order: 2 !important; /* Imagen después */
+        align-self: stretch;
+        width: 100%;
     }
     .tech-panel-title {
         font-size: 1.05rem;
@@ -691,13 +713,19 @@
         padding: 1rem 0.75rem 0.75rem;
     }
     .tech-panel-content {
-        gap: 0.4rem;
+        flex-direction: column !important; /* Columna en responsive: descripción arriba, imagen abajo */
+        gap: 0.75rem;
     }
     .tech-panel-desc {
-        order: 1;
+        flex: 0 0 auto !important; /* No ocupar espacio flexible */
+        order: 1 !important; /* Descripción primero */
+        width: 100%;
     }
     .tech-panel-img-wrap {
-        order: 2;
+        flex: 0 0 auto !important; /* No ocupar espacio flexible */
+        order: 2 !important; /* Imagen después */
+        align-self: stretch;
+        width: 100%;
     }
     .tech-panel-title {
         font-size: 0.95rem;
