@@ -40,8 +40,12 @@ body.page-contacto .navbar,
 }
 
 .nav-container {
+    width: min(1600px, calc(100% - 4rem));
     max-width: 1600px;
-    margin: 0 auto;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 0;
+    margin-bottom: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -54,8 +58,6 @@ body.page-contacto .navbar,
     border-radius: 50px;
     box-shadow: none;
     transition: all 0.3s ease;
-    margin-left: 2rem;
-    margin-right: 2rem;
 }
 
 .navbar.scrolled {
@@ -578,6 +580,15 @@ body.page-contacto .navbar.scrolled.section-dark {
     }
 }
 
+/* Pantallas grandes - Asegurar que el navbar se extienda correctamente */
+@media (min-width: 1648px) {
+    .nav-container {
+        width: 1600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 /* Tablet - Ajustes para pantallas medianas */
 @media (max-width: 1200px) and (min-width: 1101px) {
     .nav-container {
@@ -585,6 +596,7 @@ body.page-contacto .navbar.scrolled.section-dark {
         border-radius: 40px;
         margin-left: 1.5rem;
         margin-right: 1.5rem;
+        width: min(1600px, calc(100% - 3rem));
     }
 
     .nav-links {
@@ -609,6 +621,7 @@ body.page-contacto .navbar.scrolled.section-dark {
         border-radius: 40px;
         margin-left: 1.5rem;
         margin-right: 1.5rem;
+        width: min(1600px, calc(100% - 3rem));
     }
 
     /* Ajustar posición del menú móvil en tablets */
@@ -629,6 +642,7 @@ body.page-contacto .navbar.scrolled.section-dark {
         gap: 1rem;
         margin-left: 1rem;
         margin-right: 1rem;
+        width: min(1600px, calc(100% - 2rem));
     }
 
     .navbar .logo-img {
