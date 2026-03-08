@@ -177,6 +177,13 @@ body.page-about {
   overflow: visible; /* Sin scroll interno */
 }
 
+/* Pantallas extendidas: aumentar margin-top del contenido */
+@media (min-width: 1400px) {
+  .about-layout {
+    margin-top: 6rem; /* Más espacio en pantallas extendidas */
+  }
+}
+
 /* Tarjetas: blur y tonalidad como Proyectos (glass, sin borde verde, sombreado) */
 .about-card {
   background: rgba(255, 255, 255, 0.08);
