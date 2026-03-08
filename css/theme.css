@@ -487,6 +487,12 @@ html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel a {
   color: #fff;
 }
 
+/* Hamburguesa blanco en modo oscuro en servicios */
+[data-theme="dark"] body.page-servicios .navbar .nav-hamburger-bar,
+[data-theme="dark"] body.page-servicios .navbar.scrolled .nav-hamburger-bar {
+  background: #fff !important;
+}
+
 /* Blog: modo oscuro — fondo, cards y navbar coherentes */
 [data-theme="dark"] .blog-page {
   background: #313131;

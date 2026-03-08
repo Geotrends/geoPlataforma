@@ -696,6 +696,24 @@ html:not([data-theme="dark"]) .section-card-image {
     transform: translateX(0);
 }
 
+/* En responsive, asegurar que la descripción siempre sea visible y esté en columna */
+@media (max-width: 900px) {
+    .section-card.expanded .section-card-expanded {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .section-card.expanded .section-card-desc,
+    .section-content .section-card.active-panel .section-card-desc,
+    .section-card-desc {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateX(0) !important;
+        display: block !important;
+        position: relative !important;
+    }
+}
+
 .section-card-desc-title {
     font-size: 1.6rem;
     font-weight: 700;
@@ -840,57 +858,116 @@ html:not([data-theme="dark"]) .section-card-image {
         z-index: 2;
         flex: none;
         min-height: 100%;
+        height: 100%;
+    }
+    
+    /* Asegurar que el contenedor expandido ocupe todo el espacio disponible */
+    .section-card.expanded .section-card-expanded {
+        height: 100%;
+        min-height: 100%;
     }
 
     .section-card-expanded {
         flex-direction: column;
         justify-content: flex-start;
-        padding: 1rem;
+        align-items: stretch;
+        padding: 1.5rem 1rem;
         overflow-y: auto;
+        gap: 0;
     }
 
+    /* Imagen arriba - más pequeña en móvil */
     .section-card-image-wrap {
         flex: 0 0 auto;
-        max-width: none;
+        max-width: 100%;
         width: 100%;
-        min-height: 280px;
-        padding: 1rem 0.5rem;
+        min-height: 200px;
+        max-height: 250px;
+        height: auto;
+        padding: 0 0 1.5rem 0;
         order: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .section-card-image {
         width: 100%;
         height: 100%;
-        margin: 0 auto;
+        max-height: 250px;
+        min-height: 200px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin: 0;
     }
 
+    .section-card-image video {
+        width: 100%;
+        height: 100%;
+        max-height: 250px;
+        min-height: 200px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    /* Carrusel también más pequeño */
     .section-card-carousel-wrap {
         flex: 0 0 auto;
-        max-width: none;
+        max-width: 100%;
         width: 100%;
-        min-height: 280px;
-        padding: 1rem 0.5rem;
+        min-height: 200px;
+        max-height: 250px;
+        height: auto;
+        padding: 0 0 1.5rem 0;
         order: 1;
     }
 
     .section-card-carousel {
-        height: 280px;
-        min-height: 280px;
-        max-height: 280px;
+        height: 200px;
+        min-height: 200px;
+        max-height: 250px;
     }
 
     .section-card-carousel-track,
     .section-card-carousel-slide {
-        min-height: 280px;
+        min-height: 200px;
+        height: 200px;
     }
 
+    /* Descripción abajo - siempre visible */
     .section-card-desc {
         flex: 1 1 auto;
         min-height: auto;
         max-height: none;
         width: 100%;
-        padding: 1.5rem 1.25rem 2rem;
+        padding: 0;
+        margin: 0;
         order: 2;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateX(0) !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .section-card-desc-title {
+        font-size: 1.4rem;
+        margin: 0 0 1rem 0;
+        line-height: 1.3;
+    }
+
+    .section-card-desc p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin: 0 0 1.5rem 0;
+    }
+
+    .section-card-proyectos-link {
+        display: inline-block !important;
+        margin-top: 0.5rem;
+        width: auto;
     }
 
     .section-card:last-child {
@@ -948,6 +1025,17 @@ body.page-servicios .navbar.scrolled .nav-theme-btn {
 }
 body.page-servicios .navbar.scrolled .nav-theme-btn:hover {
     background: rgba(0, 0, 0, 0.12);
+}
+
+/* Hamburguesa blanco en servicios (tanto modo oscuro como claro cuando el navbar es oscuro) */
+body.page-servicios .navbar .nav-hamburger-bar,
+body.page-servicios .navbar.scrolled .nav-hamburger-bar {
+    background: #fff !important;
+}
+
+/* En modo claro, el navbar es blanco, así que el hamburguesa debe ser oscuro */
+html:not([data-theme="dark"]) body.page-servicios .navbar.scrolled .nav-hamburger-bar {
+    background: #313131 !important;
 }
 
 /* Solo paneles: no hay cards, solo un panel visible; el título vertical (Ciudades/Industria) siempre se ve */
