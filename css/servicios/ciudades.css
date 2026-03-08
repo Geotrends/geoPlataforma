@@ -10,16 +10,16 @@
     gap: 0;
 }
 
-/* Responsive: ajustar margin-top en móviles */
+/* Responsive: ajustar margin-top en móviles - punto medio */
 @media (max-width: 900px) {
     .section-view {
-        margin-top: 3.5rem;
+        margin-top: 2.5rem;
     }
 }
 
 @media (max-width: 560px) {
     .section-view {
-        margin-top: 3rem;
+        margin-top: 2rem;
     }
 }
 
@@ -766,7 +766,7 @@ html:not([data-theme="dark"]) .section-card-image {
 @media (max-width: 900px) {
     .section-view {
         flex-direction: column;
-        padding-top: 60px; /* también reducido en móvil */
+        padding-top: 0; /* Sin padding extra en móvil */
     }
 
     /* Orden en pantalla pequeña: tags → título (CIUDADES/INDUSTRIA) → carrusel → descripción */
@@ -788,6 +788,7 @@ html:not([data-theme="dark"]) .section-card-image {
         flex-direction: column;
         align-items: stretch;
         justify-content: flex-start;
+        margin-top: 0;
     }
 
     .section-label-header {
@@ -795,7 +796,7 @@ html:not([data-theme="dark"]) .section-card-image {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding: 1rem 1.5rem;
+        padding: 0.9rem 1.5rem;
         position: relative;
         background: #313131;
     }
@@ -837,6 +838,7 @@ html:not([data-theme="dark"]) .section-card-image {
         justify-content: center;
         padding: 1rem;
         gap: 0.5rem;
+        margin-top: 0;
     }
 
     .section-card {
@@ -871,7 +873,7 @@ html:not([data-theme="dark"]) .section-card-image {
         flex-direction: column;
         justify-content: flex-start;
         align-items: stretch;
-        padding: 1.5rem 1rem;
+        padding: 1.25rem 1rem;
         overflow-y: auto;
         gap: 0;
     }
