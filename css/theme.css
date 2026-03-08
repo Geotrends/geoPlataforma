@@ -493,6 +493,12 @@ html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel a {
   background: #fff !important;
 }
 
+/* Hamburguesa blanco en página Nosotros */
+[data-theme="dark"] body.page-about .navbar .nav-hamburger-bar,
+[data-theme="dark"] body.page-about .navbar.scrolled .nav-hamburger-bar {
+  background: #fff !important;
+}
+
 /* Blog: modo oscuro — fondo, cards y navbar coherentes */
 [data-theme="dark"] .blog-page {
   background: #313131;

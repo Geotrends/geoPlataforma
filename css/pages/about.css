@@ -68,6 +68,12 @@
 }
 */
 
+/* Icono de hamburguesa blanco en página Nosotros */
+body.page-about .navbar .nav-hamburger-bar,
+body.page-about .navbar.scrolled .nav-hamburger-bar {
+  background: #fff !important;
+}
+
 .about-page {
   position: relative;
   min-height: 100vh;
@@ -121,13 +127,13 @@ body.page-about {
 /* Responsive: ajustar margin-top en móviles */
 @media (max-width: 900px) {
   .about-hero {
-    margin-top: 5rem;
+    margin-top: 11rem; /* Aumentado para separar más del navbar */
   }
 }
 
 @media (max-width: 560px) {
   .about-hero {
-    margin-top: 4.5rem;
+    margin-top: 10.5rem; /* Aumentado para separar más del navbar */
   }
 }
 .about-hero-pattern {
@@ -544,9 +550,35 @@ body.page-about main {
 
 .about-tabs {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* No permitir que se envuelvan - carrusel horizontal */
   gap: 0.5rem;
   margin-bottom: 1.5rem;
+  overflow-x: auto; /* Scroll horizontal */
+  overflow-y: hidden;
+  padding-bottom: 0.5rem; /* Espacio para la scrollbar */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+}
+
+/* Estilizar scrollbar para tabs - Webkit (Chrome, Safari, Edge) */
+.about-tabs::-webkit-scrollbar {
+  height: 6px;
+}
+
+.about-tabs::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.about-tabs::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+.about-tabs::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
 }
 
 /* Tabs: mismo estilo glass, sin borde verde, sombreado */
@@ -563,6 +595,8 @@ body.page-about main {
   cursor: pointer;
   transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.15s ease, box-shadow 0.15s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0; /* No permitir que los tabs se reduzcan */
+  white-space: nowrap; /* No permitir que el texto se divida */
 }
 .about-tab:hover {
   background: rgba(255, 255, 255, 0.12);
@@ -1673,11 +1707,11 @@ body.page-about main {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     gap: 1.25rem;
-    margin-top: 1.75rem; /* Ajuste para tablet */
+    margin-top: 5.5rem; /* Aumentado para separar más del navbar */
   }
   
   .about-hero {
-    margin-top: 1.75rem; /* Ajuste para tablet */
+    margin-top: 11rem; /* Aumentado para separar más del navbar */
   }
 
   .about-recon-clientes-seccion {
@@ -1697,18 +1731,17 @@ body.page-about main {
 
   .about-layout {
     padding: 0 1rem;
-    margin-top: 1.5rem; /* Ajuste para móvil */
+    margin-top: 5rem; /* Aumentado para separar más del navbar */
   }
 
   .about-hero {
+    margin-top: 10.5rem; /* Aumentado para separar más del navbar */
     padding: 1.75rem 1rem 1.5rem;
-    margin-top: 1.5rem; /* Menos espacio en móvil */
   }
 
   .about-hero-title {
     font-size: 1.5rem;
   }
-}
 
   .about-main-card {
     padding: 1.5rem 1.25rem;
@@ -1716,14 +1749,17 @@ body.page-about main {
 
   .about-tabs {
     flex-direction: row; /* Mantener en fila, no en columna */
-    flex-wrap: wrap; /* Permitir que se envuelvan si es necesario */
+    flex-wrap: nowrap !important; /* Carrusel horizontal - no envolver */
+    overflow-x: auto !important; /* Scroll horizontal */
+    padding-bottom: 0.75rem; /* Más espacio para la scrollbar en móvil */
   }
 
   .about-tab {
     width: auto; /* Ancho automático, no 100% */
     text-align: center;
+    flex-shrink: 0 !important; /* No permitir que se reduzcan */
+    white-space: nowrap !important; /* No permitir que el texto se divida */
   }
-
 }
 
 /* Responsive equipo carrusel */
