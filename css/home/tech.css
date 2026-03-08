@@ -251,13 +251,13 @@
     flex: 1;
     min-height: 0;
     width: 100%;
-    padding: 3rem 0 2rem;
+    padding: 1.5rem 0 2rem;
     overflow: visible;
     display: flex;
     flex-direction: row;
     gap: 2rem;
     align-items: stretch;
-    margin-top: 50px;
+    margin-top: 0;
 }
 .tech-panel-col {
     min-width: 0;
@@ -534,11 +534,13 @@
         transform: rotate(-90deg);
     }
     .tech-panel-inner {
-        padding: 1.75rem 2rem 2rem;
+        padding: 1.5rem 2rem 2rem;
     }
     .tech-panel-content {
         flex-direction: column !important; /* Columna en responsive: descripción arriba, imagen abajo */
         gap: 1.5rem;
+        padding: 0.75rem 0 1.5rem;
+        margin-top: 0;
     }
     .tech-panel-desc {
         flex: 0 0 auto !important; /* No ocupar espacio flexible */
@@ -588,11 +590,13 @@
         transform: rotate(-90deg);
     }
     .tech-panel-inner {
-        padding: 1.5rem 1.5rem 1.5rem;
+        padding: 1.25rem 1.5rem 1.5rem;
     }
     .tech-panel-content {
         flex-direction: column !important; /* Columna en responsive: descripción arriba, imagen abajo */
         gap: 1.25rem;
+        padding: 0.5rem 0 1.25rem;
+        margin-top: 0;
     }
     .tech-panel-desc {
         flex: 0 0 auto !important; /* No ocupar espacio flexible */
@@ -641,11 +645,13 @@
         transform: rotate(-90deg);
     }
     .tech-panel-inner {
-        padding: 1.25rem 1rem 1rem;
+        padding: 1rem 1rem 1rem;
     }
     .tech-panel-content {
         flex-direction: column !important; /* Columna en responsive: descripción arriba, imagen abajo */
         gap: 1rem;
+        padding: 0.5rem 0 1rem;
+        margin-top: 0;
     }
     .tech-panel-desc {
         flex: 0 0 auto !important; /* No ocupar espacio flexible */
@@ -710,11 +716,13 @@
         transform: rotate(-90deg);
     }
     .tech-panel-inner {
-        padding: 1rem 0.75rem 0.75rem;
+        padding: 0.75rem 0.75rem 0.75rem;
     }
     .tech-panel-content {
         flex-direction: column !important; /* Columna en responsive: descripción arriba, imagen abajo */
         gap: 0.75rem;
+        padding: 0.25rem 0 0.75rem;
+        margin-top: 0;
     }
     .tech-panel-desc {
         flex: 0 0 auto !important; /* No ocupar espacio flexible */
