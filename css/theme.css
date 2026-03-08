@@ -39,9 +39,9 @@ body:not(:has(.hero)):not(:has(.hero-section)) {
   border-bottom: none !important;
 }
 
-/* Navbar scrolled en modo oscuro: mantener transparencia oscura siempre (misma que cards de proyectos) */
+/* Navbar scrolled en modo oscuro: mantener transparencia oscura siempre (más oscura como cards de proyectos) */
 [data-theme="dark"] .navbar .nav-container {
-  background: rgba(15, 20, 25, 0.28) !important;
+  background: rgba(15, 20, 25, 0.65) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
   border: 1px solid rgba(255, 255, 255, 0.12) !important;
@@ -52,7 +52,7 @@ body:not(:has(.hero)):not(:has(.hero-section)) {
 [data-theme="dark"] .navbar.scrolled .nav-container,
 [data-theme="dark"] .navbar.scrolled.section-image .nav-container,
 [data-theme="dark"] .navbar.scrolled.section-dark .nav-container {
-  background: rgba(15, 20, 25, 0.28) !important;
+  background: rgba(15, 20, 25, 0.65) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
   border: 1px solid rgba(255, 255, 255, 0.12) !important;
@@ -119,12 +119,12 @@ body:not(:has(.hero)):not(:has(.hero-section)) {
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* Modo claro: navbar con bordes redondeados y transparencia */
+/* Modo claro: navbar con bordes redondeados y transparencia más oscura */
 html:not([data-theme="dark"]) .navbar .nav-container {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(15, 20, 25, 0.65);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 50px;
   box-shadow: none;
 }
@@ -132,10 +132,10 @@ html:not([data-theme="dark"]) .navbar .nav-container {
 html:not([data-theme="dark"]) .navbar.scrolled .nav-container,
 html:not([data-theme="dark"]) .navbar.scrolled.section-image .nav-container,
 html:not([data-theme="dark"]) .navbar.scrolled.section-dark .nav-container {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(15, 20, 25, 0.65);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 50px;
   box-shadow: none;
 }
