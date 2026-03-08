@@ -194,8 +194,9 @@ html:not([data-theme="dark"]) body.page-blog .navbar.scrolled .nav-theme-btn:hov
 .blog-card-img {
   width: 100%;
   aspect-ratio: 16 / 10;
-  background-image: none !important; /* Sin imágenes */
-  background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro sólido */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: block;
 }
 
