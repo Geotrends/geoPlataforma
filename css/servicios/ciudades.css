@@ -5,9 +5,22 @@
     height: 100vh;
     min-height: 100vh;
     padding-top: 0; /* navbar ahora es relativo, no necesita padding */
-    margin-top: 0; /* sin margin-top para acercar más las tags */
+    margin-top: 6rem; /* Espacio superior para separar del navbar */
     background: #313131;
     gap: 0;
+}
+
+/* Responsive: ajustar margin-top en móviles */
+@media (max-width: 900px) {
+    .section-view {
+        margin-top: 5rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .section-view {
+        margin-top: 4.5rem;
+    }
 }
 
 /* Modo claro en Servicios: toda la zona subrayada (óvalos + contenido) con fondo blanco */

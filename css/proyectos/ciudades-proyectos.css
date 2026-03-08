@@ -3,19 +3,28 @@
     --carousel-gap: 20px;
 }
 
+/* Asegurar que el body sea transparente en páginas de proyectos */
+body:has(.proyectos-page) {
+    background: transparent !important;
+}
+
 .proyectos-page {
     position: relative;
     min-height: 100vh;
     padding: 0;
     overflow-x: hidden;
     overflow-y: auto;
-    background: #313131;
+    background: transparent;
+    margin: 0;
 }
 
 /* Fondo hero con video (ciudades) */
 .proyectos-hero-bg {
-    position: absolute;
-    inset: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     overflow: hidden;
     z-index: 0;
 }
@@ -37,6 +46,7 @@
     inset: 0;
     background: linear-gradient(135deg, rgba(10, 14, 26, 0.85) 0%, rgba(10, 14, 26, 0.6) 50%, rgba(10, 14, 26, 0.4) 100%);
     z-index: 1;
+    pointer-events: none;
 }
 
 /* Animación al cargar/entrar en vista: tags se deslizan, texto izquierda aparece */
@@ -96,9 +106,23 @@
     z-index: 2;
     display: flex;
     min-height: 100vh;
-    padding: 100px 4rem 3rem;
+    padding: 6rem 4rem 3rem;
     gap: 4rem;
     align-items: center;
+    margin-top: 0;
+}
+
+/* Responsive: ajustar padding en móviles */
+@media (max-width: 900px) {
+    .proyectos-content {
+        padding: 5rem 2rem 2rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .proyectos-content {
+        padding: 4.5rem 1.5rem 1.5rem;
+    }
 }
 
 /* Flecha "siguiente servicio" arriba a la derecha, separada del carrusel */

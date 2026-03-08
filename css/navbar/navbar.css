@@ -24,10 +24,18 @@
 /* Usamos un selector más compatible que :has() */
 body.page-servicios .navbar,
 body.page-about .navbar,
-body.page-blog .navbar,
-body.page-contacto .navbar,
-body.page-proyectos .navbar {
+body.page-blog .navbar {
     position: fixed !important;
+    top: 1rem;
+}
+
+/* En proyectos y contacto, el navbar debe flotar sobre la animación/imagen */
+body:has(.proyectos-page) .navbar,
+body:has(.contacto-hero) .navbar,
+body.page-contacto .navbar,
+.proyectos-page + .navbar,
+.contacto-hero + .navbar {
+    position: absolute !important;
     top: 1rem;
 }
 
@@ -55,6 +63,14 @@ body.page-proyectos .navbar {
     top: 1rem;
 }
 
+/* En proyectos y contacto, mantener absolute incluso cuando scrolled */
+body:has(.proyectos-page) .navbar.scrolled,
+body:has(.contacto-hero) .navbar.scrolled,
+body.page-contacto .navbar.scrolled {
+    position: absolute !important;
+    top: 1rem;
+}
+
 .navbar.scrolled .nav-container {
     background: rgba(15, 20, 25, 0.28);
     backdrop-filter: blur(20px);
@@ -68,6 +84,14 @@ body.page-proyectos .navbar {
     top: 1rem;
 }
 
+/* En proyectos y contacto, mantener absolute incluso cuando scrolled */
+body:has(.proyectos-page) .navbar.scrolled.section-image,
+body:has(.contacto-hero) .navbar.scrolled.section-image,
+body.page-contacto .navbar.scrolled.section-image {
+    position: absolute !important;
+    top: 1rem;
+}
+
 .navbar.scrolled.section-image .nav-container {
     background: rgba(15, 20, 25, 0.28);
     backdrop-filter: blur(20px);
@@ -77,6 +101,14 @@ body.page-proyectos .navbar {
 
 .navbar.scrolled.section-dark {
     position: fixed !important;
+    top: 1rem;
+}
+
+/* En proyectos y contacto, mantener absolute incluso cuando scrolled */
+body:has(.proyectos-page) .navbar.scrolled.section-dark,
+body:has(.contacto-hero) .navbar.scrolled.section-dark,
+body.page-contacto .navbar.scrolled.section-dark {
+    position: absolute !important;
     top: 1rem;
 }
 

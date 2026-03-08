@@ -115,7 +115,20 @@ body.page-about {
   padding: 2.5rem 1.5rem 2rem;
   text-align: center;
   overflow: hidden;
-  margin-top: 2rem; /* Espacio superior para separar del navbar */
+  margin-top: 6rem; /* Espacio superior para separar del navbar */
+}
+
+/* Responsive: ajustar margin-top en móviles */
+@media (max-width: 900px) {
+  .about-hero {
+    margin-top: 5rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .about-hero {
+    margin-top: 4.5rem;
+  }
 }
 .about-hero-pattern {
   position: absolute;
