@@ -115,4 +115,113 @@
         }
     }
 
+    // Carrusel de equipo para responsive
+    (function() {
+        var carouselWrap = document.querySelector('.about-equipo-carousel-mobile');
+        if (!carouselWrap) return;
+        
+        var track = document.getElementById('about-equipo-track-mobile');
+        var prevBtn = carouselWrap.querySelector('.about-equipo-carousel-prev');
+        var nextBtn = carouselWrap.querySelector('.about-equipo-carousel-next');
+        var cards = track ? track.querySelectorAll('.about-equipo-card') : [];
+        
+        if (!track || cards.length === 0) return;
+        
+        var currentIndex = 0;
+        var cardWidth = 0;
+        var gap = 20; // gap entre cards (1.25rem = 20px aproximadamente)
+        
+        function updateCardWidth() {
+            if (cards.length > 0 && cards[0]) {
+                var card = cards[0];
+                var computedStyle = window.getComputedStyle(card);
+                cardWidth = card.offsetWidth + gap;
+            }
+        }
+        
+        function scrollToIndex(index) {
+            if (!track) return;
+            updateCardWidth();
+            var scrollPosition = index * cardWidth;
+            track.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
+            currentIndex = index;
+            updateButtons();
+        }
+        
+        function updateButtons() {
+            if (prevBtn) {
+                prevBtn.disabled = currentIndex === 0;
+                prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+                prevBtn.style.cursor = currentIndex === 0 ? 'not-allowed' : 'pointer';
+            }
+            if (nextBtn) {
+                nextBtn.disabled = currentIndex >= cards.length - 1;
+                nextBtn.style.opacity = currentIndex >= cards.length - 1 ? '0.5' : '1';
+                nextBtn.style.cursor = currentIndex >= cards.length - 1 ? 'not-allowed' : 'pointer';
+            }
+        }
+        
+        function goToNext() {
+            if (currentIndex < cards.length - 1) {
+                scrollToIndex(currentIndex + 1);
+            }
+        }
+        
+        function goToPrev() {
+            if (currentIndex > 0) {
+                scrollToIndex(currentIndex - 1);
+            }
+        }
+        
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (currentIndex > 0) {
+                    goToPrev();
+                }
+            });
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (currentIndex < cards.length - 1) {
+                    goToNext();
+                }
+            });
+        }
+        
+        // Actualizar índice basado en el scroll
+        if (track) {
+            track.addEventListener('scroll', function() {
+                updateCardWidth();
+                var scrollLeft = track.scrollLeft;
+                var newIndex = Math.round(scrollLeft / cardWidth);
+                if (newIndex !== currentIndex && newIndex >= 0 && newIndex < cards.length) {
+                    currentIndex = newIndex;
+                    updateButtons();
+                }
+            });
+        }
+        
+        // Inicializar botones
+        updateButtons();
+        
+        // Actualizar en resize
+        var resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function() {
+                updateCardWidth();
+                scrollToIndex(currentIndex);
+            }, 150);
+        });
+        
+        // Inicializar al cargar
+        updateCardWidth();
+    })();
+
 })();
