@@ -437,7 +437,7 @@ body.page-contacto .navbar.scrolled.section-dark {
         background: var(--geo-bg);
         border: 1px solid var(--geo-border);
         border-radius: 16px;
-        padding: 1rem 0;
+        padding: 0.75rem 0;
         max-height: calc(90vh - 80px);
         overflow-y: auto;
         gap: 0;
@@ -480,12 +480,23 @@ body.page-contacto .navbar.scrolled.section-dark {
         border-bottom: none;
     }
 
+    /* Espaciado entre secciones del menú */
+    .nav-dropdown {
+        margin: 0;
+    }
+
+    .nav-dropdown-menu {
+        margin-top: 0.25rem;
+    }
+
     .nav-links a,
     .nav-dropdown-toggle {
-        padding: 1rem 1.5rem;
+        padding: 0.85rem 1.25rem;
         width: 100%;
         text-align: left;
         border-radius: 0;
+        font-size: 0.9rem;
+        line-height: 1.4;
     }
 
     .nav-dropdown-menu {
@@ -509,9 +520,16 @@ body.page-contacto .navbar.scrolled.section-dark {
         padding: 0.5rem 0;
     }
 
+    .nav-dropdown-menu a {
+        padding: 0.7rem 1.25rem;
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
     .nav-dropdown-item-with-panel > a::after {
         transform: rotate(0deg);
         transition: transform 0.3s ease;
+        font-size: 1rem;
     }
 
     .nav-dropdown-item-with-panel.sub-open > a::after {
@@ -529,7 +547,7 @@ body.page-contacto .navbar.scrolled.section-dark {
         border-radius: 0;
         background: var(--geo-beige);
         margin: 0;
-        padding: 0.75rem 1rem;
+        padding: 0.5rem 0.85rem;
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease;
@@ -539,8 +557,19 @@ body.page-contacto .navbar.scrolled.section-dark {
         max-height: 600px;
     }
 
+    .nav-panel-label {
+        display: none; /* Ocultar labels "SERVICIOS EN CIUDADES" y "SERVICIOS EN INDUSTRIA" en móvil */
+    }
+
     .nav-services-panel a {
-        padding: 0.75rem 1rem;
+        padding: 0.65rem 0.85rem;
+        font-size: 0.8rem;
+        line-height: 1.4;
+        margin-bottom: 0.25rem;
+    }
+
+    .nav-services-panel a:last-child {
+        margin-bottom: 0;
     }
 
     /* Asegurar que el contenedor del navbar se ajuste bien */
