@@ -2,10 +2,10 @@
 .section-view {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    min-height: 100vh;
+    height: 70vh;
+    min-height: 70vh;
     padding-top: 0; /* navbar ahora es relativo, no necesita padding */
-    margin-top: 4rem; /* Espacio superior reducido para acercar al navbar */
+    margin-top: 1.5rem; /* Espacio superior compacto para acercar al navbar */
     background: #313131;
     gap: 0;
 }
@@ -13,13 +13,13 @@
 /* Responsive: ajustar margin-top en móviles - punto medio */
 @media (max-width: 900px) {
     .section-view {
-        margin-top: 2.5rem;
+        margin-top: 1rem;
     }
 }
 
 @media (max-width: 560px) {
     .section-view {
-        margin-top: 2rem;
+        margin-top: 0.75rem;
     }
 }
 
@@ -34,7 +34,7 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
 /* Sección superior: óvalos de servicios (estilo Proyectos). Modo claro = fondo blanco */
 .section-services-top {
     flex: 0 0 auto;
-    padding: 0.75rem 2rem 0.75rem; /* padding reducido para acercar tags al navbar */
+    padding: 0.85rem 2rem 0.85rem; /* más espacio arriba y abajo de los tags */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -433,9 +433,9 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
     inset: 0;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
-    padding: 0;
+    padding: 0.75rem 0 0.75rem 0;
     background: transparent;
     opacity: 0;
     visibility: hidden;
@@ -472,7 +472,7 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
     flex: 1 1 42%;
     min-width: 0;
     max-width: 50%;
-    padding: 0.25rem 1rem 0.5rem 1rem;
+    padding: 0.15rem 1rem 0.3rem 1rem;
     z-index: 0.5;
     overflow: hidden;
     order: 1;
@@ -513,7 +513,7 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
 .section-card[data-servicio="fotogrametria"] .section-card-image {
     width: 100%;
     height: 100%;
-    margin: auto auto 2rem auto;
+    margin: auto auto 0.75rem auto;
 }
 
 .section-card[data-servicio="iot"] .section-card-image-wrap,
@@ -552,7 +552,7 @@ html:not([data-theme="dark"]) .section-card-image {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.25rem 1rem 0.5rem 1rem;
+    padding: 0.15rem 1rem 0.3rem 1rem;
     z-index: 0.5;
     overflow: hidden;
     order: 1;
@@ -681,14 +681,15 @@ html:not([data-theme="dark"]) .section-card-image {
     min-width: 320px;
     max-width: none;
     width: 100%;
-    min-height: 100%;
-    max-height: 100vh;
+    min-height: auto;
+    max-height: none;
+    align-self: center;
     margin: 0;
-    padding: 1.5rem 2rem 2rem;
+    padding: 1rem 2rem 1.25rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     text-align: left;
     -webkit-overflow-scrolling: touch;
@@ -734,12 +735,12 @@ html:not([data-theme="dark"]) .section-card-image {
     color: #313131;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    margin: 0 0 1.25rem 0;
+    margin: 0 0 0.75rem 0;
     line-height: 1.2;
 }
 
 .section-card-desc p {
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 1rem 0;
     font-size: 1rem;
     line-height: 1.7;
     color: #313131;
@@ -810,7 +811,7 @@ html:not([data-theme="dark"]) .section-card-image {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding: 0.9rem 1.5rem;
+        padding: 0.5rem 1.5rem;
         position: relative;
         background: #313131;
     }
