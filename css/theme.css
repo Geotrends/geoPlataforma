@@ -1140,11 +1140,6 @@ html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel a {
   border-bottom: none;
 }
 
-[data-theme="dark"] .proyecto-card:hover {
-  background: rgba(15, 20, 25, 0.35);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
 [data-theme="dark"] .proyecto-card:focus,
 [data-theme="dark"] .proyecto-card:focus-within,
 [data-theme="dark"] .proyecto-card:active {
