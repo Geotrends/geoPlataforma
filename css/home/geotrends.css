@@ -2,10 +2,11 @@
 .geotrends-section {
     position: relative;
     min-height: 85vh;
-    padding: 4rem 2rem 5rem;
+    padding: 1rem 2rem 2.5rem;
     overflow: visible;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    padding-top: 1rem;
     background: #313131;
     margin-top: 0;
 }
@@ -190,11 +191,11 @@
 /* Tablet: una columna, texto arriba e imagen abajo; sección se alarga para que quepa todo el contenido */
 @media (max-width: 900px) {
     .geotrends-section {
-        padding: 4rem 1.5rem 6rem;
+        padding: 2.5rem 1.5rem 2.5rem;
         min-height: 100vh;
         align-items: flex-start;
-        padding-top: 4rem;
-        padding-bottom: 6rem;
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
     }
 
     .geotrends-content-wrapper {
@@ -258,7 +259,7 @@
 /* Móvil: menos padding, texto más compacto; sección se alarga para que quepa todo */
 @media (max-width: 768px) {
     .geotrends-section {
-        padding: 3rem 1.25rem 5rem;
+        padding: 2rem 1.25rem 2rem;
         min-height: 95vh;
         align-items: flex-start;
         margin-top: -150px;
@@ -296,7 +297,7 @@
 /* Móvil pequeño */
 @media (max-width: 560px) {
     .geotrends-section {
-        padding: 3rem 1rem 4.5rem;
+        padding: 2rem 1rem 2rem;
         min-height: 90vh;
         align-items: flex-start;
         margin-top: -130px;

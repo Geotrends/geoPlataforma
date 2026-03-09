@@ -52,6 +52,61 @@
         });
     }
     
+    function updateCornarePortada(servicioActivo) {
+        var cornareCard = document.querySelector('.proyecto-card-cornare');
+        if (!cornareCard) return;
+        var imgWrap = cornareCard.querySelector('.proyecto-card-img-cornare');
+        if (!imgWrap) return;
+        var videoEl = imgWrap.querySelector('.proyecto-card-portada-iot');
+        var mapasEl = imgWrap.querySelector('.proyecto-card-portada-mapas-ruido');
+        var webgisEl = imgWrap.querySelector('.proyecto-card-portada-webgis');
+        if (!videoEl || !mapasEl || !webgisEl) return;
+        videoEl.style.display = servicioActivo === 'iot' ? 'block' : 'none';
+        mapasEl.style.display = servicioActivo === 'mapas-ruido' ? 'block' : 'none';
+        webgisEl.style.display = servicioActivo === 'webgis' ? 'block' : 'none';
+    }
+
+    function updateAmvaPortada(servicioActivo) {
+        var amvaCard = document.querySelector('.proyecto-card-amva-usb');
+        if (!amvaCard) return;
+        var imgWrap = amvaCard.querySelector('.proyecto-card-img-amva');
+        if (!imgWrap) return;
+        var videoEl = imgWrap.querySelector('.proyecto-card-portada-iot');
+        var imgEl = imgWrap.querySelector('.proyecto-card-portada-webgis');
+        if (!videoEl || !imgEl) return;
+        if (servicioActivo === 'webgis') {
+            videoEl.style.display = 'none';
+            imgEl.style.display = 'block';
+        } else {
+            videoEl.style.display = 'block';
+            imgEl.style.display = 'none';
+        }
+    }
+
+    function updateModeloPortada(servicioActivo) {
+        var modeloCard = document.querySelector('.proyecto-card-modelo-gestion-medellin');
+        if (!modeloCard) return;
+        var imgWrap = modeloCard.querySelector('.proyecto-card-img-modelo');
+        if (!imgWrap) return;
+        var videoIot = imgWrap.querySelector('.proyecto-card-portada-iot');
+        var videoDescont = imgWrap.querySelector('.proyecto-card-portada-descontaminacion');
+        if (!videoIot || !videoDescont) return;
+        videoIot.style.display = servicioActivo === 'iot' ? 'block' : 'none';
+        videoDescont.style.display = servicioActivo === 'descontaminacion' ? 'block' : 'none';
+    }
+
+    function updateObservatorioPortada(servicioActivo) {
+        var obsCard = document.querySelector('.proyecto-card-observatorio-envigado');
+        if (!obsCard) return;
+        var imgWrap = obsCard.querySelector('.proyecto-card-img-observatorio');
+        if (!imgWrap) return;
+        var webgisEl = imgWrap.querySelector('.proyecto-card-portada-webgis');
+        var geoespacialEl = imgWrap.querySelector('.proyecto-card-portada-geoespacial');
+        if (!webgisEl || !geoespacialEl) return;
+        webgisEl.style.display = servicioActivo === 'webgis' ? 'block' : 'none';
+        geoespacialEl.style.display = servicioActivo === 'geoespacial' ? 'block' : 'none';
+    }
+
     function toggleCiudadesCards() {
         var activeTag = document.querySelector('.proyectos-tag.active');
         if (!activeTag) return;
@@ -133,8 +188,11 @@
         var visibleIds = visibleCards.map(function(c) { return c.getAttribute('data-proyecto'); }).sort().join(',');
         var toShowIds = cardsToShow.map(function(c) { return c.getAttribute('data-proyecto'); }).sort().join(',');
         
-        // Si son las mismas cards, no hacer nada
         if (visibleIds === toShowIds && visibleIds.length > 0) {
+            updateCornarePortada(servicioActivo);
+            updateAmvaPortada(servicioActivo);
+            updateModeloPortada(servicioActivo);
+            updateObservatorioPortada(servicioActivo);
             return;
         }
         
@@ -161,6 +219,10 @@
                     cardsToShow.forEach(function(card) {
                         card.style.display = 'block';
                     });
+                    updateCornarePortada(servicioActivo);
+                    updateAmvaPortada(servicioActivo);
+                    updateModeloPortada(servicioActivo);
+                    updateObservatorioPortada(servicioActivo);
                     setTimeout(function() {
                         animateCardsIn(cardsToShow);
                     }, 10);
@@ -170,6 +232,10 @@
                 cardsToShow.forEach(function(card) {
                     card.style.display = 'block';
                 });
+                updateCornarePortada(servicioActivo);
+                updateAmvaPortada(servicioActivo);
+                updateModeloPortada(servicioActivo);
+                updateObservatorioPortada(servicioActivo);
                 setTimeout(function() {
                     animateCardsIn(cardsToShow);
                 }, 10);
@@ -177,7 +243,7 @@
         }
     }
     toggleCiudadesCards();
-    
+
     // Animar cards iniciales
     setTimeout(function() {
         var initialCards = Array.from(allCards).filter(function(card) {
@@ -290,7 +356,7 @@
     var track = document.querySelector('.carousel-track');
     var prev = document.querySelector('.carousel-prev');
     var next = document.querySelector('.carousel-next');
-    var cardWidth = 320; // Ancho fijo de las cards
+    var cardWidth = 400; // Ancho fijo de las cards
     var gap = 20; // Gap entre cards
 
     function go(delta) {
@@ -319,23 +385,23 @@
     var panelCarouselIndex = 0;
     var panelCarouselImages = [];
 
-    function buildPanelCarousel(proyectoId, titulo) {
+    function buildPanelCarousel(proyectoId, titulo, imageSrc, servicioActivo) {
         if (!panelCarouselTrack) return;
         panelCarouselTrack.innerHTML = '';
         panelCarouselImages = [];
-        // Usar la imagen de IoT de servicios como imagen horizontal única para todos los proyectos
-        var imageSrc = '../img_video/servicios/ciudades/iot.webp';
-        panelCarouselImages = [imageSrc];
         var wrap = panelCarouselTrack.closest('.proyecto-panel-carousel-wrap');
-        if (wrap) wrap.classList.remove('multiple'); // Siempre una sola imagen, no múltiple
+        if (wrap) wrap.classList.remove('multiple');
+        if (imageSrc) {
+            panelCarouselImages = [imageSrc];
             var slide = document.createElement('div');
-        slide.className = 'proyecto-panel-carousel-slide active';
+            slide.className = 'proyecto-panel-carousel-slide active';
             var img = document.createElement('img');
-        img.src = imageSrc;
-        img.alt = titulo;
-            img.className = 'proyecto-panel-img';
+            img.src = imageSrc;
+            img.alt = titulo;
+            img.className = 'proyecto-panel-img' + (servicioActivo === 'iot' ? ' img-completa' : '');
             slide.appendChild(img);
             panelCarouselTrack.appendChild(slide);
+        }
         panelCarouselIndex = 0;
     }
 
@@ -389,7 +455,21 @@
             var categoria = card.getAttribute('data-proyecto-categoria') || '';
             var ano = card.getAttribute('data-proyecto-ano') || '';
             var cliente = card.getAttribute('data-proyecto-cliente') || '';
-            buildPanelCarousel(proyectoId, titulo);
+            var panelImg = '';
+            if (servicioActivo === 'iot') {
+                panelImg = card.getAttribute('data-proyecto-img') || '';
+            } else if (servicioActivo === 'mapas-ruido') {
+                panelImg = card.getAttribute('data-proyecto-img-mapas-ruido') || '';
+            } else if (servicioActivo === 'webgis') {
+                panelImg = card.hasAttribute('data-proyecto-img-webgis') ? (card.getAttribute('data-proyecto-img-webgis') || '') : (card.getAttribute('data-proyecto-img') || '');
+            } else if (servicioActivo === 'descontaminacion') {
+                panelImg = card.hasAttribute('data-proyecto-img-descontaminacion') ? (card.getAttribute('data-proyecto-img-descontaminacion') || '') : (card.getAttribute('data-proyecto-img') || '');
+            } else if (servicioActivo === 'geoespacial') {
+                panelImg = card.hasAttribute('data-proyecto-img-geoespacial') ? (card.getAttribute('data-proyecto-img-geoespacial') || '') : (card.getAttribute('data-proyecto-img') || '');
+            } else {
+                panelImg = card.getAttribute('data-proyecto-img') || '';
+            }
+            buildPanelCarousel(proyectoId, titulo, panelImg, servicioActivo);
             if (panelTitle) panelTitle.textContent = titulo;
             if (panelCategoria) panelCategoria.textContent = categoria;
             if (panelAno) panelAno.textContent = ano;
@@ -448,7 +528,21 @@
                 var categoria = proyectoCard.getAttribute('data-proyecto-categoria') || '';
                 var ano = proyectoCard.getAttribute('data-proyecto-ano') || '';
                 var cliente = proyectoCard.getAttribute('data-proyecto-cliente') || '';
-                buildPanelCarousel(openProyectoId, titulo);
+                var panelImg = '';
+                if (servicioActivo === 'iot') {
+                    panelImg = proyectoCard.getAttribute('data-proyecto-img') || '';
+                } else if (servicioActivo === 'mapas-ruido') {
+                    panelImg = proyectoCard.getAttribute('data-proyecto-img-mapas-ruido') || '';
+                } else if (servicioActivo === 'webgis') {
+                    panelImg = proyectoCard.hasAttribute('data-proyecto-img-webgis') ? (proyectoCard.getAttribute('data-proyecto-img-webgis') || '') : (proyectoCard.getAttribute('data-proyecto-img') || '');
+                } else if (servicioActivo === 'descontaminacion') {
+                    panelImg = proyectoCard.hasAttribute('data-proyecto-img-descontaminacion') ? (proyectoCard.getAttribute('data-proyecto-img-descontaminacion') || '') : (proyectoCard.getAttribute('data-proyecto-img') || '');
+                } else if (servicioActivo === 'geoespacial') {
+                    panelImg = proyectoCard.hasAttribute('data-proyecto-img-geoespacial') ? (proyectoCard.getAttribute('data-proyecto-img-geoespacial') || '') : (proyectoCard.getAttribute('data-proyecto-img') || '');
+                } else {
+                    panelImg = proyectoCard.getAttribute('data-proyecto-img') || '';
+                }
+                buildPanelCarousel(openProyectoId, titulo, panelImg, servicioActivo);
                 if (panelTitle) panelTitle.textContent = titulo;
                 if (panelCategoria) panelCategoria.textContent = categoria;
                 if (panelAno) panelAno.textContent = ano;
