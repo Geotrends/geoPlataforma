@@ -542,21 +542,37 @@ body:has(.proyectos-page) {
     justify-content: center;
 }
 
-/* Navbar horizontal con scroll para tags en Industria - selector basado en el video source */
+/* Industria: pantalla extendida = 6 arriba centradas, 5 abajo centradas; pantalla estrecha = carrusel */
 .proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top,
 .proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top {
-    display: flex;
-    flex-wrap: nowrap; /* No permitir que se envuelvan */
-    overflow-x: auto; /* Scroll horizontal */
-    overflow-y: hidden;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(6, max-content);
+    grid-template-rows: auto auto;
+    justify-content: center;
     align-items: center;
     gap: 0.6rem;
     width: 100%;
-    padding-bottom: 0.5rem; /* Espacio para la scrollbar */
-    scrollbar-width: thin; /* Firefox */
-    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
-    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+    padding-bottom: 0;
+}
+
+/* Centrar la segunda fila (5 tags) - empiezan en columna 2 */
+.proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top .proyectos-tag:nth-child(7),
+.proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top .proyectos-tag:nth-child(7) {
+    grid-column: 2;
+}
+
+/* Industria: cuando la pantalla se achica, tags en carrusel con scroll horizontal */
+@media (max-width: 1200px) {
+    .proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top,
+    .proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 0.5rem;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+        -webkit-overflow-scrolling: touch;
+    }
 }
 
 /* Estilizar scrollbar para Industria - Webkit (Chrome, Safari, Edge) */
