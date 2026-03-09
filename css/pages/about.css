@@ -162,13 +162,13 @@ body.page-about {
   text-transform: uppercase;
 }
 
-/* Layout: mismo ancho que las secciones del home para consistencia */
+/* Layout: mismo ancho que el navbar central (1600px max, 2rem márgenes laterales) */
 .about-layout {
   position: relative;
   z-index: 1;
-  width: 100%;
-  max-width: 1400px; /* Mismo ancho que las secciones del home */
-  margin: 2rem auto 0; /* Margin-top para separar del navbar */
+  width: min(1600px, calc(100% - 4rem));
+  max-width: 1600px;
+  margin: 2rem 2rem 0;
   padding: 0 2rem;
   display: grid;
   grid-template-columns: 1fr;
