@@ -1,4 +1,14 @@
 /* Hero - Home: frase centrada, navbar transparente, imagen de fondo con overlay */
+/* Asegurar que el body en la página de inicio sea transparente */
+body:has(.hero) {
+    background: transparent !important;
+}
+
+/* Asegurar que no haya espacio antes del hero */
+body:has(.hero) .navbar {
+    position: absolute !important;
+}
+
 .hero {
     position: relative;
     min-height: 100vh;
@@ -6,9 +16,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 6rem 2rem 4rem;
+    padding: 0 2rem 4rem;
     overflow: hidden;
-    background: #313131;
+    background: transparent;
+    margin: 0;
+    padding-top: 0;
+    top: 0;
+    width: 100%;
+    margin-top: 0;
 }
 
 /* Sin transición en la parte inferior - corte directo */
@@ -32,8 +47,11 @@
 /* Luma AI embed - animación de fondo */
 .hero-luma-wrap {
     position: absolute;
-    inset: 0;
-    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -89,8 +107,8 @@
     transform: translate(-50%, -50%);
     object-fit: cover;
     pointer-events: none;
-    filter: blur(5px);
-    -webkit-filter: blur(5px);
+    filter: blur(0);
+    -webkit-filter: blur(0);
 }
 
 /* Asegurar que el video cubra toda el área en diferentes tamaños de pantalla */
@@ -108,14 +126,14 @@
     }
 }
 
-/* Sombreado arriba para legibilidad del navbar transparente */
+/* Sombreado arriba para legibilidad del navbar transparente - reducido para que no cubra la animación */
 .hero-top-shade {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 200px;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.15) 50%, transparent 100%);
+    height: 120px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 50%, transparent 100%);
     z-index: 1;
     pointer-events: none;
 }
@@ -126,13 +144,14 @@
     z-index: 2;
     max-width: 900px;
     text-align: center;
+    margin-top: 1.5rem;
 }
 
 /* Logo delineado: globo + datos (solo trazo) – entrada dinámica */
 .hero-data-logo {
     width: clamp(88px, 18vw, 160px);
     height: clamp(88px, 18vw, 160px);
-    margin: 2.5rem auto 0.75rem;
+    margin: 1rem auto 0.75rem;
     color: #fff;
     opacity: 0;
     overflow: hidden;
@@ -196,7 +215,7 @@
     0% {
         opacity: 0;
         transform: translateY(32px);
-        filter: blur(6px);
+        filter: blur(0);
     }
     100% {
         opacity: 1;
@@ -262,38 +281,20 @@
     height: 18px;
 }
 
-/* Sombreado: el hero se funde en blanco hacia la sección siguiente (sin línea de corte) */
+/* Sin fade - fondo plano */
 .hero-fade-to-white {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 500px;
-    z-index: 3;
-    pointer-events: none;
-    background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgba(255, 255, 255, 0.03) 5%,
-        rgba(255, 255, 255, 0.1) 18%,
-        rgba(255, 255, 255, 0.22) 32%,
-        rgba(255, 255, 255, 0.4) 52%,
-        rgba(255, 255, 255, 0.65) 72%,
-        rgba(255, 255, 255, 0.88) 90%,
-        rgba(255, 255, 255, 0.97) 98%,
-        #FAFAFA 100%
-    );
+    display: none;
 }
 
 /* Hero responsive: tablet */
 @media (max-width: 992px) {
     .hero {
-        padding: 5rem 1.5rem 3.5rem;
+        padding: 2.5rem 1.5rem 3.5rem;
         min-height: 100vh;
     }
     .hero-content {
         max-width: 100%;
+        margin-top: 1rem;
     }
     .hero-title {
         font-size: clamp(1.75rem, 4.5vw, 2.75rem);
@@ -314,12 +315,15 @@
 /* Hero responsive: móvil */
 @media (max-width: 768px) {
     .hero {
-        padding: 5rem 1rem 3rem;
+        padding: 2.5rem 1rem 3rem;
+    }
+    .hero-content {
+        margin-top: 0.75rem;
     }
     .hero-data-logo {
         width: clamp(72px, 20vw, 110px);
         height: clamp(72px, 20vw, 110px);
-        margin-bottom: 1rem;
+        margin: 0.75rem auto 0.5rem;
     }
     .hero-title {
         font-size: clamp(1.15rem, 4vw, 1.45rem);
@@ -336,40 +340,24 @@
         height: 140px;
     }
     .hero-fade-to-white {
-        height: 420px;
-        background: linear-gradient(
-            to bottom,
-            transparent 0%,
-            rgba(255, 255, 255, 0.04) 10%,
-            rgba(255, 255, 255, 0.12) 22%,
-            rgba(255, 255, 255, 0.25) 40%,
-            rgba(255, 255, 255, 0.48) 62%,
-            rgba(255, 255, 255, 0.75) 82%,
-            rgba(255, 255, 255, 0.92) 95%,
-            #FAFAFA 100%
-        );
+        display: none;
     }
 }
 
 @media (max-width: 560px) {
     .hero {
-        padding: 4.5rem 0.75rem 2.5rem;
+        padding: 2rem 0.75rem 2.5rem;
+    }
+    .hero-content {
+        margin-top: 0.5rem;
+    }
+    .hero-data-logo {
+        margin: 0.5rem auto 0.5rem;
     }
     .hero-title {
         font-size: 1.1rem;
     }
     .hero-fade-to-white {
-        height: 380px;
-        background: linear-gradient(
-            to bottom,
-            transparent 0%,
-            rgba(255, 255, 255, 0.05) 12%,
-            rgba(255, 255, 255, 0.14) 25%,
-            rgba(255, 255, 255, 0.28) 45%,
-            rgba(255, 255, 255, 0.52) 68%,
-            rgba(255, 255, 255, 0.78) 87%,
-            rgba(255, 255, 255, 0.94) 97%,
-            #FAFAFA 100%
-        );
+        display: none;
     }
 }

@@ -323,35 +323,19 @@
         if (!panelCarouselTrack) return;
         panelCarouselTrack.innerHTML = '';
         panelCarouselImages = [];
-        var images = [];
-        var base = '';
-        if (proyectoId === 'amva-usb' && typeof AMVA_USB_IMAGES !== 'undefined' && AMVA_USB_IMAGES.length) {
-            images = AMVA_USB_IMAGES;
-            base = '../img:video/proyectos/amvausb/';
-        } else if (proyectoId === 'cornare' && typeof CORNARE_IMAGES !== 'undefined' && CORNARE_IMAGES.length) {
-            images = CORNARE_IMAGES;
-            base = '../proyectos/ciudades/CORNARE/';
-        } else if (proyectoId === 'modelo-gestion-medellin' && typeof MODELO_GESTION_MEDELLIN_IMAGES !== 'undefined' && MODELO_GESTION_MEDELLIN_IMAGES.length) {
-            images = MODELO_GESTION_MEDELLIN_IMAGES;
-            base = '../proyectos/ciudades/MODELO-GESTION-MEDELLIN/';
-        } else if (proyectoId === 'observatorio-envigado' && typeof OBSERVATORIO_ENVIGADO_IMAGES !== 'undefined' && OBSERVATORIO_ENVIGADO_IMAGES.length) {
-            images = OBSERVATORIO_ENVIGADO_IMAGES;
-            base = '../proyectos/ciudades/OBSERVATORIO-ENVIGADO/';
-        }
-        if (images.length === 0) return;
-        panelCarouselImages = images.map(function(f) { return base + f; });
+        // Usar la imagen de IoT de servicios como imagen horizontal única para todos los proyectos
+        var imageSrc = '../img_video/servicios/ciudades/iot.webp';
+        panelCarouselImages = [imageSrc];
         var wrap = panelCarouselTrack.closest('.proyecto-panel-carousel-wrap');
-        if (wrap) wrap.classList.toggle('multiple', panelCarouselImages.length > 1);
-        panelCarouselImages.forEach(function(src, i) {
+        if (wrap) wrap.classList.remove('multiple'); // Siempre una sola imagen, no múltiple
             var slide = document.createElement('div');
-            slide.className = 'proyecto-panel-carousel-slide' + (i === 0 ? ' active' : '');
+        slide.className = 'proyecto-panel-carousel-slide active';
             var img = document.createElement('img');
-            img.src = src;
-            img.alt = titulo + ' - Imagen ' + (i + 1);
+        img.src = imageSrc;
+        img.alt = titulo;
             img.className = 'proyecto-panel-img';
             slide.appendChild(img);
             panelCarouselTrack.appendChild(slide);
-        });
         panelCarouselIndex = 0;
     }
 

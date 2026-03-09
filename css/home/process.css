@@ -17,7 +17,7 @@
     width: 100%;
     min-height: 130%;
     z-index: 0;
-    background-image: url('../../img:video/home/PRMGS_PALOMINO_00005.jpg');
+    background-image: url('../../img_video/home/PRMGS_PALOMINO_00005.jpg');
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
@@ -434,6 +434,8 @@
     display: flex;
     flex-direction: column;
     transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+    cursor: pointer;
+    pointer-events: auto;
 }
 
 .home-project-card:hover {
@@ -451,6 +453,7 @@
     background-position: center top;
     background-repeat: no-repeat;
     background-color: transparent;
+    pointer-events: none;
 }
 
 .home-project-card-content {
@@ -462,6 +465,7 @@
     background: transparent;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
+    pointer-events: none;
 }
 
 .home-project-card-title {

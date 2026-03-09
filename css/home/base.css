@@ -16,5 +16,13 @@ body {
     min-height: 100vh;
     color: #fff;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* En la página de inicio, asegurar que no haya espacios */
+body:has(.hero) {
+    margin: 0;
+    padding: 0;
 }
 

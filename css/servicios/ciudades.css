@@ -4,10 +4,23 @@
     flex-direction: column;
     height: 100vh;
     min-height: 100vh;
-    padding-top: 90px; /* espacio reducido para navbar fijo */
-    margin-top: 0.5rem; /* margin-top reducido */
+    padding-top: 0; /* navbar ahora es relativo, no necesita padding */
+    margin-top: 4rem; /* Espacio superior reducido para acercar al navbar */
     background: #313131;
     gap: 0;
+}
+
+/* Responsive: ajustar margin-top en móviles - punto medio */
+@media (max-width: 900px) {
+    .section-view {
+        margin-top: 2.5rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .section-view {
+        margin-top: 2rem;
+    }
 }
 
 /* Modo claro en Servicios: toda la zona subrayada (óvalos + contenido) con fondo blanco */
@@ -21,7 +34,7 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
 /* Sección superior: óvalos de servicios (estilo Proyectos). Modo claro = fondo blanco */
 .section-services-top {
     flex: 0 0 auto;
-    padding: 0.75rem 2rem 1rem;
+    padding: 0.75rem 2rem 0.75rem; /* padding reducido para acercar tags al navbar */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -349,6 +362,7 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
     z-index: 2;
     flex: 1 1 100%;
     min-width: 0;
+    border-radius: 16px;
     transition: flex 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -426,6 +440,8 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+    border-radius: 16px;
+    overflow: hidden;
     transition: opacity 0.2s ease 0.2s, visibility 0.2s ease 0.2s;
 }
 
@@ -680,6 +696,24 @@ html:not([data-theme="dark"]) .section-card-image {
     transform: translateX(0);
 }
 
+/* En responsive, asegurar que la descripción siempre sea visible y esté en columna */
+@media (max-width: 900px) {
+    .section-card.expanded .section-card-expanded {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .section-card.expanded .section-card-desc,
+    .section-content .section-card.active-panel .section-card-desc,
+    .section-card-desc {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateX(0) !important;
+        display: block !important;
+        position: relative !important;
+    }
+}
+
 .section-card-desc-title {
     font-size: 1.6rem;
     font-weight: 700;
@@ -732,7 +766,7 @@ html:not([data-theme="dark"]) .section-card-image {
 @media (max-width: 900px) {
     .section-view {
         flex-direction: column;
-        padding-top: 60px;
+        padding-top: 0; /* Sin padding extra en móvil */
     }
 
     /* Orden en pantalla pequeña: tags → título (CIUDADES/INDUSTRIA) → carrusel → descripción */
@@ -754,6 +788,7 @@ html:not([data-theme="dark"]) .section-card-image {
         flex-direction: column;
         align-items: stretch;
         justify-content: flex-start;
+        margin-top: 0;
     }
 
     .section-label-header {
@@ -761,7 +796,7 @@ html:not([data-theme="dark"]) .section-card-image {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding: 1rem 1.5rem;
+        padding: 0.9rem 1.5rem;
         position: relative;
         background: #313131;
     }
@@ -803,6 +838,7 @@ html:not([data-theme="dark"]) .section-card-image {
         justify-content: center;
         padding: 1rem;
         gap: 0.5rem;
+        margin-top: 0;
     }
 
     .section-card {
@@ -824,117 +860,118 @@ html:not([data-theme="dark"]) .section-card-image {
         z-index: 2;
         flex: none;
         min-height: 100%;
+        height: 100%;
+    }
+    
+    /* Asegurar que el contenedor expandido ocupe todo el espacio disponible */
+    .section-card.expanded .section-card-expanded {
+        height: 100%;
+        min-height: 100%;
     }
 
     .section-card-expanded {
         flex-direction: column;
         justify-content: flex-start;
-        padding: 1rem;
+        align-items: stretch;
+        padding: 1.25rem 1rem;
         overflow-y: auto;
+        gap: 0;
     }
 
-    /* Orden en responsive: título → descripción → imagen → botón */
-    /* Usar display: contents para que los hijos de .section-card-desc participen en el flexbox del padre */
+    /* Imagen arriba - más pequeña en móvil */
+    .section-card-image-wrap {
+        flex: 0 0 auto;
+        max-width: 100%;
+        width: 100%;
+        min-height: 200px;
+        max-height: 250px;
+        height: auto;
+        padding: 0 1.25rem 1.5rem 1.25rem;
+        order: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .section-card-image {
+        width: 100%;
+        height: 100%;
+        max-height: 250px;
+        min-height: 200px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin: 0;
+    }
+
+    .section-card-image video {
+        width: 100%;
+        height: 100%;
+        max-height: 250px;
+        min-height: 200px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    /* Carrusel también más pequeño */
+    .section-card-carousel-wrap {
+        flex: 0 0 auto;
+        max-width: 100%;
+        width: 100%;
+        min-height: 200px;
+        max-height: 250px;
+        height: auto;
+        padding: 0 1.25rem 1.5rem 1.25rem;
+        order: 1;
+    }
+
+    .section-card-carousel {
+        height: 200px;
+        min-height: 200px;
+        max-height: 250px;
+    }
+
+    .section-card-carousel-track,
+    .section-card-carousel-slide {
+        min-height: 200px;
+        height: 200px;
+    }
+
+    /* Descripción abajo - siempre visible */
     .section-card-desc {
         flex: 1 1 auto;
         min-height: auto;
         max-height: none;
         width: 100%;
         padding: 0;
-        order: 1;
-        display: contents;
+        margin: 0;
+        order: 2;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateX(0) !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
     }
 
     .section-card-desc-title {
-        order: 1;
-        margin: 1.5rem 1.25rem 1rem;
-        width: 100%;
-        box-sizing: border-box;
-        color: #fff !important;
+        font-size: 1.4rem;
+        margin: 0 0 1rem 0;
+        padding: 0 1.25rem;
+        line-height: 1.3;
     }
 
     .section-card-desc p {
-        order: 2;
-        margin: 0 1.25rem 1.5rem;
-        width: 100%;
-        box-sizing: border-box;
-        color: rgba(255, 255, 255, 0.9) !important;
-    }
-
-    .section-card-image-wrap {
-        flex: 0 0 auto;
-        max-width: none;
-        width: 100%;
-        min-height: 200px;
-        max-height: 240px;
-        padding: 0.75rem 0.5rem;
-        order: 3;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin: 0 0 1.5rem 0;
+        padding: 0 1.25rem;
     }
 
     .section-card-proyectos-link {
-        order: 4;
-        margin: 1rem 1.25rem 1.5rem;
-        width: calc(100% - 2.5rem);
-        box-sizing: border-box;
-        display: inline-block;
-        color: #fff !important;
-        border-color: rgba(255, 255, 255, 0.6) !important;
-    }
-
-    .section-card-proyectos-link:hover {
-        background: rgba(255, 255, 255, 0.15) !important;
-        color: #fff !important;
-        border-color: rgba(255, 255, 255, 0.8) !important;
-    }
-
-    .section-card-image {
-        width: 100%;
-        height: 100%;
-        margin: 0 auto;
-        object-fit: cover;
-        max-height: 240px;
-    }
-
-    .section-card-carousel-wrap {
-        flex: 0 0 auto;
-        max-width: none;
-        width: 100%;
-        min-height: 200px;
-        max-height: 240px;
-        padding: 0.75rem 0.5rem;
-        order: 3;
-    }
-
-    .section-card-carousel {
-        height: 200px;
-        min-height: 200px;
-        max-height: 240px;
-    }
-
-    .section-card-carousel-track,
-    .section-card-carousel-slide {
-        min-height: 200px;
-        max-height: 240px;
-    }
-
-    /* Modo oscuro en responsive: asegurar colores blancos */
-    [data-theme="dark"] .section-card-desc-title {
-        color: #fff !important;
-    }
-
-    [data-theme="dark"] .section-card-desc p {
-        color: rgba(255, 255, 255, 0.9) !important;
-    }
-
-    [data-theme="dark"] .section-card-proyectos-link {
-        color: #fff !important;
-        border-color: rgba(255, 255, 255, 0.6) !important;
-    }
-
-    [data-theme="dark"] .section-card-proyectos-link:hover {
-        background: rgba(255, 255, 255, 0.15) !important;
-        color: #fff !important;
-        border-color: rgba(255, 255, 255, 0.8) !important;
+        display: inline-block !important;
+        margin: 0.5rem 1.25rem 0 1.25rem;
+        width: auto;
     }
 
     .section-card:last-child {
@@ -992,6 +1029,17 @@ body.page-servicios .navbar.scrolled .nav-theme-btn {
 }
 body.page-servicios .navbar.scrolled .nav-theme-btn:hover {
     background: rgba(0, 0, 0, 0.12);
+}
+
+/* Hamburguesa blanco en servicios (tanto modo oscuro como claro cuando el navbar es oscuro) */
+body.page-servicios .navbar .nav-hamburger-bar,
+body.page-servicios .navbar.scrolled .nav-hamburger-bar {
+    background: #fff !important;
+}
+
+/* En modo claro, el navbar es blanco, así que el hamburguesa debe ser oscuro */
+html:not([data-theme="dark"]) body.page-servicios .navbar.scrolled .nav-hamburger-bar {
+    background: #313131 !important;
 }
 
 /* Solo paneles: no hay cards, solo un panel visible; el título vertical (Ciudades/Industria) siempre se ve */

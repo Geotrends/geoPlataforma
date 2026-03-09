@@ -98,40 +98,40 @@
     var base = '';
     if (proyecto === 'refineria-cartagena' && typeof REFINERIA_CARTAGENA_IMAGES !== 'undefined' && REFINERIA_CARTAGENA_IMAGES.length) {
         images = REFINERIA_CARTAGENA_IMAGES;
-        base = '../../img:video/proyectos/refineria/';
+        base = '../../img_video/proyectos/refineria/';
     } else if (proyecto === 'alma-magdalena' && typeof ALMA_MAGDALENA_IMAGES !== 'undefined' && ALMA_MAGDALENA_IMAGES.length) {
         images = ALMA_MAGDALENA_IMAGES;
-        base = '../../img:video/proyectos/industria/almaMagdalena/';
+        base = '../../img_video/proyectos/industria/almaMagdalena/';
     } else if (proyecto === 'amva-usb' && typeof AMVA_USB_IMAGES !== 'undefined' && AMVA_USB_IMAGES.length) {
         images = AMVA_USB_IMAGES;
-        base = '../../img:video/proyectos/amvausb/';
+        base = '../../img_video/proyectos/amvausb/';
     } else if (proyecto === 'arclad' && typeof ARCLAD_IMAGES !== 'undefined' && ARCLAD_IMAGES.length) {
         images = ARCLAD_IMAGES;
-        base = '../../img:video/proyectos/arclad/';
+        base = '../../img_video/proyectos/arclad/';
     } else if (proyecto === 'segovia' && typeof SEGOVIA_IMAGES !== 'undefined' && SEGOVIA_IMAGES.length) {
         images = SEGOVIA_IMAGES;
-        base = '../../img:video/proyectos/segovia/';
+        base = '../../img_video/proyectos/segovia/';
     } else if (proyecto === 'ccr-palagua' && typeof CCR_PALAGUA_IMAGES !== 'undefined' && CCR_PALAGUA_IMAGES.length) {
         images = CCR_PALAGUA_IMAGES;
-        base = '../../img:video/proyectos/promigas/';
+        base = '../../img_video/proyectos/promigas/';
     } else if (proyecto === 'colcafe' && typeof COLCAFE_IMAGES !== 'undefined' && COLCAFE_IMAGES.length) {
         images = COLCAFE_IMAGES;
-        base = '../../img:video/proyectos/colcafe/';
+        base = '../../img_video/proyectos/colcafe/';
     } else if (proyecto === 'cerrejon' && typeof CERREJON_IMAGES !== 'undefined' && CERREJON_IMAGES.length) {
         images = CERREJON_IMAGES;
-        base = '../../img:video/proyectos/industria/cerrejon/';
+        base = '../../img_video/proyectos/industria/cerrejon/';
     } else if (proyecto === 'mineros-bic' && typeof MINEROS_BIC_IMAGES !== 'undefined' && MINEROS_BIC_IMAGES.length) {
         images = MINEROS_BIC_IMAGES;
-        base = '../../img:video/proyectos/minerosbic/';
+        base = '../../img_video/proyectos/minerosbic/';
     } else if (proyecto === 'p-and-g' && typeof P_AND_G_IMAGES !== 'undefined' && P_AND_G_IMAGES.length) {
         images = P_AND_G_IMAGES;
-        base = '../../img:video/proyectos/p&g/';
+        base = '../../img_video/proyectos/p&g/';
     } else if (proyecto === 'pepsico' && typeof PEPSICO_IMAGES !== 'undefined' && PEPSICO_IMAGES.length) {
         images = PEPSICO_IMAGES;
-        base = '../../img:video/proyectos/pepsico/';
+        base = '../../img_video/proyectos/pepsico/';
     } else if (proyecto === 'spia' && typeof SPIA_IMAGES !== 'undefined' && SPIA_IMAGES.length) {
         images = SPIA_IMAGES;
-        base = '../../img:video/proyectos/spia/';
+        base = '../../img_video/proyectos/spia/';
     }
     if (images.length && base) {
         var single = document.getElementById('proyecto-media-single');

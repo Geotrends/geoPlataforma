@@ -19,12 +19,45 @@
   color: rgba(255, 255, 255, 0.92);
 }
 
-/* Navbar en modo oscuro: se mantiene con transparencia (blur del fondo visible) */
+/* En la página de inicio, el body debe ser transparente para que se vea la animación */
+body:has(.hero),
+body:has(.hero-section) {
+  background: transparent !important;
+}
+
+/* Fallback: si no hay hero, mantener fondo gris */
+body:not(:has(.hero)):not(:has(.hero-section)) {
+  background: #313131;
+}
+
+/* Navbar en modo oscuro: mismo efecto glassmorphism oscuro que las cards de proyectos */
 [data-theme="dark"] .navbar {
-  background: rgba(15, 20, 25, 0.55);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: none;
+  position: relative !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
+}
+
+/* Navbar scrolled en modo oscuro: mantener transparencia oscura siempre (más oscura como cards de proyectos) */
+[data-theme="dark"] .navbar .nav-container {
+  background: rgba(15, 20, 25, 0.65) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 50px !important;
+  box-shadow: none !important;
+}
+
+[data-theme="dark"] .navbar.scrolled .nav-container,
+[data-theme="dark"] .navbar.scrolled.section-image .nav-container,
+[data-theme="dark"] .navbar.scrolled.section-dark .nav-container {
+  background: rgba(15, 20, 25, 0.65) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 50px !important;
+  box-shadow: none !important;
 }
 
 [data-theme="dark"] .navbar .logo {
@@ -41,7 +74,7 @@
 }
 
 [data-theme="dark"] .navbar .nav-dropdown-menu {
-  background: rgba(20, 26, 32, 0.98);
+  background: #313131;
   border-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
@@ -60,7 +93,7 @@
 [data-theme="dark"] .navbar.scrolled .nav-dropdown-menu,
 [data-theme="dark"] .navbar.scrolled.section-image .nav-dropdown-menu,
 [data-theme="dark"] .navbar.scrolled.section-dark .nav-dropdown-menu {
-  background: rgba(20, 26, 32, 0.98);
+  background: #313131;
   border-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
@@ -68,7 +101,7 @@
 [data-theme="dark"] .navbar .nav-services-panel,
 [data-theme="dark"] .navbar.scrolled.section-image .nav-services-panel,
 [data-theme="dark"] .navbar.scrolled.section-dark .nav-services-panel {
-  background: rgba(20, 26, 32, 0.98);
+  background: #313131;
   border-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
@@ -84,6 +117,27 @@
 
 [data-theme="dark"] .navbar .nav-services-panel a:hover {
   background: rgba(255, 255, 255, 0.1);
+}
+
+/* Modo claro: navbar con bordes redondeados y transparencia más oscura */
+html:not([data-theme="dark"]) .navbar .nav-container {
+  background: rgba(15, 20, 25, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50px;
+  box-shadow: none;
+}
+
+html:not([data-theme="dark"]) .navbar.scrolled .nav-container,
+html:not([data-theme="dark"]) .navbar.scrolled.section-image .nav-container,
+html:not([data-theme="dark"]) .navbar.scrolled.section-dark .nav-container {
+  background: rgba(15, 20, 25, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50px;
+  box-shadow: none;
 }
 
 /* Modo claro: desplegables siempre blancos (sin depender del scroll/sección) */
@@ -129,7 +183,8 @@ html:not([data-theme="dark"]) .navbar .nav-services-panel a:hover {
 /* Menú móvil (hamburguesa): fondo y texto en modo claro para que se lea */
 html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-links {
   background: var(--geo-bg);
-  border-top-color: var(--geo-border);
+  border: 1px solid var(--geo-border);
+  border-radius: 16px;
 }
 
 html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-links > li {
@@ -164,8 +219,12 @@ html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel a {
 }
 
 [data-theme="dark"] .navbar.nav-mobile-open .nav-links {
-  background: rgba(20, 26, 32, 0.98);
-  border-top-color: rgba(255, 255, 255, 0.1);
+  background: rgba(15, 20, 25, 0.28);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 [data-theme="dark"] .navbar.nav-mobile-open .nav-links > li {
@@ -192,7 +251,8 @@ html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel a {
 /* En modo oscuro el navbar scrolled (por sección) también mantiene transparencia */
 [data-theme="dark"] .navbar.scrolled.section-image,
 [data-theme="dark"] .navbar.scrolled.section-dark {
-  background: rgba(15, 20, 25, 0.55);
+  position: relative !important;
+  background: rgba(15, 20, 25, 0.25);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -382,7 +442,8 @@ html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel a {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 36px rgba(255, 255, 255, 0.06);
 }
 
-/* Página Nosotros: navbar en dark con transparencia */
+/* Página Nosotros: navbar usa estilos estándar - comentado para mantener consistencia */
+/*
 [data-theme="dark"] .page-about .navbar {
   background: rgba(15, 20, 25, 0.55);
   backdrop-filter: blur(10px);
@@ -397,16 +458,18 @@ html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel a {
 }
 
 [data-theme="dark"] .page-about .navbar .nav-dropdown-menu {
-  background: rgba(20, 26, 32, 0.98);
+  background: #313131;
 }
 
 [data-theme="dark"] .page-about .navbar .nav-dropdown-menu a {
   color: #fff;
 }
+*/
 
 /* Páginas Servicios (ciudades, industria): navbar con transparencia en dark */
 [data-theme="dark"] body.page-servicios .navbar.scrolled {
-  background: rgba(15, 20, 25, 0.55);
+  position: relative !important;
+  background: rgba(15, 20, 25, 0.25);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -417,11 +480,23 @@ html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel a {
 }
 
 [data-theme="dark"] body.page-servicios .navbar.scrolled .nav-dropdown-menu {
-  background: rgba(20, 26, 32, 0.98);
+  background: #313131;
 }
 
 [data-theme="dark"] body.page-servicios .navbar.scrolled .nav-dropdown-menu a {
   color: #fff;
+}
+
+/* Hamburguesa blanco en modo oscuro en servicios */
+[data-theme="dark"] body.page-servicios .navbar .nav-hamburger-bar,
+[data-theme="dark"] body.page-servicios .navbar.scrolled .nav-hamburger-bar {
+  background: #fff !important;
+}
+
+/* Hamburguesa blanco en página Nosotros */
+[data-theme="dark"] body.page-about .navbar .nav-hamburger-bar,
+[data-theme="dark"] body.page-about .navbar.scrolled .nav-hamburger-bar {
+  background: #fff !important;
 }
 
 /* Blog: modo oscuro — fondo, cards y navbar coherentes */
@@ -500,7 +575,8 @@ html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel a {
 /* Navbar oscuro en Blog cuando está en modo oscuro */
 [data-theme="dark"] body.page-blog .navbar,
 [data-theme="dark"] body.page-blog .navbar.scrolled {
-  background: rgba(15, 20, 25, 0.55);
+  position: relative !important;
+  background: rgba(15, 20, 25, 0.25);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -513,7 +589,7 @@ html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel a {
 }
 
 [data-theme="dark"] body.page-blog .navbar .nav-dropdown-menu {
-  background: rgba(20, 26, 32, 0.98);
+  background: #313131;
 }
 
 [data-theme="dark"] body.page-blog .navbar .nav-dropdown-menu a {
@@ -951,10 +1027,10 @@ html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel a {
 }
 
 [data-theme="dark"] .section-card-desc {
-  background: rgba(15, 28, 24, 0.55);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-color: rgba(255, 255, 255, 0.08);
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: transparent;
   box-shadow: none;
 }
 
