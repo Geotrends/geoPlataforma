@@ -433,7 +433,7 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
     inset: 0;
     display: flex;
     flex-direction: row;
-    align-items: stretch;
+    align-items: center;
     justify-content: flex-start;
     padding: 0;
     background: transparent;
@@ -466,28 +466,32 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
     display: none !important;
 }
 
-/* Columna izquierda: carrusel de imágenes visible */
+/* Columna izquierda: imagen 16:9 centrada */
 .section-card-image-wrap {
     position: relative;
     flex: 1 1 42%;
     min-width: 0;
     max-width: 50%;
-    padding: 0.5rem 1rem 1.5rem 1rem;
+    padding: 0.25rem 1rem 0.5rem 1rem;
     z-index: 0.5;
     overflow: hidden;
     order: 1;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    height: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    max-height: 100%;
+    align-self: center;
 }
 
 .section-card-image {
     width: 100%;
     height: 100%;
     margin: auto;
-    border-radius: 12px;
+    border-radius: 16px;
     object-fit: cover;
+    object-position: center;
     display: block;
     background-color: #1a1a1a00;
     background-size: cover;
@@ -523,9 +527,9 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
 .section-card[data-servicio="medicion-ruido-subacuatico"] .section-card-image-wrap,
 .section-card[data-servicio="geoespacial"] .section-card-image-wrap,
 .section-card[data-servicio="fotogrametria"] .section-card-image-wrap {
-    padding-bottom: 2rem;
+    padding-bottom: 0.5rem;
     align-items: flex-start;
-    padding-top: 0.5rem;
+    padding-top: 0.25rem;
 }
 
 /* Videos ocupan todo el espacio */
@@ -548,10 +552,14 @@ html:not([data-theme="dark"]) .section-card-image {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 1.5rem 1rem;
+    padding: 0.25rem 1rem 0.5rem 1rem;
     z-index: 0.5;
     overflow: hidden;
     order: 1;
+    aspect-ratio: 16/9;
+    max-height: 100%;
+    height: auto;
+    align-self: center;
 }
 
 /* Fondo suave detrás del carrusel (solo en esta columna) */
@@ -623,11 +631,10 @@ html:not([data-theme="dark"]) .section-card-image {
 .section-card-carousel {
     flex: 1;
     min-width: 0;
-    min-height: 400px;
-    height: 70vh;
-    max-height: 520px;
+    min-height: 200px;
+    aspect-ratio: 16/9;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: 16px;
     background: transparent;
     box-shadow: none;
 }
@@ -635,15 +642,17 @@ html:not([data-theme="dark"]) .section-card-image {
 .section-card-carousel-track {
     display: flex;
     gap: 0;
+    width: 100%;
     height: 100%;
-    min-height: 400px;
+    aspect-ratio: 16/9;
+    min-height: 200px;
     transition: transform 0.18s ease;
 }
 
 .section-card-carousel-slide {
     flex: 0 0 100%;
     width: 100%;
-    min-height: 400px;
+    min-height: 200px;
     height: 100%;
     background-size: cover;
     background-position: center;
@@ -675,8 +684,13 @@ html:not([data-theme="dark"]) .section-card-image {
     min-height: 100%;
     max-height: 100vh;
     margin: 0;
-    padding: 2.5rem 2rem 4.5rem;
+    padding: 1.5rem 2rem 2rem;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
     -webkit-overflow-scrolling: touch;
     background: #FAFAFA;
     border: 1px solid rgba(0, 0, 0, 0.06);
@@ -836,7 +850,7 @@ html:not([data-theme="dark"]) .section-card-image {
         min-height: 70vh;
         flex-wrap: wrap;
         justify-content: center;
-        padding: 1rem;
+        padding: 0.5rem;
         gap: 0.5rem;
         margin-top: 0;
     }
@@ -873,7 +887,7 @@ html:not([data-theme="dark"]) .section-card-image {
         flex-direction: column;
         justify-content: flex-start;
         align-items: stretch;
-        padding: 1.25rem 1rem;
+        padding: 0.5rem 1rem;
         overflow-y: auto;
         gap: 0;
     }
@@ -886,7 +900,7 @@ html:not([data-theme="dark"]) .section-card-image {
         min-height: 200px;
         max-height: 250px;
         height: auto;
-        padding: 0 1.25rem 1.5rem 1.25rem;
+        padding: 0 1rem 0.5rem 1rem;
         order: 1;
         display: flex;
         align-items: center;
@@ -920,7 +934,7 @@ html:not([data-theme="dark"]) .section-card-image {
         min-height: 200px;
         max-height: 250px;
         height: auto;
-        padding: 0 1.25rem 1.5rem 1.25rem;
+        padding: 0 1rem 0.5rem 1rem;
         order: 1;
     }
 
