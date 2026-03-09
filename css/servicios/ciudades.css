@@ -6,20 +6,23 @@
     min-height: 70vh;
     padding-top: 0; /* navbar ahora es relativo, no necesita padding */
     margin-top: 1.5rem; /* Espacio superior compacto para acercar al navbar */
+    margin-bottom: 2.5rem; /* Espacio inferior para separar del footer */
     background: #313131;
     gap: 0;
 }
 
-/* Responsive: ajustar margin-top en móviles - punto medio */
+/* Responsive: ajustar margin-top y margin-bottom en móviles */
 @media (max-width: 900px) {
     .section-view {
         margin-top: 1rem;
+        margin-bottom: 2rem;
     }
 }
 
 @media (max-width: 560px) {
     .section-view {
         margin-top: 0.75rem;
+        margin-bottom: 1.5rem;
     }
 }
 
@@ -42,7 +45,7 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
     flex-wrap: wrap;
     z-index: 5;
     background: #FAFAFA;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: none;
 }
 
 /* En responsive, ocultar las tags superiores */
@@ -81,19 +84,19 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
 
 [data-theme="dark"] .section-services-top {
     background: transparent;
-    border-bottom-color: transparent;
+    border-bottom: none;
 }
 
 [data-theme="dark"] .section-services-top .section-service-pill {
     color: #fff;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: none;
 }
 
 [data-theme="dark"] .section-services-top .section-service-pill:hover,
 [data-theme="dark"] .section-services-top .section-service-pill.active {
     background: rgba(255, 255, 255, 0.18);
-    border-color: rgba(255, 255, 255, 0.7);
+    border: none;
     color: #fff;
 }
 
@@ -120,7 +123,7 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
     align-items: center;
     justify-content: center;
     background: #FAFAFA;
-    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    border-right: none;
 }
 
 .section-label-header {
@@ -694,8 +697,7 @@ html:not([data-theme="dark"]) .section-card-image {
     text-align: left;
     -webkit-overflow-scrolling: touch;
     background: #FAFAFA;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    border-left: 1px solid rgba(0, 0, 0, 0.08);
+    border: none;
     border-radius: 0;
     box-sizing: border-box;
     order: 2;
@@ -798,7 +800,7 @@ html:not([data-theme="dark"]) .section-card-image {
         flex-shrink: 0;
         order: -1;
         border-right: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        border-bottom: none;
         display: flex;
         flex-direction: column;
         align-items: stretch;
