@@ -4,8 +4,8 @@
     flex-direction: column;
     height: 100vh;
     min-height: 100vh;
-    padding-top: 140px; /* espacio para navbar fijo: óvalos más abajo */
-    margin-top: 2rem; /* margin-top para que no se vea pegado al navbar */
+    padding-top: 90px; /* espacio reducido para navbar fijo */
+    margin-top: 0.5rem; /* margin-top reducido */
     background: #313131;
     gap: 0;
 }
@@ -21,7 +21,7 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
 /* Sección superior: óvalos de servicios (estilo Proyectos). Modo claro = fondo blanco */
 .section-services-top {
     flex: 0 0 auto;
-    padding: 1.75rem 2rem 1.25rem;
+    padding: 0.75rem 2rem 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -732,7 +732,7 @@ html:not([data-theme="dark"]) .section-card-image {
 @media (max-width: 900px) {
     .section-view {
         flex-direction: column;
-        padding-top: 70px;
+        padding-top: 60px;
     }
 
     /* Orden en pantalla pequeña: tags → título (CIUDADES/INDUSTRIA) → carrusel → descripción */
@@ -833,48 +833,108 @@ html:not([data-theme="dark"]) .section-card-image {
         overflow-y: auto;
     }
 
+    /* Orden en responsive: título → descripción → imagen → botón */
+    /* Usar display: contents para que los hijos de .section-card-desc participen en el flexbox del padre */
+    .section-card-desc {
+        flex: 1 1 auto;
+        min-height: auto;
+        max-height: none;
+        width: 100%;
+        padding: 0;
+        order: 1;
+        display: contents;
+    }
+
+    .section-card-desc-title {
+        order: 1;
+        margin: 1.5rem 1.25rem 1rem;
+        width: 100%;
+        box-sizing: border-box;
+        color: #fff !important;
+    }
+
+    .section-card-desc p {
+        order: 2;
+        margin: 0 1.25rem 1.5rem;
+        width: 100%;
+        box-sizing: border-box;
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+
     .section-card-image-wrap {
         flex: 0 0 auto;
         max-width: none;
         width: 100%;
-        min-height: 280px;
-        padding: 1rem 0.5rem;
-        order: 1;
+        min-height: 200px;
+        max-height: 240px;
+        padding: 0.75rem 0.5rem;
+        order: 3;
+    }
+
+    .section-card-proyectos-link {
+        order: 4;
+        margin: 1rem 1.25rem 1.5rem;
+        width: calc(100% - 2.5rem);
+        box-sizing: border-box;
+        display: inline-block;
+        color: #fff !important;
+        border-color: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    .section-card-proyectos-link:hover {
+        background: rgba(255, 255, 255, 0.15) !important;
+        color: #fff !important;
+        border-color: rgba(255, 255, 255, 0.8) !important;
     }
 
     .section-card-image {
         width: 100%;
         height: 100%;
         margin: 0 auto;
+        object-fit: cover;
+        max-height: 240px;
     }
 
     .section-card-carousel-wrap {
         flex: 0 0 auto;
         max-width: none;
         width: 100%;
-        min-height: 280px;
-        padding: 1rem 0.5rem;
-        order: 1;
+        min-height: 200px;
+        max-height: 240px;
+        padding: 0.75rem 0.5rem;
+        order: 3;
     }
 
     .section-card-carousel {
-        height: 280px;
-        min-height: 280px;
-        max-height: 280px;
+        height: 200px;
+        min-height: 200px;
+        max-height: 240px;
     }
 
     .section-card-carousel-track,
     .section-card-carousel-slide {
-        min-height: 280px;
+        min-height: 200px;
+        max-height: 240px;
     }
 
-    .section-card-desc {
-        flex: 1 1 auto;
-        min-height: auto;
-        max-height: none;
-        width: 100%;
-        padding: 1.5rem 1.25rem 2rem;
-        order: 2;
+    /* Modo oscuro en responsive: asegurar colores blancos */
+    [data-theme="dark"] .section-card-desc-title {
+        color: #fff !important;
+    }
+
+    [data-theme="dark"] .section-card-desc p {
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+
+    [data-theme="dark"] .section-card-proyectos-link {
+        color: #fff !important;
+        border-color: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    [data-theme="dark"] .section-card-proyectos-link:hover {
+        background: rgba(255, 255, 255, 0.15) !important;
+        color: #fff !important;
+        border-color: rgba(255, 255, 255, 0.8) !important;
     }
 
     .section-card:last-child {
