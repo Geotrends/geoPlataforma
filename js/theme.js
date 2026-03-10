@@ -5,7 +5,7 @@
     html.setAttribute('data-theme', 'dark');
     
     // Actualizar logo si es necesario
-    var LOGO_DARK = '../img_video/home/isologo-02.png';
+    var LOGO_DARK = '../img_video/home/isologo-02.webp';
     document.querySelectorAll('.logo-img, .footer-logo-img').forEach(function(img) {
       if (img.src !== undefined) img.src = LOGO_DARK;
     });
