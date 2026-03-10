@@ -1112,21 +1112,25 @@ a.wind-project-card-cta:hover {
     .wind-card.expanded .wind-project-card-cta {
         font-size: 0.7rem;
         padding: 0.4rem 0.75rem;
+        margin-bottom: 1rem;
     }
     
-    /* Botón ver más - centrado */
+    /* Botón ver más - mismo ancho que las mini cards; más espacio arriba y abajo */
     .wind-card.expanded .wind-more-projects {
         position: relative;
         left: auto;
         bottom: auto;
         transform: none;
-        margin: 0.5rem auto 0;
+        margin: 2rem 1rem 2rem;
         padding: 0.5rem 1rem !important;
         font-size: 0.75rem !important;
         display: flex;
         align-items: center;
         justify-content: center;
-        align-self: center;
+        align-self: stretch;
+        width: calc(100% - 2rem);
+        max-width: none;
+        box-sizing: border-box;
     }
 
     /* Asegurar que el contenedor del botón esté centrado */
