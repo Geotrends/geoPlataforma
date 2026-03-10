@@ -535,6 +535,19 @@ body.page-about main {
   flex-shrink: 0;
 }
 
+/* Logos de clientes en blanco (Reconocimientos y clientes) */
+.about-recon-clientes-seccion .about-clientes-logo-img {
+  filter: brightness(0) invert(1);
+  -webkit-filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.about-recon-clientes-seccion .about-clientes-logo-envigado {
+  filter: none !important;
+  -webkit-filter: none !important;
+  opacity: 1 !important;
+}
+
 /* Centro: tabs ovales + contenido + video */
 .about-center {
   display: flex;

@@ -328,13 +328,24 @@
     }
 }
 
+/* iPhone XR, 14 Pro Max, Pixel 7 (~414–430px): más espacio entre hero y StartUp */
+@media (max-width: 430px) {
+    .geotrends-section {
+        margin-top: 0;
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+        margin-bottom: 4rem;
+        background: #313131;
+    }
+}
+
 /* iPhone SE y pantallas ~375px: más espacio entre hero y StartUp, y antes del video */
 @media (max-width: 375px) {
     .geotrends-section {
         margin-top: 0;
-        padding-top: 5rem;
-        padding-bottom: 6rem;
-        margin-bottom: 4rem;
+        padding-top: 6rem;
+        padding-bottom: 7rem;
+        margin-bottom: 5rem;
         background: #313131;
     }
 }

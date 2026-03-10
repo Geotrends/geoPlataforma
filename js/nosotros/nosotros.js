@@ -38,7 +38,7 @@
                 '<li class="about-clientes-logo-item"><img src="../img_video/clientes/aqua-terra.webp" alt="Aqua & Terra" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
                 '<li class="about-clientes-logo-item"><img src="../img_video/clientes/arclad.webp" alt="ARCLAD" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
                 '<li class="about-clientes-logo-item"><img src="../img_video/clientes/usb.webp" alt="Universidad de San Buenaventura" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
-                '<li class="about-clientes-logo-item"><img src="../img_video/clientes/envigado.webp" alt="Alcaldía de Envigado" class="about-clientes-logo-img about-clientes-logo-envigado" width="120" height="48" loading="lazy"></li>' +
+                '<li class="about-clientes-logo-item"><img src="../img_video/clientes/envigado.png" alt="Alcaldía de Envigado" class="about-clientes-logo-img about-clientes-logo-envigado" width="120" height="48" loading="lazy"></li>' +
                 '<li class="about-clientes-logo-item"><img src="../img_video/clientes/ing.webp" alt="ING" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
                 '</ul></div></section>'
         }
