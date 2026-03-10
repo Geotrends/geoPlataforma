@@ -502,6 +502,18 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
     background-repeat: no-repeat;
 }
 
+/* Ecosistemas y Analítica: imagen completa dentro del margen 16:9, sin relleno ni zoom; borde como en panel de proyectos */
+.section-card[data-servicio="webgis"] .section-card-image,
+.section-card[data-servicio="geoespacial"] .section-card-image {
+    object-fit: contain;
+    object-position: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+html:not([data-theme="dark"]) .section-card[data-servicio="webgis"] .section-card-image,
+html:not([data-theme="dark"]) .section-card[data-servicio="geoespacial"] .section-card-image {
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
 /* Regla específica para imágenes en industria - ocupan más espacio vertical, solo margen abajo */
 .section-card[data-servicio="iot"] .section-card-image,
 .section-card[data-servicio="control-ruido"] .section-card-image,
@@ -533,6 +545,11 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
     padding-bottom: 0.5rem;
     align-items: flex-start;
     padding-top: 0.25rem;
+}
+
+/* Control de ruido: encuadre para destacar la fachada del edificio principal */
+.section-card[data-servicio="control-ruido"] .section-card-image {
+    background-position: 55% 35%;
 }
 
 /* Videos ocupan todo el espacio */
@@ -918,6 +935,11 @@ html:not([data-theme="dark"]) .section-card-image {
         object-fit: cover;
         border-radius: 12px;
         margin: 0;
+    }
+
+    .section-card[data-servicio="webgis"] .section-card-image,
+    .section-card[data-servicio="geoespacial"] .section-card-image {
+        object-fit: contain;
     }
 
     .section-card-image video {

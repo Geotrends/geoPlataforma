@@ -60,10 +60,12 @@
         var videoEl = imgWrap.querySelector('.proyecto-card-portada-iot');
         var mapasEl = imgWrap.querySelector('.proyecto-card-portada-mapas-ruido');
         var webgisEl = imgWrap.querySelector('.proyecto-card-portada-webgis');
+        var descontEl = imgWrap.querySelector('.proyecto-card-portada-descontaminacion');
         if (!videoEl || !mapasEl || !webgisEl) return;
         videoEl.style.display = servicioActivo === 'iot' ? 'block' : 'none';
         mapasEl.style.display = servicioActivo === 'mapas-ruido' ? 'block' : 'none';
         webgisEl.style.display = servicioActivo === 'webgis' ? 'block' : 'none';
+        if (descontEl) descontEl.style.display = servicioActivo === 'descontaminacion' ? 'block' : 'none';
     }
 
     function updateAmvaPortada(servicioActivo) {
@@ -398,7 +400,8 @@
             var img = document.createElement('img');
             img.src = imageSrc;
             img.alt = titulo;
-            img.className = 'proyecto-panel-img' + (servicioActivo === 'iot' ? ' img-completa' : '');
+            var fitClass = (servicioActivo === 'iot' ? ' img-completa' : '') + (servicioActivo === 'descontaminacion' ? ' proyecto-panel-img-fit-16-9' : '');
+            img.className = 'proyecto-panel-img' + fitClass;
             slide.appendChild(img);
             panelCarouselTrack.appendChild(slide);
         }

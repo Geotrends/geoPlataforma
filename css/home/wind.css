@@ -405,6 +405,17 @@
     background-position: left center;
 }
 
+/* Card Industria: imagen de lado → girar a la derecha; scale adapta a la card */
+.wind-card:nth-child(2) .wind-card-img {
+    transform: rotate(90deg) scale(2.2);
+}
+.wind-card:nth-child(2):hover .wind-card-img {
+    transform: rotate(90deg) scale(2.35);
+}
+.wind-card:nth-child(2).expanded .wind-card-img {
+    transform: rotate(90deg) scale(2.2);
+}
+
 .wind-card:hover .wind-card-img {
     transform: scale(1.08);
 }

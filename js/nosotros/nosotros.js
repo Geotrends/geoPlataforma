@@ -34,7 +34,7 @@
                 '<li class="about-clientes-logo-item"><img src="../img_video/clientes/pepsico.webp" alt="PepsiCo" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
                 '<li class="about-clientes-logo-item"><img src="../img_video/clientes/colcafe.webp" alt="Colcafé" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
                 '<li class="about-clientes-logo-item"><img src="../img_video/clientes/pg.webp" alt="Procter & Gamble" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
-                '<li class="about-clientes-logo-item"><img src="../img_video/clientes/aislather.png" alt="Aislather" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
+                '<li class="about-clientes-logo-item"><img src="../img_video/clientes/aislaterm.webp" alt="Aislather" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
                 '<li class="about-clientes-logo-item"><img src="../img_video/clientes/aqua-terra.webp" alt="Aqua & Terra" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
                 '<li class="about-clientes-logo-item"><img src="../img_video/clientes/arclad.webp" alt="ARCLAD" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
                 '<li class="about-clientes-logo-item"><img src="../img_video/clientes/usb.webp" alt="Universidad de San Buenaventura" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +

@@ -2,13 +2,14 @@
 .geotrends-section {
     position: relative;
     min-height: 85vh;
-    padding: 1rem 2rem 2.5rem;
+    padding: 3rem 2rem 2.5rem;
     overflow: visible;
     display: flex;
-    align-items: flex-start;
-    padding-top: 1rem;
+    align-items: center;
+    padding-top: 3rem;
     background: #313131;
     margin-top: 0;
+    margin-bottom: 4rem;
 }
 
 
@@ -35,7 +36,7 @@
     flex-direction: column;
     justify-content: center;
     padding: 2rem 2rem 2rem 0;
-    padding-top: 2rem;
+    padding-top: 3rem;
     margin-top: 0;
     box-sizing: border-box;
     max-width: 720px;
