@@ -16,12 +16,12 @@
     }
 
     var params = new URLSearchParams(window.location.search);
-    var servicio = params.get('servicio') || 'iot';
+    var servicio = params.get('servicio') || 'control-ruido';
     var tagMap = {
-        iot: 0, 'control-ruido': 1, 'clasificacion-fuentes': 2, 'modelacion-ruido': 3,
-        'holografia-acustica': 4, 'medicion-vibraciones': 5, 'modelacion-vibraciones': 6,
-        'modelacion-ruido-subacuatico': 7, 'medicion-ruido-subacuatico': 8,
-        geoespacial: 9, fotogrametria: 10
+        'control-ruido': 0, 'clasificacion-fuentes': 1, 'modelacion-ruido': 2,
+        'holografia-acustica': 3, 'medicion-vibraciones': 4,
+        'modelacion-ruido-subacuatico': 5, 'medicion-ruido-subacuatico': 6,
+        geoespacial: 7, fotogrametria: 8
     };
     var tags = document.querySelectorAll('.proyectos-tag');
     var idx = tagMap[servicio] !== undefined ? tagMap[servicio] : 0;
@@ -65,14 +65,11 @@
         var servicioActivo = (activeTag.getAttribute('data-servicio') || '').trim().toLowerCase();
         if (!servicioActivo) return;
         
-        // CORNARE en industria: SOLO aparece en "clasificacion-fuentes"
-        var servicioPermitidoCORNARE = 'clasificacion-fuentes';
-        
-        // Servicios permitidos para ARCLAD - SOLO estos 4
+        // Servicios permitidos para ARCLAD - SOLO estos 4 (clasificacion-fuentes = solo ARclad)
         var serviciosPermitidosARCLAD = ['control-ruido', 'clasificacion-fuentes', 'modelacion-ruido', 'fotogrametria'];
         
-        // CCR Palagua en industria: SOLO aparece en "fotogrametria"
-        var servicioPermitidoCCRPalagua = 'fotogrametria';
+        // CCR Palagua en industria: aparece en "control-ruido" y "fotogrametria"
+        var serviciosPermitidosCCRPalagua = ['control-ruido', 'fotogrametria'];
         
         // Campaña política en industria: SOLO aparece en "geoespacial"
         var servicioPermitidoCampanaPolitica = 'geoespacial';
@@ -88,14 +85,6 @@
         allCards.forEach(function(card) {
             var proyectoId = card.getAttribute('data-proyecto');
             
-            // CORNARE: SOLO aparece en "clasificacion-fuentes"
-            if (proyectoId === 'cornare') {
-                if (servicioActivo === servicioPermitidoCORNARE) {
-                    cardsToShow.push(card);
-                }
-                return; // No verificar más para CORNARE
-            }
-            
             // ARCLAD: SOLO aparece en Control de ruido, Clasificación de fuentes, Modelación de ruido y Fotogrametría
             if (proyectoId === 'arclad') {
                 if (serviciosPermitidosARCLAD.indexOf(servicioActivo) !== -1) {
@@ -106,10 +95,10 @@
             
             // CCR Palagua: SOLO aparece en "fotogrametria"
             if (proyectoId === 'ccr-palagua') {
-                if (servicioActivo === servicioPermitidoCCRPalagua) {
+                if (serviciosPermitidosCCRPalagua.indexOf(servicioActivo) !== -1) {
                     cardsToShow.push(card);
                 }
-                return; // No verificar más para CCR Palagua
+                return;
             }
             
             // Campaña política: SOLO aparece en "geoespacial"
@@ -118,14 +107,6 @@
                     cardsToShow.push(card);
                 }
                 return; // No verificar más para Campaña política
-            }
-            
-            // P&G: SOLO aparece en "holografia-acustica"
-            if (proyectoId === 'p-and-g') {
-                if (servicioActivo === 'holografia-acustica') {
-                    cardsToShow.push(card);
-                }
-                return; // No verificar más para P&G
             }
             
             // Para otras cards, verificar sus servicios
@@ -142,6 +123,33 @@
         });
         
         var hasAnyProject = cardsToShow.length > 0;
+        
+        // Actualizar títulos, descripciones e imágenes de las cards según el servicio activo
+        function updateCardTitlesAndDescs(cards, servicio) {
+            cards.forEach(function(card) {
+                var suffix = servicio ? ('-' + servicio) : '';
+                var titulo = card.getAttribute('data-proyecto-titulo' + suffix) || card.getAttribute('data-proyecto-titulo') || '';
+                var desc = card.getAttribute('data-proyecto-desc' + suffix) || card.getAttribute('data-proyecto-desc') || '';
+                var titleEl = card.querySelector('.proyecto-card-title');
+                var descEl = card.querySelector('.proyecto-card-desc');
+                if (titleEl && titulo) titleEl.textContent = titulo;
+                if (descEl && desc) descEl.textContent = desc;
+                var imgDiv = card.querySelector('.proyecto-card-img');
+                if (imgDiv) {
+                    var video = imgDiv.querySelector('.proyecto-card-video');
+                    var sinImagen = card.getAttribute('data-proyecto-sin-imagen' + suffix) === 'true';
+                    var proyectoImg = sinImagen ? '' : (card.getAttribute('data-proyecto-img' + suffix) || card.getAttribute('data-proyecto-img') || '');
+                    if (proyectoImg) {
+                        imgDiv.style.backgroundImage = "url('" + proyectoImg + "')";
+                        if (video) video.style.display = 'none';
+                    } else {
+                        imgDiv.style.backgroundImage = '';
+                        if (video) video.style.display = sinImagen ? 'none' : '';
+                    }
+                }
+            });
+        }
+        updateCardTitlesAndDescs(cardsToShow, servicioActivo);
         
         // Verificar si las cards que deben mostrarse son las mismas que las visibles
         var visibleIds = visibleCards.map(function(c) { return c.getAttribute('data-proyecto'); }).sort().join(',');
@@ -211,15 +219,12 @@
         CCR_PALAGUA_IMAGES: typeof CCR_PALAGUA_IMAGES !== 'undefined' ? CCR_PALAGUA_IMAGES : [],
         COLCAFE_IMAGES: typeof COLCAFE_IMAGES !== 'undefined' ? COLCAFE_IMAGES : [],
         CERREJON_IMAGES: typeof CERREJON_IMAGES !== 'undefined' ? CERREJON_IMAGES : [],
-        MINEROS_BIC_IMAGES: typeof MINEROS_BIC_IMAGES !== 'undefined' ? MINEROS_BIC_IMAGES : [],
-        P_AND_G_IMAGES: typeof P_AND_G_IMAGES !== 'undefined' ? P_AND_G_IMAGES : [],
-        PEPSICO_IMAGES: typeof PEPSICO_IMAGES !== 'undefined' ? PEPSICO_IMAGES : [],
         SPIA_IMAGES: typeof SPIA_IMAGES !== 'undefined' ? SPIA_IMAGES : [],
         CORNARE_IMAGES: typeof CORNARE_IMAGES !== 'undefined' ? CORNARE_IMAGES : [],
         CAMPANA_POLITICA_IMAGES: typeof CAMPANA_POLITICA_IMAGES !== 'undefined' ? CAMPANA_POLITICA_IMAGES : []
     };
-    document.querySelectorAll('.proyecto-card[data-carpeta]').forEach(function(card) {
-        var imgDiv = card.querySelector('.proyecto-card-img[data-img-from]');
+    document.querySelectorAll('.proyecto-card').forEach(function(card) {
+        var imgDiv = card.querySelector('.proyecto-card-img');
         if (!imgDiv) return;
         var proyectoImg = card.getAttribute('data-proyecto-img');
         if (proyectoImg) {
@@ -228,8 +233,9 @@
         }
         var varName = imgDiv.getAttribute('data-img-from');
         var carpeta = card.getAttribute('data-carpeta');
+        if (!varName || !carpeta) return;
         var arr = arrByName[varName];
-        if (arr && arr.length && carpeta) {
+        if (arr && arr.length) {
             var first = arr[0];
             var url = INDUSTRIA_IMAGES_BASE + carpeta + '/' + encodeURIComponent(first);
             imgDiv.style.backgroundImage = "url('" + url + "')";
@@ -381,7 +387,7 @@
             images = ARCLAD_IMAGES;
             base = '../img_video/proyectos/arclad/';
             return { images: images, base: base };
-        } else if (proyectoId === 'segovia' && typeof SEGOVIA_IMAGES !== 'undefined' && SEGOVIA_IMAGES.length) {
+        } else if ((proyectoId === 'segovia' || proyectoId === 'cafe-verde') && typeof SEGOVIA_IMAGES !== 'undefined' && SEGOVIA_IMAGES.length) {
             images = SEGOVIA_IMAGES;
             base = '../img_video/proyectos/segovia/';
             return { images: images, base: base };
@@ -396,18 +402,6 @@
         } else if (proyectoId === 'cerrejon' && typeof CERREJON_IMAGES !== 'undefined' && CERREJON_IMAGES.length) {
             images = CERREJON_IMAGES;
             base = '../img_video/proyectos/cerrejon/';
-            return { images: images, base: base };
-        } else if (proyectoId === 'mineros-bic' && typeof MINEROS_BIC_IMAGES !== 'undefined' && MINEROS_BIC_IMAGES.length) {
-            images = MINEROS_BIC_IMAGES;
-            base = '../img_video/proyectos/minerosbic/';
-            return { images: images, base: base };
-        } else if (proyectoId === 'p-and-g' && typeof P_AND_G_IMAGES !== 'undefined' && P_AND_G_IMAGES.length) {
-            images = P_AND_G_IMAGES;
-            base = '../img_video/proyectos/p&g/';
-            return { images: images, base: base };
-        } else if (proyectoId === 'pepsico' && typeof PEPSICO_IMAGES !== 'undefined' && PEPSICO_IMAGES.length) {
-            images = PEPSICO_IMAGES;
-            base = '../img_video/proyectos/pepsico/';
             return { images: images, base: base };
         } else if (proyectoId === 'spia' && typeof SPIA_IMAGES !== 'undefined' && SPIA_IMAGES.length) {
             images = SPIA_IMAGES;
@@ -424,23 +418,22 @@
         return { images: images, base: base };
     }
 
-    function buildPanelCarousel(proyectoId, titulo) {
+    function buildPanelCarousel(proyectoId, titulo, imageSrc, imgFit) {
         if (!panelCarouselTrack) return;
         panelCarouselTrack.innerHTML = '';
         panelCarouselImages = [];
-        // Usar la imagen de clasificación de fuentes de servicios como imagen horizontal única para todos los proyectos
-        var imageSrc = '../img_video/servicios/industria/clasificacionFuentes.webp';
+        if (!imageSrc) imageSrc = '../img_video/servicios/industria/clasificacionFuentes.webp';
         panelCarouselImages = [imageSrc];
         var wrap = panelCarouselTrack.closest('.proyecto-panel-carousel-wrap');
-        if (wrap) wrap.classList.remove('multiple'); // Siempre una sola imagen, no múltiple
-            var slide = document.createElement('div');
+        if (wrap) wrap.classList.remove('multiple');
+        var slide = document.createElement('div');
         slide.className = 'proyecto-panel-carousel-slide active';
-            var img = document.createElement('img');
+        var img = document.createElement('img');
         img.src = imageSrc;
         img.alt = titulo;
-            img.className = 'proyecto-panel-img';
-            slide.appendChild(img);
-            panelCarouselTrack.appendChild(slide);
+        img.className = 'proyecto-panel-img' + (imgFit === '16:9' ? ' proyecto-panel-img-fit-16-9' : '');
+        slide.appendChild(img);
+        panelCarouselTrack.appendChild(slide);
         panelCarouselIndex = 0;
     }
 
@@ -472,12 +465,17 @@
         linkWrap.addEventListener('click', function(e) {
             e.preventDefault();
             var proyectoId = card.getAttribute('data-proyecto') || '';
-            var titulo = card.getAttribute('data-proyecto-titulo') || '';
-            var desc = card.getAttribute('data-proyecto-desc-full') || card.getAttribute('data-proyecto-desc') || '';
+            var activeTag = document.querySelector('.proyectos-tag.active');
+            var servicioActivo = activeTag ? (activeTag.getAttribute('data-servicio') || '').trim().toLowerCase() : '';
+            var panelData = getPanelData(card, servicioActivo);
+            var titulo = panelData.titulo;
+            var desc = panelData.desc;
             var categoria = card.getAttribute('data-proyecto-categoria') || '';
-            var ano = card.getAttribute('data-proyecto-ano') || '';
-            var cliente = card.getAttribute('data-proyecto-cliente') || '';
-            buildPanelCarousel(proyectoId, titulo);
+            var ano = panelData.ano;
+            var cliente = panelData.cliente;
+            var panelImg = panelData.panelImg || '';
+            var imgFit = panelData.imgFit || '';
+            buildPanelCarousel(proyectoId, titulo, panelImg, imgFit);
             if (panelTitle) panelTitle.textContent = titulo;
             if (panelCategoria) panelCategoria.textContent = categoria;
             if (panelAno) panelAno.textContent = ano;
@@ -500,10 +498,21 @@
     var openProyectoId = openParams.get('proyecto');
     var proyectoToServicio = {
         'refineria-cartagena': 'control-ruido', 'alma-magdalena': 'control-ruido', 'arclad': 'control-ruido',
-        'segovia': 'medicion-vibraciones', 'ccr-palagua': 'fotogrametria', 'colcafe': 'control-ruido',
-        'cerrejon': 'holografia-acustica', 'mineros-bic': 'holografia-acustica', 'p-and-g': 'holografia-acustica', 'pepsico': 'control-ruido',
+        'segovia': 'medicion-vibraciones', 'ccr-palagua': 'control-ruido', 'colcafe': 'control-ruido',
+        'cerrejon': 'holografia-acustica', 'cafe-verde': 'holografia-acustica', 'campana-politica': 'geoespacial',
         'spia': 'modelacion-ruido-subacuatico'
     };
+
+    function getPanelData(card, servicioActivo) {
+        var suffix = servicioActivo ? ('-' + servicioActivo) : '';
+        var titulo = card.getAttribute('data-proyecto-titulo' + suffix) || card.getAttribute('data-proyecto-titulo') || '';
+        var ano = card.getAttribute('data-proyecto-ano' + suffix) || card.getAttribute('data-proyecto-ano') || '';
+        var cliente = card.getAttribute('data-proyecto-cliente' + suffix) || card.getAttribute('data-proyecto-cliente') || '';
+        var desc = card.getAttribute('data-proyecto-desc-full' + suffix) || card.getAttribute('data-proyecto-desc-full') || card.getAttribute('data-proyecto-desc' + suffix) || card.getAttribute('data-proyecto-desc') || '';
+        var panelImg = card.getAttribute('data-proyecto-img-interna' + suffix) || card.getAttribute('data-proyecto-img-interna') || '';
+        var imgFit = card.getAttribute('data-proyecto-img-interna-fit' + suffix) || card.getAttribute('data-proyecto-img-interna-fit') || '';
+        return { titulo: titulo, ano: ano, cliente: cliente, desc: desc, panelImg: panelImg, imgFit: imgFit };
+    }
     if (openProyectoId && proyectoToServicio[openProyectoId] !== undefined) {
         var servicioToOpen = proyectoToServicio[openProyectoId];
         var tagIndex = tagMap[servicioToOpen];
@@ -517,12 +526,15 @@
         setTimeout(function() {
             var card = document.querySelector('.proyecto-card[data-proyecto="' + openProyectoId + '"]');
             if (card) {
-                var titulo = card.getAttribute('data-proyecto-titulo') || '';
-                var desc = card.getAttribute('data-proyecto-desc-full') || card.getAttribute('data-proyecto-desc') || '';
+                var panelData = getPanelData(card, servicioToOpen);
+                var titulo = panelData.titulo;
+                var desc = panelData.desc;
                 var categoria = card.getAttribute('data-proyecto-categoria') || '';
-                var ano = card.getAttribute('data-proyecto-ano') || '';
-                var cliente = card.getAttribute('data-proyecto-cliente') || '';
-                buildPanelCarousel(openProyectoId, titulo);
+                var ano = panelData.ano;
+                var cliente = panelData.cliente;
+                var panelImg = panelData.panelImg || '';
+                var imgFit = panelData.imgFit || '';
+                buildPanelCarousel(openProyectoId, titulo, panelImg, imgFit);
                 if (panelTitle) panelTitle.textContent = titulo;
                 if (panelCategoria) panelCategoria.textContent = categoria;
                 if (panelAno) panelAno.textContent = ano;

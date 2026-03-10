@@ -913,6 +913,11 @@ body.proyecto-panel-open .navbar {
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
+/* Imagen adaptada a relación 16:9 (cover en contenedor 16:9) */
+.proyecto-panel-img.proyecto-panel-img-fit-16-9 {
+    object-fit: cover;
+    object-position: center;
+}
 .proyecto-panel-content {
     flex: 1 1 58%;
     min-width: 0;
