@@ -1011,31 +1011,41 @@ html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel a {
 
 /* ========== SERVICIOS (Ciudades / Industria) – título vertical y fondos blancos → oscuro ========== */
 
-/* Label vertical "CIUDADES" / "INDUSTRIA" – fondo blanco → oscuro, texto claro */
+/* Label vertical "CIUDADES" / "INDUSTRIA" – fondo gris normal (#313131), texto claro */
 [data-theme="dark"] .section-label {
-  background: #313131;
+  background: #313131 !important;
   border-right-color: rgba(255, 255, 255, 0.1);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
 [data-theme="dark"] .section-label-text {
   color: rgba(255, 255, 255, 0.95);
 }
 
-[data-theme="dark"] .section-label {
-  border-bottom-color: rgba(255, 255, 255, 0.1);
+[data-theme="dark"] .section-label-header,
+[data-theme="dark"] .section-label-dropdown,
+[data-theme="dark"] .section-services-top {
+  background: #313131 !important;
+  background-image: none;
 }
 
 [data-theme="dark"] .section-view {
   background: #313131;
+  background-image: none;
 }
 
 [data-theme="dark"] .section-content {
-  background: #313131;
+  background: #252525;
+  background-image: none;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
-/* Expandido: contenedor con transparencia en modo oscuro */
+/* Expandido: fondo más oscuro, sin imagen ni patrón, bordes redondos */
 [data-theme="dark"] .section-card-expanded::before {
-  background: linear-gradient(135deg, rgba(8, 18, 15, 0.95) 0%, rgba(12, 25, 22, 0.92) 100%);
+  background: #252525;
+  background-image: none;
+  border-radius: 16px;
 }
 
 [data-theme="dark"] .section-card-desc {

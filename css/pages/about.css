@@ -695,19 +695,64 @@ body.page-about main {
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
 }
 
-/* Cuadro grande con borde: video de Propósito (YouTube) */
-.about-proposito-video-wrap {
+/* Cuadro grande con borde: link a video de Propósito (YouTube) - fallback cuando embed no está permitido */
+.about-proposito-video-link {
+  display: block;
   margin-top: 2rem;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
   max-width: 900px;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.about-proposito-video-link:hover {
+  opacity: 0.92;
+  transform: translateY(-2px);
+}
+.about-proposito-video-wrap {
+  width: 100%;
   border: 2px solid rgba(255, 255, 255, 0.25);
   border-radius: 16px;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.4);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
+.about-proposito-video-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 280px;
+  padding: 2rem;
+  aspect-ratio: 16 / 9;
+  box-sizing: border-box;
+}
+.about-proposito-video-icon {
+  width: 68px;
+  height: 48px;
+  flex-shrink: 0;
+}
+.about-proposito-video-icon-bg {
+  fill: #ff0000;
+}
+.about-proposito-video-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.about-proposito-video-title {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  line-height: 1.4;
+  max-width: 500px;
+}
+/* Iframe (si en el futuro el video permite embed) */
 .about-proposito-video-iframe {
   display: block;
   width: 100%;
