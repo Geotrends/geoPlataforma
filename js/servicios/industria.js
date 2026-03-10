@@ -19,11 +19,10 @@ var firstCardId = 'servicio-iot';
 var serviciosIndustria = [
     { id: 'servicio-iot', label: 'IoT' },
     { id: 'servicio-control-ruido', label: 'Control de ruido' },
-    { id: 'servicio-clasificacion-fuentes', label: 'Clasificación de fuentes' },
+    { id: 'servicio-clasificacion-fuentes', label: 'Etiquetado acústico' },
     { id: 'servicio-modelacion-ruido', label: 'Modelación de ruido' },
     { id: 'servicio-holografia-acustica', label: 'Holografía acústica' },
     { id: 'servicio-medicion-vibraciones', label: 'Medición de vibraciones' },
-    { id: 'servicio-modelacion-vibraciones', label: 'Modelación de vibraciones' },
     { id: 'servicio-modelacion-ruido-subacuatico', label: 'Modelación de ruido subacuático' },
     { id: 'servicio-medicion-ruido-subacuatico', label: 'Medición de ruido subacuático' },
     { id: 'servicio-geoespacial', label: 'Analítica geoespacial' },

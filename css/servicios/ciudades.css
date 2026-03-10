@@ -521,7 +521,6 @@ html:not([data-theme="dark"]) .section-card[data-servicio="geoespacial"] .sectio
 .section-card[data-servicio="modelacion-ruido"] .section-card-image,
 .section-card[data-servicio="holografia-acustica"] .section-card-image,
 .section-card[data-servicio="medicion-vibraciones"] .section-card-image,
-.section-card[data-servicio="modelacion-vibraciones"] .section-card-image,
 .section-card[data-servicio="modelacion-ruido-subacuatico"] .section-card-image,
 .section-card[data-servicio="medicion-ruido-subacuatico"] .section-card-image,
 .section-card[data-servicio="geoespacial"] .section-card-image,
@@ -537,7 +536,6 @@ html:not([data-theme="dark"]) .section-card[data-servicio="geoespacial"] .sectio
 .section-card[data-servicio="modelacion-ruido"] .section-card-image-wrap,
 .section-card[data-servicio="holografia-acustica"] .section-card-image-wrap,
 .section-card[data-servicio="medicion-vibraciones"] .section-card-image-wrap,
-.section-card[data-servicio="modelacion-vibraciones"] .section-card-image-wrap,
 .section-card[data-servicio="modelacion-ruido-subacuatico"] .section-card-image-wrap,
 .section-card[data-servicio="medicion-ruido-subacuatico"] .section-card-image-wrap,
 .section-card[data-servicio="geoespacial"] .section-card-image-wrap,
@@ -795,6 +793,17 @@ html:not([data-theme="dark"]) .section-card-image {
     background: var(--geo-military-green-hover-bg);
     color: var(--geo-military-green);
     border-color: var(--geo-military-green);
+}
+
+.section-card-proyectos-link--disabled {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+}
+.section-card-proyectos-link--disabled:hover {
+    background: transparent !important;
+    color: inherit !important;
+    border-color: inherit !important;
 }
 
 @media (max-width: 900px) {

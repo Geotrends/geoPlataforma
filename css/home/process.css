@@ -455,6 +455,12 @@
     background-color: transparent;
     pointer-events: none;
 }
+/* Si en proyectos la portada no amplía (contain), respetar aquí */
+.home-project-card[data-home-img-fit="contain"] .home-project-card-img {
+    background-size: contain;
+    background-position: center center;
+    background-color: rgba(0, 0, 0, 0.2);
+}
 
 .home-project-card-content {
     flex: 1;

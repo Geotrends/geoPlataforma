@@ -264,7 +264,7 @@
     width: 100%;
 }
 .tech-panel-desc {
-    flex: 0 0 50%;
+    flex: 1 1 100%;
     order: 1;
     overflow-y: visible;
     overflow-x: visible;
@@ -274,16 +274,10 @@
     align-self: stretch;
     height: auto;
     min-height: 0;
+    text-align: center;
 }
 .tech-panel-img-wrap {
-    flex: 0 0 50%;
-    order: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 0;
-    width: 100%;
-    align-self: stretch;
+    display: none !important; /* Solo texto en el panel, sin imagen */
 }
 .tech-panel-carousel-wrap {
     width: 100%;
@@ -356,6 +350,7 @@
     color: #313131;
     margin: 0 0 0.25rem;
     line-height: 1.3;
+    text-align: center;
 }
 .tech-panel-label {
     font-size: 0.8rem;
@@ -363,12 +358,15 @@
     letter-spacing: 0.05em;
     color: #313131;
     margin: 0;
+    text-align: center;
 }
 .tech-panel-uso {
     font-size: 0.95rem;
     line-height: 1.6;
     color: rgba(0, 0, 0, 0.8);
-    margin: 0;
+    margin: 0 auto;
+    text-align: center;
+    max-width: 720px;
 }
 
 /* ========== Modo oscuro: fondo oscuro y detalles blancos ========== */
