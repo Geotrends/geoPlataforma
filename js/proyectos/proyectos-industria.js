@@ -223,24 +223,31 @@
         CORNARE_IMAGES: typeof CORNARE_IMAGES !== 'undefined' ? CORNARE_IMAGES : [],
         CAMPANA_POLITICA_IMAGES: typeof CAMPANA_POLITICA_IMAGES !== 'undefined' ? CAMPANA_POLITICA_IMAGES : []
     };
-    document.querySelectorAll('.proyecto-card').forEach(function(card) {
-        var imgDiv = card.querySelector('.proyecto-card-img');
-        if (!imgDiv) return;
-        var proyectoImg = card.getAttribute('data-proyecto-img');
-        if (proyectoImg) {
-            imgDiv.style.backgroundImage = "url('" + proyectoImg + "')";
-            return;
-        }
-        var varName = imgDiv.getAttribute('data-img-from');
-        var carpeta = card.getAttribute('data-carpeta');
-        if (!varName || !carpeta) return;
-        var arr = arrByName[varName];
-        if (arr && arr.length) {
-            var first = arr[0];
-            var url = INDUSTRIA_IMAGES_BASE + carpeta + '/' + encodeURIComponent(first);
-            imgDiv.style.backgroundImage = "url('" + url + "')";
-        }
-    });
+    (function setInitialCardImages() {
+        var activeTag = document.querySelector('.proyectos-tag.active');
+        var servicioActivo = activeTag ? (activeTag.getAttribute('data-servicio') || '').trim().toLowerCase() : '';
+        document.querySelectorAll('.proyecto-card').forEach(function(card) {
+            var imgDiv = card.querySelector('.proyecto-card-img');
+            if (!imgDiv) return;
+            var suffix = servicioActivo ? ('-' + servicioActivo) : '';
+            var proyectoImg = card.getAttribute('data-proyecto-img' + suffix) || card.getAttribute('data-proyecto-img');
+            if (proyectoImg) {
+                imgDiv.style.backgroundImage = "url('" + proyectoImg + "')";
+                var video = imgDiv.querySelector('.proyecto-card-video');
+                if (video) video.style.display = 'none';
+                return;
+            }
+            var varName = imgDiv.getAttribute('data-img-from');
+            var carpeta = card.getAttribute('data-carpeta');
+            if (!varName || !carpeta) return;
+            var arr = arrByName[varName];
+            if (arr && arr.length) {
+                var first = arr[0];
+                var url = INDUSTRIA_IMAGES_BASE + carpeta + '/' + encodeURIComponent(first);
+                imgDiv.style.backgroundImage = "url('" + url + "')";
+            }
+        });
+    })();
 
     // Renderizar tags en el dropdown móvil
     function renderMobileTags() {
