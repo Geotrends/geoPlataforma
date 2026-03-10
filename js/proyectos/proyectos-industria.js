@@ -351,11 +351,16 @@
     var track = document.querySelector('.carousel-track');
     var prev = document.querySelector('.carousel-prev');
     var next = document.querySelector('.carousel-next');
-    var cardWidth = 320; // Ancho fijo de las cards
-    var gap = 20; // Gap entre cards
+    var gap = 20;
+
+    function getCardWidth() {
+        var card = track ? track.querySelector('.proyecto-card') : null;
+        return card ? card.offsetWidth : (window.innerWidth <= 375 ? 240 : window.innerWidth <= 600 ? 220 : window.innerWidth <= 900 ? 280 : 400);
+    }
 
     function go(delta) {
         if (!track) return;
+        var cardWidth = getCardWidth();
         var scrollAmount = (cardWidth + gap) * delta;
         track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }

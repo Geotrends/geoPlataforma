@@ -1122,14 +1122,12 @@ body.proyecto-panel-open .navbar {
 @media (max-width: 600px) {
     .proyectos-filters-container {
         top: 80px;
-        padding: 1rem 1.25rem 2.25rem; /* Aumentado padding-bottom para separar tags del título en móvil */
+        padding: 1rem 1.25rem 2.25rem;
         gap: 0.75rem;
     }
 
-    /* Flechas ocultas - no se muestran */
-
     .proyectos-content {
-        padding: 4rem 1.5rem 3rem; /* Aumentado padding-top para más separación en móvil pequeño */
+        padding: 4rem 1.5rem 2rem;
     }
     
     /* Asegurar que las tags se muestren en móvil pequeño también */
@@ -1142,8 +1140,27 @@ body.proyecto-panel-open .navbar {
     }
 
     .proyecto-card {
-        flex: 0 0 260px;
-        min-width: 260px;
+        flex: 0 0 220px;
+        min-width: 220px;
+    }
+
+    .proyecto-card-img {
+        aspect-ratio: 4 / 3;
+        max-height: 165px;
+    }
+
+    .proyecto-card-content {
+        padding: 1rem 1rem;
+        min-height: 95px;
+    }
+
+    .proyecto-card-title {
+        font-size: 0.9rem;
+    }
+
+    .proyecto-card-desc {
+        font-size: 0.78rem;
+        line-height: 1.45;
     }
 
     .carousel-btn {
@@ -1191,6 +1208,56 @@ body.proyecto-panel-open .navbar {
     .search-icon {
         width: 18px;
         height: 18px;
+    }
+}
+
+/* iPhone SE y móviles ~375px: card más pequeña para que se vea completa */
+@media (max-width: 375px) {
+    .proyectos-content {
+        padding: 3.5rem 1rem 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .proyectos-title {
+        font-size: 1.6rem;
+    }
+
+    .proyectos-description {
+        font-size: 0.9rem;
+    }
+
+    .proyecto-card {
+        flex: 0 0 240px;
+        min-width: 240px;
+        max-width: 240px;
+    }
+
+    .proyecto-card-img {
+        max-height: 180px;
+        aspect-ratio: 4 / 3;
+    }
+
+    .proyecto-card-content {
+        padding: 1rem 1rem;
+        min-height: 100px;
+    }
+
+    .proyecto-card-title {
+        font-size: 0.85rem;
+    }
+
+    .proyecto-card-desc {
+        font-size: 0.75rem;
+        line-height: 1.4;
+    }
+
+    .proyectos-cards-container {
+        gap: 0.5rem;
+    }
+
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
     }
 }
 
