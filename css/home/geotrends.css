@@ -327,3 +327,14 @@
         aspect-ratio: 16 / 9;
     }
 }
+
+/* iPhone SE y pantallas ~375px: más espacio entre hero y StartUp, y antes del video */
+@media (max-width: 375px) {
+    .geotrends-section {
+        margin-top: 0;
+        padding-top: 5rem;
+        padding-bottom: 6rem;
+        margin-bottom: 4rem;
+        background: #313131;
+    }
+}
