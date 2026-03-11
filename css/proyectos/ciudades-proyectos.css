@@ -774,7 +774,7 @@ body.proyecto-panel-open .proyectos-filters-container {
 .proyecto-panel {
     position: fixed;
     top: 18rem;
-    left: 12%; /* Alargado hacia la izquierda (antes 32%) */
+    left: 6%; /* Alargado hacia la izquierda */
     right: 0;
     bottom: 6rem;
     z-index: 15;
