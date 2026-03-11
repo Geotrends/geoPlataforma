@@ -774,7 +774,7 @@ body.proyecto-panel-open .proyectos-filters-container {
 .proyecto-panel {
     position: fixed;
     top: 18rem;
-    left: 32%;
+    left: 12%; /* Alargado hacia la izquierda (antes 32%) */
     right: 0;
     bottom: 6rem;
     z-index: 15;
@@ -797,7 +797,7 @@ body.proyecto-panel-open .proyectos-filters-container {
 }
 .proyecto-panel-inner {
     display: flex;
-    flex-direction: row;
+    flex-direction: column; /* Descripción arriba, imagen abajo */
     height: 100%;
     min-height: 0;
     align-items: stretch;
@@ -830,19 +830,19 @@ body.proyecto-panel-open .proyectos-filters-container {
     height: 20px;
 }
 .proyecto-panel-image-wrap {
-    flex: 1 1 65%;
+    flex: 1 1 auto;
     min-width: 0;
-    max-width: 65%;
-    height: 100%;
+    max-width: 100%;
+    height: auto;
     min-height: 0;
     background: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 2.5rem;
     position: relative;
-    order: 1;
+    order: 2; /* Imagen abajo */
     gap: 0.5rem;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -957,10 +957,10 @@ body.proyecto-panel-open .proyectos-filters-container {
     object-position: center;
 }
 .proyecto-panel-content {
-    flex: 1 1 58%;
+    flex: 0 0 auto;
     min-width: 0;
     min-height: 0;
-    padding: 2.5rem 2.5rem 2rem;
+    padding: 2.5rem 2.5rem 1.5rem;
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
@@ -971,7 +971,7 @@ body.proyecto-panel-open .proyectos-filters-container {
     text-align: left;
     gap: 0.75rem;
     background: transparent;
-    order: 2;
+    order: 1; /* Descripción arriba */
     position: relative;
 }
 .proyecto-panel-title {
