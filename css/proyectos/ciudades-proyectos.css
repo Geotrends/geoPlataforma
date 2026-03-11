@@ -1112,18 +1112,26 @@ body.proyecto-imagen-modal-open .navbar {
         left: 1rem;
         right: 1rem;
         bottom: 4.5rem;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
     }
     .proyecto-panel-inner {
         flex-direction: column;
         gap: 0;
-        min-height: auto;
-        height: auto;
+        min-height: 0;
+        flex: 1 1 auto;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 1.5rem;
     }
     .proyecto-panel-content {
         order: 1;
         flex: 0 0 auto;
         padding: 1.5rem 2rem 0.5rem;
         justify-content: flex-start;
+        overflow: visible;
     }
     .proyecto-panel-image-wrap {
         order: 2;
@@ -1131,6 +1139,7 @@ body.proyecto-imagen-modal-open .navbar {
         max-width: 100%;
         min-height: 240px;
         padding: 0.25rem 1rem 1.5rem;
+        margin-bottom: 0.5rem;
     }
     .proyecto-panel-carousel-wrap,
     .proyecto-panel-carousel-track {

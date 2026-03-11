@@ -103,8 +103,14 @@
         images = ALMA_MAGDALENA_IMAGES;
         base = '../../img_video/proyectos/industria/almaMagdalena/';
     } else if (proyecto === 'amva-usb' && typeof AMVA_USB_IMAGES !== 'undefined' && AMVA_USB_IMAGES.length) {
-        images = AMVA_USB_IMAGES;
-        base = '../../img_video/ciudades/iot/amva/';
+        var servicioAmva = params.get('servicio') || 'iot';
+        if (servicioAmva === 'webgis') {
+            images = ['interna.webp'];
+            base = '../../img_video/ciudades/ecosistemasGIS/amva/';
+        } else {
+            images = AMVA_USB_IMAGES;
+            base = '../../img_video/ciudades/iot/amva/';
+        }
     } else if (proyecto === 'arclad' && typeof ARCLAD_IMAGES !== 'undefined' && ARCLAD_IMAGES.length) {
         images = ARCLAD_IMAGES;
         base = '../../img_video/proyectos/arclad/';
