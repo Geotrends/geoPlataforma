@@ -1241,15 +1241,21 @@ body.proyecto-imagen-modal-open .navbar {
         text-align: center;
         align-items: center;
         margin-bottom: -0.75rem;
-        margin-top: 10rem; /* Baja aún más el bloque título + descripción */
-    }
-
-    .proyectos-title-section {
-        margin-top: 5rem; /* Más separación entre tags y título */
     }
 
     .proyectos-right {
         width: 100%;
+    }
+}
+
+/* Solo para 901-950px (Surface Pro ~912px): bajar la descripción */
+@media (min-width: 901px) and (max-width: 950px) {
+    .proyectos-left {
+        margin-top: 10rem;
+    }
+
+    .proyectos-title-section {
+        margin-top: 5rem;
     }
 }
 
@@ -1273,11 +1279,10 @@ body.proyecto-imagen-modal-open .navbar {
         text-align: center;
         align-items: center;
         margin-bottom: -0.75rem; /* Acercar más el título al carrusel */
-        margin-top: 10rem; /* Baja aún más el bloque título + descripción */
     }
 
     .proyectos-title-section {
-        margin-top: 5rem; /* Más separación entre tags y título */
+        margin-top: 0.75rem; /* Valor original en móvil */
     }
 
     .proyectos-title {
