@@ -196,12 +196,20 @@ html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-dropdown-toggle {
   color: var(--geo-text);
 }
 
+/* Menú móvil: subdesplegables igual que navbar principal (misma tonalidad y efecto) */
 html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-dropdown-menu {
-  background: var(--geo-beige);
+  background: var(--geo-bg);
+  border: 1px solid var(--geo-border);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-dropdown-menu a {
   color: var(--geo-text);
+}
+
+html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-dropdown-menu a:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--geo-military-green);
 }
 
 html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel .nav-panel-label {
@@ -210,12 +218,19 @@ html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel .nav-p
 }
 
 html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel {
-  background: var(--geo-beige);
-  border-left-color: var(--geo-border);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-top: 1px solid var(--geo-border);
 }
 
 html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel a {
   color: var(--geo-text);
+}
+
+html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel a:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--geo-military-green);
 }
 
 [data-theme="dark"] .navbar.nav-mobile-open .nav-links {
@@ -229,6 +244,28 @@ html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel a {
 
 [data-theme="dark"] .navbar.nav-mobile-open .nav-links > li {
   border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Modo oscuro: subdesplegables móviles igual que navbar principal */
+[data-theme="dark"] .navbar.nav-mobile-open .nav-dropdown-menu {
+  background: #313131;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .navbar.nav-mobile-open .nav-dropdown-menu a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .navbar.nav-mobile-open .nav-services-panel {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .navbar.nav-mobile-open .nav-services-panel a:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* Toggle tema: en modo oscuro el solecito se ve blanco para poder dar click */

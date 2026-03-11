@@ -89,6 +89,12 @@
             if (link && itemWithPanel && !insidePanel && link.parentNode === itemWithPanel) {
                 e.preventDefault();
                 e.stopPropagation();
+                var parentMenu = itemWithPanel.closest('.nav-dropdown-menu');
+                if (parentMenu) {
+                    parentMenu.querySelectorAll('.nav-dropdown-item-with-panel').forEach(function(sib) {
+                        if (sib !== itemWithPanel) sib.classList.remove('sub-open');
+                    });
+                }
                 itemWithPanel.classList.toggle('sub-open');
                 return;
             }
