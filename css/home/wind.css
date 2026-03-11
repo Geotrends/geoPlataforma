@@ -1204,3 +1204,26 @@ a.wind-project-card-cta:hover {
         font-size: 0.75rem;
     }
 }
+
+/* iPhone XR, 14 Pro Max, Pixel 7 (~414–430px): alargar Portafolio sutilmente (solo padding, sin margin) */
+@media (max-width: 430px) {
+    .wind-section {
+        padding-bottom: 1.5rem;
+    }
+
+    .wind-wrap {
+        padding-bottom: 1.5rem;
+    }
+}
+
+/* iPhone SE y pantallas ~375px: alargar Portafolio sutilmente (solo padding, sin margin) */
+@media (max-width: 375px) {
+    .wind-section {
+        padding-bottom: 2rem;
+    }
+
+    .wind-wrap {
+        padding-bottom: 2rem;
+    }
+}
+
