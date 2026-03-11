@@ -1207,6 +1207,14 @@ body.proyecto-imagen-modal-open .navbar {
     }
 }
 
+/* iPhone 14 Pro Max (430 x 932) SOLO: cortar panel para que no choque con el footer */
+@media (min-width: 400px) and (max-width: 450px) {
+    .proyecto-panel {
+        max-height: calc(100vh - 14rem);
+        bottom: 2rem;
+    }
+}
+
 /* Responsive */
 @media (max-width: 1200px) {
     .proyectos-content {

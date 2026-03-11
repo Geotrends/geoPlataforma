@@ -369,3 +369,10 @@ body:has(.hero) .navbar {
         font-size: 1.1rem;
     }
 }
+
+/* iPhone 14 Pro Max y similares (430 x 932): eliminar degradado del hero */
+@media (min-width: 400px) and (max-width: 450px) {
+    .hero-fade-to-white {
+        background: transparent !important;
+    }
+}
