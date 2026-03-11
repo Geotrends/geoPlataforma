@@ -131,8 +131,8 @@ body.page-about {
   }
 }
 
-/* Surface Pro 7 (912px) SOLO: margin-top para separar del navbar, equipo en carrusel */
-@media (min-width: 900px) and (max-width: 950px) {
+/* Surface Pro 7 (912px) e iPad Pro (1024px): margin-top para separar del navbar, equipo en carrusel */
+@media (min-width: 900px) and (max-width: 1100px) {
   .about-hero {
     margin-top: 14rem;
   }
