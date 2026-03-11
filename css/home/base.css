@@ -26,3 +26,13 @@ body:has(.hero) {
     padding: 0;
 }
 
+/* Justificación de párrafos en toda la plataforma (estilo tipo Word) */
+/* hyphens: auto evita huecos grandes entre palabras al partir palabras en sílabas */
+p {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    hyphenate-limit-chars: 6 4 2;
+    hyphenate-limit-lines: 2;
+}
+

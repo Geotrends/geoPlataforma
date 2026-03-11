@@ -104,7 +104,7 @@
         base = '../../img_video/proyectos/industria/almaMagdalena/';
     } else if (proyecto === 'amva-usb' && typeof AMVA_USB_IMAGES !== 'undefined' && AMVA_USB_IMAGES.length) {
         images = AMVA_USB_IMAGES;
-        base = '../../img_video/proyectos/amvausb/';
+        base = '../../img_video/ciudades/iot/amva/';
     } else if (proyecto === 'arclad' && typeof ARCLAD_IMAGES !== 'undefined' && ARCLAD_IMAGES.length) {
         images = ARCLAD_IMAGES;
         base = '../../img_video/proyectos/arclad/';

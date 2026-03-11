@@ -957,7 +957,7 @@ body.proyecto-panel-open .proyectos-filters-container {
     flex: 1 1 58%;
     min-width: 0;
     min-height: 0;
-    padding: 7.5rem 2.5rem 2rem;
+    padding: 4.5rem 2.5rem 2rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
