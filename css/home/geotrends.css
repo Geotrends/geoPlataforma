@@ -338,6 +338,16 @@
     }
 }
 
+/* iPad Pro (1024px) SOLO: reducir espacio arriba; mantener más espacio abajo */
+@media (min-width: 1000px) and (max-width: 1100px) {
+    .geotrends-section {
+        padding-top: 2.5rem;
+        padding-bottom: 7.5rem;
+        margin-bottom: 6rem;
+        min-height: auto;
+    }
+}
+
 /* iPhone XR, 14 Pro Max, Pixel 7 (~414–430px): más espacio entre hero y StartUp y Portafolio */
 @media (max-width: 430px) {
     .geotrends-section {
