@@ -1215,6 +1215,14 @@ body.proyecto-imagen-modal-open .navbar {
     }
 }
 
+/* Samsung Galaxy S8+ (360 x 740) SOLO: recortar abajo para que no se pegue al footer */
+@media (min-width: 350px) and (max-width: 375px) {
+    .proyecto-panel {
+        max-height: calc(100vh - 14rem);
+        bottom: 2rem;
+    }
+}
+
 /* Responsive */
 @media (max-width: 1200px) {
     .proyectos-content {
