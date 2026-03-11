@@ -3,15 +3,29 @@
     position: relative;
     min-height: 85vh;
     padding: 0 2rem;
-    margin-top: -140px; /* solapa con el fade de geotrends (como hero arriba) para que no se vea la línea */
+    margin-top: -220px; /* mayor solapa con geotrends para que el difuminado sea suave */
     overflow: visible;
     display: flex;
     align-items: stretch;
 }
 
-/* Sin fade - fondo plano */
+/* Fade superior: difuminado desde gris oscuro hacia el fondo del portafolio (sin tonalidad clara) */
 .wind-section::before {
-    display: none;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 240px;
+    pointer-events: none;
+    z-index: 2;
+    background: linear-gradient(
+        to bottom,
+        rgb(28, 28, 30) 0%,
+        rgb(18, 18, 20) 40%,
+        rgb(12, 12, 14) 75%,
+        rgb(8, 8, 10) 100%
+    );
 }
 
 /* Sin transición - fondo plano */
@@ -926,13 +940,13 @@ a.wind-project-card-cta:hover {
 @media (max-width: 900px) {
     /* Layout en columna */
     .wind-section {
-        margin-top: -100px;
+        margin-top: -180px;
         padding: 0 1rem;
         min-height: auto;
     }
 
     .wind-section::before {
-        height: 120px;
+        height: 180px;
     }
 
     .wind-wrap {

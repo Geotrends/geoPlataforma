@@ -1,18 +1,35 @@
 /* Sección Geotrends - Home: fondo gris oscuro plano sin degradados */
 .geotrends-section {
     position: relative;
-    min-height: 85vh;
-    padding: 3rem 2rem 2.5rem;
+    min-height: 110vh;
+    padding: 5rem 2rem 6rem;
     overflow: visible;
     display: flex;
     align-items: center;
-    padding-top: 3rem;
+    padding-top: 5rem;
     background: #313131;
     margin-top: 0;
     margin-bottom: 4rem;
 }
 
-
+/* Difuminado en la parte inferior: transición suave hacia la sección Portafolio (gris muy oscuro, sin tonalidad clara) */
+.geotrends-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 220px;
+    pointer-events: none;
+    z-index: 1;
+    background: linear-gradient(
+        to bottom,
+        rgba(30, 30, 32, 0.3) 0%,
+        rgba(18, 18, 20, 0.9) 35%,
+        rgba(12, 12, 14, 0.98) 65%,
+        rgb(8, 8, 10) 100%
+    );
+}
 
 .geotrends-container {
     position: relative;
@@ -35,8 +52,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 2rem 2rem 2rem 0;
-    padding-top: 3rem;
+    padding: 2.5rem 2rem 2.5rem 0;
+    padding-top: 3.5rem;
     margin-top: 0;
     box-sizing: border-box;
     max-width: 720px;
@@ -85,9 +102,9 @@
 
 .geotrends-text {
     font-size: 1.1rem;
-    line-height: 1.7;
+    line-height: 1.85;
     color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
     max-width: 100%;
 }
 
@@ -129,7 +146,7 @@
     position: relative;
     width: 100%;
     min-width: 0;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4 / 3;
     max-width: min(100%, 900px);
     margin: 0 auto;
     align-self: center;
@@ -192,11 +209,11 @@
 /* Tablet: una columna, texto arriba e imagen abajo; sección se alarga para que quepa todo el contenido */
 @media (max-width: 900px) {
     .geotrends-section {
-        padding: 2.5rem 1.5rem 2.5rem;
+        padding: 2.5rem 1.5rem 4rem;
         min-height: 100vh;
         align-items: flex-start;
         padding-top: 2.5rem;
-        padding-bottom: 2.5rem;
+        padding-bottom: 4rem;
     }
 
     .geotrends-content-wrapper {
@@ -260,7 +277,7 @@
 /* Móvil: menos padding, texto más compacto; sección se alarga para que quepa todo */
 @media (max-width: 768px) {
     .geotrends-section {
-        padding: 2rem 1.25rem 2rem;
+        padding: 2rem 1.25rem 3.5rem;
         min-height: 95vh;
         align-items: flex-start;
         margin-top: -150px;
@@ -298,7 +315,7 @@
 /* Móvil pequeño */
 @media (max-width: 560px) {
     .geotrends-section {
-        padding: 2rem 1rem 2rem;
+        padding: 2rem 1rem 3rem;
         min-height: 90vh;
         align-items: flex-start;
         margin-top: -130px;

@@ -281,9 +281,23 @@ body:has(.hero) .navbar {
     height: 18px;
 }
 
-/* Sin fade - fondo plano */
+/* Difuminado en la parte inferior del hero: transición suave hacia la sección StartUp (gris oscuro) */
 .hero-fade-to-white {
-    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 220px;
+    pointer-events: none;
+    z-index: 1;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(49, 49, 49, 0.15) 20%,
+        rgba(49, 49, 49, 0.4) 45%,
+        rgba(49, 49, 49, 0.75) 75%,
+        #313131 100%
+    );
 }
 
 /* Hero responsive: tablet */
@@ -339,9 +353,6 @@ body:has(.hero) .navbar {
     .hero-top-shade {
         height: 140px;
     }
-    .hero-fade-to-white {
-        display: none;
-    }
 }
 
 @media (max-width: 560px) {
@@ -356,8 +367,5 @@ body:has(.hero) .navbar {
     }
     .hero-title {
         font-size: 1.1rem;
-    }
-    .hero-fade-to-white {
-        display: none;
     }
 }
