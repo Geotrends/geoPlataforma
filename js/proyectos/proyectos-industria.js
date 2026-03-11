@@ -385,6 +385,14 @@
     var panelCarouselIndex = 0;
     var panelCarouselImages = [];
 
+    /* Servicios (tags) que muestran botón "Ver imagen ampliada" en Industria: modelación de ruido, modelación subacuática, analítica geoespacial */
+    var serviciosConVerAmpliadaIndustria = ['modelacion-ruido', 'modelacion-ruido-subacuatico', 'geoespacial'];
+    var btnVerAmpliada = document.getElementById('proyecto-panel-ver-ampliada');
+    var imagenModal = document.getElementById('proyecto-imagen-modal');
+    var imagenModalImg = document.getElementById('proyecto-imagen-modal-img');
+    var imagenModalBackdrop = document.getElementById('proyecto-imagen-modal-backdrop');
+    var imagenModalClose = document.getElementById('proyecto-imagen-modal-close');
+
     function getIndustryImagesAndBase(proyectoId) {
         var images = [];
         var folder = '';
@@ -430,7 +438,7 @@
         return { images: images, base: base };
     }
 
-    function buildPanelCarousel(proyectoId, titulo, imageSrc, imgFit) {
+    function buildPanelCarousel(proyectoId, titulo, imageSrc, imgFit, servicioActivo) {
         if (!panelCarouselTrack) return;
         panelCarouselTrack.innerHTML = '';
         panelCarouselImages = [];
@@ -447,7 +455,39 @@
         slide.appendChild(img);
         panelCarouselTrack.appendChild(slide);
         panelCarouselIndex = 0;
+        if (btnVerAmpliada) {
+            btnVerAmpliada.style.display = serviciosConVerAmpliadaIndustria.indexOf(servicioActivo || '') !== -1 ? 'block' : 'none';
+        }
     }
+
+    function openImagenModal(imgSrc) {
+        if (!imagenModal || !imagenModalImg) return;
+        imagenModalImg.src = imgSrc || '';
+        imagenModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('proyecto-imagen-modal-open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeImagenModal() {
+        if (!imagenModal) return;
+        imagenModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('proyecto-imagen-modal-open');
+        document.body.style.overflow = '';
+    }
+    if (btnVerAmpliada) {
+        btnVerAmpliada.addEventListener('click', function() {
+            var activeSlide = panelCarouselTrack ? panelCarouselTrack.querySelector('.proyecto-panel-carousel-slide.active') : null;
+            var img = activeSlide ? activeSlide.querySelector('.proyecto-panel-img') : null;
+            var src = img ? img.src : '';
+            if (src) openImagenModal(src);
+        });
+    }
+    if (imagenModalBackdrop) imagenModalBackdrop.addEventListener('click', closeImagenModal);
+    if (imagenModalClose) imagenModalClose.addEventListener('click', closeImagenModal);
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && imagenModal && imagenModal.getAttribute('aria-hidden') === 'false') {
+            closeImagenModal();
+        }
+    });
 
     function goPanelCarousel(delta) {
         if (panelCarouselImages.length <= 1) return;
@@ -487,7 +527,7 @@
             var cliente = panelData.cliente;
             var panelImg = panelData.panelImg || '';
             var imgFit = panelData.imgFit || '';
-            buildPanelCarousel(proyectoId, titulo, panelImg, imgFit);
+            buildPanelCarousel(proyectoId, titulo, panelImg, imgFit, servicioActivo);
             if (panelTitle) panelTitle.textContent = titulo;
             if (panelCategoria) panelCategoria.textContent = categoria;
             if (panelAno) panelAno.textContent = ano;
@@ -546,7 +586,7 @@
                 var cliente = panelData.cliente;
                 var panelImg = panelData.panelImg || '';
                 var imgFit = panelData.imgFit || '';
-                buildPanelCarousel(openProyectoId, titulo, panelImg, imgFit);
+                buildPanelCarousel(openProyectoId, titulo, panelImg, imgFit, servicioToOpen);
                 if (panelTitle) panelTitle.textContent = titulo;
                 if (panelCategoria) panelCategoria.textContent = categoria;
                 if (panelAno) panelAno.textContent = ano;

@@ -392,8 +392,8 @@
     var panelCarouselIndex = 0;
     var panelCarouselImages = [];
 
-    /* Proyectos que muestran botón "Ver imagen ampliada" (solo estos) */
-    var proyectosConVerAmpliada = ['cornare'];
+    /* Servicios (tags) que muestran botón "Ver imagen ampliada" en Ciudades: mapas de ruido, ecosistemas webgis, analítica geoespacial */
+    var serviciosConVerAmpliadaCiudades = ['mapas-ruido', 'webgis', 'geoespacial'];
 
     var btnVerAmpliada = document.getElementById('proyecto-panel-ver-ampliada');
     var imagenModal = document.getElementById('proyecto-imagen-modal');
@@ -420,9 +420,9 @@
             panelCarouselTrack.appendChild(slide);
         }
         panelCarouselIndex = 0;
-        /* Mostrar botón "Ver imagen ampliada" solo para proyectos definidos */
+        /* Mostrar botón "Ver imagen ampliada" solo en mapas de ruido, ecosistemas webgis y analítica geoespacial */
         if (btnVerAmpliada) {
-            btnVerAmpliada.style.display = proyectosConVerAmpliada.indexOf(proyectoId) !== -1 ? 'block' : 'none';
+            btnVerAmpliada.style.display = serviciosConVerAmpliadaCiudades.indexOf(servicioActivo) !== -1 ? 'block' : 'none';
         }
     }
 
