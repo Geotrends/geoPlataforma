@@ -9,25 +9,6 @@
     align-items: stretch;
 }
 
-/* Fade superior: difuminado desde gris oscuro hacia el fondo del portafolio (sin tonalidad clara) */
-.wind-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 240px;
-    pointer-events: none;
-    z-index: 2;
-    background: linear-gradient(
-        to bottom,
-        rgb(28, 28, 30) 0%,
-        rgb(18, 18, 20) 40%,
-        rgb(12, 12, 14) 75%,
-        rgb(8, 8, 10) 100%
-    );
-}
-
 /* Sin transición - fondo plano */
 .wind-section::after {
     display: none;
@@ -943,10 +924,6 @@ a.wind-project-card-cta:hover {
         margin-top: -180px;
         padding: 0 1rem;
         min-height: auto;
-    }
-
-    .wind-section::before {
-        height: 180px;
     }
 
     .wind-wrap {
