@@ -455,66 +455,53 @@ body.page-about main {
   margin-bottom: 0;
 }
 
+/* Ocultar título principal cuando solo mostramos Reconocimientos y Clientes */
+#about-panel[data-tab-active="reconocimientos-clientes"] .about-panel-title {
+  display: none;
+}
+
 .about-recon-clientes-seccion-title {
-  font-size: 0.9rem;
+  font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   color: #fff;
   margin: 0 0 0.75rem;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.6);
+  text-align: center;
 }
 
 .about-recon-clientes-scroll-wrap {
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-  margin: 0 -0.25rem;
-  padding: 0.25rem;
-}
-
-.about-recon-clientes-scroll-wrap::-webkit-scrollbar {
-  height: 8px;
-}
-
-.about-recon-clientes-scroll-wrap::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.about-recon-clientes-scroll-wrap::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
+  margin: 0;
+  padding: 0.5rem 0;
 }
 
 .about-recon-logos-row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem 1.5rem;
   align-items: center;
-  min-width: min-content;
+  justify-items: center;
 }
 
 .about-recon-clientes-seccion .about-recon-logo {
-  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Lista simple de reconocimientos sin contenedores */
+/* Lista simple de reconocimientos: 2 columnas, centrado */
 .about-recon-logos-list {
   list-style: none;
   margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 1.25rem;
+  padding: 0.25rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem 1.5rem;
   align-items: center;
-  min-width: min-content;
+  justify-items: center;
 }
 
 .about-recon-logo-item {
-  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -524,15 +511,17 @@ body.page-about main {
   list-style: none;
   margin: 0;
   padding: 0.5rem 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 1.25rem;
-  min-width: min-content;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem 1.5rem;
+  align-items: center;
+  justify-items: center;
 }
 
 .about-recon-clientes-seccion .about-clientes-logo-item {
-  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Logos de clientes en blanco (Reconocimientos y clientes) */
@@ -752,6 +741,22 @@ body.page-about main {
   line-height: 1.4;
   max-width: 500px;
 }
+/* Video local de Propósito */
+.about-proposito-video-wrap {
+  margin-top: 2rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-proposito-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  vertical-align: top;
+}
+
 /* Iframe (si en el futuro el video permite embed) */
 .about-proposito-video-iframe {
   display: block;
@@ -1784,7 +1789,13 @@ body.page-about main {
   }
 
   .about-recon-clientes-seccion-title {
-    font-size: 0.85rem;
+    font-size: 1.1rem;
+  }
+
+  /* Reconocimientos y Clientes: 2 columnas, flujo hacia abajo */
+  .about-recon-logos-list,
+  .about-recon-clientes-seccion .about-clientes-logos-inline {
+    gap: 0.75rem 1rem;
   }
 }
 

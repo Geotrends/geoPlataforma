@@ -179,7 +179,7 @@ body:has(.proyectos-page) {
     font-size: 1rem;
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.85);
-    margin: 1rem 0;
+    margin: 1rem 0 2rem 0;
     max-width: 90%;
 }
 
@@ -1133,7 +1133,7 @@ body.proyecto-panel-open .navbar {
 
     .proyectos-description {
         max-width: 100%;
-        margin: 0.4rem 0 -0.25rem 0; /* Reducido margen y añadido margen negativo inferior */
+        margin: 0.4rem 0 1.75rem 0;
         font-size: 1.05rem; /* Aumentado de 1rem para hacerlo más grande */
         line-height: 1.75; /* Aumentado line-height para mejor legibilidad */
     }
@@ -1219,7 +1219,7 @@ body.proyecto-panel-open .navbar {
     }
 
     .proyectos-description {
-        margin: 0.4rem 0 -0.25rem 0; /* Reducido margen y añadido margen negativo inferior */
+        margin: 0.4rem 0 1.75rem 0;
         font-size: 1rem; /* Aumentado para mejor legibilidad */
         line-height: 1.7; /* Aumentado line-height */
     }
@@ -1343,7 +1343,7 @@ body.proyecto-panel-open .navbar {
     }
 
     .proyectos-description {
-        margin: 0.4rem 0 -0.25rem 0; /* Reducido margen y añadido margen negativo inferior */
+        margin: 0.4rem 0 1.75rem 0;
         font-size: 1rem; /* Aumentado para mejor legibilidad */
         line-height: 1.7;
     }
@@ -1399,7 +1399,7 @@ body.proyecto-panel-open .navbar {
     }
 
     .proyectos-description {
-        margin: 0.35rem 0 -0.3rem 0; /* Reducido margen y añadido margen negativo inferior */
+        margin: 0.35rem 0 1.35rem 0;
         font-size: 0.95rem; /* Aumentado de 0.9rem para mejor legibilidad */
         line-height: 1.65;
     }

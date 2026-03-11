@@ -7,7 +7,7 @@
         proposito: {
             title: 'Propósito',
             body: '<p>En Geotrends creemos que promover entornos más limpios, saludables y seguros es fundamental en la construcción de territorios sostenibles que beneficien a todos los seres vivos. Por eso, aprovechamos la innovación y las tecnologías 4.0 para transformar el ruido, un contaminante invisible que afecta a millones, en inteligencia accionable que impulsa decisiones con impacto real. A través de nuestros ecosistemas inteligentes y tecnologías IoT, empoderamos a comunidades, ciudades e industrias para no solo medir, sino transformar sus entornos hacia un mejor futuro.</p>' +
-                '<a href="https://www.youtube.com/watch?v=Ambv3fjVgDk" target="_blank" rel="noopener noreferrer" class="about-proposito-video-link" aria-label="Ver video en YouTube: De los estudios de grabación a las calles"><div class="about-proposito-video-wrap"><div class="about-proposito-video-placeholder"><svg class="about-proposito-video-icon" viewBox="0 0 68 48" aria-hidden="true"><path class="about-proposito-video-icon-bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path fill="#fff" d="M45 24L27 14v20"/></svg><span class="about-proposito-video-text">Ver video en YouTube</span><span class="about-proposito-video-title">De los estudios de grabación a las calles: el emprendimiento que mide el pulso sonoro del Aburrá</span></div></div></a>'
+                '<div class="about-proposito-video-wrap"><video class="about-proposito-video" controls playsinline preload="metadata" aria-label="Video de propósito Geotrends"><source src="../img_video/sobreNosotros/proposito.mp4" type="video/mp4"></video></div>'
         },
         valores: {
             title: 'Valores corporativos',
@@ -64,7 +64,7 @@
             panelBody.style.opacity = '0';
             panelBody.style.transition = 'opacity 0.25s ease';
             setTimeout(function() {
-                panelTitle.textContent = c.title;
+                panelTitle.textContent = (key === 'reconocimientos-clientes') ? '' : c.title;
                 panelBody.innerHTML = c.body;
                 panelBody.style.opacity = '1';
             }, 180);
