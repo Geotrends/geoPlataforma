@@ -157,6 +157,7 @@ body:has(.proyectos-page) {
     display: flex;
     flex-direction: column;
     gap: 0.75rem; /* Reducido ya que no hay "Colombia" */
+    margin-top: 1rem; /* Bajar el título y descripción */
 }
 
 .proyectos-location {
@@ -544,6 +545,7 @@ body:has(.proyectos-page) {
     flex-wrap: wrap;
     width: 100%;
     order: 2; /* los tags van después de la búsqueda */
+    margin-top: 1rem; /* Bajar el carrusel de tags */
 }
 
 /* Centrar tags solo en ciudades - selector basado en el video source */
@@ -572,7 +574,7 @@ body:has(.proyectos-page) {
 }
 
 /* Industria: cuando la pantalla se achica, tags en 2 columnas (uno arriba uno abajo) */
-@media (max-width: 1200px) {
+@media (max-width: 1200px) and (min-width: 901px) {
     .proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top,
     .proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top {
         display: grid;
@@ -640,14 +642,18 @@ body:has(.proyectos-page) {
         margin-bottom: 0.5rem;
     }
     
-    /* Industria: tags en 2 columnas (uno arriba uno abajo) en responsive */
+    /* Industria: tags como carrusel horizontal en responsive móvil */
     .proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top,
     .proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top {
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr);
-        justify-items: center;
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
         gap: 0.5rem;
-        overflow: visible !important;
         padding-bottom: 0.5rem;
     }
     
@@ -1063,15 +1069,15 @@ body.proyecto-panel-open .navbar {
 @media (max-width: 900px) {
     .proyectos-filters-container {
         top: 90px;
-        padding: 1rem 1.5rem 2.5rem; /* Aumentado padding-bottom para separar tags del título en responsive */
+        padding: 1rem 1.5rem 1.5rem; /* Reducido padding-bottom para acercar tags al contenido */
     }
 
     /* Flechas ocultas - no se muestran */
 
     .proyectos-content {
         flex-direction: column;
-        padding: 240px 2rem 3rem;
-        gap: 0.5rem; /* Mínimo espacio entre título/descripción y carrusel */
+        padding: 150px 2rem 3rem; /* Reducido aún más para acercar título al carrusel */
+        gap: 0.1rem; /* Mínimo espacio entre título/descripción y carrusel */
     }
 
     .proyectos-left {
@@ -1079,16 +1085,22 @@ body.proyecto-panel-open .navbar {
         max-width: 100%;
         text-align: center;
         align-items: center;
-        margin-bottom: -0.25rem; /* Acercar título al carrusel */
+        margin-bottom: -0.75rem; /* Acercar más el título al carrusel */
+    }
+
+    .proyectos-title-section {
+        margin-top: 0.75rem; /* Bajar el título y descripción en móvil */
     }
 
     .proyectos-title {
-        font-size: 2.5rem;
+        font-size: 2.75rem; /* Aumentado de 2.5rem para hacerlo más grande */
     }
 
     .proyectos-description {
         max-width: 100%;
-        margin: 0.5rem 0 0.25rem 0; /* Menos margen para compactar */
+        margin: 0.4rem 0 -0.25rem 0; /* Reducido margen y añadido margen negativo inferior */
+        font-size: 1.05rem; /* Aumentado de 1rem para hacerlo más grande */
+        line-height: 1.75; /* Aumentado line-height para mejor legibilidad */
     }
 
     .proyectos-right {
@@ -1100,14 +1112,22 @@ body.proyecto-panel-open .navbar {
         min-width: 280px;
     }
 
+    /* Tags como carrusel horizontal con scroll */
     .proyectos-tags-top {
+        display: flex !important;
+        flex-direction: row;
         gap: 0.5rem;
-        flex-wrap: wrap;
         width: 100%;
         overflow-x: auto;
+        overflow-y: hidden;
         scrollbar-width: thin;
         scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
         padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+        /* Ocultar scrollbar pero mantener funcionalidad */
+        scrollbar-width: thin;
+        margin-top: 0.75rem; /* Bajar el carrusel de tags en móvil */
     }
     
     .proyectos-tags-top::-webkit-scrollbar {
@@ -1123,10 +1143,22 @@ body.proyecto-panel-open .navbar {
         border-radius: 2px;
     }
 
+    /* Anular grid para industria en móvil - usar carrusel */
+    .proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top,
+    .proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top {
+        display: flex !important;
+        grid-template-columns: none !important;
+        grid-template-rows: none !important;
+        justify-content: flex-start !important;
+        flex-wrap: nowrap !important;
+    }
+
     .proyectos-tag {
         padding: 0.5rem 1rem;
         font-size: 0.75rem;
         flex-shrink: 0;
+        white-space: nowrap;
+        scroll-snap-align: start;
     }
 
     .proyectos-search-bar {
@@ -1138,30 +1170,48 @@ body.proyecto-panel-open .navbar {
 @media (max-width: 600px) {
     .proyectos-filters-container {
         top: 80px;
-        padding: 1rem 1.25rem 2.25rem;
+        padding: 1rem 1.25rem 1.25rem; /* Reducido padding-bottom */
         gap: 0.75rem;
     }
 
     .proyectos-content {
-        padding: 4rem 1.5rem 2rem;
-        gap: 0.5rem;
+        padding: 130px 1.5rem 2rem; /* Reducido de 150px a 130px para acercar más */
+        gap: 0.1rem; /* Reducido gap aún más */
     }
 
     .proyectos-left {
-        margin-bottom: -0.25rem;
+        margin-bottom: -0.75rem; /* Acercar más el título */
     }
 
     .proyectos-description {
-        margin: 0.5rem 0 0.25rem 0;
+        margin: 0.4rem 0 -0.25rem 0; /* Reducido margen y añadido margen negativo inferior */
+        font-size: 1rem; /* Aumentado para mejor legibilidad */
+        line-height: 1.7; /* Aumentado line-height */
     }
     
-    /* Asegurar que las tags se muestren en móvil pequeño también */
+    /* Asegurar que las tags se muestren como carrusel en móvil pequeño */
     .proyectos-tags-top {
         display: flex !important;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+    }
+
+    /* Anular grid para industria en móvil pequeño - usar carrusel */
+    .proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top,
+    .proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top {
+        display: flex !important;
+        grid-template-columns: none !important;
+        grid-template-rows: none !important;
+        justify-content: flex-start !important;
+        flex-wrap: nowrap !important;
     }
 
     .proyectos-title {
-        font-size: 2rem;
+        font-size: 2.25rem; /* Aumentado de 2rem para hacerlo más grande */
     }
 
     .proyecto-card {
@@ -1195,12 +1245,12 @@ body.proyecto-panel-open .navbar {
 
     .proyectos-tags-top {
         gap: 0.5rem;
-        flex-wrap: wrap;
         width: 100%;
         overflow-x: auto;
         scrollbar-width: thin;
         scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
         padding-bottom: 0.5rem;
+        margin-top: 0.75rem; /* Bajar el carrusel de tags en móvil pequeño */
     }
     
     .proyectos-tags-top::-webkit-scrollbar {
@@ -1216,10 +1266,16 @@ body.proyecto-panel-open .navbar {
         border-radius: 2px;
     }
 
+    .proyectos-title-section {
+        margin-top: 0.75rem; /* Bajar el título y descripción en móvil pequeño */
+    }
+
     .proyectos-tag {
         padding: 0.45rem 0.875rem;
         font-size: 0.7rem;
         flex-shrink: 0;
+        white-space: nowrap;
+        scroll-snap-align: start;
     }
 
     .proyectos-search-bar {
@@ -1236,23 +1292,104 @@ body.proyecto-panel-open .navbar {
     }
 }
 
-/* iPhone SE y móviles ~375px: card más pequeña para que se vea completa */
-@media (max-width: 375px) {
+/* iPhone XR y similares ~414px: ajustes específicos */
+@media (max-width: 414px) and (min-width: 376px) {
+    .proyectos-filters-container {
+        padding: 1rem 1.25rem 1.25rem;
+    }
+
     .proyectos-content {
-        padding: 3.5rem 1rem 1.5rem;
-        gap: 0.5rem;
+        padding: 140px 1.5rem 2rem; /* Reducido de 160px a 140px */
+        gap: 0.1rem;
+    }
+
+    .proyectos-left {
+        margin-bottom: -0.75rem;
     }
 
     .proyectos-description {
-        margin: 0.4rem 0 0.2rem 0;
+        margin: 0.4rem 0 -0.25rem 0; /* Reducido margen y añadido margen negativo inferior */
+        font-size: 1rem; /* Aumentado para mejor legibilidad */
+        line-height: 1.7;
     }
 
     .proyectos-title {
-        font-size: 1.6rem;
+        font-size: 2.25rem; /* Aumentado para iPhone XR */
+    }
+
+    /* Tags como carrusel horizontal */
+    .proyectos-tags-top {
+        display: flex !important;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+        margin-top: 0.75rem; /* Bajar el carrusel de tags en iPhone XR */
+    }
+
+    /* Anular grid para industria - usar carrusel */
+    .proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top,
+    .proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top {
+        display: flex !important;
+        grid-template-columns: none !important;
+        grid-template-rows: none !important;
+        justify-content: flex-start !important;
+        flex-wrap: nowrap !important;
+    }
+
+    .proyectos-tag {
+        flex-shrink: 0;
+        white-space: nowrap;
+        scroll-snap-align: start;
+    }
+}
+
+/* iPhone SE y móviles ~375px: card más pequeña para que se vea completa */
+@media (max-width: 375px) {
+    .proyectos-filters-container {
+        padding: 1rem 1rem 1rem; /* Reducido padding-bottom aún más */
+    }
+
+    .proyectos-content {
+        padding: 120px 1rem 1.5rem; /* Reducido de 140px a 120px para acercar más */
+        gap: 0.1rem;
+    }
+
+    .proyectos-left {
+        margin-bottom: -0.75rem;
+    }
+
+    .proyectos-title-section {
+        margin-top: 0.75rem; /* Bajar el título y descripción en iPhone SE */
     }
 
     .proyectos-description {
-        font-size: 0.9rem;
+        margin: 0.35rem 0 -0.3rem 0; /* Reducido margen y añadido margen negativo inferior */
+        font-size: 0.95rem; /* Aumentado de 0.9rem para mejor legibilidad */
+        line-height: 1.65;
+    }
+
+    .proyectos-title {
+        font-size: 1.85rem; /* Aumentado de 1.6rem para hacerlo más grande */
+    }
+
+    /* Tags como carrusel en pantallas pequeñas */
+    .proyectos-tags-top {
+        display: flex !important;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-top: 0.75rem; /* Bajar el carrusel de tags en iPhone SE */
+    }
+
+    /* Anular grid para industria - usar carrusel */
+    .proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top,
+    .proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top {
+        display: flex !important;
+        grid-template-columns: none !important;
+        grid-template-rows: none !important;
+        justify-content: flex-start !important;
+        flex-wrap: nowrap !important;
     }
 
     .proyecto-card {
@@ -1287,6 +1424,12 @@ body.proyecto-panel-open .navbar {
     .carousel-btn {
         width: 36px;
         height: 36px;
+    }
+
+    .proyectos-tag {
+        flex-shrink: 0;
+        white-space: nowrap;
+        scroll-snap-align: start;
     }
 }
 
