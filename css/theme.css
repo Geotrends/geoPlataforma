@@ -999,6 +999,13 @@ html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel a:hove
   }
 }
 
+/* Surface Pro 7 (912px): eliminar degradado hero → StartUp */
+@media (min-width: 900px) and (max-width: 950px) {
+  [data-theme="dark"] .hero-fade-to-white {
+    background: transparent !important;
+  }
+}
+
 [data-theme="dark"] .geotrends-title {
   color: #fff;
   text-shadow:

@@ -338,8 +338,8 @@
     }
 }
 
-/* iPad Pro (1024px) SOLO: reducir espacio arriba; mantener más espacio abajo */
-@media (min-width: 1000px) and (max-width: 1100px) {
+/* iPad Pro (1024px) y Surface Pro 7 (912px): reducir espacio arriba; mantener más espacio abajo */
+@media (min-width: 900px) and (max-width: 1100px) {
     .geotrends-section {
         padding-top: 2.5rem;
         padding-bottom: 7.5rem;

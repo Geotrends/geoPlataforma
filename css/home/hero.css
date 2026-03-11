@@ -367,3 +367,10 @@ body:has(.hero) .navbar {
         background: transparent !important;
     }
 }
+
+/* Surface Pro 7 (912px) SOLO: eliminar degradado de la división hero → StartUp */
+@media (min-width: 900px) and (max-width: 950px) {
+    .hero-fade-to-white {
+        background: transparent !important;
+    }
+}
