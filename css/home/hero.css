@@ -58,7 +58,8 @@ body:has(.hero) .navbar {
     pointer-events: none;
 }
 
-.hero-luma-embed {
+/* Video hero (sustituye animación Luma) */
+.hero-video-wrap .hero-video-bg {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -67,29 +68,19 @@ body:has(.hero) .navbar {
     min-width: 100%;
     min-height: 100%;
     transform: translate(-50%, -50%);
-    border: none;
+    object-fit: cover;
     pointer-events: none;
-    animation: luma-speed-up 12s linear infinite;
-}
-
-@keyframes luma-speed-up {
-    0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-    }
-    50% {
-        transform: translate(-50%, -50%) scale(1.12);
-    }
 }
 
 @media (min-aspect-ratio: 16/9) {
-    .hero-luma-embed {
+    .hero-video-wrap .hero-video-bg {
         width: 100vw;
         height: calc(100vw * 9 / 16);
     }
 }
 
 @media (max-aspect-ratio: 16/9) {
-    .hero-luma-embed {
+    .hero-video-wrap .hero-video-bg {
         width: calc(100vh * 16 / 9);
         height: 100vh;
     }

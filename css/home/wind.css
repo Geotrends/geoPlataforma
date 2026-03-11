@@ -918,6 +918,52 @@ a.wind-project-card-cta:hover {
     }
 }
 
+/* iPad Pro / iPad Air (820-1100px) SOLO: texto arriba, cards abajo + minicards hacia abajo + menos espacio lados y abajo */
+@media (min-width: 820px) and (max-width: 1100px) {
+    .wind-section {
+        padding: 0 0.75rem;
+    }
+    .wind-wrap {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        gap: 1rem;
+        padding: 1.25rem 0.5rem 1rem;
+        min-height: auto;
+    }
+    .wind-intro-col {
+        min-height: auto;
+        padding: 0 0 0.5rem;
+    }
+    .wind-intro {
+        padding: 1rem 0.5rem;
+    }
+    .wind-carousel-col {
+        min-height: auto;
+        padding: 0.5rem 0;
+    }
+    .wind-cards-wrap {
+        padding: 0;
+    }
+    /* Minicards apiladas hacia abajo */
+    .wind-card.expanded .wind-inner-carousel-wrap .wind-project-cards {
+        flex-direction: column;
+        position: relative;
+        top: auto;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        width: 100%;
+        max-width: none;
+        gap: 0.75rem;
+    }
+    .wind-card.expanded .wind-project-card {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        flex: 0 0 auto;
+    }
+}
+
 @media (max-width: 900px) {
     /* Layout en columna */
     .wind-section {
