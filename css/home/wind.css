@@ -1001,7 +1001,7 @@ a.wind-project-card-cta:hover {
     /* Layout en columna - igual que iPad Air */
     .wind-section {
         margin-top: -180px;
-        padding: 0 1rem;
+        padding: 0 1rem 4rem;
         min-height: auto;
     }
 
@@ -1217,9 +1217,9 @@ a.wind-project-card-cta:hover {
         align-items: center;
     }
 
-    /* Reducir espacio cuando está expandida */
+    /* Card expandida: espacio inferior sin barra visible */
     .wind-section.wind-card-expanded {
-        padding-bottom: 0.5rem;
+        padding-bottom: 2rem;
     }
 
     .wind-section.wind-card-expanded .wind-wrap {

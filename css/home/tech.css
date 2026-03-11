@@ -16,6 +16,13 @@
     }
 }
 
+/* iPad Air / iPad Pro (max 1100px): más espacio arriba para separar de Portafolio (sin barra) */
+@media (max-width: 1100px) {
+    .tech-section {
+        padding-top: 5rem;
+    }
+}
+
 /* Fondo: solo verde oscuro, sin imagen */
 .tech-section-bg {
     position: absolute;
