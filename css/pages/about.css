@@ -131,6 +131,138 @@ body.page-about {
   }
 }
 
+/* Surface Pro 7 (912px) SOLO: margin-top para separar del navbar, equipo en carrusel */
+@media (min-width: 900px) and (max-width: 950px) {
+  .about-hero {
+    margin-top: 14rem;
+  }
+  .about-center,
+  .about-main-card {
+    padding-top: 2.5rem;
+  }
+  /* Equipo en carrusel como en móvil */
+  .about-equipo-meet-grid {
+    display: none !important;
+  }
+  .about-equipo-carousel-mobile {
+    display: flex !important;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    margin-top: 2rem;
+  }
+  .about-equipo-carousel-mobile .about-equipo-carousel-wrap {
+    width: 100%;
+  }
+  .about-equipo-carousel-mobile .about-equipo-carousel {
+    flex: 1;
+    min-width: 0;
+  }
+  .about-equipo-carousel-mobile .about-equipo-track {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 0.5rem 0.25rem 1rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .about-equipo-carousel-mobile .about-equipo-track::-webkit-scrollbar {
+    display: none;
+  }
+  .about-equipo-carousel-mobile .about-equipo-card {
+    flex: 0 0 200px;
+    min-width: 200px;
+    max-width: 200px;
+    scroll-snap-align: start;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: 3 / 4;
+    min-height: 280px;
+  }
+  .about-equipo-carousel-mobile .about-equipo-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    transform: translateY(-4px);
+  }
+  .about-equipo-carousel-mobile .about-equipo-card-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(15, 23, 42, 0.1);
+    z-index: 1;
+  }
+  .about-equipo-carousel-mobile .about-equipo-card-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: center;
+    justify-content: flex-end;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 60%, transparent 100%);
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-align: center;
+    pointer-events: none;
+  }
+  .about-equipo-carousel-mobile .about-equipo-card:hover .about-equipo-card-body {
+    opacity: 1;
+  }
+  .about-equipo-carousel-mobile .about-equipo-card-body .about-equipo-card-linkedin {
+    pointer-events: auto;
+  }
+  .about-equipo-carousel-mobile .about-equipo-card-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+  }
+  .about-equipo-carousel-mobile .about-equipo-card-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+  }
+  .about-equipo-carousel-mobile .about-equipo-card-body .about-equipo-card-linkedin {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-top: 0.5rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+  }
+  .about-equipo-carousel-mobile .carousel-btn {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 560px) {
   .about-hero {
     margin-top: 10.5rem; /* Aumentado para separar más del navbar */
