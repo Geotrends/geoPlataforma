@@ -769,19 +769,19 @@ body.proyecto-panel-open .proyectos-filters-container {
 }
 
 
-/* Panel cubre SOLO el carrusel: mismo ancho y alto que el área de cards, tags y navbar visibles */
+/* Panel cubre SOLO el carrusel: altura reducida (recorte arriba y abajo) para tapar el carrusel */
 .proyecto-panel {
     position: fixed;
-    top: 14rem;
+    top: 18rem;
     left: 32%;
     right: 0;
-    bottom: 3rem;
+    bottom: 6rem;
     z-index: 15;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
-    border-radius: 16px;
+    border-radius: 24px;
     transform: scale(0.96);
     opacity: 0;
     visibility: hidden;
@@ -937,7 +937,7 @@ body.proyecto-panel-open .proyectos-filters-container {
     flex: 1 1 58%;
     min-width: 0;
     min-height: 0;
-    padding: 2rem 2.5rem 2rem;
+    padding: 7.5rem 2.5rem 2rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -992,12 +992,13 @@ body.proyecto-panel-open .proyectos-filters-container {
 }
 .proyecto-panel-backdrop {
     position: fixed;
-    top: 14rem;
+    top: 18rem;
     left: 32%;
     right: 0;
-    bottom: 3rem;
+    bottom: 6rem;
     z-index: 14;
     background: rgba(0, 0, 0, 0.4);
+    border-radius: 24px;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.22s ease;
@@ -1009,16 +1010,16 @@ body.proyecto-panel-open .proyectos-filters-container {
 
 @media (max-width: 900px) {
     .proyecto-panel {
-        top: 12rem;
+        top: 14rem;
         left: 1rem;
         right: 1rem;
-        bottom: 2.5rem;
+        bottom: 4.5rem;
     }
     .proyecto-panel-backdrop {
-        top: 12rem;
+        top: 14rem;
         left: 1rem;
         right: 1rem;
-        bottom: 2.5rem;
+        bottom: 4.5rem;
     }
     .proyecto-panel-inner {
         flex-direction: column;
