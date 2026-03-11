@@ -531,6 +531,19 @@ body.page-about main {
   opacity: 0.9;
 }
 
+/* Logos que se ven pequeños: forzar tamaño más grande (U. Antioquia, MUSEED, CCR) */
+.about-recon-clientes-seccion .about-logo-size-match.about-recon-logo-img,
+.about-recon-clientes-seccion .about-logo-size-match.about-clientes-logo-img {
+  min-width: 180px;
+  min-height: 72px;
+  width: auto;
+  max-width: 220px;
+  max-height: 88px;
+  height: auto;
+  object-fit: contain;
+  transform: scale(1.25);
+}
+
 .about-recon-clientes-seccion .about-clientes-logo-envigado {
   filter: none !important;
   -webkit-filter: none !important;
