@@ -1066,6 +1066,41 @@ body.proyecto-panel-open .navbar {
     }
 }
 
+/* iPad Pro (1024px) y tablets: tags en grid de 2 filas como desktop */
+@media (min-width: 901px) and (max-width: 1200px) {
+    /* Industria: grid de 2 filas (6 arriba, 5 abajo centradas) */
+    .proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top,
+    .proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top {
+        display: grid !important;
+        grid-template-columns: repeat(6, max-content);
+        grid-template-rows: auto auto;
+        justify-content: center;
+        align-items: center;
+        gap: 0.6rem;
+        width: 100%;
+        padding-bottom: 0;
+        overflow: visible !important;
+        flex-wrap: wrap !important;
+        margin-top: 1rem;
+    }
+
+    /* Centrar la segunda fila (5 tags) - empiezan en columna 2 */
+    .proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top .proyectos-tag:nth-child(7),
+    .proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top .proyectos-tag:nth-child(7) {
+        grid-column: 2;
+    }
+
+    /* Ciudades: tags centradas en flex wrap (2 filas) */
+    .proyectos-page:has(.proyectos-hero-video source[src*="ciudades"]) .proyectos-tags-top,
+    .proyectos-page:has(.proyectos-hero-video source[src*="CIUDADES"]) .proyectos-tags-top {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        overflow: visible !important;
+        margin-top: 1rem;
+    }
+}
+
 @media (max-width: 900px) {
     .proyectos-filters-container {
         top: 90px;
