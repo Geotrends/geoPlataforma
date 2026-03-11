@@ -702,3 +702,19 @@ body.page-contacto .navbar.scrolled.section-dark {
         width: 22px;
     }
 }
+
+/* iPhone XR, 14 Pro Max, Pixel 7 (414–430px): logo más compacto */
+@media (max-width: 430px) {
+    .nav-container {
+        padding: 0.5rem 0.875rem;
+        margin-left: 0.75rem;
+        margin-right: 0.75rem;
+        width: calc(100% - 1.5rem);
+        gap: 0.75rem;
+    }
+
+    .navbar .logo-img {
+        height: 34px;
+        max-width: 140px;
+    }
+}

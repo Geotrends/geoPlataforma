@@ -550,6 +550,34 @@ body.page-about main {
   opacity: 1 !important;
 }
 
+/* Reducir espacio entre logos y footer cuando Reconocimientos y clientes está activo */
+body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-main-card {
+  padding-bottom: 0.5rem !important;
+}
+body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-page {
+  padding-bottom: 0 !important;
+}
+body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-layout {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-center {
+  gap: 0 !important;
+}
+#about-panel[data-tab-active="reconocimientos-clientes"] .about-recon-clientes-seccion {
+  margin-bottom: 0.5rem !important;
+}
+#about-panel[data-tab-active="reconocimientos-clientes"] .about-recon-clientes-seccion:last-child {
+  margin-bottom: 0 !important;
+}
+#about-panel[data-tab-active="reconocimientos-clientes"] .about-recon-clientes-scroll-wrap {
+  padding-bottom: 0 !important;
+}
+#about-panel[data-tab-active="reconocimientos-clientes"] .about-panel-body {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
 /* Centro: tabs ovales + contenido + video */
 .about-center {
   display: flex;
@@ -1805,10 +1833,34 @@ body.page-about main {
     font-size: 1.1rem;
   }
 
-  /* Reconocimientos y Clientes: 2 columnas, flujo hacia abajo */
+  /* Reconocimientos y Clientes: logos más pequeños, sin scroll horizontal */
   .about-recon-logos-list,
   .about-recon-clientes-seccion .about-clientes-logos-inline {
-    gap: 0.75rem 1rem;
+    gap: 0.6rem 0.75rem;
+  }
+
+  .about-recon-clientes-scroll-wrap {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  .about-recon-clientes-seccion .about-recon-logo-img {
+    max-width: 100px;
+    max-height: 44px;
+  }
+
+  .about-recon-clientes-seccion .about-clientes-logo-img {
+    max-width: 100px;
+    max-height: 44px;
+  }
+
+  .about-recon-clientes-seccion .about-logo-size-match.about-recon-logo-img,
+  .about-recon-clientes-seccion .about-logo-size-match.about-clientes-logo-img {
+    min-width: 80px;
+    min-height: 36px;
+    max-width: 100px;
+    max-height: 44px;
+    transform: none;
   }
 }
 
@@ -1834,6 +1886,31 @@ body.page-about main {
 
   .about-main-card {
     padding: 1.5rem 1.25rem;
+  }
+
+  /* Logos Reconocimientos y Clientes: aún más pequeños en móvil */
+  .about-recon-clientes-seccion .about-recon-logo-img {
+    max-width: 80px;
+    max-height: 36px;
+  }
+
+  .about-recon-clientes-seccion .about-clientes-logo-img {
+    max-width: 80px;
+    max-height: 36px;
+  }
+
+  .about-recon-clientes-seccion .about-logo-size-match.about-recon-logo-img,
+  .about-recon-clientes-seccion .about-logo-size-match.about-clientes-logo-img {
+    min-width: 64px;
+    min-height: 28px;
+    max-width: 80px;
+    max-height: 36px;
+  }
+
+  .about-recon-logos-list,
+  .about-recon-clientes-seccion .about-clientes-logos-inline {
+    gap: 0.5rem 0.6rem;
+    padding: 0.25rem 0;
   }
 
   .about-tabs {

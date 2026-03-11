@@ -882,7 +882,7 @@ html:not([data-theme="dark"]) .section-card-image {
         justify-content: center;
         padding: 0.5rem;
         gap: 0.5rem;
-        margin-top: 2rem;
+        margin-top: 1.25rem;
     }
 
     .section-card {
@@ -1031,12 +1031,12 @@ html:not([data-theme="dark"]) .section-card-image {
 /* Más margin-top al contenido en móviles para que no quede pegado al selector */
 @media (max-width: 560px) {
     .section-content {
-        margin-top: 2.5rem;
+        margin-top: 1.5rem;
     }
 }
 @media (max-width: 430px) {
     .section-content {
-        margin-top: 2.5rem;
+        margin-top: 1.5rem;
     }
 }
 

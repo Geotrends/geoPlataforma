@@ -58,12 +58,12 @@ window.addEventListener('scroll', updateNavbarColor);
 
 // Marcar enlace activo según la página actual
 (function() {
-    var currentPage = window.location.pathname.split('/').pop() || 'inicio.html';
+    var currentPage = window.location.pathname.split('/').pop() || 'index.html';
     var navLinks = document.querySelectorAll('.nav-links > li > a');
     
     navLinks.forEach(function(link) {
         var linkHref = link.getAttribute('href');
-        if (linkHref === currentPage || (currentPage === '' && linkHref === 'inicio.html')) {
+        if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
             link.classList.add('active');
         }
         

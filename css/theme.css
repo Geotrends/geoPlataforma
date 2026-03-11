@@ -1208,23 +1208,17 @@ html:not([data-theme="dark"]) .navbar.nav-mobile-open .nav-services-panel a:hove
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-/* Página Proyectos: panel de detalle en modo oscuro (transparencia oscura) */
+/* Página Proyectos: panel de detalle en modo oscuro (color uniforme, sin divisiones) */
 [data-theme="dark"] .proyecto-panel {
-  background: rgba(15, 20, 25, 0.55);
+  background: rgba(15, 20, 25, 0.92);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-left-color: rgba(57, 81, 59, 0.5);
 }
 [data-theme="dark"] .proyecto-panel-image-wrap {
-  background: rgba(15, 20, 25, 0.25);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-right-color: rgba(255, 255, 255, 0.08);
+  background: transparent;
 }
 [data-theme="dark"] .proyecto-panel-content {
-  background: rgba(15, 20, 25, 0.3);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: transparent;
 }
 [data-theme="dark"] .proyecto-panel-title,
 [data-theme="dark"] .proyecto-panel-meta-item span {
