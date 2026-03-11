@@ -762,30 +762,27 @@ body.proyectos-page .navbar .logo-img {
     opacity: 0 !important;
 }
 
-/* Ocultar el navbar cuando el panel de proyecto está abierto */
-body.proyecto-panel-open .navbar {
-    visibility: hidden;
-    opacity: 0;
-    pointer-events: none;
-    transition: visibility 0.22s ease, opacity 0.22s ease;
+/* Navbar y tags visibles cuando el panel está abierto (panel solo tapa el carrusel) */
+body.proyecto-panel-open .navbar,
+body.proyecto-panel-open .proyectos-filters-container {
+    z-index: 25;
 }
 
 
-/* Panel centrado, no ocupa toda la pantalla */
+/* Panel cubre SOLO el carrusel: mismo ancho y alto que el área de cards, tags y navbar visibles */
 .proyecto-panel {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 90%;
-    max-width: 1000px;
-    max-height: 90vh;
-    z-index: 20;
+    top: 14rem;
+    left: 32%;
+    right: 0;
+    bottom: 3rem;
+    z-index: 15;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
     border-radius: 16px;
-    transform: translate(-50%, -50%) scale(0.96);
+    transform: scale(0.96);
     opacity: 0;
     visibility: hidden;
     transition: transform 0.25s ease, opacity 0.25s ease, visibility 0.25s ease;
@@ -793,7 +790,7 @@ body.proyecto-panel-open .navbar {
     pointer-events: none;
 }
 .proyectos-page.proyecto-panel-open .proyecto-panel {
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1);
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -802,7 +799,6 @@ body.proyecto-panel-open .navbar {
     display: flex;
     flex-direction: row;
     height: 100%;
-    max-height: 90vh;
     align-items: stretch;
 }
 .proyecto-panel-close {
@@ -996,8 +992,11 @@ body.proyecto-panel-open .navbar {
 }
 .proyecto-panel-backdrop {
     position: fixed;
-    inset: 0;
-    z-index: 15;
+    top: 14rem;
+    left: 32%;
+    right: 0;
+    bottom: 3rem;
+    z-index: 14;
     background: rgba(0, 0, 0, 0.4);
     opacity: 0;
     pointer-events: none;
@@ -1009,6 +1008,18 @@ body.proyecto-panel-open .navbar {
 }
 
 @media (max-width: 900px) {
+    .proyecto-panel {
+        top: 12rem;
+        left: 1rem;
+        right: 1rem;
+        bottom: 2.5rem;
+    }
+    .proyecto-panel-backdrop {
+        top: 12rem;
+        left: 1rem;
+        right: 1rem;
+        bottom: 2.5rem;
+    }
     .proyecto-panel-inner {
         flex-direction: column;
         gap: 0;
@@ -1039,8 +1050,16 @@ body.proyecto-panel-open .navbar {
 
 @media (max-width: 560px) {
     .proyecto-panel {
-        width: 95%;
-        max-width: none;
+        top: 11rem;
+        left: 0.75rem;
+        right: 0.75rem;
+        bottom: 2rem;
+    }
+    .proyecto-panel-backdrop {
+        top: 11rem;
+        left: 0.75rem;
+        right: 0.75rem;
+        bottom: 2rem;
     }
     .proyecto-panel-close {
         top: 0.75rem;
