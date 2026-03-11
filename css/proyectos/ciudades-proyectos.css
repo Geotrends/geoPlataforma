@@ -1010,21 +1010,21 @@ body.proyecto-panel-open .proyectos-filters-container {
     margin: 0;
     flex: 1;
 }
+/* Backdrop a pantalla completa: al hacer clic fuera del panel (o en la X) se cierra */
 .proyecto-panel-backdrop {
     position: fixed;
-    top: 18rem;
-    left: 32%;
+    top: 0;
+    left: 0;
     right: 0;
-    bottom: 6rem;
+    bottom: 0;
     z-index: 14;
     background: rgba(0, 0, 0, 0.4);
-    border-radius: 24px;
-    transform: translateX(100%);
+    opacity: 0;
     pointer-events: none;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: opacity 0.3s ease;
 }
 .proyectos-page.proyecto-panel-open .proyecto-panel-backdrop {
-    transform: translateX(0);
+    opacity: 1;
     pointer-events: auto;
 }
 
@@ -1106,12 +1106,6 @@ body.proyecto-imagen-modal-open .navbar {
         right: 1rem;
         bottom: 4.5rem;
     }
-    .proyecto-panel-backdrop {
-        top: 14rem;
-        left: 1rem;
-        right: 1rem;
-        bottom: 4.5rem;
-    }
     .proyecto-panel-inner {
         flex-direction: column;
         gap: 0;
@@ -1142,12 +1136,6 @@ body.proyecto-imagen-modal-open .navbar {
 
 @media (max-width: 560px) {
     .proyecto-panel {
-        top: 11rem;
-        left: 0.75rem;
-        right: 0.75rem;
-        bottom: 2rem;
-    }
-    .proyecto-panel-backdrop {
         top: 11rem;
         left: 0.75rem;
         right: 0.75rem;
