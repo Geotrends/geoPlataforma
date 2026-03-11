@@ -392,6 +392,15 @@
     var panelCarouselIndex = 0;
     var panelCarouselImages = [];
 
+    /* Proyectos que muestran botón "Ver imagen ampliada" (solo estos) */
+    var proyectosConVerAmpliada = ['cornare'];
+
+    var btnVerAmpliada = document.getElementById('proyecto-panel-ver-ampliada');
+    var imagenModal = document.getElementById('proyecto-imagen-modal');
+    var imagenModalImg = document.getElementById('proyecto-imagen-modal-img');
+    var imagenModalBackdrop = document.getElementById('proyecto-imagen-modal-backdrop');
+    var imagenModalClose = document.getElementById('proyecto-imagen-modal-close');
+
     function buildPanelCarousel(proyectoId, titulo, imageSrc, servicioActivo) {
         if (!panelCarouselTrack) return;
         panelCarouselTrack.innerHTML = '';
@@ -411,7 +420,40 @@
             panelCarouselTrack.appendChild(slide);
         }
         panelCarouselIndex = 0;
+        /* Mostrar botón "Ver imagen ampliada" solo para proyectos definidos */
+        if (btnVerAmpliada) {
+            btnVerAmpliada.style.display = proyectosConVerAmpliada.indexOf(proyectoId) !== -1 ? 'block' : 'none';
+        }
     }
+
+    function openImagenModal(imgSrc) {
+        if (!imagenModal || !imagenModalImg) return;
+        imagenModalImg.src = imgSrc || '';
+        imagenModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('proyecto-imagen-modal-open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeImagenModal() {
+        if (!imagenModal) return;
+        imagenModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('proyecto-imagen-modal-open');
+        document.body.style.overflow = '';
+    }
+    if (btnVerAmpliada) {
+        btnVerAmpliada.addEventListener('click', function() {
+            var activeSlide = panelCarouselTrack ? panelCarouselTrack.querySelector('.proyecto-panel-carousel-slide.active') : null;
+            var img = activeSlide ? activeSlide.querySelector('.proyecto-panel-img') : null;
+            var src = img ? img.src : '';
+            if (src) openImagenModal(src);
+        });
+    }
+    if (imagenModalBackdrop) imagenModalBackdrop.addEventListener('click', closeImagenModal);
+    if (imagenModalClose) imagenModalClose.addEventListener('click', closeImagenModal);
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && imagenModal && imagenModal.getAttribute('aria-hidden') === 'false') {
+            closeImagenModal();
+        }
+    });
 
     function goPanelCarousel(delta) {
         if (panelCarouselImages.length <= 1) return;

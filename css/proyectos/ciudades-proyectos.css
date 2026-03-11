@@ -770,6 +770,7 @@ body.proyecto-panel-open .proyectos-filters-container {
 
 
 /* Panel cubre SOLO el carrusel: altura reducida (recorte arriba y abajo) para tapar el carrusel */
+/* Animación: panel y backdrop deslizan juntos desde la derecha (entrada) o hacia la derecha (salida) */
 .proyecto-panel {
     position: fixed;
     top: 18rem;
@@ -782,18 +783,17 @@ body.proyecto-panel-open .proyectos-filters-container {
     -webkit-backdrop-filter: blur(20px);
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
     border-radius: 24px;
-    transform: scale(0.96);
-    opacity: 0;
+    transform: translateX(100%);
     visibility: hidden;
-    transition: transform 0.25s ease, opacity 0.25s ease, visibility 0.25s ease;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), visibility 0s 0.4s;
     overflow: hidden;
     pointer-events: none;
 }
 .proyectos-page.proyecto-panel-open .proyecto-panel {
-    transform: scale(1);
-    opacity: 1;
+    transform: translateX(0);
     visibility: visible;
     pointer-events: auto;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), visibility 0s;
 }
 .proyecto-panel-inner {
     display: flex;
@@ -836,19 +836,39 @@ body.proyecto-panel-open .proyectos-filters-container {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 1.5rem 1rem;
     position: relative;
     order: 1;
+    gap: 0.5rem;
 }
 .proyecto-panel-carousel-wrap {
     position: relative;
     width: 100%;
-    height: 100%;
+    flex: 1;
+    min-height: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.proyecto-panel-ver-ampliada {
+    flex-shrink: 0;
+    margin-top: -0.35rem;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+.proyecto-panel-ver-ampliada:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
 }
 .proyecto-panel-carousel-track {
     position: relative;
@@ -999,13 +1019,84 @@ body.proyecto-panel-open .proyectos-filters-container {
     z-index: 14;
     background: rgba(0, 0, 0, 0.4);
     border-radius: 24px;
-    opacity: 0;
+    transform: translateX(100%);
     pointer-events: none;
-    transition: opacity 0.22s ease;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .proyectos-page.proyecto-panel-open .proyecto-panel-backdrop {
-    opacity: 1;
+    transform: translateX(0);
     pointer-events: auto;
+}
+
+/* Modal imagen ampliada */
+.proyecto-imagen-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.proyecto-imagen-modal[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+.proyecto-imagen-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+}
+.proyecto-imagen-modal-content {
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+    z-index: 1;
+}
+.proyecto-imagen-modal-img {
+    max-width: 100%;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+}
+.proyecto-imagen-modal-close {
+    position: absolute;
+    top: -44px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+.proyecto-imagen-modal-close:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+.proyecto-imagen-modal-close svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Ocultar navbar cuando el modal de imagen ampliada está abierto */
+body.proyecto-imagen-modal-open .navbar {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
 @media (max-width: 900px) {
