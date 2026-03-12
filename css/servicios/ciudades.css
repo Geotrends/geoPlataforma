@@ -1188,6 +1188,46 @@ html:not([data-theme="dark"]) body.page-servicios .navbar.scrolled .nav-hamburge
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
 }
 
+/* Surface Pro 7 (912 x 1368) SOLO: imagen arriba, texto abajo - siempre visible */
+@media (min-width: 900px) and (max-width: 950px) {
+    /* Hacer que el contenido expandido siempre esté visible */
+    .section-card .section-card-expanded {
+        opacity: 1 !important; /* Siempre visible */
+        visibility: visible !important; /* Siempre visible */
+        pointer-events: auto !important; /* Interactivo */
+        flex-direction: column !important; /* Columna: imagen arriba, texto abajo */
+        display: flex !important;
+        position: relative !important; /* Cambiar de absolute a relative para que siempre esté visible */
+    }
+    
+    /* Ocultar la vista frontal (imagen con nombre) */
+    .section-card .section-card-front {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+    
+    .section-card-image-wrap {
+        order: 1 !important; /* Imagen primero (arriba) */
+        flex: 0 0 auto !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 1rem 1.5rem 0.5rem !important;
+    }
+    
+    .section-card-desc {
+        order: 2 !important; /* Texto segundo (abajo) */
+        flex: 0 0 auto !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        padding: 1rem 1.5rem 1.5rem !important;
+        opacity: 1 !important; /* Siempre visible */
+        visibility: visible !important; /* Siempre visible */
+        transform: translateX(0) !important; /* Sin animación */
+    }
+}
+
 /* iPad Pro (1024 x 1366) SOLO: imagen arriba, texto abajo - siempre visible */
 @media (min-width: 1024px) and (max-width: 1100px) {
     /* Hacer que el contenido expandido siempre esté visible */
