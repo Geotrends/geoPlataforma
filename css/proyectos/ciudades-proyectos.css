@@ -1191,21 +1191,60 @@ body.proyecto-imagen-modal-open .navbar {
     }
 }
 
-/* iPad Pro (1024px) SOLO: descripción arriba, imagen abajo */
-@media (min-width: 901px) and (max-width: 1100px) {
-    .proyecto-panel-inner {
-        flex-direction: column;
+/* iPad Pro (1024 x 1366) SOLO: descripción arriba, imagen abajo - AL FINAL PARA MÁXIMA PRIORIDAD */
+@media (min-width: 1024px) and (max-width: 1100px) {
+    .proyecto-panel {
+        background: rgba(15, 20, 25, 1) !important; /* Fondo completamente opaco y oscuro, sin transparencia */
+        backdrop-filter: none !important; /* Eliminar blur que puede causar efecto de capa */
+        -webkit-backdrop-filter: none !important;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6) !important; /* Sombra más fuerte para definición */
     }
-    .proyecto-panel-content {
-        order: 1;
-        flex: 0 0 auto;
-        max-width: 100%;
+    .proyecto-panel-backdrop {
+        background: rgb(0 0 0 / 0%) !important; /* Backdrop completamente transparente */
     }
-    .proyecto-panel-image-wrap {
-        order: 2;
-        flex: 0 0 auto;
-        max-width: 100%;
-        height: auto;
+    .proyecto-panel .proyecto-panel-inner {
+        flex-direction: column !important; /* Forzar columna: descripción arriba, imagen abajo */
+        display: flex !important;
+        gap: 0 !important;
+    }
+    .proyecto-panel .proyecto-panel-content {
+        order: 1 !important; /* Descripción primero (arriba) */
+        flex: 0 0 auto !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 2rem 2.5rem !important;
+    }
+    .proyecto-panel .proyecto-panel-image-wrap {
+        order: 2 !important; /* Imagen segundo (abajo) */
+        flex: 1 1 auto !important; /* Que ocupe el espacio disponible */
+        max-width: 100% !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 500px !important; /* Altura mínima grande para ampliar la imagen */
+        padding: 1.5rem 2.5rem 2rem !important;
+    }
+    .proyecto-panel .proyecto-panel-carousel-wrap {
+        width: 100% !important;
+        height: 100% !important; /* Altura completa del contenedor */
+        flex: 1 1 auto !important; /* Que ocupe todo el espacio disponible */
+        min-height: 500px !important;
+    }
+    .proyecto-panel .proyecto-panel-carousel-track {
+        width: 100% !important;
+        height: 100% !important; /* Altura completa */
+        aspect-ratio: none !important; /* Sin limitación de aspect ratio para que se amplíe */
+        max-height: none !important;
+        min-height: 500px !important; /* Altura mínima grande */
+    }
+    .proyecto-panel .proyecto-panel-carousel-slide {
+        width: 100% !important;
+        height: 100% !important;
+    }
+    .proyecto-panel .proyecto-panel-carousel-slide .proyecto-panel-img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important; /* Que llene todo el contenedor */
+        object-position: center !important;
     }
 }
 
@@ -1480,8 +1519,8 @@ body.proyecto-imagen-modal-open .navbar {
     }
 }
 
-/* Nest Hub / iPad Pro (1024px) SOLO: arreglar espaciado para que no se apeñusque el contenido */
-@media (min-width: 1000px) and (max-width: 1050px) {
+/* Nest Hub (1000-1050px) SOLO: arreglar espaciado para que no se apeñusque el contenido */
+@media (min-width: 1000px) and (max-width: 1023px) {
     /* Aumentar padding del contenedor principal - más espacio arriba */
     .proyectos-content {
         padding: 12rem 3rem 3rem !important; /* Aumentado de 10rem a 12rem para más espacio arriba */
@@ -1502,7 +1541,7 @@ body.proyecto-imagen-modal-open .navbar {
         transform: translateX(0) !important; /* Pegado a la derecha cuando está abierto */
     }
 
-    /* Asegurar que imagen esté a la izquierda y descripción a la derecha - SOBRESCRIBIR el media query de 901-1100px */
+    /* Asegurar que imagen esté a la izquierda y descripción a la derecha */
     .proyecto-panel-inner {
         flex-direction: row !important; /* Imagen izquierda, descripción derecha */
     }
