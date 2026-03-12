@@ -319,3 +319,8 @@
 .footer-proyectos .footer-video-container {
     display: none;
 }
+
+/* Mostrar video del hero en la página de nosotros */
+.page-about .footer-proyectos .footer-luma-wrap {
+    display: block !important;
+}

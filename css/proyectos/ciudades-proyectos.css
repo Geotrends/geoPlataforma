@@ -826,6 +826,14 @@ body.proyecto-panel-open .proyectos-filters-container {
         top: 12rem; /* Más alto: reducir de 18rem a 12rem para empezar más arriba */
         bottom: 4rem; /* Más alto: reducir de 6rem a 4rem para extenderse más hacia abajo */
     }
+
+    .proyecto-panel-backdrop {
+        background: rgb(0 0 0 / 0%) !important;
+    }
+
+    .proyecto-panel-content {
+        margin-top: 2rem !important;
+    }
 }
 .proyectos-page.proyecto-panel-open .proyecto-panel {
     transform: translateX(0);
