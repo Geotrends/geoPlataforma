@@ -1,0 +1,21 @@
+{
+  "name": "geoplataforma",
+  "version": "1.0.0",
+  "description": "Plataforma web de GeoPlataforma - Ingeniería Acústica y Analítica Geoespacial",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "acustica",
+    "geoespacial",
+    "iot",
+    "webgis"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

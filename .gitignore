@@ -1,2 +1,16 @@
 # Videos pesados (>100 MB, límite GitHub)
 img_video/ciudades/descontaminacion/modeloGestion/portada.mp4
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Variables de entorno
+.env
+.env.local
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
