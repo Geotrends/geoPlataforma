@@ -1133,14 +1133,14 @@ body.proyecto-imagen-modal-open .navbar {
 
 @media (max-width: 900px) {
     .proyecto-panel {
-        top: 16rem; /* Más abajo para alejarlo de los tags */
+        top: 16rem; /* Mantenido para no sobreponerse con los tags */
         margin-top: 0.5rem;
         left: 1rem;
         right: 1rem;
-        bottom: 0;
+        bottom: -2rem; /* Extender más hacia abajo */
         height: auto;
         min-height: 0;
-        max-height: calc(100vh - 16rem); /* Más altura para que se vea la imagen completa */
+        max-height: calc(100vh - 14rem); /* Aumentado para mostrar más contenido hacia abajo */
         display: flex;
         flex-direction: column;
         overflow-y: visible; /* Sin scroll - mostrar todo el contenido */
@@ -1203,12 +1203,12 @@ body.proyecto-imagen-modal-open .navbar {
 
 @media (max-width: 560px) {
     .proyecto-panel {
-        top: 15rem; /* Más abajo para alejarlo de los tags */
+        top: 15rem; /* Mantenido para no sobreponerse con los tags */
         margin-top: 0.5rem;
         left: 0.75rem;
         right: 0.75rem;
-        bottom: 0;
-        max-height: calc(100vh - 15rem); /* Más altura para que se vea la imagen completa */
+        bottom: -2rem; /* Extender más hacia abajo */
+        max-height: calc(100vh - 13rem); /* Aumentado para mostrar más contenido hacia abajo */
         overflow-y: visible; /* Sin scroll - mostrar todo el contenido */
         overflow-x: hidden;
     }
@@ -1235,9 +1235,9 @@ body.proyecto-imagen-modal-open .navbar {
 /* iPhone 14 Pro Max (430 x 932) SOLO: panel completo sin scroll */
 @media (min-width: 400px) and (max-width: 450px) {
     .proyecto-panel {
-        top: 15rem !important; /* Más abajo para alejarlo de los tags */
-        max-height: calc(100vh - 15rem) !important; /* Más altura para que se vea la imagen completa */
-        bottom: 0 !important;
+        top: 15rem !important; /* Mantenido para no sobreponerse con los tags */
+        max-height: calc(100vh - 13rem) !important; /* Aumentado para mostrar más contenido hacia abajo */
+        bottom: -2rem !important; /* Extender más hacia abajo */
         overflow-y: visible !important; /* Sin scroll */
     }
     .proyecto-panel-content {
@@ -1258,9 +1258,9 @@ body.proyecto-imagen-modal-open .navbar {
 /* Samsung Galaxy S8+ (360 x 740) SOLO: panel completo sin scroll */
 @media (min-width: 350px) and (max-width: 375px) {
     .proyecto-panel {
-        top: 15rem !important; /* Más abajo para alejarlo de los tags */
-        max-height: calc(100vh - 15rem) !important; /* Más altura para que se vea la imagen completa */
-        bottom: 0 !important;
+        top: 15rem !important; /* Mantenido para no sobreponerse con los tags */
+        max-height: calc(100vh - 13rem) !important; /* Aumentado para mostrar más contenido hacia abajo */
+        bottom: -2rem !important; /* Extender más hacia abajo */
         overflow-y: visible !important; /* Sin scroll */
     }
     .proyecto-panel-content {
@@ -1752,9 +1752,9 @@ body.proyecto-imagen-modal-open .navbar {
 @media (max-width: 375px) {
     /* Panel completo sin scroll en iPhone SE */
     .proyecto-panel {
-        top: 15rem !important; /* Más abajo para alejarlo de los tags */
-        max-height: calc(100vh - 15rem) !important; /* Más altura para que se vea la imagen completa */
-        bottom: 0 !important;
+        top: 15rem !important; /* Mantenido para no sobreponerse con los tags */
+        max-height: calc(100vh - 13rem) !important; /* Aumentado para mostrar más contenido hacia abajo */
+        bottom: -2rem !important; /* Extender más hacia abajo */
         overflow-y: visible !important; /* Sin scroll */
     }
     .proyecto-panel-content {
@@ -1876,9 +1876,9 @@ body.proyecto-imagen-modal-open .navbar {
 /* Galaxy Z Fold (344 x 882) SOLO: panel completo sin scroll y hacer cards más pequeñas - AL FINAL PARA MÁXIMA PRIORIDAD */
 @media (min-width: 340px) and (max-width: 350px) {
     .proyecto-panel {
-        top: 15rem !important; /* Más abajo para alejarlo de los tags */
-        max-height: calc(100vh - 15rem) !important; /* Más altura para que se vea la imagen completa */
-        bottom: 0 !important;
+        top: 15rem !important; /* Mantenido para no sobreponerse con los tags */
+        max-height: calc(100vh - 13rem) !important; /* Aumentado para mostrar más contenido hacia abajo */
+        bottom: -2rem !important; /* Extender más hacia abajo */
         overflow-y: visible !important; /* Sin scroll */
     }
     .proyecto-panel-content {
