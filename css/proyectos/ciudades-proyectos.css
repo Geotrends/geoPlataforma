@@ -1133,21 +1133,18 @@ body.proyecto-imagen-modal-open .navbar {
 
 @media (max-width: 900px) {
     .proyecto-panel {
-        top: 16rem;
-        margin-top: 1rem;
+        top: 16rem; /* Más abajo para alejarlo de los tags */
+        margin-top: 0.5rem;
         left: 1rem;
         right: 1rem;
         bottom: 0;
         height: auto;
         min-height: 0;
-        max-height: calc(100vh - 10rem); /* Más largo hacia abajo, sin subir tags */
+        max-height: calc(100vh - 16rem); /* Más altura para que se vea la imagen completa */
         display: flex;
         flex-direction: column;
-        overflow-y: auto;
+        overflow-y: visible; /* Sin scroll - mostrar todo el contenido */
         overflow-x: hidden;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: thin;
-        scrollbar-color: rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.08);
     }
     .proyecto-panel::-webkit-scrollbar {
         width: 6px;
@@ -1170,13 +1167,13 @@ body.proyecto-imagen-modal-open .navbar {
         flex: 1 1 auto;
         overflow: visible;
         overflow-x: hidden;
-        padding-bottom: 1.5rem;
+        padding-bottom: 1rem; /* Reducido padding */
     }
     .proyecto-panel-content {
         order: 1;
         flex: 0 0 auto;
-        padding: 1rem 1.5rem 1rem;
-        gap: 0.5rem;
+        padding: 0.75rem 1.25rem 0.75rem; /* Reducido padding para que quepa más contenido */
+        gap: 0.4rem; /* Reducido gap */
         justify-content: flex-start;
         overflow: visible;
     }
@@ -1186,7 +1183,7 @@ body.proyecto-imagen-modal-open .navbar {
         height: auto;
         max-width: 100%;
         min-height: 0;
-        padding: 0.5rem 1rem 0.5rem;
+        padding: 0.4rem 1rem 0.4rem; /* Reducido padding */
         margin-bottom: 0;
     }
     .proyecto-panel-carousel-wrap {
@@ -1196,38 +1193,30 @@ body.proyecto-imagen-modal-open .navbar {
     .proyecto-panel-carousel-track {
         aspect-ratio: 16 / 9;
         width: 100%;
-        max-height: 200px;
+        max-height: 220px; /* Aumentado para que se vea la imagen más grande y completa */
         min-height: 0;
     }
     .proyecto-panel-carousel-slide .proyecto-panel-img {
-        max-height: 200px;
+        max-height: 220px; /* Aumentado para que se vea la imagen más grande y completa */
     }
 }
 
 @media (max-width: 560px) {
     .proyecto-panel {
-        top: 15rem;
-        margin-top: 1rem;
+        top: 15rem; /* Más abajo para alejarlo de los tags */
+        margin-top: 0.5rem;
         left: 0.75rem;
         right: 0.75rem;
         bottom: 0;
-        max-height: calc(100vh - 8rem); /* Un poco más largo hacia abajo */
-        scrollbar-width: thin;
-        scrollbar-color: rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.08);
+        max-height: calc(100vh - 15rem); /* Más altura para que se vea la imagen completa */
+        overflow-y: visible; /* Sin scroll - mostrar todo el contenido */
+        overflow-x: hidden;
     }
-    .proyecto-panel::-webkit-scrollbar {
-        width: 6px;
+    .proyecto-panel-carousel-track {
+        max-height: 200px !important; /* Aumentado para que se vea la imagen más grande */
     }
-    .proyecto-panel::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 3px;
-    }
-    .proyecto-panel::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.4);
-        border-radius: 3px;
-    }
-    .proyecto-panel::-webkit-scrollbar-thumb:hover {
-        background: rgba(255, 255, 255, 0.55);
+    .proyecto-panel-carousel-slide .proyecto-panel-img {
+        max-height: 200px !important; /* Aumentado para que se vea la imagen más grande */
     }
     .proyecto-panel-close {
         top: 0.75rem;
@@ -1243,19 +1232,49 @@ body.proyecto-imagen-modal-open .navbar {
     }
 }
 
-/* iPhone 14 Pro Max (430 x 932) SOLO: cortar panel para que no choque con el footer */
+/* iPhone 14 Pro Max (430 x 932) SOLO: panel completo sin scroll */
 @media (min-width: 400px) and (max-width: 450px) {
     .proyecto-panel {
-        max-height: calc(100vh - 14rem);
-        bottom: 2rem;
+        top: 15rem !important; /* Más abajo para alejarlo de los tags */
+        max-height: calc(100vh - 15rem) !important; /* Más altura para que se vea la imagen completa */
+        bottom: 0 !important;
+        overflow-y: visible !important; /* Sin scroll */
+    }
+    .proyecto-panel-content {
+        padding: 0.7rem 1.2rem 0.7rem !important; /* Reducido padding */
+        gap: 0.35rem !important; /* Reducido gap */
+    }
+    .proyecto-panel-image-wrap {
+        padding: 0.35rem 1rem 0.35rem !important; /* Reducido padding */
+    }
+    .proyecto-panel-carousel-track {
+        max-height: 200px !important; /* Aumentado para que se vea la imagen más grande y completa */
+    }
+    .proyecto-panel-carousel-slide .proyecto-panel-img {
+        max-height: 200px !important; /* Aumentado para que se vea la imagen más grande y completa */
     }
 }
 
-/* Samsung Galaxy S8+ (360 x 740) SOLO: recortar abajo para que no se pegue al footer */
+/* Samsung Galaxy S8+ (360 x 740) SOLO: panel completo sin scroll */
 @media (min-width: 350px) and (max-width: 375px) {
     .proyecto-panel {
-        max-height: calc(100vh - 14rem);
-        bottom: 2rem;
+        top: 15rem !important; /* Más abajo para alejarlo de los tags */
+        max-height: calc(100vh - 15rem) !important; /* Más altura para que se vea la imagen completa */
+        bottom: 0 !important;
+        overflow-y: visible !important; /* Sin scroll */
+    }
+    .proyecto-panel-content {
+        padding: 0.7rem 1.2rem 0.7rem !important; /* Reducido padding */
+        gap: 0.35rem !important; /* Reducido gap */
+    }
+    .proyecto-panel-image-wrap {
+        padding: 0.35rem 1rem 0.35rem !important; /* Reducido padding */
+    }
+    .proyecto-panel-carousel-track {
+        max-height: 180px !important; /* Aumentado para que se vea la imagen más grande y completa */
+    }
+    .proyecto-panel-carousel-slide .proyecto-panel-img {
+        max-height: 180px !important; /* Aumentado para que se vea la imagen más grande y completa */
     }
 }
 
@@ -1731,6 +1750,27 @@ body.proyecto-imagen-modal-open .navbar {
 
 /* iPhone SE y móviles ~375px: card más pequeña para que se vea completa */
 @media (max-width: 375px) {
+    /* Panel completo sin scroll en iPhone SE */
+    .proyecto-panel {
+        top: 15rem !important; /* Más abajo para alejarlo de los tags */
+        max-height: calc(100vh - 15rem) !important; /* Más altura para que se vea la imagen completa */
+        bottom: 0 !important;
+        overflow-y: visible !important; /* Sin scroll */
+    }
+    .proyecto-panel-content {
+        padding: 0.7rem 1.1rem 0.7rem !important; /* Reducido padding */
+        gap: 0.3rem !important; /* Reducido gap */
+    }
+    .proyecto-panel-image-wrap {
+        padding: 0.3rem 0.9rem 0.3rem !important; /* Reducido padding */
+    }
+    .proyecto-panel-carousel-track {
+        max-height: 170px !important; /* Aumentado para que se vea la imagen más grande y completa */
+    }
+    .proyecto-panel-carousel-slide .proyecto-panel-img {
+        max-height: 170px !important; /* Aumentado para que se vea la imagen más grande y completa */
+    }
+    
     .proyectos-filters-container {
         top: 95px; /* Aumentado para subir los tags y evitar sobreposición */
         padding: 1rem 1rem 1rem; /* Reducido padding-bottom aún más */
@@ -1833,10 +1873,26 @@ body.proyecto-imagen-modal-open .navbar {
     -webkit-backdrop-filter: blur(8px);
 }
 
-/* Galaxy Z Fold (344 x 882) SOLO: agregar margin-bottom sutil para separar del footer y hacer cards más pequeñas - AL FINAL PARA MÁXIMA PRIORIDAD */
+/* Galaxy Z Fold (344 x 882) SOLO: panel completo sin scroll y hacer cards más pequeñas - AL FINAL PARA MÁXIMA PRIORIDAD */
 @media (min-width: 340px) and (max-width: 350px) {
     .proyecto-panel {
-        bottom: 1.25rem !important; /* Margin-bottom sutil para separar del footer */
+        top: 15rem !important; /* Más abajo para alejarlo de los tags */
+        max-height: calc(100vh - 15rem) !important; /* Más altura para que se vea la imagen completa */
+        bottom: 0 !important;
+        overflow-y: visible !important; /* Sin scroll */
+    }
+    .proyecto-panel-content {
+        padding: 0.65rem 1rem 0.65rem !important; /* Reducido padding */
+        gap: 0.3rem !important; /* Reducido gap */
+    }
+    .proyecto-panel-image-wrap {
+        padding: 0.3rem 0.9rem 0.3rem !important; /* Reducido padding */
+    }
+    .proyecto-panel-carousel-track {
+        max-height: 160px !important; /* Aumentado para que se vea la imagen más grande y completa */
+    }
+    .proyecto-panel-carousel-slide .proyecto-panel-img {
+        max-height: 160px !important; /* Aumentado para que se vea la imagen más grande y completa */
     }
 
     .proyecto-card {
