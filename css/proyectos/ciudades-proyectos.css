@@ -1147,6 +1147,50 @@ body.proyecto-imagen-modal-open .navbar {
     pointer-events: none !important;
 }
 
+/* iPad Mini (768 x 1024) SOLO: imagen ampliada que abarque todo el contenedor */
+@media (min-width: 768px) and (max-width: 900px) {
+    .proyecto-panel-inner {
+        flex-direction: column;
+    }
+    .proyecto-panel-content {
+        order: 1;
+        flex: 0 0 auto;
+        max-width: 100%;
+    }
+    .proyecto-panel-image-wrap {
+        order: 2;
+        flex: 1 1 auto !important; /* Que ocupe el espacio disponible */
+        max-width: 100%;
+        height: auto;
+        min-height: 400px !important; /* Altura mínima más grande */
+        padding: 1.5rem 2rem !important; /* Más padding */
+    }
+    .proyecto-panel-carousel-wrap {
+        flex: 1 1 auto !important; /* Que ocupe todo el espacio disponible */
+        min-height: 0;
+        height: 100% !important; /* Altura completa del contenedor */
+        width: 100%;
+    }
+    .proyecto-panel-carousel-track {
+        aspect-ratio: 16 / 9;
+        width: 100%;
+        max-height: none !important; /* Sin límite de altura */
+        height: 100% !important; /* Altura completa */
+        min-height: 400px !important; /* Altura mínima grande */
+    }
+    .proyecto-panel-carousel-slide {
+        height: 100%;
+        width: 100%;
+    }
+    .proyecto-panel-carousel-slide .proyecto-panel-img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important; /* Que abarque todo el contenedor */
+        object-position: center !important;
+        max-height: none !important; /* Sin límite de altura */
+    }
+}
+
 /* iPad Pro (1024px) SOLO: descripción arriba, imagen abajo */
 @media (min-width: 901px) and (max-width: 1100px) {
     .proyecto-panel-inner {
