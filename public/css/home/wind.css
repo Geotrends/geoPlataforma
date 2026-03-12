@@ -4,9 +4,13 @@
     min-height: 85vh;
     padding: 0 2rem;
     margin-top: -220px; /* mayor solapa con geotrends para que el difuminado sea suave */
-    overflow: visible;
+    overflow-x: hidden;
+    overflow-y: visible;
     display: flex;
     align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 /* Sin transición - fondo plano */
@@ -79,6 +83,8 @@
     min-height: 85vh;
     align-items: center;
     padding: 0.5rem 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 /* Columna izquierda: alineada con el texto de la sección StartUp (mismo padding izquierdo) */
@@ -185,8 +191,12 @@
     justify-content: center;
     padding: 2rem 1rem 2rem 1rem;
     min-height: 85vh;
-    overflow: visible;
+    overflow-x: hidden;
+    overflow-y: visible;
     min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .wind-cards-wrap {
@@ -199,6 +209,7 @@
     gap: 0.5rem;
     padding-left: 0.5rem;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 /* Flechas del carrusel removidas (solo 3 servicios) */
@@ -217,12 +228,17 @@
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
 }
 
 /* Cuando una card está expandida, evitamos que el carrusel recorte/oculte el contenido */
 .wind-cards.is-expanded {
-    overflow-x: visible;
+    overflow-x: hidden;
+    overflow-y: visible;
     scroll-snap-type: none;
+    width: 100%;
+    max-width: 100%;
 }
 
 .wind-cards::-webkit-scrollbar {
@@ -285,6 +301,9 @@
     border-right: 1px solid rgba(255, 255, 255, 0.2);
     opacity: 1;
     visibility: visible;
+    /* Prevenir overflow horizontal */
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .wind-card.hidden {
@@ -566,6 +585,12 @@
 /* Wrapper del carrusel interno (flechas solo en responsive) */
 .wind-inner-carousel-wrap {
     position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
 .wind-inner-carousel-prev,
@@ -576,11 +601,9 @@
 /* Tarjetas de proyectos grandes - visibles al expandir (imagen grande + título + descripción + Ver proyecto) */
 .wind-project-cards {
     position: absolute;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(12px);
+    width: calc(100% - 2rem);
     max-width: 960px;
     top: 1rem;
     bottom: 5rem;
@@ -589,11 +612,10 @@
     display: flex;
     gap: 1.25rem;
     align-items: stretch;
-    justify-content: center;
+    justify-content: space-between;
     z-index: 2;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(12px);
     transition: opacity 0.1s ease, visibility 0.1s ease, transform 0.1s ease;
     padding: 0 0.5rem;
     box-sizing: border-box;
@@ -603,7 +625,7 @@
 .wind-card.expanded .wind-project-cards {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
     bottom: 0;
     max-height: none;
     padding-bottom: 7rem;
@@ -633,8 +655,10 @@
 
 /* Tarjetas de servicio (pantalla completa): mismo borde redondeado que las cards principales */
 .wind-project-card {
-    flex: 1;
+    flex: 1 1 0;
     min-width: 0;
+    width: calc(33.333% - 0.833rem);
+    max-width: calc(33.333% - 0.833rem);
     min-height: 380px;
     max-height: none;
     display: flex;
@@ -649,6 +673,7 @@
     text-decoration: none;
     color: inherit;
     transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    box-sizing: border-box;
 }
 
 /* Cuando la card está expandida: blur muy fuerte en cada una de las 3 cards */
@@ -669,6 +694,7 @@
     width: 100%;
     height: 160px;
     min-height: 160px;
+    max-height: 160px;
     flex-shrink: 0;
     background-size: cover;
     background-position: center;
@@ -677,6 +703,7 @@
     position: relative;
     border-radius: 14px 14px 0 0;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .wind-project-card-img video {
@@ -712,8 +739,9 @@
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    overflow: visible;
+    overflow: hidden;
     border-radius: 0 0 14px 14px;
+    box-sizing: border-box;
 }
 
 /* Blur muy fuerte en el cuerpo de la card cuando está desplegada */
@@ -741,6 +769,11 @@
     margin: 0;
     flex: 0 0 auto;
     min-height: 3.6em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .wind-project-card-cta {
@@ -886,6 +919,42 @@ a.wind-project-card-cta:hover {
 
 [data-theme="dark"] .wind-project-card-desc {
     color: rgba(255, 255, 255, 0.85);
+}
+
+/* ========== PANTALLA COMPLETA (Desktop) - Ampliar contenedor y cards ========== */
+/* Solo para pantallas grandes (más de 1200px) */
+@media (min-width: 1201px) {
+    /* Ampliar el contenedor principal */
+    .wind-wrap {
+        max-width: 1600px;
+        padding: 1rem 0;
+    }
+    
+    /* Ampliar el contenedor de "Portafolio De Servicios" */
+    .wind-intro {
+        padding: 3rem 2.5rem 3rem 2.5rem;
+        min-height: 600px;
+    }
+    
+    /* Ampliar las cards (Ciudades, Industria, ID + I) */
+    .wind-card {
+        min-height: 600px;
+    }
+    
+    /* Aumentar altura mínima del contenedor de cards */
+    .wind-cards {
+        min-height: 600px;
+    }
+    
+    /* Aumentar altura mínima de la columna de cards */
+    .wind-carousel-col {
+        min-height: 85vh;
+    }
+    
+    /* Aumentar altura mínima de la columna de intro */
+    .wind-intro-col {
+        min-height: 85vh;
+    }
 }
 
 /* ========== RESPONSIVE ========== */

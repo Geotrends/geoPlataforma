@@ -260,6 +260,8 @@ body:has(.proyectos-page) {
 .proyecto-card {
     flex: 0 0 400px;
     min-width: 400px;
+    max-width: 400px;
+    height: auto;
     scroll-snap-align: start;
     border-radius: 16px;
     overflow: hidden;
@@ -272,6 +274,9 @@ body:has(.proyectos-page) {
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
     transform: translateY(30px) scale(0.95);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 }
 
 /* Animar las cards cuando tienen la clase animating */
@@ -394,6 +399,8 @@ body:has(.proyectos-page) {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 0 0 16px 16px;
+    overflow: visible;
+    box-sizing: border-box;
 }
 
 .proyecto-card-title {
@@ -404,6 +411,13 @@ body:has(.proyectos-page) {
     letter-spacing: 0.03em;
     margin: 0;
     line-height: 1.3;
+    flex-shrink: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-height: calc(1.3em * 2);
 }
 
 .proyecto-card-desc {
@@ -411,6 +425,10 @@ body:has(.proyectos-page) {
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.8);
     margin: 0;
+    flex: 1;
+    overflow: visible;
+    display: block;
+    text-overflow: ellipsis;
 }
 
 /* Tags y barra de búsqueda dentro del contenido principal, sobre la imagen */
@@ -1500,6 +1518,16 @@ body.proyecto-imagen-modal-open .navbar {
     .proyecto-card {
         flex: 0 0 300px;
         min-width: 300px;
+        max-width: 300px;
+    }
+    
+    .proyecto-card-content {
+        overflow: visible;
+    }
+    
+    .proyecto-card-desc {
+        overflow: visible;
+        display: block;
     }
 
     /* Ajustar contenedor de filtros para evitar sobreposición de tags */
@@ -1646,6 +1674,16 @@ body.proyecto-imagen-modal-open .navbar {
     .proyecto-card {
         flex: 0 0 360px !important;
         min-width: 360px !important;
+        max-width: 360px !important;
+    }
+    
+    .proyecto-card-content {
+        overflow: visible !important;
+    }
+    
+    .proyecto-card-desc {
+        overflow: visible !important;
+        display: block !important;
     }
 
     /* Aumentar espaciado en la sección izquierda */
@@ -1730,6 +1768,16 @@ body.proyecto-imagen-modal-open .navbar {
     .proyecto-card {
         flex: 0 0 280px;
         min-width: 280px;
+        max-width: 280px;
+    }
+    
+    .proyecto-card-content {
+        overflow: visible;
+    }
+    
+    .proyecto-card-desc {
+        overflow: visible;
+        display: block;
     }
 
     /* Tags como carrusel horizontal con scroll */
@@ -1846,6 +1894,16 @@ body.proyecto-imagen-modal-open .navbar {
     .proyecto-card {
         flex: 0 0 220px;
         min-width: 220px;
+        max-width: 220px;
+    }
+    
+    .proyecto-card-content {
+        overflow: visible;
+    }
+    
+    .proyecto-card-desc {
+        overflow: visible;
+        display: block;
     }
 
     .proyecto-card-img {
@@ -2085,6 +2143,15 @@ body.proyecto-imagen-modal-open .navbar {
         flex: 0 0 240px;
         min-width: 240px;
         max-width: 240px;
+    }
+    
+    .proyecto-card-content {
+        overflow: visible;
+    }
+    
+    .proyecto-card-desc {
+        overflow: visible;
+        display: block;
     }
 
     .proyecto-card-img {
