@@ -641,6 +641,13 @@ body:has(.proyectos-page) {
         display: flex !important;
         order: 1;
         margin-bottom: 0.5rem;
+        width: 100%; /* Asegurar ancho completo */
+        max-width: 100%; /* Asegurar que no se limite el ancho */
+        box-sizing: border-box;
+        padding-left: 0; /* Eliminar padding que pueda limitar */
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
     }
     
     /* Industria: tags como carrusel horizontal en responsive móvil */
@@ -656,15 +663,35 @@ body:has(.proyectos-page) {
         scroll-snap-type: x proximity;
         gap: 0.5rem;
         padding-bottom: 0.5rem;
+        width: 100%; /* Asegurar ancho completo */
+        max-width: 100%; /* Asegurar que no se limite el ancho */
+    }
+    
+    /* Ciudades: también como carrusel horizontal en responsive móvil */
+    .proyectos-page:has(.proyectos-hero-video source[src*="ciudades"]) .proyectos-tags-top,
+    .proyectos-page:has(.proyectos-hero-video source[src*="CIUDADES"]) .proyectos-tags-top {
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+        gap: 0.5rem;
+        padding-bottom: 0.5rem;
     }
     
     .proyectos-filters-container {
         top: 110px; /* Aumentado para subir los tags y evitar sobreposición en responsive */
-        padding: 1rem 1.5rem;
+        padding: 1rem 1rem; /* Reducido padding lateral para dar más espacio a los tags */
         align-items: flex-start;
         position: relative;
         flex-direction: column;
         gap: 1rem;
+        width: 100%; /* Asegurar ancho completo */
+        max-width: 100%; /* Asegurar que no se limite el ancho */
+        box-sizing: border-box;
     }
     
     .proyectos-search-bar {
@@ -1559,9 +1586,10 @@ body.proyecto-imagen-modal-open .navbar {
     .proyectos-tag {
         padding: 0.5rem 1rem;
         font-size: 0.75rem;
-        flex-shrink: 0;
+        flex-shrink: 0 !important; /* Asegurar que no se reduzcan */
         white-space: nowrap;
         scroll-snap-align: start;
+        min-width: max-content; /* Asegurar que cada tag tenga su ancho natural */
     }
 
     .proyectos-search-bar {
@@ -1573,8 +1601,11 @@ body.proyecto-imagen-modal-open .navbar {
 @media (max-width: 600px) {
     .proyectos-filters-container {
         top: 100px; /* Aumentado de 80px para subir los tags y evitar sobreposición */
-        padding: 1rem 1.25rem 1.25rem; /* Reducido padding-bottom */
+        padding: 1rem 1rem 1.25rem; /* Reducido padding lateral para dar más espacio */
         gap: 0.75rem;
+        width: 100%; /* Asegurar ancho completo */
+        max-width: 100%; /* Asegurar que no se limite el ancho */
+        box-sizing: border-box;
     }
 
     .proyectos-content {
@@ -1601,6 +1632,11 @@ body.proyecto-imagen-modal-open .navbar {
         overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
         scroll-snap-type: x proximity;
+        width: 100%; /* Asegurar ancho completo */
+        max-width: 100%; /* Asegurar que no se limite el ancho */
+        box-sizing: border-box;
+        padding-left: 0; /* Eliminar padding que pueda limitar */
+        padding-right: 0;
     }
 
     /* Anular grid para industria en móvil pequeño - usar carrusel */
@@ -1773,7 +1809,10 @@ body.proyecto-imagen-modal-open .navbar {
     
     .proyectos-filters-container {
         top: 95px; /* Aumentado para subir los tags y evitar sobreposición */
-        padding: 1rem 1rem 1rem; /* Reducido padding-bottom aún más */
+        padding: 1rem 0.75rem 1rem; /* Reducido padding lateral para dar más espacio */
+        width: 100%; /* Asegurar ancho completo */
+        max-width: 100%; /* Asegurar que no se limite el ancho */
+        box-sizing: border-box;
     }
 
     .proyectos-content {
@@ -1806,6 +1845,11 @@ body.proyecto-imagen-modal-open .navbar {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         margin-top: 0.75rem; /* Bajar el carrusel de tags en iPhone SE */
+        width: 100%; /* Asegurar ancho completo */
+        max-width: 100%; /* Asegurar que no se limite el ancho */
+        box-sizing: border-box;
+        padding-left: 0; /* Eliminar padding que pueda limitar */
+        padding-right: 0;
     }
 
     /* Anular grid para industria - usar carrusel */
@@ -1853,9 +1897,10 @@ body.proyecto-imagen-modal-open .navbar {
     }
 
     .proyectos-tag {
-        flex-shrink: 0;
+        flex-shrink: 0 !important; /* Asegurar que no se reduzcan */
         white-space: nowrap;
         scroll-snap-align: start;
+        min-width: max-content; /* Asegurar que cada tag tenga su ancho natural */
     }
 }
 
