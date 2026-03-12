@@ -419,15 +419,15 @@
     background-position: left center;
 }
 
-/* Card Industria: imagen de lado → girar a la derecha; scale adapta a la card */
+/* Card Industria: imagen de lado → girar a la derecha; scale ampliada para cubrir toda la card */
 .wind-card:nth-child(2) .wind-card-img {
-    transform: rotate(90deg) scale(2.2);
+    transform: rotate(90deg) scale(2.8);
 }
 .wind-card:nth-child(2):hover .wind-card-img {
-    transform: rotate(90deg) scale(2.35);
+    transform: rotate(90deg) scale(2.95);
 }
 .wind-card:nth-child(2).expanded .wind-card-img {
-    transform: rotate(90deg) scale(2.2);
+    transform: rotate(90deg) scale(2.8);
 }
 
 .wind-card:hover .wind-card-img {
@@ -606,13 +606,13 @@
     width: calc(100% - 2rem);
     max-width: 960px;
     top: 1rem;
-    bottom: 5rem;
+    bottom: auto;
     max-height: calc(100% - 6rem);
     height: auto;
     display: flex;
     gap: 1.25rem;
     align-items: stretch;
-    justify-content: space-between;
+    justify-content: center;
     z-index: 2;
     opacity: 0;
     visibility: hidden;
@@ -629,6 +629,7 @@
     bottom: 0;
     max-height: none;
     padding-bottom: 7rem;
+    margin-top: 5rem;
 }
 
 /* Fondo muy blur cuando se despliegan las 3 cards: se extiende hasta abajo; título y botón van encima */
@@ -655,11 +656,11 @@
 
 /* Tarjetas de servicio (pantalla completa): mismo borde redondeado que las cards principales */
 .wind-project-card {
-    flex: 1 1 0;
-    min-width: 0;
-    width: calc(33.333% - 0.833rem);
-    max-width: calc(33.333% - 0.833rem);
-    min-height: 380px;
+    flex: 0 0 auto;
+    min-width: 255px;
+    width: 255px;
+    max-width: 280px;
+    min-height: 360px;
     max-height: none;
     display: flex;
     flex-direction: column;
@@ -692,9 +693,9 @@
 
 .wind-project-card-img {
     width: 100%;
-    height: 160px;
-    min-height: 160px;
-    max-height: 160px;
+    height: 210px;
+    min-height: 210px;
+    max-height: 210px;
     flex-shrink: 0;
     background-size: cover;
     background-position: center;
@@ -728,11 +729,11 @@
     transform: scale(1.05);
 }
 
-/* Cuerpo de la card: título, descripción (no se comprime) y botón siempre abajo; esquinas inferiores redondeadas como la card principal */
+/* Cuerpo de la card: título, descripción y botón compactos; esquinas inferiores redondeadas como la card principal */
 .wind-project-card-body {
-    flex: 1;
-    min-height: 140px;
-    padding: 1rem 1rem 1.25rem 1rem;
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 1.15rem 1.1rem 1.15rem 1.1rem;
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
@@ -752,7 +753,7 @@
 }
 
 .wind-project-card-title {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: rgba(255, 255, 255, 0.98);
     margin: 0;
@@ -763,12 +764,12 @@
 }
 
 .wind-project-card-desc {
-    font-size: 0.8rem;
-    line-height: 1.45;
+    font-size: 1.05rem;
+    line-height: 1.5;
     color: rgba(255, 255, 255, 0.85);
     margin: 0;
     flex: 0 0 auto;
-    min-height: 3.6em;
+    min-height: 4.2em;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -781,8 +782,8 @@
     align-items: center;
     flex-shrink: 0;
     margin-top: auto;
-    padding: 0.5rem 0.85rem;
-    font-size: 0.8rem;
+    padding: 0.65rem 1.2rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: rgba(255, 255, 255, 0.95);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
@@ -954,6 +955,50 @@ a.wind-project-card-cta:hover {
     /* Aumentar altura mínima de la columna de intro */
     .wind-intro-col {
         min-height: 85vh;
+    }
+}
+
+/* Pantalla extendida: mini cards más pequeñas y centradas */
+@media (min-width: 1500px) {
+    .wind-cards-wrap {
+        justify-content: center;
+    }
+    .wind-cards {
+        max-width: 82%;
+        margin: 0 auto;
+    }
+    /* Reducir y centrar las mini cards de Portafolio */
+    .wind-card.expanded .wind-project-cards {
+        max-width: 860px;
+        transform: translateX(-50%) translateY(0);
+        justify-content: center;
+        margin-top: 5rem;
+    }
+    .wind-card.expanded .wind-project-card {
+        width: calc(33.333% - 0.67rem) !important;
+        max-width: 270px !important;
+        min-width: 255px !important;
+        min-height: 360px !important;
+    }
+    .wind-card.expanded .wind-project-card-img {
+        height: 150px !important;
+        min-height: 150px !important;
+        max-height: 150px !important;
+    }
+    .wind-card.expanded .wind-project-card-body {
+        padding: 0.65rem 0.75rem 0.5rem !important;
+    }
+    .wind-card.expanded .wind-project-card-title {
+        font-size: 1.05rem !important;
+    }
+    .wind-card.expanded .wind-project-card-desc {
+        font-size: 0.95rem !important;
+        line-height: 1.35 !important;
+        min-height: 2.8em !important;
+    }
+    .wind-card.expanded .wind-project-card-cta {
+        font-size: 0.9rem !important;
+        padding: 0.5rem 1rem !important;
     }
 }
 
@@ -1249,17 +1294,17 @@ a.wind-project-card-cta:hover {
     }
 
     .wind-card.expanded .wind-project-card-title {
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
     
     .wind-card.expanded .wind-project-card-desc {
-        font-size: 0.7rem;
+        font-size: 0.95rem;
         line-height: 1.4;
     }
 
     .wind-card.expanded .wind-project-card-cta {
-        font-size: 0.7rem;
-        padding: 0.4rem 0.75rem;
+        font-size: 0.9rem;
+        padding: 0.55rem 1rem;
         margin-bottom: 1rem;
     }
     
@@ -1341,16 +1386,16 @@ a.wind-project-card-cta:hover {
     }
     
     .wind-card.expanded .wind-project-card-title {
-        font-size: 0.75rem;
+        font-size: 0.95rem;
     }
 
     .wind-card.expanded .wind-project-card-desc {
-        font-size: 0.65rem;
+        font-size: 0.9rem;
     }
 
     .wind-card.expanded .wind-project-card-cta {
-        font-size: 0.65rem;
-        padding: 0.35rem 0.65rem;
+        font-size: 0.85rem;
+        padding: 0.5rem 0.9rem;
     }
 
     .wind-card-title {
