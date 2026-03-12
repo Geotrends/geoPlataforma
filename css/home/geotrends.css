@@ -367,6 +367,19 @@
     }
 }
 
+/* iPhone 14 Pro Max (430 x 932) SOLO: más espacio arriba del título para separarlo del hero */
+@media (min-width: 400px) and (max-width: 450px) {
+    .geotrends-section {
+        padding-top: 6.25rem !important; /* Aumentado ligeramente de 6rem para más separación del hero */
+        padding-bottom: 11rem !important; /* Aumentado espacio abajo también */
+    }
+    .geotrends-content {
+        padding-top: 0.75rem !important; /* Aumentado ligeramente padding-top del contenido */
+        margin-top: 0.15rem !important; /* Aumentado ligeramente margin-top para más espacio */
+        margin-bottom: 1rem !important; /* Aumentado espacio abajo del contenido */
+    }
+}
+
 /* iPhone XR, 14 Pro Max, Pixel 7 (~414–430px): más espacio entre hero y StartUp y Portafolio */
 @media (max-width: 430px) {
     .geotrends-section {
