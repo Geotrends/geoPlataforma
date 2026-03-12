@@ -1328,14 +1328,14 @@ body.proyecto-imagen-modal-open .navbar {
         gap: 2.5rem !important;
     }
 
-    /* Panel lateral: más largo hacia arriba, pegado a la derecha, imagen izquierda y descripción derecha */
+    /* Panel lateral: más corto (menos ancho) y más compacto en altura para Nest Hub */
     .proyecto-panel {
-        top: 6rem !important; /* Reducido de 12rem a 6rem para hacer el panel más largo hacia arriba */
-        left: 6% !important; /* Mantener estructura original pegado a la derecha */
+        top: 14rem !important; /* Aumentado de 6rem a 14rem para hacer el panel más compacto en altura */
+        left: 20% !important; /* Aumentado de 6% a 20% para hacer el panel más corto (menos ancho hacia la izquierda) */
         right: 0 !important; /* Pegado a la derecha */
         transform: translateX(100%) !important; /* Animación desde la derecha (estado cerrado) */
-        bottom: 2rem !important; /* Mantener margen inferior */
-        height: auto !important; /* Altura automática para que sea más alto */
+        bottom: 4rem !important; /* Aumentado de 2rem a 4rem para reducir altura del panel */
+        height: auto !important; /* Altura automática */
     }
 
     .proyectos-page.proyecto-panel-open .proyecto-panel {
