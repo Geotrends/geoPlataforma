@@ -1,16 +1,13 @@
-// Tarjetas de servicios: bajan del cielo al entrar en vista
+// Tarjetas de servicios: animación se repite al subir/bajar con scroll
 (function() {
     var view = document.querySelector('.section-view');
     if (!view) return;
-    var animated = false;
     var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting && !animated) {
-                animated = true;
-                view.classList.add('section-cards-animated');
-            }
+        entries.forEach(function(e) {
+            if (e.isIntersecting) view.classList.add('section-cards-animated');
+            else view.classList.remove('section-cards-animated');
         });
-    }, { rootMargin: '0px', threshold: 0.1 });
+    }, { rootMargin: '0px 0px -5% 0px', threshold: 0.05 });
     observer.observe(view);
 })();
 

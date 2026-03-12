@@ -124,69 +124,42 @@ window.addEventListener('scroll', updateNavbarColor);
     filterByCategory('general');
 })();
 
-// Geotrends: animar texto (giro) y bolita cuando la sección entra en vista al hacer scroll
-(function() {
-    var section = document.querySelector('.geotrends-section');
-    if (!section) return;
-    var animated = false;
-    var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting && !animated) {
-                animated = true;
-                section.classList.add('geotrends-animated');
-            }
-        });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
-    observer.observe(section);
-})();
+// Animaciones por scroll: se repiten al subir/bajar en todos los breakpoints (móvil, tablet, desktop)
+function setupScrollAnimations() {
+    var config = { rootMargin: '0px 0px -5% 0px', threshold: 0.05 };
 
-// Wind (Transformación Territorial): animar tarjeta izquierda (desliza) y tarjetas derecha (caen) al hacer scroll
-(function() {
-    var section = document.querySelector('.wind-section');
-    if (!section) return;
-    var animated = false;
-    var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting && !animated) {
-                animated = true;
-                section.classList.add('wind-animated');
-            }
-        });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
-    observer.observe(section);
-})();
+    function toggleWithReflow(el, className) {
+        return function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    el.classList.remove(className);
+                    void el.offsetWidth; // reflow: asegura que la animación se reinicie en cualquier responsive
+                    el.classList.add(className);
+                } else {
+                    el.classList.remove(className);
+                }
+            });
+        };
+    }
 
-// Tecnologías: animar carticas (giran como pelotas y se acomodan) al hacer scroll
-(function() {
-    var section = document.querySelector('.tech-section');
-    if (!section) return;
-    var animated = false;
-    var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting && !animated) {
-                animated = true;
-                section.classList.add('tech-animated');
-            }
-        });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
-    observer.observe(section);
-})();
-
-// Orden metodológico: bolitas giran y cuadros saltan al hacer scroll
-(function() {
-    var section = document.querySelector('.process-section');
-    if (!section) return;
-    var animated = false;
-    var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting && !animated) {
-                animated = true;
-                section.classList.add('process-animated');
-            }
-        });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
-    observer.observe(section);
-})();
+    var geotrends = document.querySelector('.geotrends-section');
+    if (geotrends) {
+        (new IntersectionObserver(toggleWithReflow(geotrends, 'geotrends-animated'), config)).observe(geotrends);
+    }
+    var wind = document.querySelector('.wind-section');
+    if (wind) {
+        (new IntersectionObserver(toggleWithReflow(wind, 'wind-animated'), config)).observe(wind);
+    }
+    var tech = document.querySelector('.tech-section');
+    if (tech) {
+        (new IntersectionObserver(toggleWithReflow(tech, 'tech-animated'), config)).observe(tech);
+    }
+    var process = document.querySelector('.process-section');
+    if (process) {
+        (new IntersectionObserver(toggleWithReflow(process, 'process-animated'), config)).observe(process);
+    }
+}
+setupScrollAnimations();
 
 // Carrusel de proyectos (Home): flechas anterior/siguiente
 (function() {

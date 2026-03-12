@@ -840,6 +840,77 @@ body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-center
   overflow: visible; /* Sin scroll interno */
 }
 
+/* Transición tipo diapositiva: salida */
+.about-panel.about-panel-exit .about-panel-title,
+.about-panel.about-panel-exit .about-panel-body {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.25s ease, transform 0.28s ease;
+}
+
+/* Entrada tipo diapositiva: título y body deslizan desde la derecha */
+.about-panel.about-panel-enter .about-panel-title,
+.about-panel.about-panel-enter .about-panel-body {
+  opacity: 0;
+  transform: translateX(28px);
+  animation: about-panel-slide-in 0.45s cubic-bezier(0.34, 1.1, 0.64, 1) forwards;
+}
+.about-panel.about-panel-enter .about-panel-title { animation-delay: 0.03s; }
+.about-panel.about-panel-enter .about-panel-body { animation-delay: 0.1s; }
+
+/* Párrafos y contenido interno: aparecen progresivamente */
+.about-panel.about-panel-enter .about-panel-body p {
+  opacity: 0;
+  animation: about-panel-fade-in 0.35s cubic-bezier(0.34, 1.1, 0.64, 1) forwards;
+}
+.about-panel.about-panel-enter .about-panel-body p { animation-delay: 0.25s; }
+
+.about-panel.about-panel-enter .about-valores-card,
+.about-panel.about-panel-enter .about-proposito-video-wrap {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: about-panel-fade-up 0.4s cubic-bezier(0.34, 1.1, 0.64, 1) forwards;
+}
+
+.about-panel.about-panel-enter .about-valores-card:nth-child(1) { animation-delay: 0.2s; }
+.about-panel.about-panel-enter .about-valores-card:nth-child(2) { animation-delay: 0.28s; }
+.about-panel.about-panel-enter .about-valores-card:nth-child(3) { animation-delay: 0.36s; }
+.about-panel.about-panel-enter .about-valores-card:nth-child(4) { animation-delay: 0.44s; }
+.about-panel.about-panel-enter .about-valores-card:nth-child(5) { animation-delay: 0.52s; }
+.about-panel.about-panel-enter .about-proposito-video-wrap { animation-delay: 0.2s; }
+
+.about-panel.about-panel-enter .about-recon-clientes-seccion {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: about-panel-fade-up 0.38s cubic-bezier(0.34, 1.1, 0.64, 1) forwards;
+}
+.about-panel.about-panel-enter .about-recon-clientes-seccion:nth-child(1) { animation-delay: 0.22s; }
+.about-panel.about-panel-enter .about-recon-clientes-seccion:nth-child(2) { animation-delay: 0.36s; }
+
+@keyframes about-panel-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes about-panel-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes about-panel-fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .about-panel-body p {
   margin: 0 0 0.6rem;
 }
@@ -2553,3 +2624,91 @@ body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-center
     height: 18px;
   }
 }
+
+/* ========== Animaciones por scroll (todos los breakpoints) ========== */
+/* Tabs: deslizan desde arriba */
+.about-main-card:not(.about-main-animated) .about-tabs {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+.about-main-card.about-main-animated .about-tabs {
+  animation: about-tabs-slide 0.5s cubic-bezier(0.34, 1.1, 0.64, 1) forwards;
+}
+@keyframes about-tabs-slide {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Panel: título y body aparecen con fade */
+.about-main-card:not(.about-main-animated) .about-panel {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.about-main-card.about-main-animated .about-panel {
+  animation: about-fade-up 0.55s cubic-bezier(0.34, 1.1, 0.64, 1) 0.08s forwards;
+}
+
+@keyframes about-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Equipo meet: header + grid con stagger */
+.about-equipo-grid-wrap:not(.about-equipo-animated) .about-equipo-meet-header {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+.about-equipo-grid-wrap:not(.about-equipo-animated) .about-equipo-oval,
+.about-equipo-grid-wrap:not(.about-equipo-animated) .about-equipo-card {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.about-equipo-grid-wrap.about-equipo-animated .about-equipo-meet-header {
+  animation: about-fade-up 0.5s cubic-bezier(0.34, 1.1, 0.64, 1) forwards;
+}
+.about-equipo-grid-wrap.about-equipo-animated .about-equipo-meet-grid .about-equipo-oval,
+.about-equipo-grid-wrap.about-equipo-animated .about-equipo-carousel .about-equipo-card {
+  animation: about-fade-up 0.5s cubic-bezier(0.34, 1.1, 0.64, 1) forwards;
+}
+.about-equipo-grid-wrap.about-equipo-animated .about-equipo-meet-grid .about-equipo-col:nth-child(1) .about-equipo-oval { animation-delay: 0.12s; }
+.about-equipo-grid-wrap.about-equipo-animated .about-equipo-meet-grid .about-equipo-col:nth-child(2) .about-equipo-oval { animation-delay: 0.2s; }
+.about-equipo-grid-wrap.about-equipo-animated .about-equipo-meet-grid .about-equipo-col:nth-child(3) .about-equipo-oval { animation-delay: 0.28s; }
+.about-equipo-grid-wrap.about-equipo-animated .about-equipo-meet-grid .about-equipo-col:nth-child(4) .about-equipo-oval { animation-delay: 0.36s; }
+.about-equipo-grid-wrap.about-equipo-animated .about-equipo-carousel .about-equipo-card:nth-child(1) { animation-delay: 0.1s; }
+.about-equipo-grid-wrap.about-equipo-animated .about-equipo-carousel .about-equipo-card:nth-child(2) { animation-delay: 0.18s; }
+.about-equipo-grid-wrap.about-equipo-animated .about-equipo-carousel .about-equipo-card:nth-child(3) { animation-delay: 0.26s; }
+.about-equipo-grid-wrap.about-equipo-animated .about-equipo-carousel .about-equipo-card:nth-child(4) { animation-delay: 0.34s; }
+.about-equipo-grid-wrap.about-equipo-animated .about-equipo-carousel .about-equipo-card:nth-child(5) { animation-delay: 0.42s; }
+.about-equipo-grid-wrap.about-equipo-animated .about-equipo-carousel .about-equipo-card:nth-child(6) { animation-delay: 0.5s; }
+.about-equipo-grid-wrap.about-equipo-animated .about-equipo-carousel .about-equipo-card:nth-child(7) { animation-delay: 0.58s; }
+.about-equipo-grid-wrap.about-equipo-animated .about-equipo-carousel .about-equipo-card:nth-child(8) { animation-delay: 0.66s; }
+
+/* Equipo detalle: header + cards con stagger */
+.about-equipo-detalle-wrap:not(.about-detalle-animated) .about-equipo-detalle-header {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+.about-equipo-detalle-wrap:not(.about-detalle-animated) .about-equipo-detalle-card {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.about-equipo-detalle-wrap.about-detalle-animated .about-equipo-detalle-header {
+  animation: about-fade-up 0.5s cubic-bezier(0.34, 1.1, 0.64, 1) forwards;
+}
+.about-equipo-detalle-wrap.about-detalle-animated .about-equipo-detalle-card {
+  animation: about-fade-up 0.45s cubic-bezier(0.34, 1.1, 0.64, 1) forwards;
+}
+.about-equipo-detalle-wrap.about-detalle-animated .about-equipo-detalle-card:nth-child(1) { animation-delay: 0.08s; }
+.about-equipo-detalle-wrap.about-detalle-animated .about-equipo-detalle-card:nth-child(2) { animation-delay: 0.16s; }
+.about-equipo-detalle-wrap.about-detalle-animated .about-equipo-detalle-card:nth-child(3) { animation-delay: 0.24s; }
+.about-equipo-detalle-wrap.about-detalle-animated .about-equipo-detalle-card:nth-child(4) { animation-delay: 0.32s; }
+.about-equipo-detalle-wrap.about-detalle-animated .about-equipo-detalle-card:nth-child(5) { animation-delay: 0.4s; }
+.about-equipo-detalle-wrap.about-detalle-animated .about-equipo-detalle-card:nth-child(6) { animation-delay: 0.48s; }
+.about-equipo-detalle-wrap.about-detalle-animated .about-equipo-detalle-card:nth-child(7) { animation-delay: 0.56s; }
+.about-equipo-detalle-wrap.about-detalle-animated .about-equipo-detalle-card:nth-child(8) { animation-delay: 0.64s; }

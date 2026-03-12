@@ -60,14 +60,18 @@
             panel.style.opacity = '1';
             panel.setAttribute('data-tab-active', key);
         }
-        if (panelBody && panelTitle) {
-            panelBody.style.opacity = '0';
-            panelBody.style.transition = 'opacity 0.25s ease';
+        if (panel && panelBody && panelTitle) {
+            panel.classList.add('about-panel-exit');
             setTimeout(function() {
                 panelTitle.textContent = (key === 'reconocimientos-clientes') ? '' : c.title;
                 panelBody.innerHTML = c.body;
-                panelBody.style.opacity = '1';
-            }, 180);
+                panel.classList.remove('about-panel-exit');
+                void panel.offsetWidth;
+                panel.classList.add('about-panel-enter');
+                setTimeout(function() {
+                    panel.classList.remove('about-panel-enter');
+                }, 550);
+            }, 280);
         }
         if (gridWrap) {
             if (key === 'quienes-somos') {
@@ -222,6 +226,38 @@
         
         // Inicializar al cargar
         updateCardWidth();
+    })();
+
+    // Animaciones por scroll: cada sección aparece al entrar en vista (todos los responsive)
+    (function() {
+        var config = { rootMargin: '0px 0px -5% 0px', threshold: 0.05 };
+
+        function toggleWithReflow(el, className) {
+            return function(entries) {
+                entries.forEach(function(e) {
+                    if (e.isIntersecting) {
+                        el.classList.remove(className);
+                        void el.offsetWidth;
+                        el.classList.add(className);
+                    } else {
+                        el.classList.remove(className);
+                    }
+                });
+            };
+        }
+
+        var mainCard = document.querySelector('.about-main-card');
+        if (mainCard) {
+            (new IntersectionObserver(toggleWithReflow(mainCard, 'about-main-animated'), config)).observe(mainCard);
+        }
+        var equipoGrid = document.getElementById('about-equipo-grid');
+        if (equipoGrid) {
+            (new IntersectionObserver(toggleWithReflow(equipoGrid, 'about-equipo-animated'), config)).observe(equipoGrid);
+        }
+        var detalleWrap = document.querySelector('.about-equipo-detalle-wrap');
+        if (detalleWrap) {
+            (new IntersectionObserver(toggleWithReflow(detalleWrap, 'about-detalle-animated'), config)).observe(detalleWrap);
+        }
     })();
 
 })();
