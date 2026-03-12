@@ -547,6 +547,8 @@ body:has(.proyectos-page) {
     order: 2; /* los tags van después de la búsqueda */
     margin-top: 1rem; /* Bajar el carrusel de tags */
     row-gap: 0.6rem; /* Asegurar espacio vertical entre filas cuando hay wrap */
+    position: relative; /* Asegurar contexto de posicionamiento */
+    z-index: 1; /* Asegurar que estén por encima del contenido pero no se superpongan */
 }
 
 /* Centrar tags solo en ciudades - selector basado en el video source */
@@ -562,10 +564,13 @@ body:has(.proyectos-page) {
     grid-template-columns: repeat(6, max-content);
     grid-template-rows: auto auto;
     justify-content: center;
-    align-items: center;
+    align-items: start; /* Cambiado de center a start para evitar superposición */
     gap: 0.6rem;
+    row-gap: 0.6rem; /* Asegurar espacio vertical entre filas */
     width: 100%;
     padding-bottom: 0;
+    position: relative;
+    z-index: 1;
 }
 
 /* Centrar la segunda fila (5 tags) - empiezan en columna 2 */
@@ -714,6 +719,10 @@ body:has(.proyectos-page) {
     border-radius: 999px;
     cursor: pointer;
     transition: all 0.2s ease;
+    position: relative; /* Asegurar contexto de posicionamiento */
+    z-index: 1; /* Evitar superposición */
+    flex-shrink: 0; /* No permitir que se reduzcan */
+    white-space: nowrap; /* No permitir que el texto se divida */
 }
 
 .proyectos-tag:hover {
@@ -797,12 +806,23 @@ body.proyecto-panel-open .proyectos-filters-container {
     z-index: 25;
 }
 
+/* Efecto blur en todo el contenido cuando el panel está abierto - PARA TODOS LOS RESPONSIVE */
+.proyectos-page.proyecto-panel-open .proyectos-content,
+.proyectos-page.proyecto-panel-open .proyectos-cards-container,
+.proyectos-page.proyecto-panel-open .proyectos-left,
+.proyectos-page.proyecto-panel-open .proyectos-right {
+    filter: blur(8px) !important;
+    -webkit-filter: blur(8px) !important;
+    transition: filter 0.3s ease, -webkit-filter 0.3s ease;
+    pointer-events: none;
+}
+
 
 /* Panel cubre SOLO el carrusel: altura reducida (recorte arriba y abajo) para tapar el carrusel */
 /* Animación: panel y backdrop deslizan juntos desde la derecha (entrada) o hacia la derecha (salida) */
 .proyecto-panel {
     position: fixed;
-    top: 18rem;
+    top: 24rem; /* Aumentado de 18rem a 24rem para que los tags queden por debajo */
     left: 6%; /* Alargado hacia la izquierda */
     right: 0;
     bottom: 6rem;
@@ -823,7 +843,7 @@ body.proyecto-panel-open .proyectos-filters-container {
 @media (min-width: 1100px) {
     .proyecto-panel {
         left: 15%; /* Más corto: aumentar de 6% a 15% para que no se extienda tanto hacia la izquierda */
-        top: 12rem; /* Más alto: reducir de 18rem a 12rem para empezar más arriba */
+        top: 18rem; /* Aumentado de 12rem a 18rem para que los tags queden por debajo */
         bottom: 4rem; /* Más alto: reducir de 6rem a 4rem para extenderse más hacia abajo */
     }
 
@@ -1258,13 +1278,13 @@ body.proyecto-imagen-modal-open .navbar {
 
 @media (max-width: 900px) {
     .proyecto-panel {
-        top: 18rem !important; /* Empezar después de las tags */
+        top: 22rem !important; /* Aumentado de 18rem a 22rem para que los tags queden por debajo */
         left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
         right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
         bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
         margin: 0 !important;
         width: 100% !important;
-        height: calc(100vh - 18rem) !important; /* Altura desde las tags hasta abajo */
+        height: calc(100vh - 22rem) !important; /* Altura desde las tags hasta abajo */
         max-height: none !important; /* Sin límite de altura máxima para permitir más espacio */
         min-height: calc(100vh - 18rem) !important;
         display: flex;
@@ -1335,7 +1355,7 @@ body.proyecto-imagen-modal-open .navbar {
 
 @media (max-width: 560px) {
     .proyecto-panel {
-        top: 17rem !important; /* Empezar después de las tags */
+        top: 20rem !important; /* Aumentado de 17rem a 20rem para que los tags queden por debajo */
         left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
         right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
         bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
@@ -1381,7 +1401,7 @@ body.proyecto-imagen-modal-open .navbar {
 /* iPhone 14 Pro Max (430 x 932) SOLO: panel completo sin scroll */
 @media (min-width: 400px) and (max-width: 450px) {
     .proyecto-panel {
-        top: 17rem !important; /* Empezar después de las tags */
+        top: 20rem !important; /* Aumentado de 17rem a 20rem para que los tags queden por debajo */
         left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
         right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
         bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
@@ -1425,7 +1445,7 @@ body.proyecto-imagen-modal-open .navbar {
 /* Samsung Galaxy S8+ (360 x 740) SOLO: panel completo sin scroll */
 @media (min-width: 350px) and (max-width: 375px) {
     .proyecto-panel {
-        top: 16rem !important; /* Empezar después de las tags */
+        top: 19rem !important; /* Aumentado de 16rem a 19rem para que los tags queden por debajo */
         left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
         right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
         bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
@@ -1537,7 +1557,7 @@ body.proyecto-imagen-modal-open .navbar {
 
     /* Panel lateral: más corto (menos ancho) y más compacto en altura para Nest Hub */
     .proyecto-panel {
-        top: 14rem !important; /* Aumentado de 6rem a 14rem para hacer el panel más compacto en altura */
+        top: 20rem !important; /* Aumentado de 14rem a 20rem para que los tags queden por debajo */
         left: 20% !important; /* Aumentado de 6% a 20% para hacer el panel más corto (menos ancho hacia la izquierda) */
         right: 0 !important; /* Pegado a la derecha */
         transform: translateX(100%) !important; /* Animación desde la derecha (estado cerrado) */
@@ -1958,7 +1978,7 @@ body.proyecto-imagen-modal-open .navbar {
 @media (max-width: 375px) {
     /* Panel completo sin scroll en iPhone SE */
     .proyecto-panel {
-        top: 15rem !important; /* Ajustado para empezar después de las tags en iPhone SE */
+        top: 18rem !important; /* Aumentado de 15rem a 18rem para que los tags queden por debajo en iPhone SE */
         left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
         right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
         bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
@@ -2120,7 +2140,7 @@ body.proyecto-imagen-modal-open .navbar {
 /* Galaxy Z Fold (344 x 882) SOLO: panel completo sin scroll y hacer cards más pequeñas - AL FINAL PARA MÁXIMA PRIORIDAD */
 @media (min-width: 340px) and (max-width: 350px) {
     .proyecto-panel {
-        top: 16rem !important; /* Empezar después de las tags */
+        top: 19rem !important; /* Aumentado de 16rem a 19rem para que los tags queden por debajo */
         left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
         right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
         bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
