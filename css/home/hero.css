@@ -361,6 +361,13 @@ body:has(.hero) .navbar {
     }
 }
 
+/* iPhone 12 Pro (390 x 844) SOLO: eliminar degradado del hero */
+@media (min-width: 385px) and (max-width: 395px) {
+    .hero-fade-to-white {
+        background: transparent !important;
+    }
+}
+
 /* iPhone 14 Pro Max y similares (430 x 932): eliminar degradado del hero */
 @media (min-width: 400px) and (max-width: 450px) {
     .hero-fade-to-white {

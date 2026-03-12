@@ -1854,29 +1854,37 @@ body.proyecto-imagen-modal-open .navbar {
     }
 }
 
-/* iPhone SE y móviles ~375px: card más pequeña para que se vea completa */
+/* iPhone SE y móviles ~375px: card más pequeña para que se vea completa - AL FINAL PARA MÁXIMA PRIORIDAD */
 @media (max-width: 375px) {
     /* Panel completo sin scroll en iPhone SE */
     .proyecto-panel {
-        top: 16rem !important; /* Empezar después de las tags */
+        top: 15rem !important; /* Ajustado para empezar después de las tags en iPhone SE */
         left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
         right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
         bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
         margin: 0 !important;
         width: 100% !important;
-        height: calc(100vh - 16rem) !important; /* Altura desde las tags hasta abajo */
+        height: calc(100vh - 15rem) !important; /* Altura desde las tags hasta abajo - ajustado para iPhone SE */
         max-height: none !important; /* Sin límite de altura máxima */
-        min-height: calc(100vh - 16rem) !important;
+        min-height: calc(100vh - 15rem) !important;
         overflow-y: auto !important; /* Permitir scroll si es necesario */
+        overflow-x: hidden !important;
         border-radius: 0 !important; /* Sin bordes redondeados para pantalla completa */
         z-index: 100 !important; /* Z-index muy alto para tapar todo el contenido */
         position: fixed !important; /* Fijo para que tape todo */
         background: rgba(15, 20, 25, 0.98) !important; /* Fondo casi opaco para tapar el contenido */
         backdrop-filter: blur(20px) !important;
         -webkit-backdrop-filter: blur(20px) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        box-sizing: border-box !important;
     }
     .proyecto-panel-inner {
         padding-bottom: 3rem !important; /* Aumentado padding para dar más espacio hacia abajo */
+        min-height: 100% !important;
+        flex: 1 1 auto !important;
+        display: flex !important;
+        flex-direction: column !important;
     }
     .proyecto-panel-close {
         top: 1rem !important;
