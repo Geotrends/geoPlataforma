@@ -1225,13 +1225,6 @@ body.proyecto-imagen-modal-open .navbar {
     }
 }
 
-/* Galaxy Z Fold (344 x 882) SOLO: agregar margin-bottom sutil para separar del footer */
-@media (min-width: 340px) and (max-width: 350px) {
-    .proyecto-panel {
-        bottom: 1.25rem; /* Margin-bottom sutil para separar del footer */
-    }
-}
-
 /* Surface Duo (540 x 720) SOLO: agregar espacio abajo para separar del footer */
 @media (min-width: 535px) and (max-width: 545px) {
     .proyecto-panel {
@@ -1720,3 +1713,39 @@ body.proyecto-imagen-modal-open .navbar {
     -webkit-backdrop-filter: blur(8px);
 }
 
+/* Galaxy Z Fold (344 x 882) SOLO: agregar margin-bottom sutil para separar del footer y hacer cards más pequeñas - AL FINAL PARA MÁXIMA PRIORIDAD */
+@media (min-width: 340px) and (max-width: 350px) {
+    .proyecto-panel {
+        bottom: 1.25rem !important; /* Margin-bottom sutil para separar del footer */
+    }
+
+    .proyecto-card {
+        flex: 0 0 200px !important; /* Cards más pequeñas para que se vean bien los bordes */
+        min-width: 200px !important;
+        max-width: 200px !important;
+    }
+
+    .proyecto-card-img {
+        aspect-ratio: 4 / 3 !important;
+        max-height: 150px !important; /* Imagen más pequeña */
+    }
+
+    .proyecto-card-content {
+        padding: 0.875rem 0.875rem !important; /* Padding reducido */
+        min-height: 90px !important;
+    }
+
+    .proyecto-card-title {
+        font-size: 0.85rem !important; /* Título más pequeño */
+    }
+
+    .proyecto-card-desc {
+        font-size: 0.75rem !important; /* Descripción más pequeña */
+        line-height: 1.4 !important;
+    }
+
+    .carousel-btn {
+        width: 36px !important; /* Botones de carrusel más pequeños */
+        height: 36px !important;
+    }
+}
