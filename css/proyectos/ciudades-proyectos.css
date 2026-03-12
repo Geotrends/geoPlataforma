@@ -791,6 +791,15 @@ body.proyecto-panel-open .proyectos-filters-container {
     overflow: hidden;
     pointer-events: none;
 }
+
+/* Pantalla extendida (desktop): panel más corto (menos ancho) y más alto */
+@media (min-width: 1100px) {
+    .proyecto-panel {
+        left: 15%; /* Más corto: aumentar de 6% a 15% para que no se extienda tanto hacia la izquierda */
+        top: 12rem; /* Más alto: reducir de 18rem a 12rem para empezar más arriba */
+        bottom: 4rem; /* Más alto: reducir de 6rem a 4rem para extenderse más hacia abajo */
+    }
+}
 .proyectos-page.proyecto-panel-open .proyecto-panel {
     transform: translateX(0);
     visibility: visible;
