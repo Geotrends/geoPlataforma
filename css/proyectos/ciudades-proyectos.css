@@ -1519,8 +1519,8 @@ body.proyecto-imagen-modal-open .navbar {
     }
 }
 
-/* Nest Hub (1000-1050px) SOLO: arreglar espaciado para que no se apeñusque el contenido */
-@media (min-width: 1000px) and (max-width: 1023px) {
+/* Nest Hub (1024 x 600) y Nest Hub Max (1280 x 800) SOLO: arreglar espaciado para que no se apeñusque el contenido */
+@media (min-width: 1000px) and (max-width: 1300px) {
     /* Aumentar padding del contenedor principal - más espacio arriba */
     .proyectos-content {
         padding: 12rem 3rem 3rem !important; /* Aumentado de 10rem a 12rem para más espacio arriba */
@@ -1564,6 +1564,15 @@ body.proyecto-imagen-modal-open .navbar {
         padding: 2.5rem 3rem 3rem !important; /* Aumentado padding-bottom de 2rem a 3rem */
         gap: 1.5rem !important; /* Aumentado gap para más espacio entre elementos */
         top: 100px !important; /* Reducido de 120px a 100px para SUBIR más los tags */
+    }
+    
+    /* Separar descripción y carrusel de las tags para que no se sobrepongan */
+    .proyectos-description {
+        margin-top: 2rem !important; /* Margin-top para separar de las tags */
+    }
+    
+    .proyectos-cards-container {
+        margin-top: 1.5rem !important; /* Margin-top para separar el carrusel de la descripción */
     }
 
     /* SUBIR las tags - reducir margin-top para evitar sobreposición */
