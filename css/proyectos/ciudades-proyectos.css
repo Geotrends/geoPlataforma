@@ -1300,6 +1300,70 @@ body.proyecto-imagen-modal-open .navbar {
     }
 }
 
+/* Nest Hub / iPad Pro (1024px) SOLO: arreglar espaciado para que no se apeñusque el contenido */
+@media (min-width: 1000px) and (max-width: 1050px) {
+    /* Aumentar padding del contenedor principal - más espacio arriba */
+    .proyectos-content {
+        padding: 10rem 3rem 3rem !important;
+        gap: 2.5rem !important;
+    }
+
+    /* Aumentar padding del contenedor de filtros/tags - bajar más el contenedor */
+    .proyectos-filters-container {
+        padding: 2.5rem 3rem 2rem !important;
+        gap: 1.25rem !important;
+        top: 100px !important; /* Bajar más el contenedor de tags */
+    }
+
+    /* Bajar mucho más las tags - aumentar margin-top significativamente */
+    .proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top,
+    .proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top {
+        gap: 0.75rem !important;
+        margin-top: 3.5rem !important; /* Bajado mucho más las tags */
+        padding-bottom: 1rem !important;
+    }
+
+    .proyectos-page:has(.proyectos-hero-video source[src*="ciudades"]) .proyectos-tags-top,
+    .proyectos-page:has(.proyectos-hero-video source[src*="CIUDADES"]) .proyectos-tags-top {
+        gap: 0.75rem !important;
+        margin-top: 3.5rem !important; /* Bajado mucho más las tags */
+        padding-bottom: 1rem !important;
+    }
+
+    /* Aumentar mucho más el espaciado entre tags y título */
+    .proyectos-title-section {
+        gap: 1.25rem !important;
+        margin-top: 2.5rem !important; /* Mucho más espacio entre tags y título */
+    }
+
+    /* Aumentar espaciado de la descripción */
+    .proyectos-description {
+        margin: 1.25rem 0 2.5rem 0 !important;
+        line-height: 1.75 !important;
+    }
+
+    /* Aumentar gap entre cards */
+    .proyectos-cards-container {
+        gap: 1.25rem !important;
+    }
+
+    .carousel-track {
+        gap: 1.25rem !important;
+        padding: 1.25rem 0 !important;
+    }
+
+    /* Ajustar tamaño de cards si es necesario */
+    .proyecto-card {
+        flex: 0 0 360px !important;
+        min-width: 360px !important;
+    }
+
+    /* Aumentar espaciado en la sección izquierda */
+    .proyectos-left {
+        gap: 2.5rem !important;
+    }
+}
+
 /* Surface Pro y tablets (~912px): descripción arriba, card abajo */
 @media (max-width: 950px) {
     .proyectos-content {
