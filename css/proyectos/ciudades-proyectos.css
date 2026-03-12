@@ -1225,6 +1225,13 @@ body.proyecto-imagen-modal-open .navbar {
     }
 }
 
+/* Galaxy Z Fold (344 x 882) SOLO: agregar margin-bottom sutil para separar del footer */
+@media (min-width: 340px) and (max-width: 350px) {
+    .proyecto-panel {
+        bottom: 1.25rem; /* Margin-bottom sutil para separar del footer */
+    }
+}
+
 /* Surface Duo (540 x 720) SOLO: agregar espacio abajo para separar del footer */
 @media (min-width: 535px) and (max-width: 545px) {
     .proyecto-panel {
