@@ -546,6 +546,7 @@ body:has(.proyectos-page) {
     width: 100%;
     order: 2; /* los tags van después de la búsqueda */
     margin-top: 1rem; /* Bajar el carrusel de tags */
+    row-gap: 0.6rem; /* Asegurar espacio vertical entre filas cuando hay wrap */
 }
 
 /* Centrar tags solo en ciudades - selector basado en el video source */
@@ -658,6 +659,7 @@ body:has(.proyectos-page) {
     }
     
     .proyectos-filters-container {
+        top: 110px; /* Aumentado para subir los tags y evitar sobreposición en responsive */
         padding: 1rem 1.5rem;
         align-items: flex-start;
         position: relative;
@@ -1263,6 +1265,12 @@ body.proyecto-imagen-modal-open .navbar {
         flex: 0 0 300px;
         min-width: 300px;
     }
+
+    /* Ajustar contenedor de filtros para evitar sobreposición de tags */
+    .proyectos-filters-container {
+        top: 100px !important; /* Subido más para evitar sobreposición */
+        padding-bottom: 2.5rem !important; /* Aumentado padding-bottom para más espacio */
+    }
 }
 
 /* iPad Pro (1024px) y tablets: tags en grid de 2 filas como desktop */
@@ -1276,11 +1284,12 @@ body.proyecto-imagen-modal-open .navbar {
         justify-content: center;
         align-items: center;
         gap: 0.6rem;
+        row-gap: 0.75rem !important; /* Asegurar espacio entre filas del grid */
         width: 100%;
-        padding-bottom: 0;
+        padding-bottom: 1.5rem !important; /* Aumentado de 0 a 1.5rem para separar del contenido */
         overflow: visible !important;
         flex-wrap: wrap !important;
-        margin-top: 1rem;
+        margin-top: 0 !important; /* Reducido a 0 para subir más los tags */
     }
 
     /* Centrar la segunda fila (5 tags) - empiezan en columna 2 */
@@ -1296,7 +1305,9 @@ body.proyecto-imagen-modal-open .navbar {
         flex-wrap: wrap !important;
         justify-content: center !important;
         overflow: visible !important;
-        margin-top: 1rem;
+        margin-top: 0 !important; /* Reducido a 0 para subir más los tags */
+        row-gap: 0.75rem !important; /* Asegurar espacio entre filas */
+        padding-bottom: 1.5rem !important; /* Aumentado para separar del contenido */
     }
 }
 
@@ -1304,30 +1315,64 @@ body.proyecto-imagen-modal-open .navbar {
 @media (min-width: 1000px) and (max-width: 1050px) {
     /* Aumentar padding del contenedor principal - más espacio arriba */
     .proyectos-content {
-        padding: 10rem 3rem 3rem !important;
+        padding: 12rem 3rem 3rem !important; /* Aumentado de 10rem a 12rem para más espacio arriba */
         gap: 2.5rem !important;
     }
 
-    /* Aumentar padding del contenedor de filtros/tags - bajar más el contenedor */
-    .proyectos-filters-container {
-        padding: 2.5rem 3rem 2rem !important;
-        gap: 1.25rem !important;
-        top: 100px !important; /* Bajar más el contenedor de tags */
+    /* Panel lateral: subirlo más, centrarlo, imagen izquierda y descripción derecha */
+    .proyecto-panel {
+        top: 10rem !important; /* Subido de 18rem a 10rem para posicionarlo más arriba */
+        left: 50% !important; /* Centrar horizontalmente */
+        right: auto !important;
+        transform: translateX(-50%) translateX(150%); /* Centrar y animar desde fuera de la pantalla derecha */
+        width: 90% !important; /* Ancho del 90% para centrado */
+        max-width: 900px !important; /* Ancho máximo */
+        bottom: 3rem !important;
     }
 
-    /* Bajar mucho más las tags - aumentar margin-top significativamente */
+    .proyectos-page.proyecto-panel-open .proyecto-panel {
+        transform: translateX(-50%) translateX(0) !important; /* Centrado cuando está abierto */
+    }
+
+    /* Asegurar que imagen esté a la izquierda y descripción a la derecha */
+    .proyecto-panel-inner {
+        flex-direction: row !important; /* Imagen izquierda, descripción derecha */
+    }
+
+    .proyecto-panel-image-wrap {
+        order: 1 !important; /* Imagen a la izquierda */
+        flex: 1 1 50% !important; /* 50% del ancho */
+        max-width: 50% !important;
+    }
+
+    .proyecto-panel-content {
+        order: 2 !important; /* Descripción a la derecha */
+        flex: 1 1 50% !important; /* 50% del ancho */
+        max-width: 50% !important;
+    }
+
+    /* Aumentar padding del contenedor de filtros/tags - SUBIR el contenedor para evitar sobreposición */
+    .proyectos-filters-container {
+        padding: 2.5rem 3rem 3rem !important; /* Aumentado padding-bottom de 2rem a 3rem */
+        gap: 1.5rem !important; /* Aumentado gap para más espacio entre elementos */
+        top: 100px !important; /* Reducido de 120px a 100px para SUBIR más los tags */
+    }
+
+    /* SUBIR las tags - reducir margin-top para evitar sobreposición */
     .proyectos-page:has(.proyectos-hero-video source[src*="industria"]) .proyectos-tags-top,
     .proyectos-page:has(.proyectos-hero-video source[src*="INDUSTRIA"]) .proyectos-tags-top {
         gap: 0.75rem !important;
-        margin-top: 3.5rem !important; /* Bajado mucho más las tags */
-        padding-bottom: 1rem !important;
+        margin-top: 0 !important; /* Reducido a 0 para SUBIR más los tags */
+        padding-bottom: 1.5rem !important; /* Aumentado padding-bottom para separar de contenido */
+        row-gap: 0.75rem !important; /* Asegurar espacio entre filas cuando hay wrap */
     }
 
     .proyectos-page:has(.proyectos-hero-video source[src*="ciudades"]) .proyectos-tags-top,
     .proyectos-page:has(.proyectos-hero-video source[src*="CIUDADES"]) .proyectos-tags-top {
         gap: 0.75rem !important;
-        margin-top: 3.5rem !important; /* Bajado mucho más las tags */
-        padding-bottom: 1rem !important;
+        margin-top: 0 !important; /* Reducido a 0 para SUBIR más los tags */
+        padding-bottom: 1.5rem !important; /* Aumentado padding-bottom para separar de contenido */
+        row-gap: 0.75rem !important; /* Asegurar espacio entre filas cuando hay wrap */
     }
 
     /* Aumentar mucho más el espaciado entre tags y título */
@@ -1398,7 +1443,7 @@ body.proyecto-imagen-modal-open .navbar {
 
 @media (max-width: 900px) {
     .proyectos-filters-container {
-        top: 90px;
+        top: 110px; /* Aumentado de 90px para subir los tags y evitar sobreposición */
         padding: 1rem 1.5rem 1.5rem; /* Reducido padding-bottom para acercar tags al contenido */
     }
 
@@ -1499,7 +1544,7 @@ body.proyecto-imagen-modal-open .navbar {
 
 @media (max-width: 600px) {
     .proyectos-filters-container {
-        top: 80px;
+        top: 100px; /* Aumentado de 80px para subir los tags y evitar sobreposición */
         padding: 1rem 1.25rem 1.25rem; /* Reducido padding-bottom */
         gap: 0.75rem;
     }
@@ -1625,6 +1670,7 @@ body.proyecto-imagen-modal-open .navbar {
 /* iPhone XR y similares ~414px: ajustes específicos */
 @media (max-width: 414px) and (min-width: 376px) {
     .proyectos-filters-container {
+        top: 100px; /* Aumentado para subir los tags y evitar sobreposición */
         padding: 1rem 1.25rem 1.25rem;
     }
 
@@ -1677,6 +1723,7 @@ body.proyecto-imagen-modal-open .navbar {
 /* iPhone SE y móviles ~375px: card más pequeña para que se vea completa */
 @media (max-width: 375px) {
     .proyectos-filters-container {
+        top: 95px; /* Aumentado para subir los tags y evitar sobreposición */
         padding: 1rem 1rem 1rem; /* Reducido padding-bottom aún más */
     }
 
