@@ -1225,6 +1225,13 @@ body.proyecto-imagen-modal-open .navbar {
     }
 }
 
+/* Surface Duo (540 x 720) SOLO: agregar espacio abajo para separar del footer */
+@media (min-width: 535px) and (max-width: 545px) {
+    .proyecto-panel {
+        bottom: 1.5rem; /* Pequeño espacio abajo para separar del footer */
+    }
+}
+
 /* iPhone 14 Pro Max (430 x 932) SOLO: cortar panel para que no choque con el footer */
 @media (min-width: 400px) and (max-width: 450px) {
     .proyecto-panel {
