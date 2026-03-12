@@ -388,3 +388,11 @@
         background: #313131;
     }
 }
+
+/* Pantalla extendida (desktop): aumentar espacio inferior para evitar superposición con portafolios */
+@media (min-width: 1100px) {
+    .geotrends-section {
+        padding-bottom: 10rem;
+        margin-bottom: 6rem;
+    }
+}

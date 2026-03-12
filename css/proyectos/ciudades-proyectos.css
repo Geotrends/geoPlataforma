@@ -1319,22 +1319,21 @@ body.proyecto-imagen-modal-open .navbar {
         gap: 2.5rem !important;
     }
 
-    /* Panel lateral: subirlo más, centrarlo, imagen izquierda y descripción derecha */
+    /* Panel lateral: más largo hacia arriba, pegado a la derecha, imagen izquierda y descripción derecha */
     .proyecto-panel {
-        top: 10rem !important; /* Subido de 18rem a 10rem para posicionarlo más arriba */
-        left: 50% !important; /* Centrar horizontalmente */
-        right: auto !important;
-        transform: translateX(-50%) translateX(150%); /* Centrar y animar desde fuera de la pantalla derecha */
-        width: 90% !important; /* Ancho del 90% para centrado */
-        max-width: 900px !important; /* Ancho máximo */
-        bottom: 3rem !important;
+        top: 6rem !important; /* Reducido de 12rem a 6rem para hacer el panel más largo hacia arriba */
+        left: 6% !important; /* Mantener estructura original pegado a la derecha */
+        right: 0 !important; /* Pegado a la derecha */
+        transform: translateX(100%) !important; /* Animación desde la derecha (estado cerrado) */
+        bottom: 2rem !important; /* Mantener margen inferior */
+        height: auto !important; /* Altura automática para que sea más alto */
     }
 
     .proyectos-page.proyecto-panel-open .proyecto-panel {
-        transform: translateX(-50%) translateX(0) !important; /* Centrado cuando está abierto */
+        transform: translateX(0) !important; /* Pegado a la derecha cuando está abierto */
     }
 
-    /* Asegurar que imagen esté a la izquierda y descripción a la derecha */
+    /* Asegurar que imagen esté a la izquierda y descripción a la derecha - SOBRESCRIBIR el media query de 901-1100px */
     .proyecto-panel-inner {
         flex-direction: row !important; /* Imagen izquierda, descripción derecha */
     }
@@ -1343,6 +1342,7 @@ body.proyecto-imagen-modal-open .navbar {
         order: 1 !important; /* Imagen a la izquierda */
         flex: 1 1 50% !important; /* 50% del ancho */
         max-width: 50% !important;
+        height: auto !important; /* Altura automática */
     }
 
     .proyecto-panel-content {
