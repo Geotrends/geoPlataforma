@@ -74,6 +74,24 @@ body.page-about .navbar.scrolled .nav-hamburger-bar {
   background: #fff !important;
 }
 
+/* Navbar pill transparente: el video se ve a través (video incluye el navbar) */
+body.page-about .navbar,
+body.page-about .navbar.scrolled {
+  position: fixed !important;
+  top: 1rem;
+  left: 0;
+  right: 0;
+  background: transparent !important;
+}
+body.page-about .navbar .nav-container,
+body.page-about .navbar.scrolled .nav-container {
+  background: rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 50px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 .about-page {
   position: relative;
   min-height: 100vh;
@@ -85,33 +103,64 @@ body.page-about .navbar.scrolled .nav-hamburger-bar {
   font-size: 1rem;
 }
 
-/* Asegurar que body no tenga scroll doble solo en página about */
+/* Asegurar que body no tenga scroll doble; fondo negro para que no se vea gris */
 body.page-about {
   overflow-x: hidden;
   overflow-y: auto;
   height: auto;
   max-height: none;
+  background: #000 !important;
+}
+html body.page-about {
+  background: #000 !important;
 }
 
-/* Fondo: imagen aérea ciudad/valle con blur (igual que en Proyectos) */
+/* Fondo: video cubre toda la vista desde arriba (incluye área del navbar) */
 .about-bg {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 0;
+  overflow: hidden;
   pointer-events: none;
-  background-image: url('../../img_video/sobreNosotros/360_PEPSICO_42.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: blur(18px);
-  -webkit-filter: blur(18px);
-  transform: scale(1.08);
 }
+
+/* Video de fondo (blur para que no se vea tanto, efecto difuso) */
+.about-bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%) scale(1.08);
+  object-fit: cover;
+  filter: blur(12px);
+  -webkit-filter: blur(12px);
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .about-bg-video {
+    width: 100vw;
+    height: calc(100vw * 9 / 16);
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .about-bg-video {
+    width: calc(100vh * 16 / 9);
+    height: 100vh;
+  }
+}
+
 .about-bg::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
 
@@ -323,14 +372,14 @@ body.page-about {
   }
 }
 
-/* Tarjetas: blur y tonalidad como Proyectos (glass, sin borde verde, sombreado) */
+/* Tarjetas: blur y tonalidad como Proyectos (glass, capa difusa sobre el video) */
 .about-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(15, 20, 28, 0.5);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 /* Título pequeño de sección (Reconocimientos / Valores) */
@@ -727,12 +776,12 @@ body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-center
 }
 
 .about-main-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(15, 20, 28, 0.55);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
   border-radius: 16px;
-  border: none;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
   padding: 1.75rem 2rem;
   overflow: visible; /* Sin scroll interno */
 }
@@ -2712,3 +2761,18 @@ body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-center
 .about-equipo-detalle-wrap.about-detalle-animated .about-equipo-detalle-card:nth-child(6) { animation-delay: 0.48s; }
 .about-equipo-detalle-wrap.about-detalle-animated .about-equipo-detalle-card:nth-child(7) { animation-delay: 0.56s; }
 .about-equipo-detalle-wrap.about-detalle-animated .about-equipo-detalle-card:nth-child(8) { animation-delay: 0.64s; }
+
+/* Footer en Nosotros: fondo gris oscuro sólido (sin video) */
+body.page-about .footer,
+body.page-about .footer-proyectos {
+  background: #1f2329 !important;
+}
+body.page-about .footer .footer-bg,
+body.page-about .footer .footer-bg-fallback,
+body.page-about .footer .footer-video-container,
+body.page-about .footer .footer-luma-wrap {
+  display: none !important;
+}
+body.page-about .footer .footer-overlay {
+  display: none !important;
+}
