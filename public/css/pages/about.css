@@ -198,9 +198,16 @@ body.page-about {
     width: 100%;
     height: 100%;
     background-size: cover;
-    background-position: center;
-    background-color: rgba(15, 23, 42, 0.1);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #d3d3d3;
     z-index: 1;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: auto;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
   }
   .about-equipo-carousel-mobile .about-equipo-card-body {
     position: absolute;
@@ -1062,8 +1069,15 @@ body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-center
   align-self: stretch;
   flex-shrink: 0;
   background-size: cover;
-  background-position: center;
-  background-color: rgba(15, 23, 42, 0.08);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #d3d3d3;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .about-equipo-card-body {
@@ -1223,7 +1237,8 @@ body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-center
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.92);
   margin: 0;
-  max-width: 520px;
+  max-width: 100%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
@@ -1364,9 +1379,17 @@ body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-center
   position: absolute;
   inset: 0;
   background-size: cover;
-  background-position: center;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #d3d3d3;
   z-index: 1;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 /* Letras GEOTRENDS: transparentes con borde blanco, fuente Inter, mayúsculas */
@@ -2140,7 +2163,7 @@ body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-center
     height: 100%;
     background-size: cover;
     background-position: center;
-    background-color: rgba(15, 23, 42, 0.1);
+    background-color: #d3d3d3;
     z-index: 1;
   }
   
@@ -2363,12 +2386,20 @@ body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-center
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  background-size: cover;
-  background-position: center;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-size: 150% 150%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #d3d3d3;
   margin: 0 auto 1.25rem;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   border: 3px solid rgba(255, 255, 255, 0.15);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  overflow: hidden;
 }
 
 /* Nombre */
@@ -2421,6 +2452,34 @@ body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-center
   color: rgba(255, 255, 255, 0.6);
   font-size: 1.2rem;
   line-height: 1.2;
+}
+
+/* Botón de LinkedIn al final de las cards de detalle */
+.about-equipo-detalle-linkedin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-top: 1.25rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.about-equipo-detalle-linkedin:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.about-equipo-detalle-linkedin svg {
+  display: block;
+  width: 20px;
+  height: 20px;
 }
 
 /* Responsive: tablet - 3 columnas */
@@ -2480,5 +2539,16 @@ body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-center
 
   .about-equipo-detalle-funciones li {
     font-size: 1rem; /* Reducir ligeramente en responsive pero mantener proporción */
+  }
+
+  .about-equipo-detalle-linkedin {
+    width: 36px;
+    height: 36px;
+    margin-top: 1rem;
+  }
+
+  .about-equipo-detalle-linkedin svg {
+    width: 18px;
+    height: 18px;
   }
 }
