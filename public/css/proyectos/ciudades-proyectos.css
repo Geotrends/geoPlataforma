@@ -1345,25 +1345,37 @@ body.proyecto-imagen-modal-open .navbar {
 
 @media (max-width: 900px) {
     .proyecto-panel {
-        top: 22rem !important; /* Aumentado de 18rem a 22rem para que los tags queden por debajo */
+        top: 0 !important; /* Subir hasta arriba para tapar los tags */
         left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
         right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
         bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
         margin: 0 !important;
         width: 100% !important;
-        height: calc(100vh - 22rem) !important; /* Altura desde las tags hasta abajo */
+        height: 100vh !important; /* Altura completa de la pantalla */
         max-height: none !important; /* Sin límite de altura máxima para permitir más espacio */
-        min-height: calc(100vh - 18rem) !important;
+        min-height: 100vh !important;
         display: flex;
         flex-direction: column;
-        overflow-y: auto; /* Permitir scroll si es necesario */
-        overflow-x: hidden;
+        overflow: hidden !important; /* Sin scroll en el panel */
         border-radius: 0 !important; /* Sin bordes redondeados para pantalla completa */
         z-index: 100 !important; /* Z-index muy alto para tapar todo el contenido */
         position: fixed !important; /* Fijo para que tape todo */
         background: rgba(15, 20, 25, 0.98) !important; /* Fondo casi opaco para tapar el contenido */
         backdrop-filter: blur(20px) !important;
         -webkit-backdrop-filter: blur(20px) !important;
+    }
+    /* Ocultar navbar cuando el panel está abierto en responsive */
+    body.proyecto-panel-open .navbar {
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+    /* Evitar doble scroll: ocultar scroll del body cuando el panel está abierto */
+    body.proyecto-panel-open {
+        overflow: hidden !important;
+    }
+    .proyectos-page.proyecto-panel-open {
+        overflow: hidden !important;
     }
     .proyecto-panel::-webkit-scrollbar {
         width: 6px;
@@ -1384,8 +1396,9 @@ body.proyecto-imagen-modal-open .navbar {
         gap: 0;
         min-height: 100%; /* Asegurar que ocupe toda la altura disponible */
         flex: 1 1 auto;
-        overflow: visible;
-        overflow-x: hidden;
+        overflow-y: auto !important; /* Permitir scroll solo en el contenido interno */
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
         padding-bottom: 3rem !important; /* Aumentado padding para dar más espacio hacia abajo */
     }
     .proyecto-panel-content {
@@ -1422,17 +1435,16 @@ body.proyecto-imagen-modal-open .navbar {
 
 @media (max-width: 560px) {
     .proyecto-panel {
-        top: 20rem !important; /* Aumentado de 17rem a 20rem para que los tags queden por debajo */
+        top: 0 !important; /* Subir hasta arriba para tapar los tags */
         left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
         right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
         bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
         margin: 0 !important;
         width: 100% !important;
-        height: calc(100vh - 17rem) !important; /* Altura desde las tags hasta abajo */
+        height: 100vh !important; /* Altura completa de la pantalla */
         max-height: none !important; /* Sin límite de altura máxima */
-        min-height: calc(100vh - 17rem) !important;
-        overflow-y: auto; /* Permitir scroll si es necesario */
-        overflow-x: hidden;
+        min-height: 100vh !important;
+        overflow: hidden !important; /* Sin scroll en el panel */
         border-radius: 0 !important; /* Sin bordes redondeados para pantalla completa */
         z-index: 100 !important; /* Z-index muy alto para tapar todo el contenido */
         position: fixed !important; /* Fijo para que tape todo */
@@ -1440,9 +1452,25 @@ body.proyecto-imagen-modal-open .navbar {
         backdrop-filter: blur(20px) !important;
         -webkit-backdrop-filter: blur(20px) !important;
     }
+    /* Ocultar navbar cuando el panel está abierto en responsive */
+    body.proyecto-panel-open .navbar {
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+    /* Evitar doble scroll: ocultar scroll del body cuando el panel está abierto */
+    body.proyecto-panel-open {
+        overflow: hidden !important;
+    }
+    .proyectos-page.proyecto-panel-open {
+        overflow: hidden !important;
+    }
     .proyecto-panel-inner {
         padding-bottom: 3rem !important; /* Aumentado padding para dar más espacio hacia abajo */
         min-height: 100% !important;
+        overflow-y: auto !important; /* Permitir scroll solo en el contenido interno */
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
     }
     .proyecto-panel-carousel-track {
         max-height: 200px !important; /* Aumentado para que se vea la imagen más grande */
@@ -1468,15 +1496,15 @@ body.proyecto-imagen-modal-open .navbar {
 /* iPhone 14 Pro Max (430 x 932) SOLO: panel completo sin scroll */
 @media (min-width: 400px) and (max-width: 450px) {
     .proyecto-panel {
-        top: 20rem !important; /* Aumentado de 17rem a 20rem para que los tags queden por debajo */
+        top: 0 !important; /* Subir hasta arriba para tapar los tags */
         left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
         right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
         bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
         margin: 0 !important;
         width: 100% !important;
-        height: calc(100vh - 17rem) !important; /* Altura desde las tags hasta abajo */
+        height: 100vh !important; /* Altura completa de la pantalla */
         max-height: none !important; /* Sin límite de altura máxima */
-        min-height: calc(100vh - 17rem) !important;
+        min-height: 100vh !important;
         overflow-y: auto !important; /* Permitir scroll si es necesario */
         border-radius: 0 !important; /* Sin bordes redondeados para pantalla completa */
         z-index: 100 !important; /* Z-index muy alto para tapar todo el contenido */
@@ -1487,6 +1515,9 @@ body.proyecto-imagen-modal-open .navbar {
     }
     .proyecto-panel-inner {
         padding-bottom: 3rem !important; /* Aumentado padding para dar más espacio hacia abajo */
+        overflow-y: auto !important; /* Permitir scroll solo en el contenido interno */
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
     }
     .proyecto-panel-close {
         top: 1rem !important;
@@ -1512,16 +1543,16 @@ body.proyecto-imagen-modal-open .navbar {
 /* Samsung Galaxy S8+ (360 x 740) SOLO: panel completo sin scroll */
 @media (min-width: 350px) and (max-width: 375px) {
     .proyecto-panel {
-        top: 19rem !important; /* Aumentado de 16rem a 19rem para que los tags queden por debajo */
+        top: 0 !important; /* Subir hasta arriba para tapar los tags */
         left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
         right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
         bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
         margin: 0 !important;
         width: 100% !important;
-        height: calc(100vh - 16rem) !important; /* Altura desde las tags hasta abajo */
+        height: 100vh !important; /* Altura completa de la pantalla */
         max-height: none !important; /* Sin límite de altura máxima */
-        min-height: calc(100vh - 16rem) !important;
-        overflow-y: auto !important; /* Permitir scroll si es necesario */
+        min-height: 100vh !important;
+        overflow: hidden !important; /* Sin scroll en el panel */
         border-radius: 0 !important; /* Sin bordes redondeados para pantalla completa */
         z-index: 100 !important; /* Z-index muy alto para tapar todo el contenido */
         position: fixed !important; /* Fijo para que tape todo */
@@ -1529,8 +1560,24 @@ body.proyecto-imagen-modal-open .navbar {
         backdrop-filter: blur(20px) !important;
         -webkit-backdrop-filter: blur(20px) !important;
     }
+    /* Ocultar navbar cuando el panel está abierto en responsive */
+    body.proyecto-panel-open .navbar {
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+    /* Evitar doble scroll: ocultar scroll del body cuando el panel está abierto */
+    body.proyecto-panel-open {
+        overflow: hidden !important;
+    }
+    .proyectos-page.proyecto-panel-open {
+        overflow: hidden !important;
+    }
     .proyecto-panel-inner {
         padding-bottom: 3rem !important; /* Aumentado padding para dar más espacio hacia abajo */
+        overflow-y: auto !important; /* Permitir scroll solo en el contenido interno */
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
     }
     .proyecto-panel-close {
         top: 1rem !important;
@@ -2085,17 +2132,16 @@ body.proyecto-imagen-modal-open .navbar {
 @media (max-width: 375px) {
     /* Panel completo sin scroll en iPhone SE */
     .proyecto-panel {
-        top: 18rem !important; /* Aumentado de 15rem a 18rem para que los tags queden por debajo en iPhone SE */
+        top: 0 !important; /* Subir hasta arriba para tapar los tags */
         left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
         right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
         bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
         margin: 0 !important;
         width: 100% !important;
-        height: calc(100vh - 15rem) !important; /* Altura desde las tags hasta abajo - ajustado para iPhone SE */
+        height: 100vh !important; /* Altura completa de la pantalla */
         max-height: none !important; /* Sin límite de altura máxima */
-        min-height: calc(100vh - 15rem) !important;
-        overflow-y: auto !important; /* Permitir scroll si es necesario */
-        overflow-x: hidden !important;
+        min-height: 100vh !important;
+        overflow: hidden !important; /* Sin scroll en el panel */
         border-radius: 0 !important; /* Sin bordes redondeados para pantalla completa */
         z-index: 100 !important; /* Z-index muy alto para tapar todo el contenido */
         position: fixed !important; /* Fijo para que tape todo */
@@ -2106,12 +2152,28 @@ body.proyecto-imagen-modal-open .navbar {
         flex-direction: column !important;
         box-sizing: border-box !important;
     }
+    /* Ocultar navbar cuando el panel está abierto en responsive */
+    body.proyecto-panel-open .navbar {
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+    /* Evitar doble scroll: ocultar scroll del body cuando el panel está abierto */
+    body.proyecto-panel-open {
+        overflow: hidden !important;
+    }
+    .proyectos-page.proyecto-panel-open {
+        overflow: hidden !important;
+    }
     .proyecto-panel-inner {
         padding-bottom: 3rem !important; /* Aumentado padding para dar más espacio hacia abajo */
         min-height: 100% !important;
         flex: 1 1 auto !important;
         display: flex !important;
         flex-direction: column !important;
+        overflow-y: auto !important; /* Permitir scroll solo en el contenido interno */
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
     }
     .proyecto-panel-close {
         top: 1rem !important;
@@ -2256,16 +2318,16 @@ body.proyecto-imagen-modal-open .navbar {
 /* Galaxy Z Fold (344 x 882) SOLO: panel completo sin scroll y hacer cards más pequeñas - AL FINAL PARA MÁXIMA PRIORIDAD */
 @media (min-width: 340px) and (max-width: 350px) {
     .proyecto-panel {
-        top: 19rem !important; /* Aumentado de 16rem a 19rem para que los tags queden por debajo */
+        top: 0 !important; /* Subir hasta arriba para tapar los tags */
         left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
         right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
         bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
         margin: 0 !important;
         width: 100% !important;
-        height: calc(100vh - 16rem) !important; /* Altura desde las tags hasta abajo */
+        height: 100vh !important; /* Altura completa de la pantalla */
         max-height: none !important; /* Sin límite de altura máxima */
-        min-height: calc(100vh - 16rem) !important;
-        overflow-y: auto !important; /* Permitir scroll si es necesario */
+        min-height: 100vh !important;
+        overflow: hidden !important; /* Sin scroll en el panel */
         border-radius: 0 !important; /* Sin bordes redondeados para pantalla completa */
         z-index: 100 !important; /* Z-index muy alto para tapar todo el contenido */
         position: fixed !important; /* Fijo para que tape todo */
@@ -2273,8 +2335,24 @@ body.proyecto-imagen-modal-open .navbar {
         backdrop-filter: blur(20px) !important;
         -webkit-backdrop-filter: blur(20px) !important;
     }
+    /* Ocultar navbar cuando el panel está abierto en responsive */
+    body.proyecto-panel-open .navbar {
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+    /* Evitar doble scroll: ocultar scroll del body cuando el panel está abierto */
+    body.proyecto-panel-open {
+        overflow: hidden !important;
+    }
+    .proyectos-page.proyecto-panel-open {
+        overflow: hidden !important;
+    }
     .proyecto-panel-inner {
         padding-bottom: 3rem !important; /* Aumentado padding para dar más espacio hacia abajo */
+        overflow-y: auto !important; /* Permitir scroll solo en el contenido interno */
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
     }
     .proyecto-panel-close {
         top: 1rem !important;
