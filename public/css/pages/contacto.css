@@ -400,6 +400,57 @@ html:not([data-theme="dark"]) body.page-contacto .contacto-hero {
   transform: translateY(-1px);
 }
 
+.contacto-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Mensajes del formulario */
+.contacto-form-mensaje {
+  padding: 0.875rem 1rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+  animation: slideIn 0.3s ease-out;
+}
+
+.contacto-form-mensaje-success {
+  background: rgba(57, 81, 59, 0.1);
+  border: 1px solid rgba(57, 81, 59, 0.3);
+  color: var(--geo-military-green);
+}
+
+.contacto-form-mensaje-error {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  color: #dc2626;
+}
+
+[data-theme="dark"] .contacto-form-mensaje-success {
+  background: rgba(57, 81, 59, 0.2);
+  border-color: rgba(57, 81, 59, 0.4);
+  color: #7cb342;
+}
+
+[data-theme="dark"] .contacto-form-mensaje-error {
+  background: rgba(220, 38, 38, 0.2);
+  border-color: rgba(220, 38, 38, 0.4);
+  color: #ef4444;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Tarjeta lateral (¿Tienes preguntas?) */
 .contacto-card-col {
   position: sticky;

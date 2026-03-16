@@ -1,4 +1,1 @@
-document.querySelector('.contacto-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    /* aquí enviar formulario */
-});
+// La lógica del formulario está en formulario-contacto.js
