@@ -406,6 +406,46 @@
             var fitClass = (servicioActivo === 'iot' ? ' img-completa' : '') + (servicioActivo === 'descontaminacion' ? ' proyecto-panel-img-fit-16-9' : '');
             img.className = 'proyecto-panel-img' + fitClass;
             slide.appendChild(img);
+            
+            // Agregar botón de ampliar imagen solo para proyectos WEBGIS
+            if (servicioActivo === 'webgis') {
+                var expandBtn = document.createElement('button');
+                expandBtn.type = 'button';
+                expandBtn.className = 'proyecto-panel-expand-btn';
+                expandBtn.setAttribute('aria-label', 'Ampliar imagen');
+                expandBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>';
+                
+                // Agregar listener en fase de captura para interceptar antes del backdrop
+                expandBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    // Desactivar temporalmente el backdrop
+                    if (backdrop) {
+                        var originalPointerEvents = backdrop.style.pointerEvents;
+                        backdrop.style.pointerEvents = 'none';
+                        setTimeout(function() {
+                            if (backdrop) backdrop.style.pointerEvents = originalPointerEvents || 'auto';
+                        }, 200);
+                    }
+                    // Abrir el modal
+                    setTimeout(function() {
+                        openImagenModal(imageSrc, titulo);
+                    }, 10);
+                    return false;
+                }, true); // Fase de captura - se ejecuta antes que otros listeners
+                
+                // También agregar en fase de burbujeo por si acaso
+                expandBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    return false;
+                }, false);
+                
+                slide.appendChild(expandBtn);
+            }
+            
             panelCarouselTrack.appendChild(slide);
         }
         panelCarouselIndex = 0;
@@ -492,7 +532,65 @@
     if (panelCarouselPrev) panelCarouselPrev.addEventListener('click', function() { goPanelCarousel(-1); });
     if (panelCarouselNext) panelCarouselNext.addEventListener('click', function() { goPanelCarousel(1); });
     if (closeBtn) closeBtn.addEventListener('click', closeProyectoPanel);
-    if (backdrop) backdrop.addEventListener('click', closeProyectoPanel);
+    if (backdrop) {
+        backdrop.addEventListener('click', function(e) {
+            // No cerrar si el clic fue dentro del panel
+            var panel = document.getElementById('proyecto-panel');
+            if (panel && (panel.contains(e.target) || e.target.closest('.proyecto-panel'))) {
+                e.stopPropagation();
+                return; // El clic fue dentro del panel, no cerrar
+            }
+            // Verificar si el clic fue en el botón de ampliar
+            var expandBtn = document.querySelector('.proyecto-panel-expand-btn');
+            if (expandBtn && (e.target === expandBtn || expandBtn.contains(e.target) || e.target.closest('.proyecto-panel-expand-btn'))) {
+                e.stopPropagation();
+                e.preventDefault();
+                return;
+            }
+            // Verificar coordenadas del clic - si está dentro del área del panel, no cerrar
+            if (panel) {
+                var panelRect = panel.getBoundingClientRect();
+                var clickX = e.clientX;
+                var clickY = e.clientY;
+                if (clickX >= panelRect.left && clickX <= panelRect.right && 
+                    clickY >= panelRect.top && clickY <= panelRect.bottom) {
+                    e.stopPropagation();
+                    return; // El clic fue dentro del área del panel
+                }
+            }
+            closeProyectoPanel();
+        });
+    }
+
+    /* Modal de imagen ampliada para proyectos WEBGIS */
+    var imagenModal = document.getElementById('proyecto-imagen-modal');
+    var imagenModalBackdrop = document.getElementById('proyecto-imagen-modal-backdrop');
+    var imagenModalClose = document.getElementById('proyecto-imagen-modal-close');
+    var imagenModalImg = document.getElementById('proyecto-imagen-modal-img');
+
+    function openImagenModal(imageSrc, titulo) {
+        if (!imagenModal || !imagenModalImg) return;
+        imagenModalImg.src = imageSrc;
+        imagenModalImg.alt = titulo || 'Imagen ampliada';
+        imagenModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('proyecto-imagen-modal-open');
+    }
+
+    function closeImagenModal() {
+        if (!imagenModal) return;
+        imagenModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('proyecto-imagen-modal-open');
+    }
+
+    if (imagenModalClose) imagenModalClose.addEventListener('click', closeImagenModal);
+    if (imagenModalBackdrop) imagenModalBackdrop.addEventListener('click', closeImagenModal);
+    
+    // Cerrar con tecla Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && imagenModal && imagenModal.getAttribute('aria-hidden') === 'false') {
+            closeImagenModal();
+        }
+    });
 
     /* Abrir panel al llegar desde inicio con ?proyecto=xxx */
     var openParams = new URLSearchParams(window.location.search);
