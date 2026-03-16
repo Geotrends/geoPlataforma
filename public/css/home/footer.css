@@ -146,6 +146,7 @@
     font-size: 0.8rem;
     font-weight: 700;
     color: rgba(255, 255, 255, 0.95);
+    margin-top: 0.75rem;
     margin-bottom: 0.25rem;
     text-transform: uppercase;
     letter-spacing: 0.04em;
@@ -163,9 +164,9 @@
 }
 
 .footer-logo-img {
-    height: 28px;
+    height: 56px;
     width: auto;
-    max-width: 160px;
+    max-width: 320px;
     object-fit: contain;
     display: block;
     filter: brightness(0) invert(1);
@@ -299,6 +300,11 @@
     .footer-content {
         padding: 0 1.5rem 0.375rem;
     }
+    
+    .footer-logo-img {
+        height: 50px;
+        max-width: 300px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -310,6 +316,11 @@
     
     .footer-content {
         padding: 0 1.5rem 0.25rem;
+    }
+    
+    .footer-logo-img {
+        height: 46px;
+        max-width: 280px;
     }
 }
 
