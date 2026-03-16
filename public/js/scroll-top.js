@@ -31,7 +31,7 @@
             });
         });
 
-        // Mostrar/ocultar según el scroll
+        // Mostrar/ocultar según el scroll (throttled con rAF)
         function toggleScrollButton() {
             var scrollY = window.scrollY || window.pageYOffset;
             var button = document.getElementById('scroll-top-btn');
@@ -46,8 +46,18 @@
             }
         }
 
+        var ticking = false;
+        function onScroll() {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(function() {
+                toggleScrollButton();
+                ticking = false;
+            });
+        }
+
         // Escuchar eventos de scroll
-        window.addEventListener('scroll', toggleScrollButton);
+        window.addEventListener('scroll', onScroll, { passive: true });
         
         // Verificar al cargar
         toggleScrollButton();
