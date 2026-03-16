@@ -1,16 +1,32 @@
-# Videos pesados (>100 MB, límite GitHub)
-img_video/ciudades/descontaminacion/modeloGestion/portada.mp4
-
 # Node.js
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
 # Variables de entorno
 .env
 .env.local
+.env.*
+!.env.example
 
 # Sistema operativo
 .DS_Store
 Thumbs.db
+
+# IDE/editor
+.vscode/
+.idea/
+
+# Build/cache
+dist/
+build/
+.cache/
+
+# Python
+__pycache__/
+*.pyc
+
+# Archivos locales no versionados del proyecto
+proyectos/
