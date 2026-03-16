@@ -133,5 +133,5 @@
             }
         }
         lastScrollTop = scrollTop;
-    }, false);
+    }, { passive: true });
 })();

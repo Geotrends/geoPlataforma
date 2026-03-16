@@ -1,12 +1,21 @@
 /* Hero - Home: frase centrada, navbar transparente, imagen de fondo con overlay */
 /* Asegurar que el body en la página de inicio sea transparente */
-body:has(.hero) {
+body.page-home {
     background: transparent !important;
 }
 
 /* Asegurar que no haya espacio antes del hero */
-body:has(.hero) .navbar {
-    position: absolute !important;
+body.page-home .navbar {
+    position: fixed !important;
+    top: 0;
+}
+
+/* En home, mantener SIEMPRE pegado arriba incluso cuando entra .scrolled */
+body.page-home .navbar.scrolled,
+body.page-home .navbar.scrolled.section-image,
+body.page-home .navbar.scrolled.section-dark {
+    position: fixed !important;
+    top: 0 !important;
 }
 
 .hero {
@@ -67,9 +76,12 @@ body:has(.hero) .navbar {
     height: 100vh;
     min-width: 100%;
     min-height: 100%;
-    transform: translate(-50%, -50%);
+    transform: translate3d(-50%, -50%, 0);
     object-fit: cover;
     pointer-events: none;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 @media (min-aspect-ratio: 16/9) {
@@ -95,11 +107,14 @@ body:has(.hero) .navbar {
     height: 100vh;
     min-width: 100%;
     min-height: 100%;
-    transform: translate(-50%, -50%);
+    transform: translate3d(-50%, -50%, 0);
     object-fit: cover;
     pointer-events: none;
     filter: blur(0);
     -webkit-filter: blur(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 /* Asegurar que el video cubra toda el área en diferentes tamaños de pantalla */

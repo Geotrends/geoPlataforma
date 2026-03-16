@@ -1,60 +1,83 @@
-// Detectar sección actual y cambiar color del navbar
+// Detectar sección actual y cambiar color del navbar (optimizado para scroll fluido)
+var navbar = document.getElementById('navbar');
+var sectionsCache = [];
+var navbarIsScrolled = false;
+var isHomePage = document.body && document.body.classList.contains('page-home');
+
+function refreshSectionsCache() {
+    sectionsCache = Array.from(document.querySelectorAll('section'));
+}
+
 function updateNavbarColor() {
-    var navbar = document.getElementById('navbar');
-    var scrollY = window.scrollY;
-    var windowHeight = window.innerHeight;
-    
-    // Remover todas las clases de sección
+    if (!navbar) return;
+    var scrollY = window.scrollY || window.pageYOffset;
+
     navbar.classList.remove('section-image', 'section-dark');
-    
-    if (scrollY < 50) {
-        // En el hero - transparente
-        navbar.classList.remove('scrolled');
-        return;
+
+    // En home lo mantenemos siempre estable para evitar salto visual al iniciar scroll.
+    if (isHomePage) {
+        navbarIsScrolled = true;
+        navbar.classList.add('scrolled');
+    } else {
+        // Histeresis para evitar parpadeo al cruzar el umbral.
+        var shouldBeScrolled = navbarIsScrolled ? scrollY > 30 : scrollY > 70;
+        if (!shouldBeScrolled) {
+            navbarIsScrolled = false;
+            navbar.classList.remove('scrolled');
+            return;
+        }
+        navbarIsScrolled = true;
+        navbar.classList.add('scrolled');
     }
-    
-    navbar.classList.add('scrolled');
-    
-    // Obtener todas las secciones
-    var sections = document.querySelectorAll('section');
+
     var currentSection = null;
-    
-    sections.forEach(function(section) {
-        var rect = section.getBoundingClientRect();
-        var sectionTop = rect.top + scrollY;
-        var sectionBottom = sectionTop + rect.height;
-        
-        // Si el scroll está dentro de esta sección
+    for (var i = 0; i < sectionsCache.length; i++) {
+        var section = sectionsCache[i];
+        var sectionTop = section.offsetTop;
+        var sectionBottom = sectionTop + section.offsetHeight;
         if (scrollY >= sectionTop - 100 && scrollY < sectionBottom) {
             currentSection = section;
+            break;
         }
-    });
-    
-    if (currentSection) {
-        var sectionClass = currentSection.className;
-        
-        // Secciones con fondo oscuro (geotrends, tech, dashboard)
-        if (sectionClass.includes('geotrends-section') || 
-            sectionClass.includes('tech-section') || 
-            sectionClass.includes('dashboard-section')) {
-            navbar.classList.add('section-dark');
-        }
-        // Secciones con fondo de imagen
-        else if (sectionClass.includes('hero') || 
-                 sectionClass.includes('wind-section') || 
-                 sectionClass.includes('process-section')) {
-            navbar.classList.add('section-image');
-        }
-        // Secciones oscuras
-        else {
-            navbar.classList.add('section-dark');
-        }
+    }
+
+    if (!currentSection) return;
+
+    var sectionClass = currentSection.className;
+    if (
+        sectionClass.includes('geotrends-section') ||
+        sectionClass.includes('tech-section') ||
+        sectionClass.includes('dashboard-section')
+    ) {
+        navbar.classList.add('section-dark');
+    } else if (
+        sectionClass.includes('hero') ||
+        sectionClass.includes('wind-section') ||
+        sectionClass.includes('process-section')
+    ) {
+        navbar.classList.add('section-image');
+    } else {
+        navbar.classList.add('section-dark');
     }
 }
 
-// Actualizar al cargar y al hacer scroll
+var navbarTicking = false;
+function onScrollNavbar() {
+    if (navbarTicking) return;
+    navbarTicking = true;
+    requestAnimationFrame(function() {
+        updateNavbarColor();
+        navbarTicking = false;
+    });
+}
+
+refreshSectionsCache();
 updateNavbarColor();
-window.addEventListener('scroll', updateNavbarColor);
+window.addEventListener('scroll', onScrollNavbar, { passive: true });
+window.addEventListener('resize', function() {
+    refreshSectionsCache();
+    updateNavbarColor();
+}, { passive: true });
 
 // Marcar enlace activo según la página actual
 (function() {

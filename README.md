@@ -52,3 +52,7 @@ El proyecto está configurado para Vercel. Solo necesitas hacer push a tu reposi
 
 ### Otros Servidores
 Asegúrate de que el servidor ejecute `npm start` o `node server.js` en el puerto configurado.
+
+git add public/js/inicio/inicio.js public/js/nav.js public/js/scroll-top.js
+git commit -m "perf: smooth scroll optimizations for home/navbar/scroll-top"
+git push origin main
