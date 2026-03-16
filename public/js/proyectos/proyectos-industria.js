@@ -451,9 +451,10 @@
         img.className = 'proyecto-panel-img' + (imgFit === '16:9' ? ' proyecto-panel-img-fit-16-9' : '');
         slide.appendChild(img);
         
-        // Agregar botón de ampliar imagen para ARCLAD en Modelación de ruido (Evaluación de impacto acústico) y SPIA en Modelación de ruido subacuático
+        // Agregar botón de ampliar imagen para ARCLAD en Modelación de ruido (Evaluación de impacto acústico), SPIA en Modelación de ruido subacuático, y Campaña política en Analítica geoespacial
         var shouldAddExpandBtn = (servicioActivo === 'modelacion-ruido' && proyectoId === 'arclad' && titulo === 'Evaluación de impacto acústico') ||
-                                 (servicioActivo === 'modelacion-ruido-subacuatico' && proyectoId === 'spia');
+                                 (servicioActivo === 'modelacion-ruido-subacuatico' && proyectoId === 'spia') ||
+                                 (servicioActivo === 'geoespacial' && proyectoId === 'campana-politica');
         
         if (shouldAddExpandBtn) {
             var expandBtn = document.createElement('button');
