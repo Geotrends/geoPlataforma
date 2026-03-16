@@ -143,7 +143,7 @@ html:not([data-theme="dark"]) body.page-contacto .contacto-hero {
   display: none;
 }
 
-/* Luma AI embed - animación de fondo */
+/* Video de fondo con blur - igual que inicio */
 .contacto-hero-luma-wrap {
   position: absolute;
   top: 0;
@@ -157,40 +157,45 @@ html:not([data-theme="dark"]) body.page-contacto .contacto-hero {
   pointer-events: none;
 }
 
-.contacto-hero-luma-embed {
+.contacto-hero-video-bg {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100vw;
-  height: 100vh;
+  transform: translate(-50%, -50%) scale(1.1);
   min-width: 100%;
   min-height: 100%;
-  transform: translate(-50%, -50%);
-  border: none;
-  pointer-events: none;
+  width: auto;
+  height: auto;
+  object-fit: cover;
   filter: blur(8px);
   -webkit-filter: blur(8px);
-  animation: luma-speed-up 12s linear infinite;
 }
 
-@keyframes luma-speed-up {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.12);
-  }
+/* Video de fondo con blur */
+.contacto-hero-video-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  transform: translate(-50%, -50%) scale(1.1);
 }
 
 @media (min-aspect-ratio: 16/9) {
-  .contacto-hero-luma-embed {
+  .contacto-hero-video-bg {
     width: 100vw;
     height: calc(100vw * 9 / 16);
   }
 }
 
 @media (max-aspect-ratio: 16/9) {
-  .contacto-hero-luma-embed {
+  .contacto-hero-video-bg {
     width: calc(100vh * 16 / 9);
     height: 100vh;
   }
