@@ -407,8 +407,11 @@
             img.className = 'proyecto-panel-img' + fitClass;
             slide.appendChild(img);
             
-            // Agregar botón de ampliar imagen solo para proyectos WEBGIS
-            if (servicioActivo === 'webgis') {
+            // Agregar botón de ampliar imagen para proyectos WEBGIS y CORNARE en Mapas de ruido
+            var shouldAddExpandBtn = servicioActivo === 'webgis' || 
+                                    (servicioActivo === 'mapas-ruido' && proyectoId === 'cornare');
+            
+            if (shouldAddExpandBtn) {
                 var expandBtn = document.createElement('button');
                 expandBtn.type = 'button';
                 expandBtn.className = 'proyecto-panel-expand-btn';
@@ -464,14 +467,30 @@
     function openProyectoPanel() {
         if (page) page.classList.add('proyecto-panel-open');
         document.body.classList.add('proyecto-panel-open');
-        if (panel) { panel.setAttribute('aria-hidden', 'false'); }
-        if (backdrop) { backdrop.setAttribute('aria-hidden', 'false'); }
+        if (panel) { 
+            panel.setAttribute('aria-hidden', 'false');
+            panel.style.pointerEvents = 'auto';
+        }
+        if (backdrop) { 
+            backdrop.setAttribute('aria-hidden', 'false');
+            backdrop.style.pointerEvents = 'auto';
+        }
     }
     function closeProyectoPanel() {
         if (page) page.classList.remove('proyecto-panel-open');
         document.body.classList.remove('proyecto-panel-open');
-        if (panel) { panel.setAttribute('aria-hidden', 'true'); }
-        if (backdrop) { backdrop.setAttribute('aria-hidden', 'true'); }
+        if (panel) { 
+            panel.setAttribute('aria-hidden', 'true');
+            // Asegurar que el panel no bloquee clics
+            panel.style.pointerEvents = 'none';
+        }
+        if (backdrop) { 
+            backdrop.setAttribute('aria-hidden', 'true');
+            // Restaurar pointer-events del backdrop
+            backdrop.style.pointerEvents = 'none';
+        }
+        // Forzar reflow para asegurar que los cambios se apliquen
+        void document.body.offsetWidth;
     }
 
     document.querySelectorAll('.proyecto-card').forEach(function(card) {
@@ -559,6 +578,12 @@
                 }
             }
             closeProyectoPanel();
+            // Asegurar que el backdrop no bloquee clics después de cerrar
+            setTimeout(function() {
+                if (backdrop) {
+                    backdrop.style.pointerEvents = 'none';
+                }
+            }, 100);
         });
     }
 
@@ -580,6 +605,12 @@
         if (!imagenModal) return;
         imagenModal.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('proyecto-imagen-modal-open');
+        // Asegurar que el modal no bloquee clics después de cerrar
+        if (imagenModalBackdrop) {
+            imagenModalBackdrop.style.pointerEvents = 'none';
+        }
+        // Forzar reflow para asegurar que los cambios se apliquen
+        void document.body.offsetWidth;
     }
 
     if (imagenModalClose) imagenModalClose.addEventListener('click', closeImagenModal);
