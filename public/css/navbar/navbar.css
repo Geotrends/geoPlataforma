@@ -136,6 +136,8 @@ body.page-contacto .navbar.scrolled.section-dark {
     max-width: 200px;
     object-fit: contain;
     transition: filter 0.3s ease;
+    filter: brightness(0) invert(1) !important; /* Logo blanco por defecto en todas las secciones */
+    -webkit-filter: brightness(0) invert(1) !important; /* Safari compatibility */
 }
 
 /* Nav Links */
@@ -172,6 +174,14 @@ body.page-contacto .navbar.scrolled.section-dark {
 }
 
 /* Navbar transparente (inicio) - texto blanco */
+.navbar:not(.scrolled) .logo-img,
+body.page-home .navbar .logo-img,
+body.page-home .navbar:not(.scrolled) .logo-img,
+body.page-home .navbar.scrolled .logo-img {
+    filter: brightness(0) invert(1) !important; /* Logo blanco en inicio */
+    -webkit-filter: brightness(0) invert(1) !important; /* Safari compatibility */
+}
+
 .navbar:not(.scrolled) .nav-links a {
     color: rgba(255, 255, 255, 0.95);
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
@@ -674,9 +684,19 @@ body.page-contacto .navbar.scrolled.section-dark {
         width: min(1600px, calc(100% - 2rem));
     }
 
-    .navbar .logo-img {
+    .navbar .logo-img,
+    .navbar.scrolled .logo-img,
+    body.page-servicios .navbar .logo-img,
+    body.page-servicios .navbar.scrolled .logo-img,
+    body.page-about .navbar .logo-img,
+    body.page-about .navbar.scrolled .logo-img,
+    body.page-blog .navbar .logo-img,
+    body.page-blog .navbar.scrolled .logo-img,
+    body.page-contacto .navbar .logo-img,
+    body.page-contacto .navbar.scrolled .logo-img {
         height: 40px;
         max-width: 180px;
+        filter: brightness(0) invert(1) !important; /* Logo blanco en responsive */
     }
 
     /* Ajustar posición del menú móvil en móviles pequeños */
@@ -713,8 +733,38 @@ body.page-contacto .navbar.scrolled.section-dark {
         gap: 0.75rem;
     }
 
-    .navbar .logo-img {
+    .navbar .logo-img,
+    .navbar.scrolled .logo-img,
+    body.page-servicios .navbar .logo-img,
+    body.page-servicios .navbar.scrolled .logo-img,
+    body.page-about .navbar .logo-img,
+    body.page-about .navbar.scrolled .logo-img,
+    body.page-blog .navbar .logo-img,
+    body.page-blog .navbar.scrolled .logo-img,
+    body.page-contacto .navbar .logo-img,
+    body.page-contacto .navbar.scrolled .logo-img {
         height: 34px;
         max-width: 140px;
+        filter: brightness(0) invert(1) !important; /* Logo blanco en responsive */
+    }
+}
+
+/* Asegurar que el logo sea blanco en todos los responsive para todas las secciones */
+@media (max-width: 1100px) {
+    .navbar .logo-img,
+    .navbar.scrolled .logo-img,
+    body.page-home .navbar .logo-img,
+    body.page-home .navbar.scrolled .logo-img,
+    body.page-servicios .navbar .logo-img,
+    body.page-servicios .navbar.scrolled .logo-img,
+    body.page-about .navbar .logo-img,
+    body.page-about .navbar.scrolled .logo-img,
+    body.page-blog .navbar .logo-img,
+    body.page-blog .navbar.scrolled .logo-img,
+    body.page-contacto .navbar .logo-img,
+    body.page-contacto .navbar.scrolled .logo-img,
+    body:has(.proyectos-page) .navbar .logo-img,
+    body:has(.proyectos-page) .navbar.scrolled .logo-img {
+        filter: brightness(0) invert(1) !important; /* Logo blanco siempre en responsive */
     }
 }

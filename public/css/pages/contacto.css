@@ -41,11 +41,11 @@ html:not([data-theme="dark"]) body.page-contacto .navbar.scrolled .logo {
 }
 
 html:not([data-theme="dark"]) body.page-contacto .navbar .logo-img {
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1) !important;
 }
 
 html:not([data-theme="dark"]) body.page-contacto .navbar.scrolled .logo-img {
-  filter: none;
+  filter: brightness(0) invert(1) !important; /* Logo blanco siempre en responsive */
 }
 
 html:not([data-theme="dark"]) body.page-contacto .navbar .nav-links a,

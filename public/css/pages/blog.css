@@ -39,7 +39,7 @@ html:not([data-theme="dark"]) body.page-blog .navbar.scrolled .logo {
 }
 
 html:not([data-theme="dark"]) body.page-blog .navbar.scrolled .logo-img {
-  filter: none;
+  filter: brightness(0) invert(1) !important; /* Logo blanco siempre en responsive */
 }
 
 html:not([data-theme="dark"]) body.page-blog .navbar.scrolled .nav-links a,

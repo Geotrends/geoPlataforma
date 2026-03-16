@@ -18,6 +18,13 @@ body.page-home .navbar.scrolled.section-dark {
     top: 0 !important;
 }
 
+/* Logo blanco en página de inicio */
+body.page-home .navbar .logo-img,
+body.page-home .navbar:not(.scrolled) .logo-img,
+body.page-home .navbar.scrolled .logo-img {
+    filter: brightness(0) invert(1) !important; /* Logo blanco siempre en inicio */
+}
+
 .hero {
     position: relative;
     min-height: 100vh;

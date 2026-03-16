@@ -129,6 +129,16 @@ html:not([data-theme="dark"]) .navbar .nav-container {
   box-shadow: none;
 }
 
+/* Logo blanco en modo claro (inicio y todas las secciones) */
+html:not([data-theme="dark"]) .navbar .logo-img,
+html:not([data-theme="dark"]) .navbar:not(.scrolled) .logo-img,
+html:not([data-theme="dark"]) .navbar.scrolled .logo-img,
+html:not([data-theme="dark"]) body.page-home .navbar .logo-img,
+html:not([data-theme="dark"]) body.page-home .navbar:not(.scrolled) .logo-img,
+html:not([data-theme="dark"]) body.page-home .navbar.scrolled .logo-img {
+  filter: brightness(0) invert(1) !important; /* Logo blanco siempre */
+}
+
 html:not([data-theme="dark"]) .navbar.scrolled .nav-container,
 html:not([data-theme="dark"]) .navbar.scrolled.section-image .nav-container,
 html:not([data-theme="dark"]) .navbar.scrolled.section-dark .nav-container {

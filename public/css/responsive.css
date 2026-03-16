@@ -92,6 +92,7 @@ body {
   .navbar .logo-img {
     height: 38px;
     max-width: 160px;
+    filter: brightness(0) invert(1) !important; /* Logo blanco en responsive */
   }
 }
 
@@ -100,6 +101,7 @@ body {
   .navbar .logo-img {
     height: 36px;
     max-width: 150px;
+    filter: brightness(0) invert(1) !important; /* Logo blanco en responsive */
   }
 }
 
@@ -108,6 +110,7 @@ body {
   .navbar .logo-img {
     height: 34px;
     max-width: 140px;
+    filter: brightness(0) invert(1) !important; /* Logo blanco en responsive */
   }
 }
 
@@ -156,6 +159,7 @@ body {
   .navbar .logo-img {
     height: 32px;
     max-width: 130px;
+    filter: brightness(0) invert(1) !important; /* Logo blanco en responsive */
   }
 
   .navbar.nav-mobile-open .nav-links {
@@ -215,6 +219,7 @@ body {
   .navbar .logo-img {
     height: 28px;
     max-width: 100px;
+    filter: brightness(0) invert(1) !important; /* Logo blanco en responsive */
   }
 
   .navbar.nav-mobile-open .nav-links {
