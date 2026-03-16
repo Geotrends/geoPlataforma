@@ -1345,21 +1345,19 @@ body.proyecto-imagen-modal-open .navbar {
 
 @media (max-width: 900px) {
     .proyecto-panel {
-        top: 50% !important; /* Centrar verticalmente */
-        left: 50% !important; /* Centrar horizontalmente */
-        right: auto !important;
-        bottom: auto !important;
-        transform: translate(-50%, -50%) !important; /* Centrar completamente */
+        top: 1.5rem !important; /* Margin top para no estar pegado arriba */
+        left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
+        right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
+        bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
         margin: 0 !important;
-        width: calc(100% - 2rem) !important; /* Dejar espacio en los lados */
-        max-width: 600px !important; /* Ancho máximo para centrado */
-        height: auto !important;
-        max-height: 90vh !important; /* Altura máxima del 90% de la pantalla */
-        min-height: auto !important;
+        width: 100% !important;
+        height: calc(100vh - 1.5rem) !important; /* Altura completa menos el margin top */
+        max-height: none !important; /* Sin límite de altura máxima para permitir más espacio */
+        min-height: calc(100vh - 1.5rem) !important;
         display: flex;
         flex-direction: column;
         overflow: hidden !important; /* Sin scroll en el panel */
-        border-radius: 16px !important; /* Bordes redondeados */
+        border-radius: 0 !important; /* Sin bordes redondeados para pantalla completa */
         z-index: 100 !important; /* Z-index muy alto para tapar todo el contenido */
         position: fixed !important; /* Fijo para que tape todo */
         background: rgba(15, 20, 25, 0.98) !important; /* Fondo casi opaco para tapar el contenido */
@@ -1437,19 +1435,17 @@ body.proyecto-imagen-modal-open .navbar {
 
 @media (max-width: 560px) {
     .proyecto-panel {
-        top: 50% !important; /* Centrar verticalmente */
-        left: 50% !important; /* Centrar horizontalmente */
-        right: auto !important;
-        bottom: auto !important;
-        transform: translate(-50%, -50%) !important; /* Centrar completamente */
+        top: 1.5rem !important; /* Margin top para no estar pegado arriba */
+        left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
+        right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
+        bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
         margin: 0 !important;
-        width: calc(100% - 1.5rem) !important; /* Dejar espacio en los lados */
-        max-width: 100% !important;
-        height: auto !important;
-        max-height: 90vh !important; /* Altura máxima del 90% de la pantalla */
-        min-height: auto !important;
+        width: 100% !important;
+        height: calc(100vh - 1.5rem) !important; /* Altura completa menos el margin top */
+        max-height: none !important; /* Sin límite de altura máxima */
+        min-height: calc(100vh - 1.5rem) !important;
         overflow: hidden !important; /* Sin scroll en el panel */
-        border-radius: 16px !important; /* Bordes redondeados */
+        border-radius: 0 !important; /* Sin bordes redondeados para pantalla completa */
         z-index: 100 !important; /* Z-index muy alto para tapar todo el contenido */
         position: fixed !important; /* Fijo para que tape todo */
         background: rgba(15, 20, 25, 0.98) !important; /* Fondo casi opaco para tapar el contenido */
@@ -1500,15 +1496,15 @@ body.proyecto-imagen-modal-open .navbar {
 /* iPhone 14 Pro Max (430 x 932) SOLO: panel completo sin scroll */
 @media (min-width: 400px) and (max-width: 450px) {
     .proyecto-panel {
-        top: 0 !important; /* Subir hasta arriba para tapar los tags */
+        top: 1.5rem !important; /* Margin top para no estar pegado arriba */
         left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
         right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
         bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
         margin: 0 !important;
         width: 100% !important;
-        height: 100vh !important; /* Altura completa de la pantalla */
+        height: calc(100vh - 1.5rem) !important; /* Altura completa menos el margin top */
         max-height: none !important; /* Sin límite de altura máxima */
-        min-height: 100vh !important;
+        min-height: calc(100vh - 1.5rem) !important;
         overflow-y: auto !important; /* Permitir scroll si es necesario */
         border-radius: 0 !important; /* Sin bordes redondeados para pantalla completa */
         z-index: 100 !important; /* Z-index muy alto para tapar todo el contenido */
@@ -1547,19 +1543,17 @@ body.proyecto-imagen-modal-open .navbar {
 /* Samsung Galaxy S8+ (360 x 740) SOLO: panel completo sin scroll */
 @media (min-width: 350px) and (max-width: 375px) {
     .proyecto-panel {
-        top: 50% !important; /* Centrar verticalmente */
-        left: 50% !important; /* Centrar horizontalmente */
-        right: auto !important;
-        bottom: auto !important;
-        transform: translate(-50%, -50%) !important; /* Centrar completamente */
+        top: 1.5rem !important; /* Margin top para no estar pegado arriba */
+        left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
+        right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
+        bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
         margin: 0 !important;
-        width: calc(100% - 1.5rem) !important; /* Dejar espacio en los lados */
-        max-width: 100% !important;
-        height: auto !important;
-        max-height: 90vh !important; /* Altura máxima del 90% de la pantalla */
-        min-height: auto !important;
+        width: 100% !important;
+        height: calc(100vh - 1.5rem) !important; /* Altura completa menos el margin top */
+        max-height: none !important; /* Sin límite de altura máxima */
+        min-height: calc(100vh - 1.5rem) !important;
         overflow: hidden !important; /* Sin scroll en el panel */
-        border-radius: 16px !important; /* Bordes redondeados */
+        border-radius: 0 !important; /* Sin bordes redondeados para pantalla completa */
         z-index: 100 !important; /* Z-index muy alto para tapar todo el contenido */
         position: fixed !important; /* Fijo para que tape todo */
         background: rgba(15, 20, 25, 0.98) !important; /* Fondo casi opaco para tapar el contenido */
@@ -2138,19 +2132,17 @@ body.proyecto-imagen-modal-open .navbar {
 @media (max-width: 375px) {
     /* Panel completo sin scroll en iPhone SE */
     .proyecto-panel {
-        top: 50% !important; /* Centrar verticalmente */
-        left: 50% !important; /* Centrar horizontalmente */
-        right: auto !important;
-        bottom: auto !important;
-        transform: translate(-50%, -50%) !important; /* Centrar completamente */
+        top: 1.5rem !important; /* Margin top para no estar pegado arriba */
+        left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
+        right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
+        bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
         margin: 0 !important;
-        width: calc(100% - 1.5rem) !important; /* Dejar espacio en los lados */
-        max-width: 100% !important;
-        height: auto !important;
-        max-height: 90vh !important; /* Altura máxima del 90% de la pantalla */
-        min-height: auto !important;
+        width: 100% !important;
+        height: calc(100vh - 1.5rem) !important; /* Altura completa menos el margin top */
+        max-height: none !important; /* Sin límite de altura máxima */
+        min-height: calc(100vh - 1.5rem) !important;
         overflow: hidden !important; /* Sin scroll en el panel */
-        border-radius: 16px !important; /* Bordes redondeados */
+        border-radius: 0 !important; /* Sin bordes redondeados para pantalla completa */
         z-index: 100 !important; /* Z-index muy alto para tapar todo el contenido */
         position: fixed !important; /* Fijo para que tape todo */
         background: rgba(15, 20, 25, 0.98) !important; /* Fondo casi opaco para tapar el contenido */
@@ -2326,19 +2318,17 @@ body.proyecto-imagen-modal-open .navbar {
 /* Galaxy Z Fold (344 x 882) SOLO: panel completo sin scroll y hacer cards más pequeñas - AL FINAL PARA MÁXIMA PRIORIDAD */
 @media (min-width: 340px) and (max-width: 350px) {
     .proyecto-panel {
-        top: 50% !important; /* Centrar verticalmente */
-        left: 50% !important; /* Centrar horizontalmente */
-        right: auto !important;
-        bottom: auto !important;
-        transform: translate(-50%, -50%) !important; /* Centrar completamente */
+        top: 1.5rem !important; /* Margin top para no estar pegado arriba */
+        left: 0 !important; /* Ocupar toda la pantalla desde la izquierda */
+        right: 0 !important; /* Ocupar toda la pantalla hasta la derecha */
+        bottom: 0 !important; /* Ocupar toda la pantalla hasta abajo */
         margin: 0 !important;
-        width: calc(100% - 1.5rem) !important; /* Dejar espacio en los lados */
-        max-width: 100% !important;
-        height: auto !important;
-        max-height: 90vh !important; /* Altura máxima del 90% de la pantalla */
-        min-height: auto !important;
+        width: 100% !important;
+        height: calc(100vh - 1.5rem) !important; /* Altura completa menos el margin top */
+        max-height: none !important; /* Sin límite de altura máxima */
+        min-height: calc(100vh - 1.5rem) !important;
         overflow: hidden !important; /* Sin scroll en el panel */
-        border-radius: 16px !important; /* Bordes redondeados */
+        border-radius: 0 !important; /* Sin bordes redondeados para pantalla completa */
         z-index: 100 !important; /* Z-index muy alto para tapar todo el contenido */
         position: fixed !important; /* Fijo para que tape todo */
         background: rgba(15, 20, 25, 0.98) !important; /* Fondo casi opaco para tapar el contenido */
