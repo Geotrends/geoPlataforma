@@ -348,33 +348,58 @@
                 mainCard.classList.add('about-main-animated');
             }
             
-            // Carrusel Microflown - Movimiento de a poco
+            // Carrusel Microflown - Movimiento cíclico infinito
             var carouselTrack = document.getElementById('microflown-carousel-track');
             var prevBtn = document.getElementById('microflown-prev');
             var nextBtn = document.getElementById('microflown-next');
             var dotsContainer = document.getElementById('microflown-dots');
             var cards = carouselTrack.querySelectorAll('.microflown-card');
             var currentIndex = 0;
+            var isTransitioning = false;
+            
+            // Duplicar cards para efecto infinito
+            function duplicateCards() {
+                if (cards.length === 0) return;
+                
+                // Clonar todas las cards al final
+                for (var i = 0; i < cards.length; i++) {
+                    var clone = cards[i].cloneNode(true);
+                    carouselTrack.appendChild(clone);
+                }
+                
+                // Clonar todas las cards al inicio
+                for (var i = cards.length - 1; i >= 0; i--) {
+                    var clone = cards[i].cloneNode(true);
+                    carouselTrack.insertBefore(clone, carouselTrack.firstChild);
+                }
+                
+                // Actualizar referencia a todas las cards
+                cards = carouselTrack.querySelectorAll('.microflown-card');
+                // Establecer posición inicial (en las cards originales)
+                currentIndex = cards.length / 3;
+                updateCarousel(false);
+            }
             
             // Calcular el ancho de cada card
             function getCardWidth() {
                 if (cards.length === 0) return 0;
                 var card = cards[0];
-                var cardStyle = window.getComputedStyle(card);
                 var cardWidth = card.offsetWidth;
                 var gap = 24; // 1.5rem = 24px
                 return cardWidth + gap;
             }
             
-            // Crear dots (uno por cada card)
+            // Crear dots (uno por cada card original)
             function createDots() {
                 dotsContainer.innerHTML = '';
-                for (var i = 0; i < cards.length; i++) {
+                var originalCardsCount = cards.length / 3; // Dividir por 3 porque tenemos originales + clones inicio + clones final
+                for (var i = 0; i < originalCardsCount; i++) {
                     var dot = document.createElement('div');
                     dot.className = 'microflown-dot' + (i === 0 ? ' active' : '');
                     dot.addEventListener('click', function(index) {
                         return function() {
-                            currentIndex = index;
+                            var originalCardsCount = cards.length / 3;
+                            currentIndex = originalCardsCount + index; // Ajustar al índice en el carrusel completo
                             updateCarousel();
                         };
                     }(i));
@@ -383,30 +408,68 @@
             }
             
             // Actualizar carrusel
-            function updateCarousel() {
-                if (currentIndex > cards.length - 1) currentIndex = cards.length - 1;
-                if (currentIndex < 0) currentIndex = 0;
+            function updateCarousel(animate) {
+                if (animate === undefined) animate = true;
                 
                 var cardWidth = getCardWidth();
                 var translateX = -(currentIndex * cardWidth);
+                
+                if (animate) {
+                    carouselTrack.style.transition = 'transform 0.5s ease';
+                } else {
+                    carouselTrack.style.transition = 'none';
+                }
+                
                 carouselTrack.style.transform = 'translateX(' + translateX + 'px)';
                 
                 // Actualizar dots
+                var originalCardsCount = cards.length / 3;
+                var dotIndex = ((currentIndex - originalCardsCount) % originalCardsCount + originalCardsCount) % originalCardsCount;
                 var dots = dotsContainer.querySelectorAll('.microflown-dot');
                 dots.forEach(function(dot, index) {
-                    dot.classList.toggle('active', index === currentIndex);
+                    dot.classList.toggle('active', index === dotIndex);
                 });
+            }
+            
+            // Verificar si necesitamos saltar al inicio/final
+            function checkBounds() {
+                var originalCardsCount = cards.length / 3;
+                
+                // Si estamos en los clones del final, saltar a los originales
+                if (currentIndex >= originalCardsCount * 2) {
+                    carouselTrack.style.transition = 'none';
+                    currentIndex = originalCardsCount + (currentIndex - originalCardsCount * 2);
+                    updateCarousel(false);
+                }
+                // Si estamos en los clones del inicio, saltar a los originales
+                else if (currentIndex < originalCardsCount) {
+                    carouselTrack.style.transition = 'none';
+                    currentIndex = originalCardsCount + (currentIndex % originalCardsCount);
+                    updateCarousel(false);
+                }
             }
             
             // Event listeners
             prevBtn.addEventListener('click', function() {
-                currentIndex = Math.max(0, currentIndex - 1);
+                if (isTransitioning) return;
+                isTransitioning = true;
+                currentIndex--;
                 updateCarousel();
+                setTimeout(function() {
+                    checkBounds();
+                    isTransitioning = false;
+                }, 500);
             });
             
             nextBtn.addEventListener('click', function() {
-                currentIndex = Math.min(cards.length - 1, currentIndex + 1);
+                if (isTransitioning) return;
+                isTransitioning = true;
+                currentIndex++;
                 updateCarousel();
+                setTimeout(function() {
+                    checkBounds();
+                    isTransitioning = false;
+                }, 500);
             });
             
             // Recalcular en resize
@@ -414,13 +477,13 @@
             window.addEventListener('resize', function() {
                 clearTimeout(resizeTimer);
                 resizeTimer = setTimeout(function() {
-                    updateCarousel();
+                    updateCarousel(false);
                 }, 250);
             });
             
             // Inicializar
+            duplicateCards();
             createDots();
-            updateCarousel();
         });
     </script>
 </body>
