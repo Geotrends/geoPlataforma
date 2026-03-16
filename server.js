@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
 app.use('/js', express.static(path.join(__dirname, 'public', 'js')));
 app.use('/img_video', express.static(path.join(__dirname, 'public', 'img_video')));
+app.use('/proyectos/data', express.static(path.join(__dirname, 'public', 'html', 'proyectos', 'data')));
 
 // Ruta principal - redirigir a index.html
 app.get('/', (req, res) => {
