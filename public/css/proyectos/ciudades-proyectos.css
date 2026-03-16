@@ -1421,15 +1421,22 @@ body.proyecto-imagen-modal-open .navbar {
     .proyecto-panel-carousel-wrap {
         flex: 0 0 auto;
         min-height: 0;
+        height: 220px !important; /* Altura fija igual para todos los proyectos */
+        max-height: 220px !important;
     }
     .proyecto-panel-carousel-track {
         aspect-ratio: 16 / 9;
         width: 100%;
-        max-height: 220px; /* Aumentado para que se vea la imagen más grande y completa */
-        min-height: 0;
+        height: 220px !important; /* Altura fija igual para todos los proyectos */
+        max-height: 220px !important;
+        min-height: 220px !important;
     }
     .proyecto-panel-carousel-slide .proyecto-panel-img {
-        max-height: 220px; /* Aumentado para que se vea la imagen más grande y completa */
+        width: 100% !important;
+        height: 220px !important; /* Altura fija igual para todos los proyectos */
+        max-height: 220px !important;
+        min-height: 220px !important;
+        object-fit: cover !important;
     }
 }
 
@@ -1533,10 +1540,16 @@ body.proyecto-imagen-modal-open .navbar {
         padding: 0.35rem 1rem 0.35rem !important; /* Reducido padding */
     }
     .proyecto-panel-carousel-track {
-        max-height: 200px !important; /* Aumentado para que se vea la imagen más grande y completa */
+        height: 220px !important; /* Altura fija igual para todos los proyectos */
+        max-height: 220px !important;
+        min-height: 220px !important;
     }
     .proyecto-panel-carousel-slide .proyecto-panel-img {
-        max-height: 200px !important; /* Aumentado para que se vea la imagen más grande y completa */
+        width: 100% !important;
+        height: 220px !important; /* Altura fija igual para todos los proyectos */
+        max-height: 220px !important;
+        min-height: 220px !important;
+        object-fit: cover !important;
     }
 }
 
@@ -1593,10 +1606,16 @@ body.proyecto-imagen-modal-open .navbar {
         padding: 0.35rem 1rem 0.35rem !important; /* Reducido padding */
     }
     .proyecto-panel-carousel-track {
-        max-height: 180px !important; /* Aumentado para que se vea la imagen más grande y completa */
+        height: 220px !important; /* Altura fija igual para todos los proyectos */
+        max-height: 220px !important;
+        min-height: 220px !important;
     }
     .proyecto-panel-carousel-slide .proyecto-panel-img {
-        max-height: 180px !important; /* Aumentado para que se vea la imagen más grande y completa */
+        width: 100% !important;
+        height: 220px !important; /* Altura fija igual para todos los proyectos */
+        max-height: 220px !important;
+        min-height: 220px !important;
+        object-fit: cover !important;
     }
 }
 
@@ -2189,10 +2208,16 @@ body.proyecto-imagen-modal-open .navbar {
         padding: 0.3rem 0.9rem 0.3rem !important; /* Reducido padding */
     }
     .proyecto-panel-carousel-track {
-        max-height: 170px !important; /* Aumentado para que se vea la imagen más grande y completa */
+        height: 220px !important; /* Altura fija igual para todos los proyectos */
+        max-height: 220px !important;
+        min-height: 220px !important;
     }
     .proyecto-panel-carousel-slide .proyecto-panel-img {
-        max-height: 170px !important; /* Aumentado para que se vea la imagen más grande y completa */
+        width: 100% !important;
+        height: 220px !important; /* Altura fija igual para todos los proyectos */
+        max-height: 220px !important;
+        min-height: 220px !important;
+        object-fit: cover !important;
     }
     
     .proyectos-filters-container {
@@ -2368,10 +2393,16 @@ body.proyecto-imagen-modal-open .navbar {
         padding: 0.3rem 0.9rem 0.3rem !important; /* Reducido padding */
     }
     .proyecto-panel-carousel-track {
-        max-height: 160px !important; /* Aumentado para que se vea la imagen más grande y completa */
+        height: 220px !important; /* Altura fija igual para todos los proyectos */
+        max-height: 220px !important;
+        min-height: 220px !important;
     }
     .proyecto-panel-carousel-slide .proyecto-panel-img {
-        max-height: 160px !important; /* Aumentado para que se vea la imagen más grande y completa */
+        width: 100% !important;
+        height: 220px !important; /* Altura fija igual para todos los proyectos */
+        max-height: 220px !important;
+        min-height: 220px !important;
+        object-fit: cover !important;
     }
 
     .proyecto-card {

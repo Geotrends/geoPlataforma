@@ -407,9 +407,10 @@
             img.className = 'proyecto-panel-img' + fitClass;
             slide.appendChild(img);
             
-            // Agregar botón de ampliar imagen para proyectos WEBGIS y CORNARE en Mapas de ruido
+            // Agregar botón de ampliar imagen para proyectos WEBGIS, CORNARE en Mapas de ruido, y Observatorio en Analítica geoespacial
             var shouldAddExpandBtn = servicioActivo === 'webgis' || 
-                                    (servicioActivo === 'mapas-ruido' && proyectoId === 'cornare');
+                                    (servicioActivo === 'mapas-ruido' && proyectoId === 'cornare') ||
+                                    (servicioActivo === 'geoespacial' && proyectoId === 'observatorio-envigado');
             
             if (shouldAddExpandBtn) {
                 var expandBtn = document.createElement('button');
