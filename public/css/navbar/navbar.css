@@ -393,6 +393,14 @@ body.page-home .navbar.scrolled .logo-img {
     background: #fff;
 }
 
+/* Hamburger menu blanco en responsive */
+@media (max-width: 992px) {
+    .navbar .nav-hamburger-bar,
+    .navbar.scrolled .nav-hamburger-bar {
+        background: #fff !important;
+    }
+}
+
 .navbar.nav-mobile-open .nav-hamburger-bar:nth-child(1) {
     transform: rotate(45deg) translate(6px, 6px);
 }
