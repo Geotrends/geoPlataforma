@@ -18,6 +18,16 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'html', 'index.html'));
 });
 
+// SEO: sitemap y robots
+app.get('/sitemap.xml', (req, res) => {
+    res.type('application/xml');
+    res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
+});
+app.get('/robots.txt', (req, res) => {
+    res.type('text/plain');
+    res.sendFile(path.join(__dirname, 'public', 'robots.txt'));
+});
+
 // Rutas para archivos HTML con extensión (ej: /nosotros.html, /ciudades.html)
 app.get('/:page.html', (req, res) => {
     const page = req.params.page;

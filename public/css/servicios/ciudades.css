@@ -112,6 +112,19 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
     overflow: hidden;
 }
 
+/* Intro SEO: solo para buscadores, no visible en pantalla */
+.section-seo-intro {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 /* Label vertical "CIUDADES" / "INDUSTRIA" a la izquierda - fondo blanco con texto verde oscuro */
 .section-label {
     flex-shrink: 0;

@@ -9,7 +9,7 @@
   var COOKIE_NAME = 'geo_cookie_consent';
   var COOKIE_MAX_AGE_DAYS = 365;
   var BANNER_ID = 'cookie-banner';
-  var GA4_MEASUREMENT_ID = 'G-KWZXRBBZVF';
+  var GA4_MEASUREMENT_ID = 'G-2N3W909JPC';
   var GA4_LOADED_FLAG = '__geo_ga4_loaded__';
 
   function getBannerMarkup() {
