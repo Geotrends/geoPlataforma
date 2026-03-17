@@ -352,6 +352,8 @@
 .home-projects-section {
     padding-left: 0;
     padding-right: 0;
+    padding-bottom: 3rem;
+    overflow: visible;
 }
 
 .home-projects-section .process-subtitle {
@@ -534,6 +536,28 @@
     }
 }
 
+.home-projects-cta-wrap {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+/* Botón "Ver más proyectos": borde blanco, hover con fondo blanco sutil */
+.home-projects-cta {
+    animation: none;
+    padding: 0.5rem 1rem;
+    border-color: rgba(255, 255, 255, 0.9);
+    color: #fff;
+}
+
+.home-projects-cta:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #fff;
+    color: #fff;
+}
+
 @media (max-width: 600px) {
     .home-projects-carousel-wrap {
         gap: 0.5rem;
@@ -546,5 +570,8 @@
     .home-project-card {
         flex: 0 0 260px;
         min-width: 260px;
+    }
+    .home-projects-cta-wrap {
+        margin-top: 1.25rem;
     }
 }
