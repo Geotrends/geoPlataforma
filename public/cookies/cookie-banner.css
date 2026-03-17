@@ -1,0 +1,147 @@
+/* Banner de cookies – modal centrado con transparencia oscura */
+
+.cookie-banner {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.cookie-banner-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.cookie-banner-dialog {
+  position: relative;
+  max-width: 480px;
+  width: 100%;
+  padding: 1.75rem 1.5rem;
+  background: rgba(18, 22, 30, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+
+.cookie-banner-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.cookie-banner-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cookie-banner-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.cookie-banner-text {
+  margin: 0 0 1.25rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.cookie-banner-link {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cookie-banner-link:hover {
+  color: #fff;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.cookie-banner-btn {
+  padding: 0.6rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.cookie-banner-btn-accept {
+  background: #2d6a4f;
+  color: #fff;
+  border-color: #2d6a4f;
+}
+
+.cookie-banner-btn-accept:hover {
+  background: #1b4332;
+  border-color: #1b4332;
+  transform: translateY(-1px);
+}
+
+.cookie-banner-btn-reject {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.cookie-banner-btn-reject:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-1px);
+}
+
+/* Ocultar modal con transición */
+.cookie-banner[aria-hidden="true"] {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.cookie-banner[aria-hidden="true"] .cookie-banner-dialog {
+  transform: scale(0.95);
+  transition: transform 0.25s ease;
+}
+
+.cookie-banner:not([aria-hidden="true"]) {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.cookie-banner:not([aria-hidden="true"]) .cookie-banner-dialog {
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 600px) {
+  .cookie-banner {
+    padding: 1rem;
+  }
+  .cookie-banner-dialog {
+    padding: 1.5rem 1.25rem;
+  }
+  .cookie-banner-actions {
+    flex-direction: column;
+  }
+  .cookie-banner-btn {
+    width: 100%;
+  }
+}
