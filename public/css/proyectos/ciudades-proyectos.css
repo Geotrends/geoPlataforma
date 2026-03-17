@@ -992,7 +992,8 @@ body.proyecto-panel-open .proyectos-filters-container {
 .proyecto-panel-carousel-slide .proyecto-panel-img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* ecosistemas: imagen completa */
+    object-fit: cover; /* 16:9: llenar sin barras negras */
+    object-position: center;
 }
 /* IoT y Mapas de ruido: adaptada al espacio */
 .proyecto-panel-carousel-slide .proyecto-panel-img.img-completa {
@@ -1067,7 +1068,7 @@ body.proyecto-panel-open .proyectos-filters-container {
 .proyecto-panel-img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
     display: block;
     border-radius: 16px;
