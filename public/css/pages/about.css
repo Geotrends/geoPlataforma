@@ -1770,6 +1770,7 @@ body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-center
 .about-panel-body .about-valores-in-panel .about-valores-card-sub {
   line-height: 1.7;
   margin-top: 0.35rem;
+  text-align: justify;
 }
 
 /* Clientes dentro del panel (tab Clientes) */
@@ -1856,6 +1857,7 @@ body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-center
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.92);
   line-height: 1.7;
+  text-align: justify;
 }
 
 .about-valores-card-arrow {
