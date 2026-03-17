@@ -38,7 +38,7 @@
 }
 
 .proyecto-detalle-media {
-    aspect-ratio: 16/10;
+    aspect-ratio: 16 / 9;
     min-height: 280px;
     background: #E4E4E4;
     border: 1px solid #E4E4E4;
@@ -46,6 +46,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .proyecto-detalle-media-placeholder {
@@ -88,23 +89,25 @@
 .proyecto-detalle-carousel {
     flex: 1;
     min-width: 0;
-    min-height: 320px;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
     border-radius: 8px;
     border: 1px solid #E4E4E4;
-    background: #E4E4E4;
+    background: #313131;
 }
 
 .proyecto-detalle-carousel-track {
     display: flex;
     height: 100%;
-    min-height: 320px;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
     transition: transform 0.18s ease;
 }
 
 .proyecto-detalle-carousel-slide {
     flex-shrink: 0;
-    min-height: 320px;
+    width: 100%;
+    aspect-ratio: 16 / 9;
     background-size: cover;
     background-position: center;
     background-color: #313131;
