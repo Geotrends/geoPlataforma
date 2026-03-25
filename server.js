@@ -117,7 +117,18 @@ function sendHtmlPage(lang, page, res) {
 // Esto evita que express.static intercepte las rutas HTML
 app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
 app.use('/js', express.static(path.join(__dirname, 'public', 'js')));
-app.use('/img_video', express.static(path.join(__dirname, 'public', 'img_video')));
+app.use(
+    '/img_video',
+    express.static(path.join(__dirname, 'public', 'img_video'), {
+        setHeaders(res, filePath) {
+            if (filePath.endsWith('.mp4')) {
+                res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
+                res.setHeader('Pragma', 'no-cache');
+                res.setHeader('Expires', '0');
+            }
+        },
+    })
+);
 app.use('/cookies', express.static(path.join(__dirname, 'public', 'cookies')));
 app.use('/proyectos/data', express.static(path.join(__dirname, 'public', 'html', 'proyectos', 'data')));
 

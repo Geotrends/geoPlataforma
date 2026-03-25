@@ -75,6 +75,23 @@ Configura estos secrets en GitHub:
 
 Con eso, cada push a `main` sincroniza `public/` al bucket e invalida cache.
 
+## 4b) No cachear vídeos MP4 (recomendado si cambian seguido)
+
+En **local**, `server.js` ya envía `Cache-Control: no-store` (y afines) solo para archivos `.mp4` bajo `/img_video`.
+
+En **S3 + CloudFront**, el HTML no controla la caché del binario: hay que alinear **origen y CDN**:
+
+1. **S3 (metadatos del objeto)**  
+   Para objetos `img_video/**/*.mp4`, en **Metadata** añade:  
+   `Cache-Control` = `no-store, no-cache, must-revalidate, max-age=0`  
+   (puedes hacerlo al subir con AWS CLI `--cache-control "no-store, no-cache, must-revalidate, max-age=0"` o en la consola).
+
+2. **CloudFront**  
+   - Crea una **Cache behavior** con path pattern `img_video/*` (o más específico) y una **Cache policy** con **TTL mínimo/default/máximo en 0** y sin cache largo para esas rutas, **o**  
+   - Usa **Origin request policy** que respete las cabeceras del origen y asegúrate de que S3 devuelve el `Cache-Control` anterior.
+
+Así cada visita pide el MP4 de nuevo (más ancho de banda; útil si sustituyes vídeos con el mismo nombre sin invalidar).
+
 ## 5) Verificaciones antes de publicar
 
 ```bash
