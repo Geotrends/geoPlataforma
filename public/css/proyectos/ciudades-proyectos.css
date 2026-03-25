@@ -869,8 +869,9 @@ body.proyecto-panel-open .proyectos-filters-container {
         background: rgb(0 0 0 / 0%) !important;
     }
 
+    /* Alinear con el marco de imagen (padding-top del bloque izquierdo + bajada del carrusel) */
     .proyecto-panel-content {
-        margin-top: 2rem !important;
+        margin-top: calc(3.25rem + 10px) !important;
     }
 }
 .proyectos-page.proyecto-panel-open .proyecto-panel {
@@ -917,9 +918,9 @@ body.proyecto-panel-open .proyectos-filters-container {
     height: 20px;
 }
 .proyecto-panel-image-wrap {
-    flex: 1 1 65%;
+    flex: 1 1 62%;
     min-width: 0;
-    max-width: 65%;
+    max-width: 62%;
     height: 100%;
     min-height: 0;
     background: transparent;
@@ -963,22 +964,25 @@ body.proyecto-panel-open .proyectos-filters-container {
 }
 .proyecto-panel-carousel-track {
     position: relative;
-    aspect-ratio: 16/9;
+    aspect-ratio: 16 / 9;
     width: 100%;
     max-height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
+    border-radius: 16px;
+    display: block;
 }
+/* Todas las diapositivas ocupan el mismo marco 16:9; la activa solo sube z-index (nunca position:relative, para que ninguna imagen “desborde” el ratio) */
 .proyecto-panel-carousel-slide {
     position: absolute;
     inset: 0;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem 0.5rem 0.5rem;
+    align-items: stretch;
+    justify-content: stretch;
+    padding: 0;
+    margin: 0;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: opacity 0.22s ease, visibility 0.22s ease;
     overflow: hidden;
     border-radius: 16px;
@@ -986,13 +990,17 @@ body.proyecto-panel-open .proyectos-filters-container {
 .proyecto-panel-carousel-slide.active {
     opacity: 1;
     visibility: visible;
-    z-index: 1;
-    position: relative;
+    z-index: 2;
+    pointer-events: auto;
 }
 .proyecto-panel-carousel-slide .proyecto-panel-img {
+    display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 16:9: llenar sin barras negras */
+    min-width: 0;
+    min-height: 0;
+    flex: 1;
+    object-fit: cover;
     object-position: center;
 }
 
@@ -1000,8 +1008,8 @@ body.proyecto-panel-open .proyectos-filters-container {
 @media (min-width: 1100px) {
     .proyecto-panel-image-wrap {
         flex: 0 0 auto;
-        width: 560px;
-        max-width: 100%;
+        width: min(760px, 58vw);
+        max-width: 62%;
         min-width: 0;
         height: auto;
         min-height: 0;
@@ -1028,9 +1036,11 @@ body.proyecto-panel-open .proyectos-filters-container {
         object-position: center;
     }
 }
-/* IoT y Mapas de ruido: adaptada al espacio */
-.proyecto-panel-carousel-slide .proyecto-panel-img.img-completa {
-    object-fit: cover; /* Todas 16:9 relleno */
+/* Siempre rellenar el marco 16:9 (cualquier proporción de archivo) */
+.proyecto-panel-carousel-slide .proyecto-panel-img.img-completa,
+.proyecto-panel-carousel-slide .proyecto-panel-img.proyecto-panel-img-fit-16-9 {
+    object-fit: cover !important;
+    object-position: center;
 }
 .proyecto-panel-carousel-prev,
 .proyecto-panel-carousel-next {
@@ -1066,9 +1076,6 @@ body.proyecto-panel-open .proyectos-filters-container {
     right: 0.75rem;
 }
 /* Botón para ampliar imagen en proyectos WEBGIS */
-.proyecto-panel-carousel-slide {
-    position: relative;
-}
 .proyecto-panel-expand-btn {
     position: absolute;
     top: 1rem;
@@ -1107,13 +1114,13 @@ body.proyecto-panel-open .proyectos-filters-container {
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
-/* Imagen adaptada a relación 16:9 (cover en contenedor 16:9) */
+/* Marco 16:9 uniforme: recortar si hace falta */
 .proyecto-panel-img.proyecto-panel-img-fit-16-9 {
-    object-fit: cover;
+    object-fit: cover !important;
     object-position: center;
 }
 .proyecto-panel-content {
-    flex: 1 1 58%;
+    flex: 1 1 38%;
     min-width: 0;
     min-height: 0;
     padding: 2.5rem 2.5rem 2rem;
@@ -1129,6 +1136,15 @@ body.proyecto-panel-open .proyectos-filters-container {
     background: transparent;
     order: 2; /* Desktop: descripción derecha */
     position: relative;
+}
+
+/* Desktop: dar más espacio horizontal a la imagen (16:9) */
+@media (min-width: 1100px) {
+    .proyecto-panel-content {
+        max-width: 38%;
+        padding-left: 2rem;
+        padding-right: 2.25rem;
+    }
 }
 .proyecto-panel-title {
     font-size: 1.5rem;
@@ -1783,8 +1799,8 @@ body.proyecto-imagen-modal-open .navbar {
     .proyecto-panel-image-wrap {
         order: 1 !important;
         flex: 0 0 auto !important;
-        width: 560px !important;
-        max-width: 48% !important;
+        width: min(720px, 56vw) !important;
+        max-width: 60% !important;
         height: auto !important;
         padding-top: 3.5rem !important;
         justify-content: center !important;
@@ -1792,8 +1808,9 @@ body.proyecto-imagen-modal-open .navbar {
 
     .proyecto-panel-content {
         order: 2 !important; /* Descripción a la derecha */
-        flex: 1 1 50% !important; /* 50% del ancho */
-        max-width: 50% !important;
+        flex: 1 1 40% !important;
+        max-width: 40% !important;
+        margin-top: calc(3.5rem + 10px) !important;
     }
 
     /* Aumentar padding del contenedor de filtros/tags - SUBIR el contenedor para evitar sobreposición */
@@ -2620,5 +2637,24 @@ body.proyecto-imagen-modal-open {
         height: 100%;
         object-fit: cover;
         object-position: center;
+    }
+}
+
+/* Override FINAL: centrar y bajar un poco el bloque de imagen del panel */
+.proyectos-page.proyecto-panel-open .proyecto-panel-image-wrap {
+    justify-content: center !important;
+    padding-top: 3.25rem !important; /* baja el marco hacia abajo */
+}
+.proyecto-panel-carousel-wrap {
+    position: relative;
+    top: 10px; /* bajada sutil del carrusel */
+    will-change: top;
+}
+@media (max-width: 900px) {
+    .proyectos-page.proyecto-panel-open .proyecto-panel-image-wrap {
+        padding-top: 1.75rem !important;
+    }
+    .proyecto-panel-carousel-wrap {
+        top: 6px;
     }
 }

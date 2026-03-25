@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://es.geotrends.co/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://es.geotrends.co/en</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://es.geotrends.co/nosotros</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://es.geotrends.co/en/nosotros</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://es.geotrends.co/contacto</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://es.geotrends.co/en/contacto</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://es.geotrends.co/ciudades</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://es.geotrends.co/en/ciudades</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://es.geotrends.co/industria</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://es.geotrends.co/en/industria</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://es.geotrends.co/blog</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://es.geotrends.co/en/blog</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://es.geotrends.co/proyectos-ciudades</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://es.geotrends.co/en/proyectos-ciudades</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://es.geotrends.co/proyectos-industria</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://es.geotrends.co/en/proyectos-industria</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://es.geotrends.co/politicas-privacidad</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://es.geotrends.co/en/politicas-privacidad</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
   <url><loc>https://es.geotrends.co/representaciones-distribucion</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://es.geotrends.co/en/representaciones-distribucion</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

@@ -959,49 +959,65 @@ a.wind-project-card-cta:hover {
     .wind-intro-col {
         min-height: 85vh;
     }
+
+    /* Card expandida: más ancho a la derecha; mini cards proporcionadas (ligero tope para no verse gigantes) */
+    .wind-section.wind-card-expanded .wind-wrap {
+        grid-template-columns: minmax(0, 28%) minmax(0, 1fr);
+        max-width: min(100vw - 1.5rem, 1780px);
+    }
+
+    .wind-section.wind-card-expanded .wind-intro-col {
+        padding-right: 1rem;
+    }
+
+    .wind-section.wind-card-expanded .wind-carousel-col {
+        padding-left: 0.35rem;
+        padding-right: 0.35rem;
+    }
+
+    .wind-section.wind-card-expanded .wind-card.expanded {
+        flex: 1 1 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-cards {
+        width: calc(100% - 1rem);
+        max-width: 100%;
+        justify-content: center;
+        gap: 1.1rem;
+        padding-left: 0.35rem;
+        padding-right: 0.35rem;
+    }
+
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card {
+        flex: 1 1 0;
+        min-width: 0;
+        width: auto;
+        max-width: 292px;
+        min-height: 424px;
+    }
+
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-img {
+        height: 228px;
+        min-height: 228px;
+        max-height: 228px;
+    }
+
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-body {
+        padding: 1.15rem 1.1rem 1.45rem 1.1rem;
+        gap: 0.5rem;
+    }
 }
 
-/* Pantalla extendida: mini cards más pequeñas y centradas */
+/* Pantalla muy ancha: las 3 cards principales un poco más contenidas; al expandir no se encogen las mini cards */
 @media (min-width: 1500px) {
     .wind-cards-wrap {
         justify-content: center;
     }
-    .wind-cards {
+    .wind-cards:not(.is-expanded) {
         max-width: 82%;
         margin: 0 auto;
-    }
-    /* Reducir y centrar las mini cards de Portafolio */
-    .wind-card.expanded .wind-project-cards {
-        max-width: 860px;
-        transform: translateX(-50%) translateY(0);
-        justify-content: center;
-        margin-top: 5rem;
-    }
-    .wind-card.expanded .wind-project-card {
-        width: calc(33.333% - 0.67rem) !important;
-        max-width: 270px !important;
-        min-width: 255px !important;
-        min-height: 360px !important;
-    }
-    .wind-card.expanded .wind-project-card-img {
-        height: 150px !important;
-        min-height: 150px !important;
-        max-height: 150px !important;
-    }
-    .wind-card.expanded .wind-project-card-body {
-        padding: 0.65rem 0.75rem 0.5rem !important;
-    }
-    .wind-card.expanded .wind-project-card-title {
-        font-size: 1.05rem !important;
-    }
-    .wind-card.expanded .wind-project-card-desc {
-        font-size: 0.95rem !important;
-        line-height: 1.35 !important;
-        min-height: 2.8em !important;
-    }
-    .wind-card.expanded .wind-project-card-cta {
-        font-size: 0.9rem !important;
-        padding: 0.5rem 1rem !important;
     }
 }
 

@@ -8,6 +8,21 @@
     margin-bottom: 0;
 }
 
+/* Pantalla ancha / ultrawide: más aire abajo para la 2.ª fila de tarjetas y menos solape con la siguiente sección */
+@media (min-width: 1100px) {
+    .tech-section {
+        padding-bottom: clamp(5rem, 7vw, 8rem);
+        min-height: min(78vh, 920px);
+    }
+}
+
+@media (min-width: 1600px) {
+    .tech-section {
+        padding-bottom: clamp(6rem, 6vw, 9rem);
+        min-height: min(82vh, 980px);
+    }
+}
+
 /* En responsive, permitir que el panel se vea aunque esté cerca del borde */
 @media (max-width: 900px) {
     .tech-section {

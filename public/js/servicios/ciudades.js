@@ -13,12 +13,13 @@
 
 var sectionContent = document.querySelector('.section-content');
 var firstCardId = 'servicio-iot';
+var isEnglish = (document.documentElement.lang || '').toLowerCase().startsWith('en') || window.location.pathname.startsWith('/en/');
 var serviciosCiudades = [
     { id: 'servicio-iot', label: 'IoT' },
-    { id: 'servicio-mapas-ruido', label: 'Mapas de ruido' },
-    { id: 'servicio-webgis', label: 'Ecosistemas WEBGIS' },
-    { id: 'servicio-descontaminacion', label: 'Descontaminación acústica' },
-    { id: 'servicio-geoespacial', label: 'Analítica geoespacial' }
+    { id: 'servicio-mapas-ruido', label: isEnglish ? 'Noise maps' : 'Mapas de ruido' },
+    { id: 'servicio-webgis', label: isEnglish ? 'WebGIS ecosystems' : 'Ecosistemas WEBGIS' },
+    { id: 'servicio-descontaminacion', label: isEnglish ? 'Acoustic remediation plans' : 'Descontaminación acústica' },
+    { id: 'servicio-geoespacial', label: isEnglish ? 'Geospatial analytics' : 'Analítica geoespacial' }
 ];
 
 function renderServicesBar() {

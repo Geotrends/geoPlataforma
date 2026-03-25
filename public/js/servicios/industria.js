@@ -13,17 +13,18 @@
 
 var sectionContent = document.querySelector('.section-content');
 var firstCardId = 'servicio-iot';
+var isEnglish = (document.documentElement.lang || '').toLowerCase().startsWith('en') || window.location.pathname.startsWith('/en/');
 var serviciosIndustria = [
     { id: 'servicio-iot', label: 'IoT' },
-    { id: 'servicio-control-ruido', label: 'Control de ruido' },
-    { id: 'servicio-clasificacion-fuentes', label: 'Etiquetado acústico' },
-    { id: 'servicio-modelacion-ruido', label: 'Modelación de ruido' },
-    { id: 'servicio-holografia-acustica', label: 'Holografía acústica' },
-    { id: 'servicio-medicion-vibraciones', label: 'Medición de vibraciones' },
-    { id: 'servicio-modelacion-ruido-subacuatico', label: 'Modelación de ruido subacuático' },
-    { id: 'servicio-medicion-ruido-subacuatico', label: 'Medición de ruido subacuático' },
-    { id: 'servicio-geoespacial', label: 'Analítica geoespacial' },
-    { id: 'servicio-fotogrametria', label: 'Fotogrametría' }
+    { id: 'servicio-control-ruido', label: isEnglish ? 'Noise control' : 'Control de ruido' },
+    { id: 'servicio-clasificacion-fuentes', label: isEnglish ? 'Source labeling' : 'Etiquetado acústico' },
+    { id: 'servicio-modelacion-ruido', label: isEnglish ? 'Noise modeling' : 'Modelación de ruido' },
+    { id: 'servicio-holografia-acustica', label: isEnglish ? 'Acoustic holography' : 'Holografía acústica' },
+    { id: 'servicio-medicion-vibraciones', label: isEnglish ? 'Vibration measurement' : 'Medición de vibraciones' },
+    { id: 'servicio-modelacion-ruido-subacuatico', label: isEnglish ? 'Underwater noise modeling' : 'Modelación de ruido subacuático' },
+    { id: 'servicio-medicion-ruido-subacuatico', label: isEnglish ? 'Underwater noise measurement' : 'Medición de ruido subacuático' },
+    { id: 'servicio-geoespacial', label: isEnglish ? 'Geospatial analytics' : 'Analítica geoespacial' },
+    { id: 'servicio-fotogrametria', label: isEnglish ? 'Photogrammetry' : 'Fotogrametría' }
 ];
 
 function renderServicesBar() {

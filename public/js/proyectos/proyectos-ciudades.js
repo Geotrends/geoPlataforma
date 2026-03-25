@@ -403,8 +403,8 @@
             var img = document.createElement('img');
             img.src = imageSrc;
             img.alt = titulo;
-            var fitClass = (servicioActivo === 'iot' ? ' img-completa' : '') + (servicioActivo === 'descontaminacion' ? ' proyecto-panel-img-fit-16-9' : '');
-            img.className = 'proyecto-panel-img' + fitClass;
+            /* Mismo marco 16:9 para todas las imágenes (object-fit: cover en CSS) */
+            img.className = 'proyecto-panel-img proyecto-panel-img-fit-16-9';
             slide.appendChild(img);
             
             // Agregar botón de ampliar imagen para proyectos WEBGIS, CORNARE en Mapas de ruido, y Observatorio en Analítica geoespacial

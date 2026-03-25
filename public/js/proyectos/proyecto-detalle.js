@@ -2,42 +2,73 @@
     var params = new URLSearchParams(window.location.search);
     var seccion = params.get('seccion') || 'industria';
     var proyecto = params.get('proyecto') || '';
+    var pathName = (window.location && window.location.pathname) ? window.location.pathname : '';
+    var isEnglish = document.documentElement.lang === 'en' || pathName.indexOf('/en/') !== -1 || pathName.indexOf('/en') === 0;
     var backLink = document.getElementById('proyecto-detalle-back');
     var backServicio = (proyecto === 'refineria-cartagena' || proyecto === 'alma-magdalena' || proyecto === 'arclad' || proyecto === 'colcafe' || proyecto === 'pepsico') ? 'control-ruido' : (proyecto === 'amva-usb' ? 'iot' : (proyecto === 'segovia' ? 'medicion-vibraciones' : (proyecto === 'ccr-palagua' ? 'fotogrametria' : (proyecto === 'cerrejon' || proyecto === 'mineros-bic' || proyecto === 'p-and-g' ? 'holografia-acustica' : (proyecto === 'spia' ? 'medicion-ruido-subacuatico' : '')))));
     backLink.href = seccion === 'ciudades' ? 'proyectos-ciudades.html' + (backServicio ? '?servicio=' + backServicio : '') : 'proyectos-industria.html' + (backServicio ? '?servicio=' + backServicio : '');
 
-    var titulo = params.get('titulo') || (seccion === 'ciudades' ? 'Proyecto Ciudades' : 'Proyecto Industria');
-    var categoria = params.get('categoria') || seccion;
+    var titulo = params.get('titulo') || (seccion === 'ciudades' ? (isEnglish ? 'City project' : 'Proyecto Ciudades') : (isEnglish ? 'Industry project' : 'Proyecto Industria'));
+    var categoria = params.get('categoria') || (isEnglish ? (seccion === 'ciudades' ? 'cities' : 'industry') : seccion);
     var ano = params.get('ano') || '2023';
-    var cliente = params.get('cliente') || (seccion === 'ciudades' ? 'Cliente Ejemplo' : 'Cliente Industrial Ejemplo');
+    var cliente = params.get('cliente') || (seccion === 'ciudades' ? (isEnglish ? 'Example client' : 'Cliente Ejemplo') : (isEnglish ? 'Example industrial client' : 'Cliente Industrial Ejemplo'));
     var desc = params.get('desc');
     if (!desc) {
-        if (proyecto === 'refineria-cartagena')
-            desc = 'Proyecto integral de control y modelación acústica en Refinería Cartagena: mediciones in situ, mapas de ruido, identificación de fuentes y planes de mitigación para cumplimiento normativo y mejora del entorno laboral. Combinamos holografía acústica, modelación numérica y analítica geoespacial para entregar soluciones que reducen la exposición al ruido y optimizan la operación industrial.';
-        else if (proyecto === 'alma-magdalena')
-            desc = 'Proyecto de control de ruido y evaluación acústica en Alma Magdalena: mediciones en campo, mapas de ruido, identificación de fuentes y propuestas de mitigación para cumplimiento ambiental y mejora de la calidad sonora del entorno. Integramos modelación predictiva y mediciones in situ para entregar diagnósticos y planes de acción alineados con la normativa vigente.';
-        else if (proyecto === 'amva-usb')
-            desc = 'Proyecto de monitoreo urbano y soluciones geoespaciales para el Área Metropolitana del Valle de Aburrá (AMVA): mediciones ambientales, mapas de ruido, sensores IoT y plataformas de información territorial para la gestión inteligente de la ciudad. Integramos datos en tiempo real, analítica geoespacial y acústica para apoyar la toma de decisiones y el cumplimiento normativo en entornos urbanos.';
-        else if (proyecto === 'arclad')
-            desc = 'Proyecto integral de control de ruido, clasificación de fuentes y modelación acústica industrial para ARCLAD: mediciones in situ, identificación de fuentes de ruido, mapas de ruido y modelación predictiva para cumplimiento normativo y mejora del entorno laboral. Combinamos medición, clasificación de fuentes y modelación numérica para entregar soluciones que reducen la exposición al ruido y optimizan la operación.';
-        else if (proyecto === 'segovia')
-            desc = 'Proyecto de medición de vibraciones industriales en Segovia: mediciones in situ con equipos especializados, análisis de señales y espectros, identificación de fuentes de vibración y evaluación de impacto para cumplimiento normativo y mejora del entorno. Integramos medición de vibraciones con analítica geoespacial para entregar diagnósticos y recomendaciones técnicas.';
-        else if (proyecto === 'ccr-palagua')
-            desc = 'Proyecto de fotogrametría y levantamiento geoespacial en CCR Palagua: captura de imágenes para modelado 3D, ortofotos y productos cartográficos para gestión de activos industriales. Combinamos vuelos con drone, procesamiento fotogramétrico y analítica geoespacial para entregar soluciones de medición y monitoreo del territorio.';
-        else if (proyecto === 'colcafe')
-            desc = 'Proyecto integral de control de ruido, holografía acústica y medición de vibraciones para Colcafé: mediciones in situ, identificación de fuentes con holografía acústica, análisis de vibraciones y planes de mitigación para cumplimiento normativo y mejora del entorno laboral. Combinamos técnicas de diagnóstico acústico y de vibraciones para entregar soluciones que reducen la exposición y optimizan la operación industrial.';
-        else if (proyecto === 'cerrejon')
-            desc = 'Proyecto de holografía acústica para Cerrejón: identificación y localización de fuentes de ruido mediante técnicas de holografía acústica, mediciones in situ y análisis de mapas de intensidad sonora para cumplimiento normativo y mejora del entorno laboral en operaciones mineras. Combinamos medición avanzada y visualización espacial del ruido para entregar diagnósticos y planes de mitigación.';
-        else if (proyecto === 'mineros-bic')
-            desc = 'Proyecto de holografía acústica para Mineros BIC: identificación y localización de fuentes de ruido mediante técnicas de holografía acústica, mediciones in situ y análisis de mapas de intensidad sonora para cumplimiento normativo y mejora del entorno laboral. Combinamos medición avanzada y visualización espacial del ruido para entregar diagnósticos y planes de mitigación.';
-        else if (proyecto === 'p-and-g')
-            desc = 'Proyecto de holografía acústica para Procter and Gamble: identificación y localización de fuentes de ruido mediante técnicas de holografía acústica, mediciones in situ y análisis de mapas de intensidad sonora para cumplimiento normativo y mejora del entorno laboral en operaciones industriales. Combinamos medición avanzada y visualización espacial del ruido para entregar diagnósticos y planes de mitigación.';
-        else if (proyecto === 'pepsico')
-            desc = 'Proyecto integral de control de ruido, clasificación de fuentes, modelación acústica y fotogrametría para PepsiCo: mediciones in situ, identificación de fuentes de ruido, mapas de ruido, modelación predictiva y levantamientos geoespaciales para cumplimiento normativo y mejora del entorno laboral. Combinamos control de ruido, clasificación de fuentes, modelación numérica y fotogrametría para entregar soluciones que reducen la exposición al ruido y optimizan la operación industrial.';
-        else if (proyecto === 'spia')
-            desc = 'Proyecto de medición y modelación de ruido subacuático para SPIA: mediciones in situ en entornos acuáticos, caracterización de fuentes de ruido subacuático, modelación predictiva y análisis de impacto para cumplimiento normativo y gestión ambiental. Combinamos medición de ruido subacuático y modelación numérica para entregar diagnósticos y planes de mitigación en ambientes marinos y fluviales.';
-        else
-            desc = 'Descripción detallada del proyecto. Aquí puede incluir objetivos, metodología, resultados y cualquier información relevante para el cliente.';
+        if (isEnglish) {
+            if (proyecto === 'refineria-cartagena')
+                desc = 'Comprehensive noise control and acoustic modeling project at the Cartagena Refinery: on-site measurements, noise maps, source identification, and mitigation plans to support compliance and improve the working environment. We combine acoustic holography, numerical modeling, and geospatial analytics to reduce noise exposure and optimize industrial operations.';
+            else if (proyecto === 'alma-magdalena')
+                desc = 'Noise control and acoustic assessment project for Alma Magdalena: field measurements, noise maps, source identification, and mitigation proposals to support environmental compliance and improve the acoustic environment. We integrate predictive modeling and on-site measurements to deliver diagnostics and action plans aligned with current regulations.';
+            else if (proyecto === 'amva-usb')
+                desc = 'Urban monitoring and geospatial solutions project for the Aburrá Valley Metropolitan Area (AMVA): environmental measurements, noise maps, IoT sensors, and territorial information platforms for smart city management. We integrate real-time data, geospatial analytics, and acoustics to support decision-making and compliance in urban environments.';
+            else if (proyecto === 'arclad')
+                desc = 'Comprehensive industrial noise control, source classification and acoustic modeling project for ARCLAD: on-site measurements, noise source identification, noise maps and predictive modeling to support compliance and improve the working environment. We combine measurement, source classification and numerical modeling to reduce exposure and optimize operations.';
+            else if (proyecto === 'segovia')
+                desc = 'Industrial vibration measurement project in Segovia: on-site measurements with specialized equipment, signal and spectrum analysis, vibration source identification, and impact assessment. We deliver technical diagnostics and recommendations to support compliance and improve performance.';
+            else if (proyecto === 'ccr-palagua')
+                desc = 'Photogrammetry and geospatial surveying project at CCR Palagua: image capture for 3D modeling, orthophotos, and cartographic products for industrial asset management. We combine drone flights, photogrammetric processing and geospatial analytics to deliver measurement and territory monitoring solutions.';
+            else if (proyecto === 'colcafe')
+                desc = 'Comprehensive noise control, acoustic holography and vibration measurement project for Colcafé: on-site measurements, source identification using acoustic holography, vibration analysis and mitigation plans. We combine acoustic and vibration diagnostics to reduce exposure and optimize operations.';
+            else if (proyecto === 'cerrejon')
+                desc = 'Acoustic holography project for Cerrejón: identification and localization of noise sources using acoustic holography, on-site measurements and sound-intensity maps to support compliance and improve the working environment in mining operations.';
+            else if (proyecto === 'mineros-bic')
+                desc = 'Acoustic holography project for Mineros BIC: identification and localization of noise sources using acoustic holography, on-site measurements and sound-intensity maps to support compliance and improve the working environment.';
+            else if (proyecto === 'p-and-g')
+                desc = 'Acoustic holography project for Procter & Gamble: identification and localization of noise sources using acoustic holography, on-site measurements and sound-intensity maps to support compliance and improve the working environment in industrial operations.';
+            else if (proyecto === 'pepsico')
+                desc = 'Comprehensive noise control, source classification, acoustic modeling and photogrammetry project for PepsiCo: on-site measurements, noise source identification, noise maps, predictive modeling and geospatial surveys to support compliance and improve the working environment.';
+            else if (proyecto === 'spia')
+                desc = 'Underwater noise measurement and modeling project for SPIA: in-situ measurements in aquatic environments, underwater noise source characterization, predictive modeling and impact analysis to support compliance and environmental management.';
+            else
+                desc = 'Detailed project description. This section can include objectives, methodology, results, and any relevant client information.';
+        } else {
+            if (proyecto === 'refineria-cartagena')
+                desc = 'Proyecto integral de control y modelación acústica en Refinería Cartagena: mediciones in situ, mapas de ruido, identificación de fuentes y planes de mitigación para cumplimiento normativo y mejora del entorno laboral. Combinamos holografía acústica, modelación numérica y analítica geoespacial para entregar soluciones que reducen la exposición al ruido y optimizan la operación industrial.';
+            else if (proyecto === 'alma-magdalena')
+                desc = 'Proyecto de control de ruido y evaluación acústica en Alma Magdalena: mediciones en campo, mapas de ruido, identificación de fuentes y propuestas de mitigación para cumplimiento ambiental y mejora de la calidad sonora del entorno. Integramos modelación predictiva y mediciones in situ para entregar diagnósticos y planes de acción alineados con la normativa vigente.';
+            else if (proyecto === 'amva-usb')
+                desc = 'Proyecto de monitoreo urbano y soluciones geoespaciales para el Área Metropolitana del Valle de Aburrá (AMVA): mediciones ambientales, mapas de ruido, sensores IoT y plataformas de información territorial para la gestión inteligente de la ciudad. Integramos datos en tiempo real, analítica geoespacial y acústica para apoyar la toma de decisiones y el cumplimiento normativo en entornos urbanos.';
+            else if (proyecto === 'arclad')
+                desc = 'Proyecto integral de control de ruido, clasificación de fuentes y modelación acústica industrial para ARCLAD: mediciones in situ, identificación de fuentes de ruido, mapas de ruido y modelación predictiva para cumplimiento normativo y mejora del entorno laboral. Combinamos medición, clasificación de fuentes y modelación numérica para entregar soluciones que reducen la exposición al ruido y optimizan la operación.';
+            else if (proyecto === 'segovia')
+                desc = 'Proyecto de medición de vibraciones industriales en Segovia: mediciones in situ con equipos especializados, análisis de señales y espectros, identificación de fuentes de vibración y evaluación de impacto para cumplimiento normativo y mejora del entorno. Integramos medición de vibraciones con analítica geoespacial para entregar diagnósticos y recomendaciones técnicas.';
+            else if (proyecto === 'ccr-palagua')
+                desc = 'Proyecto de fotogrametría y levantamiento geoespacial en CCR Palagua: captura de imágenes para modelado 3D, ortofotos y productos cartográficos para gestión de activos industriales. Combinamos vuelos con drone, procesamiento fotogramétrico y analítica geoespacial para entregar soluciones de medición y monitoreo del territorio.';
+            else if (proyecto === 'colcafe')
+                desc = 'Proyecto integral de control de ruido, holografía acústica y medición de vibraciones para Colcafé: mediciones in situ, identificación de fuentes con holografía acústica, análisis de vibraciones y planes de mitigación para cumplimiento normativo y mejora del entorno laboral. Combinamos técnicas de diagnóstico acústico y de vibraciones para entregar soluciones que reducen la exposición y optimizan la operación industrial.';
+            else if (proyecto === 'cerrejon')
+                desc = 'Proyecto de holografía acústica para Cerrejón: identificación y localización de fuentes de ruido mediante técnicas de holografía acústica, mediciones in situ y análisis de mapas de intensidad sonora para cumplimiento normativo y mejora del entorno laboral en operaciones mineras. Combinamos medición avanzada y visualización espacial del ruido para entregar diagnósticos y planes de mitigación.';
+            else if (proyecto === 'mineros-bic')
+                desc = 'Proyecto de holografía acústica para Mineros BIC: identificación y localización de fuentes de ruido mediante técnicas de holografía acústica, mediciones in situ y análisis de mapas de intensidad sonora para cumplimiento normativo y mejora del entorno laboral. Combinamos medición avanzada y visualización espacial del ruido para entregar diagnósticos y planes de mitigación.';
+            else if (proyecto === 'p-and-g')
+                desc = 'Proyecto de holografía acústica para Procter and Gamble: identificación y localización de fuentes de ruido mediante técnicas de holografía acústica, mediciones in situ y análisis de mapas de intensidad sonora para cumplimiento normativo y mejora del entorno laboral en operaciones industriales. Combinamos medición avanzada y visualización espacial del ruido para entregar diagnósticos y planes de mitigación.';
+            else if (proyecto === 'pepsico')
+                desc = 'Proyecto integral de control de ruido, clasificación de fuentes, modelación acústica y fotogrametría para PepsiCo: mediciones in situ, identificación de fuentes de ruido, mapas de ruido, modelación predictiva y levantamientos geoespaciales para cumplimiento normativo y mejora del entorno laboral. Combinamos control de ruido, clasificación de fuentes, modelación numérica y fotogrametría para entregar soluciones que reducen la exposición al ruido y optimizan la operación industrial.';
+            else if (proyecto === 'spia')
+                desc = 'Proyecto de medición y modelación de ruido subacuático para SPIA: mediciones in situ en entornos acuáticos, caracterización de fuentes de ruido subacuático, modelación predictiva y análisis de impacto para cumplimiento normativo y gestión ambiental. Combinamos medición de ruido subacuático y modelación numérica para entregar diagnósticos y planes de mitigación en ambientes marinos y fluviales.';
+            else
+                desc = 'Descripción detallada del proyecto. Aquí puede incluir objetivos, metodología, resultados y cualquier información relevante para el cliente.';
+        }
     }
     if (proyecto === 'refineria-cartagena') {
         ano = params.get('ano') || '2024';

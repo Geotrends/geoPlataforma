@@ -1,4 +1,5 @@
 (function() {
+    var isEnglish = (document.documentElement.lang || '').toLowerCase().startsWith('en') || window.location.pathname.startsWith('/en/');
     var content = {
         'quienes-somos': {
             title: 'Quiénes somos',
@@ -43,6 +44,53 @@
                 '</ul></div></section>'
         }
     };
+
+    if (isEnglish) {
+        content = {
+            'quienes-somos': {
+                title: 'Who we are',
+                body: '<p>We are an acoustics-focused startup that integrates science, engineering, and advanced technology to transform how cities and industries manage noise. We combine smart monitoring with IoT sensors, geospatial analytics, predictive modeling, digital twins, and tailored mitigation solutions to address high-complexity acoustic challenges. We have contributed to public policy design and support, and delivered interventions for critical infrastructure under the highest technical standards. Our approach connects environmental performance, regulatory compliance, and ESG strategy—reducing risk, strengthening traceability, and creating reputational value. At Geotrends, we support companies and territories, turning acoustic challenges into opportunities for sustainability, compliance, and competitive leadership.</p>'
+            },
+            proposito: {
+                title: 'Purpose',
+                body: '<p>At Geotrends, we believe that promoting cleaner, healthier, and safer environments is essential to building sustainable territories that benefit all living beings. That’s why we leverage innovation and Industry 4.0 technologies to transform noise—an invisible pollutant that affects millions—into actionable intelligence that drives decisions with real impact. Through our smart ecosystems and IoT technologies, we empower communities, cities, and industries not only to measure, but to transform their environments toward a better future.</p>' +
+                    '<div class="about-proposito-video-wrap"><video class="about-proposito-video" controls playsinline preload="metadata" aria-label="Geotrends purpose video"><source src="../img_video/sobreNosotros/proposito.mp4" type="video/mp4"></video></div>'
+            },
+            valores: {
+                title: 'Core values',
+                body: '<div class="about-valores-cards about-valores-in-panel">' +
+                    '<article class="about-valores-card about-valores-card-innovation"><span class="about-valores-card-circle" aria-hidden="true"><img src="../img_video/sobreNosotros/valores/pasion.webp" alt="" class="about-valores-card-icon-img"></span><div class="about-valores-card-text"><strong class="about-valores-card-title">Passion for excellence</strong><span class="about-valores-card-sub">We believe excellence starts within. Every day we challenge ourselves to grow, learn, and give our best—not because we’re asked to, but because we believe in what we are building.</span></div></article>' +
+                    '<article class="about-valores-card about-valores-card-rigor"><span class="about-valores-card-circle" aria-hidden="true"><img src="../img_video/sobreNosotros/valores/hands.webp" alt="" class="about-valores-card-icon-img"></span><div class="about-valores-card-text"><strong class="about-valores-card-title">Trust as the foundation</strong><span class="about-valores-card-sub">We build lasting relationships through transparency, integrity, and accountability. Trust is at the center of how we collaborate with clients, partners, and each other.</span></div></article>' +
+                    '<article class="about-valores-card about-valores-card-territorio"><span class="about-valores-card-circle" aria-hidden="true"><img src="../img_video/sobreNosotros/valores/award.webp" alt="" class="about-valores-card-icon-img"></span><div class="about-valores-card-text"><strong class="about-valores-card-title">Empowered to own it</strong><span class="about-valores-card-sub">We believe real empowerment means leading your work with conviction, autonomy, and innovation. Each team member is trusted to use good judgment, take ownership of decisions, and contribute to a shared purpose.</span></div></article>' +
+                    '<article class="about-valores-card about-valores-card-innovation"><span class="about-valores-card-circle" aria-hidden="true"><img src="../img_video/sobreNosotros/valores/happyFace.webp" alt="" class="about-valores-card-icon-img"></span><div class="about-valores-card-text"><strong class="about-valores-card-title">Joy in what we build</strong><span class="about-valores-card-sub">We believe innovation and lasting impact come from working with passion and joy. Happiness fuels creativity, resilience, and authentic connections—making our journey meaningful and our achievements sustainable.</span></div></article>' +
+                    '<article class="about-valores-card about-valores-card-rigor"><span class="about-valores-card-circle" aria-hidden="true"><img src="../img_video/sobreNosotros/valores/team.webp" alt="" class="about-valores-card-icon-img"></span><div class="about-valores-card-text"><strong class="about-valores-card-title">United to amplify our impact</strong><span class="about-valores-card-sub">We achieve more—faster and better—when we work together. Collaboration, shared purpose, and collective ambition turn great ideas into powerful realities.</span></div></article>' +
+                    '</div>'
+            },
+            'reconocimientos-clientes': {
+                title: 'Recognition & clients',
+                body: '<section class="about-recon-clientes-seccion" aria-label="Recognition"><h3 class="about-recon-clientes-seccion-title">Recognition</h3>' +
+                    '<div class="about-recon-clientes-scroll-wrap"><ul class="about-recon-logos-list" aria-label="Recognition logos">' +
+                    '<li class="about-recon-logo-item"><img src="../img_video/reconocimientos/rutan.webp" alt="RUTAN" class="about-recon-logo-img" width="160" height="80" loading="lazy"></li>' +
+                    '<li class="about-recon-logo-item"><img src="../img_video/reconocimientos/ituseed.webp" alt="ITUSEED" class="about-recon-logo-img about-logo-size-match" width="160" height="80" loading="lazy"></li>' +
+                    '<li class="about-recon-logo-item"><img src="../img_video/reconocimientos/royal.webp" alt="Royal" class="about-recon-logo-img" width="160" height="80" loading="lazy"></li>' +
+                    '<li class="about-recon-logo-item"><img src="../img_video/reconocimientos/innpulsa.webp" alt="Innpulsa" class="about-recon-logo-img" width="160" height="80" loading="lazy"></li>' +
+                    '</ul></div></section>' +
+                    '<section class="about-recon-clientes-seccion" aria-label="Clients"><h3 class="about-recon-clientes-seccion-title">Clients</h3>' +
+                    '<div class="about-recon-clientes-scroll-wrap"><ul class="about-clientes-logos about-clientes-logos-inline" aria-label="Client logos">' +
+                    '<li class="about-clientes-logo-item"><img src="../img_video/clientes/udea.webp" alt="Universidad de Antioquia" class="about-clientes-logo-img about-logo-size-match" width="160" height="80" loading="lazy"></li>' +
+                    '<li class="about-clientes-logo-item"><img src="../img_video/clientes/pepsico.webp" alt="PepsiCo" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
+                    '<li class="about-clientes-logo-item"><img src="../img_video/clientes/colcafe.webp" alt="Colcafé" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
+                    '<li class="about-clientes-logo-item"><img src="../img_video/clientes/pg.webp" alt="Procter & Gamble" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
+                    '<li class="about-clientes-logo-item"><img src="../img_video/clientes/aislaterm.webp" alt="Aislather" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
+                    '<li class="about-clientes-logo-item"><img src="../img_video/clientes/aqua-terra.webp" alt="Aqua & Terra" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
+                    '<li class="about-clientes-logo-item"><img src="../img_video/clientes/arclad.webp" alt="ARCLAD" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
+                    '<li class="about-clientes-logo-item"><img src="../img_video/clientes/usb.webp" alt="Universidad de San Buenaventura" class="about-clientes-logo-img" width="120" height="48" loading="lazy"></li>' +
+                    '<li class="about-clientes-logo-item"><img src="../img_video/clientes/envigado.png" alt="Alcaldía de Envigado" class="about-clientes-logo-img about-clientes-logo-envigado" width="120" height="48" loading="lazy"></li>' +
+                    '<li class="about-clientes-logo-item"><img src="../img_video/clientes/ing.webp" alt="CCR Ingenieros Asociados" class="about-clientes-logo-img about-logo-size-match" width="160" height="80" loading="lazy"></li>' +
+                    '</ul></div></section>'
+            }
+        };
+    }
 
     var tabs = document.querySelectorAll('.about-tab');
     var panel = document.getElementById('about-panel');

@@ -448,7 +448,7 @@
         var img = document.createElement('img');
         img.src = imageSrc;
         img.alt = titulo;
-        img.className = 'proyecto-panel-img' + (imgFit === '16:9' ? ' proyecto-panel-img-fit-16-9' : '');
+        img.className = 'proyecto-panel-img proyecto-panel-img-fit-16-9';
         slide.appendChild(img);
         
         // Agregar botón de ampliar imagen para ARCLAD en Modelación de ruido (Evaluación de impacto acústico), SPIA en Modelación de ruido subacuático, y Campaña política en Analítica geoespacial
