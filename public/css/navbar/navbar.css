@@ -266,6 +266,69 @@ body.page-home .navbar.scrolled .logo-img {
     transform: translateY(0);
 }
 
+/* Botón idioma: banderas ES + US + texto */
+.nav-lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.nav-lang-flags {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.22rem;
+    flex-shrink: 0;
+}
+
+.nav-lang-flag-img {
+    width: 18px;
+    height: 12px;
+    object-fit: cover;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+    display: block;
+}
+
+.nav-lang-label {
+    white-space: nowrap;
+}
+
+/* Idioma: submenú alineado a la derecha; en desktop se abre con hover o foco */
+.nav-lang .nav-lang-menu {
+    left: auto;
+    right: 0;
+    min-width: 158px;
+}
+
+.nav-lang-menu a[aria-current="page"] {
+    font-weight: 600;
+    color: var(--geo-military-green);
+}
+
+.nav-lang-menu .nav-lang-option {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.nav-lang-flag-img--menu {
+    width: 16px;
+    height: 11px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+@media (min-width: 1101px) {
+    .nav-lang:hover .nav-lang-menu,
+    .nav-lang:focus-within .nav-lang-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
 .nav-dropdown-menu li {
     margin: 0;
 }
@@ -362,6 +425,62 @@ body.page-home .navbar.scrolled .logo-img {
     align-items: center;
     gap: 1rem;
     flex-shrink: 0;
+}
+
+/* ES | EN — mismo estilo que enlaces del nav; visible junto a la hamburguesa en móvil */
+.nav-lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.2rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(0, 0, 0, 0.12);
+}
+
+.navbar.scrolled .nav-lang-switch {
+    border-color: var(--geo-border);
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.nav-lang-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    padding: 0.35rem 0.55rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.85);
+    border-radius: 9999px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.navbar:not(.scrolled) .nav-lang-btn {
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.navbar.scrolled .nav-lang-btn {
+    color: var(--geo-text);
+}
+
+.nav-lang-btn:hover:not(.is-active) {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
+
+.navbar.scrolled .nav-lang-btn:hover:not(.is-active) {
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--geo-military-green);
+}
+
+.nav-lang-btn.is-active {
+    background: var(--geo-military-green);
+    color: #fff;
+    cursor: default;
+    pointer-events: none;
 }
 
 /* Hamburger Menu */
@@ -517,6 +636,10 @@ body.page-home .navbar.scrolled .logo-img {
         border-radius: 0;
         font-size: 0.9rem;
         line-height: 1.4;
+    }
+
+    .nav-lang-toggle {
+        justify-content: flex-start;
     }
 
     .nav-dropdown-menu {
