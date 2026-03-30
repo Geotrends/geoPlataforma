@@ -614,10 +614,14 @@
     bottom: auto;
     max-height: calc(100% - 6rem);
     height: auto;
-    display: flex;
-    gap: 1.25rem;
-    align-items: stretch;
+    /* Grid: una sola fila con N columnas → misma altura de fila para alinear CTAs */
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(255px, 280px);
     justify-content: center;
+    justify-items: stretch;
+    align-items: stretch;
+    gap: 1.25rem;
     z-index: 2;
     opacity: 0;
     visibility: hidden;
@@ -635,6 +639,7 @@
     max-height: none;
     padding-bottom: 7rem;
     margin-top: 5rem;
+    align-items: stretch;
 }
 
 /* Fondo muy blur cuando se despliegan las 3 cards: se extiende hasta abajo; título y botón van encima */
@@ -662,9 +667,10 @@
 /* Tarjetas de servicio (pantalla completa): mismo borde redondeado que las cards principales */
 .wind-project-card {
     flex: 0 0 auto;
-    min-width: 255px;
-    width: 255px;
-    max-width: 280px;
+    align-self: stretch;
+    min-width: 0;
+    width: 100%;
+    max-width: none;
     min-height: 360px;
     max-height: none;
     display: flex;
@@ -736,9 +742,9 @@
 
 /* Cuerpo de la card: título, descripción y botón compactos; esquinas inferiores redondeadas como la card principal */
 .wind-project-card-body {
-    flex: 1 1 auto;
+    flex: 1 1 0;
     min-height: 0;
-    padding: 1.15rem 1.1rem 1.15rem 1.1rem;
+    padding: 1.15rem 1.1rem 1.55rem 1.1rem;
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
@@ -764,6 +770,8 @@
     margin: 0;
     letter-spacing: -0.02em;
     line-height: 1.25;
+    /* Reservar altura de 2 líneas: evita que un título largo baje solo el botón de esa card */
+    min-height: calc(2 * 1.25em);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
     flex-shrink: 0;
 }
@@ -773,7 +781,7 @@
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.85);
     margin: 0;
-    flex: 0 0 auto;
+    flex: 1 1 auto;
     min-height: 4.2em;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -987,16 +995,17 @@ a.wind-project-card-cta:hover {
         width: calc(100% - 1rem);
         max-width: 100%;
         justify-content: center;
+        grid-auto-columns: minmax(200px, 292px);
         gap: 1.1rem;
         padding-left: 0.35rem;
         padding-right: 0.35rem;
     }
 
     .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card {
-        flex: 1 1 0;
+        align-self: stretch;
         min-width: 0;
-        width: auto;
-        max-width: 292px;
+        width: 100%;
+        max-width: none;
         min-height: 424px;
     }
 
@@ -1007,7 +1016,7 @@ a.wind-project-card-cta:hover {
     }
 
     .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-body {
-        padding: 1.15rem 1.1rem 1.45rem 1.1rem;
+        padding: 1.15rem 1.1rem 1.6rem 1.1rem;
         gap: 0.5rem;
     }
 }
@@ -1081,7 +1090,9 @@ a.wind-project-card-cta:hover {
     }
     /* Minicards apiladas hacia abajo */
     .wind-card.expanded .wind-inner-carousel-wrap .wind-project-cards {
-        flex-direction: column;
+        grid-auto-flow: row;
+        grid-auto-columns: unset;
+        grid-template-columns: 1fr;
         position: relative;
         top: auto;
         bottom: auto;
@@ -1280,8 +1291,10 @@ a.wind-project-card-cta:hover {
 
     .wind-card.expanded .wind-inner-carousel-wrap .wind-project-cards {
         position: relative;
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-auto-flow: row;
+        grid-auto-columns: unset;
+        grid-template-columns: 1fr;
         gap: 0.75rem;
         padding: 0;
         margin: 0;
@@ -1311,7 +1324,7 @@ a.wind-project-card-cta:hover {
     }
 
     .wind-card.expanded .wind-project-card-body {
-        padding: 0.5rem;
+        padding: 0.5rem 0.5rem 0.7rem;
     }
 
     .wind-card.expanded .wind-project-card-title {

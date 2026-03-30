@@ -1127,7 +1127,7 @@ body.proyecto-panel-open .proyectos-filters-container {
     flex: 1 1 38%;
     min-width: 0;
     min-height: 0;
-    padding: 2.5rem 2.5rem 2rem;
+    padding: 3.25rem 2.5rem 2rem;
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
@@ -1146,6 +1146,7 @@ body.proyecto-panel-open .proyectos-filters-container {
 @media (min-width: 1100px) {
     .proyecto-panel-content {
         max-width: 38%;
+        padding-top: 3.5rem;
         padding-left: 2rem;
         padding-right: 2.25rem;
     }
