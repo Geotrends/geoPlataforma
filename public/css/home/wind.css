@@ -111,7 +111,8 @@
     box-sizing: border-box;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     opacity: 0;
-    transform: translateX(-120px);
+    transform: translate3d(-120px, 0, 0);
+    -webkit-transform: translate3d(-120px, 0, 0);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -121,13 +122,14 @@
 }
 
 .wind-section.wind-animated .wind-intro {
+    -webkit-animation: wind-intro-slide 1.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     animation: wind-intro-slide 1.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes wind-intro-slide {
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
@@ -262,11 +264,15 @@
     transition: flex 0.15s cubic-bezier(0.4, 0, 0.2, 1), transform 0.15s ease, box-shadow 0.15s ease, opacity 0.1s ease, visibility 0.1s ease, width 0.15s ease;
     scroll-snap-align: start;
     opacity: 0;
-    transform: translateY(-180px);
+    transform: translate3d(0, -180px, 0);
+    -webkit-transform: translate3d(0, -180px, 0);
 }
 
 .wind-section.wind-animated .wind-card {
+    -webkit-animation: wind-card-fall 1.5s cubic-bezier(0.34, 1.1, 0.64, 1) forwards;
     animation: wind-card-fall 1.5s cubic-bezier(0.34, 1.1, 0.64, 1) forwards;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .wind-card:last-child {
@@ -281,16 +287,17 @@
 @keyframes wind-card-fall {
     from {
         opacity: 0;
-        transform: translateY(-180px);
+        transform: translate3d(0, -180px, 0);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
 .wind-card:hover {
-    transform: translateY(-8px);
+    transform: translate3d(0, -8px, 0);
+    -webkit-transform: translate3d(0, -8px, 0);
     box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
 }
 
@@ -317,9 +324,11 @@
     transition: opacity 0.1s ease, visibility 0.1s ease, flex 0.15s cubic-bezier(0.4, 0, 0.2, 1), width 0.15s ease;
 }
 
-/* Asegurar que las cards visibles (sin clase hidden) tengan opacity y visibility correctos */
+/*
+ * No forzar opacity: 1 aquí: en Safari pisa el estado inicial de wind-card-fall y rompe la animación.
+ * La opacidad la controlan los keyframes (forwards) o .wind-card.hidden.
+ */
 .wind-card:not(.hidden) {
-    opacity: 1;
     visibility: visible;
 }
 
@@ -411,8 +420,9 @@
     position: absolute;
     inset: 0;
     background-size: cover;
+    -webkit-background-size: cover;
     background-position: center;
-    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease, -webkit-filter 0.3s ease;
 }
 
 /* Primera card: imagen anclada a la izquierda para que no se vea cortada */
@@ -420,31 +430,28 @@
     background-position: left center;
 }
 
-/*
- * Card Industria: fondo con cover + color bajo el PNG; sin scale en reposo (Safari).
- * Hover: mismo zoom que el resto (.wind-card:hover .wind-card-img → scale 1.08).
- */
-.wind-card:nth-child(2) .wind-card-img {
-    transform: none;
-    -webkit-transform: none;
+/* Industria: imagen real + object-fit (Safari compone mejor que PNG ancho solo con background) */
+.wind-card-img--photo {
+    background-image: none !important;
     background-color: rgba(10, 14, 26, 0.97);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 48%;
-    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
 }
-.wind-card:nth-child(2):hover .wind-card-img {
-    transform: scale(1.08);
-    -webkit-transform: scale(1.08);
-}
-.wind-card:nth-child(2).expanded .wind-card-img {
-    transform: none;
-    -webkit-transform: none;
-    background-size: cover;
+
+.wind-card-img--photo img {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 48%;
+    pointer-events: none;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 .wind-card:hover .wind-card-img {
     transform: scale(1.08);
+    -webkit-transform: scale(1.08);
 }
 
 /* Cuando la card está expandida: aplicar blur a la imagen de fondo */

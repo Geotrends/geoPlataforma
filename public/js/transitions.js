@@ -34,22 +34,14 @@
   }
 
   function scrollToTop() {
-    // Scroll suave al top de la página al cargar
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'instant' // Usar 'instant' para que sea inmediato sin animación
-    });
-
-    // También asegurar que el scroll esté en 0 después de un breve delay
-    // por si hay contenido que se carga dinámicamente
-    setTimeout(function() {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'instant'
-      });
-    }, 100);
+    // Safari y algunos WebKit no soportan behavior: 'instant' igual que Chrome
+    function goTop() {
+      window.scrollTo(0, 0);
+      if (document.documentElement) document.documentElement.scrollTop = 0;
+      if (document.body) document.body.scrollTop = 0;
+    }
+    goTop();
+    setTimeout(goTop, 100);
   }
 
   function setupNavigationTransitions() {
@@ -98,11 +90,10 @@
 
   // Manejar el botón de retroceso del navegador
   window.addEventListener('pageshow', function(event) {
-    // Si la página se carga desde el cache, asegurar que esté visible
+    // bfcache (Safari): reaplicar clases de entrada para que CSS no quede colgado
     if (event.persisted) {
-      document.body.classList.remove('page-transitioning');
-      document.body.classList.add('loaded');
-      document.body.classList.add('page-entered');
+      document.body.classList.remove('page-transitioning', 'transition-prep');
+      document.body.classList.add('loaded', 'page-entered');
       scrollToTop();
     }
   });
