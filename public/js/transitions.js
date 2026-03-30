@@ -14,14 +14,23 @@
   }
 
   function init() {
-    // Marcar el body como cargado para evitar parpadeo
-    document.body.classList.add('loaded');
+    // Estado inicial para transición de entrada
+    document.body.classList.add('transition-prep');
+    markRevealItems();
 
     // Posicionar la página arriba al cargar
     scrollToTop();
 
     // Interceptar clics en enlaces de navegación
     setupNavigationTransitions();
+
+    // Disparar la entrada en el siguiente frame para evitar "salto"
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        document.body.classList.add('loaded');
+        document.body.classList.add('page-entered');
+      });
+    });
   }
 
   function scrollToTop() {
@@ -64,7 +73,7 @@
           return;
         }
 
-        // Aplicar fade out antes de navegar
+        // Aplicar salida tipo diapositiva antes de navegar
         e.preventDefault();
         document.body.classList.add('page-transitioning');
 
@@ -76,12 +85,24 @@
     });
   }
 
+  function markRevealItems() {
+    // Stagger para bloques principales sin tocar componentes internos complejos.
+    var groups = document.querySelectorAll(
+      'main > section, main > article, .proyectos-content, .contacto-main, .contacto-cards, .contacto-map-section, .blog-main, .blog-detail-main'
+    );
+    groups.forEach(function(el, index) {
+      el.classList.add('reveal-item');
+      el.style.setProperty('--reveal-delay', Math.min(index * 90, 540) + 'ms');
+    });
+  }
+
   // Manejar el botón de retroceso del navegador
   window.addEventListener('pageshow', function(event) {
     // Si la página se carga desde el cache, asegurar que esté visible
     if (event.persisted) {
       document.body.classList.remove('page-transitioning');
       document.body.classList.add('loaded');
+      document.body.classList.add('page-entered');
       scrollToTop();
     }
   });
