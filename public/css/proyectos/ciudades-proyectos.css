@@ -851,7 +851,7 @@ body.proyecto-panel-open .proyectos-filters-container {
     top: 24rem; /* Aumentado de 18rem a 24rem para que los tags queden por debajo */
     left: 9%; /* Más centrado hacia la derecha */
     right: 0;
-    bottom: 6rem;
+    bottom: 11.5rem; /* Un poco más de recorte inferior */
     z-index: 100;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
@@ -870,17 +870,13 @@ body.proyecto-panel-open .proyectos-filters-container {
     .proyecto-panel {
         left: 18%; /* Más corto: mover el panel un poco más hacia la derecha */
         top: 18rem; /* Aumentado de 12rem a 18rem para que los tags queden por debajo */
-        bottom: 4rem; /* Más alto: reducir de 6rem a 4rem para extenderse más hacia abajo */
+        bottom: 9.5rem; /* Un poco más de recorte */
     }
 
     .proyecto-panel-backdrop {
         background: rgb(0 0 0 / 0%) !important;
     }
 
-    /* Alinear con el marco de imagen (padding-top del bloque izquierdo + bajada del carrusel) */
-    .proyecto-panel-content {
-        margin-top: calc(3.25rem + 10px) !important; /* Alinear con padding-top del bloque de imagen */
-    }
 }
 .proyectos-page.proyecto-panel-open .proyecto-panel {
     transform: translateX(0);
@@ -1796,7 +1792,7 @@ body.proyecto-imagen-modal-open .navbar {
         left: 20% !important; /* Aumentado de 6% a 20% para hacer el panel más corto (menos ancho hacia la izquierda) */
         right: 0 !important; /* Pegado a la derecha */
         transform: translateX(100%) !important; /* Animación desde la derecha (estado cerrado) */
-        bottom: 4rem !important; /* Aumentado de 2rem a 4rem para reducir altura del panel */
+        bottom: 9.5rem !important; /* Mismo criterio que desktop ancho */
         height: auto !important; /* Altura automática */
     }
 
@@ -1823,7 +1819,12 @@ body.proyecto-imagen-modal-open .navbar {
         order: 2 !important; /* Descripción a la derecha */
         flex: 1 1 50% !important;
         max-width: 50% !important;
-        margin-top: calc(3.25rem + 10px) !important; /* Alinear con padding-top del bloque de imagen */
+        margin-top: 0 !important;
+    }
+
+    /* Misma línea base imagen/texto que en desktop ancho (padding imagen + offset carrusel) */
+    .proyectos-page.proyecto-panel-open .proyecto-panel-content {
+        padding-top: calc(3.25rem + 10px) !important;
     }
 
     /* Aumentar padding del contenedor de filtros/tags - SUBIR el contenedor para evitar sobreposición */
@@ -2653,16 +2654,21 @@ body.proyecto-imagen-modal-open {
     }
 }
 
-/* Override FINAL: centrar y bajar un poco el bloque de imagen del panel */
+/*
+ * Panel abierto: la columna de imagen NO debe centrarse en vertical (justify-content: center),
+ * porque con align-items: stretch la columna es muy alta y la imagen queda abajo mientras el
+ * texto arranca arriba. flex-start alinea el marco de imagen con el bloque de texto.
+ */
 .proyectos-page.proyecto-panel-open .proyecto-panel-image-wrap {
-    justify-content: center !important;
-    padding-top: 3.25rem !important; /* baja el marco hacia abajo */
+    justify-content: flex-start !important;
+    padding-top: 3.25rem !important;
 }
 
-/* Ajuste fino: alinear el inicio del texto (titulo) con el marco de imagen */
+/* Misma línea base que imagen: padding-top del wrap + desplazamiento del carrusel (top: 10px) */
 @media (min-width: 1100px) {
     .proyectos-page.proyecto-panel-open .proyecto-panel-content {
-        padding-top: 3.75rem !important;
+        margin-top: 0 !important;
+        padding-top: calc(3.25rem + 10px) !important;
     }
 }
 
