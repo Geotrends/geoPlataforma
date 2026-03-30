@@ -364,6 +364,13 @@ body:has(.proyectos-page) {
     height: 100%;
     object-fit: cover; /* Todas las imágenes 16:9, relleno uniforme */
 }
+
+/* Ciudades > Ecosistemas WEBGIS: en portadas queremos ver la imagen completa (sin recorte) */
+.proyecto-card-portada-webgis {
+    object-fit: contain !important;
+    object-position: center;
+    background-color: #313131; /* mantiene estética si hay letterboxing */
+}
 /* IoT y Mapas de ruido: mismo 16:9 */
 .proyecto-card-portada-mapas-ruido {
     object-fit: cover;
