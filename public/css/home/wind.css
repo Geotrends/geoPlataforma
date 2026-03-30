@@ -695,7 +695,7 @@
     min-width: 0;
     width: 100%;
     max-width: none;
-    min-height: 400px;
+    min-height: 382px;
     max-height: none;
     display: flex;
     flex-direction: column;
@@ -768,7 +768,7 @@
 .wind-project-card-body {
     flex: 1 1 0;
     min-height: 0;
-    padding: 1.15rem 1.1rem 1.75rem 1.1rem;
+    padding: 1.15rem 1.1rem 1.35rem 1.1rem;
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
@@ -819,7 +819,7 @@
     align-items: center;
     flex-shrink: 0;
     margin-top: auto;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.4rem;
     padding: 0.65rem 1.2rem;
     font-size: 0.95rem;
     font-weight: 600;
@@ -1032,7 +1032,7 @@ a.wind-project-card-cta:hover {
         min-width: 0;
         width: 100%;
         max-width: none;
-        min-height: 464px;
+        min-height: 448px;
     }
 
     .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-img {
@@ -1042,7 +1042,7 @@ a.wind-project-card-cta:hover {
     }
 
     .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-body {
-        padding: 1.15rem 1.1rem 1.85rem 1.1rem;
+        padding: 1.15rem 1.1rem 1.45rem 1.1rem;
         gap: 0.5rem;
     }
 }
@@ -1353,7 +1353,7 @@ a.wind-project-card-cta:hover {
     }
 
     .wind-card.expanded .wind-project-card-body {
-        padding: 0.5rem 0.5rem 0.85rem;
+        padding: 0.5rem 0.5rem 0.65rem;
     }
 
     .wind-card.expanded .wind-project-card-title {
@@ -1368,7 +1368,7 @@ a.wind-project-card-cta:hover {
     .wind-card.expanded .wind-project-card-cta {
         font-size: 0.9rem;
         padding: 0.55rem 1rem;
-        margin-bottom: 1.15rem;
+        margin-bottom: 0.85rem;
     }
     
     /* Botón ver más - mismo ancho que las mini cards; más espacio arriba y abajo */
@@ -1459,7 +1459,7 @@ a.wind-project-card-cta:hover {
     .wind-card.expanded .wind-project-card-cta {
         font-size: 0.85rem;
         padding: 0.5rem 0.9rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.7rem;
     }
 
     .wind-card-title {
