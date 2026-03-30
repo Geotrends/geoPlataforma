@@ -70,15 +70,15 @@
 
 /* Blur al desplegar: solo en responsive (ver @media max-width: 900px) */
 
-/* Mismo max-width que geotrends-container (1400px) para alinear título y párrafo con StartUp */
+/* Texto a la izquierda, franjas más anchas a la derecha (42% dejaba las 4 cards muy “apeñuscadas”) */
 .wind-wrap {
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 34%) minmax(0, 1fr);
     gap: 0;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1480px;
     margin: 0 auto;
     min-height: 85vh;
     align-items: center;
@@ -91,7 +91,7 @@
 .wind-intro-col {
     display: flex;
     align-items: center;
-    padding: 1.25rem 2rem 1.25rem 0;
+    padding: 1.25rem 1.25rem 1.25rem 0;
     min-height: 85vh;
     min-width: 0;
 }
@@ -189,7 +189,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem 1rem 2rem 1rem;
+    padding: 2rem 0.35rem 2rem 0.75rem;
     min-height: 85vh;
     overflow-x: hidden;
     overflow-y: visible;
@@ -206,8 +206,8 @@
     min-width: 0;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding-left: 0.5rem;
+    gap: 0.35rem;
+    padding-left: 0;
     box-sizing: border-box;
     overflow-x: hidden;
 }
@@ -245,7 +245,7 @@
     display: none;
 }
 
-/* Las 3 cards con igual tamaño: reparten el ancho por igual */
+/* Cuatro franjas: reparten el ancho; piso mínimo en desktop para que no se vean hilos */
 .wind-card {
     position: relative;
     flex: 1 1 0;
@@ -420,16 +420,27 @@
     background-position: left center;
 }
 
-/* Card Industria: zoom para cubrir toda la altura de la card */
+/*
+ * Card Industria: fondo con cover + color bajo el PNG; sin scale en reposo (Safari).
+ * Hover: mismo zoom que el resto (.wind-card:hover .wind-card-img → scale 1.08).
+ */
 .wind-card:nth-child(2) .wind-card-img {
-    transform: scale(1.22);
-    background-position: center;
+    transform: none;
+    -webkit-transform: none;
+    background-color: rgba(10, 14, 26, 0.97);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 48%;
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
 }
 .wind-card:nth-child(2):hover .wind-card-img {
-    transform: scale(1.3);
+    transform: scale(1.08);
+    -webkit-transform: scale(1.08);
 }
 .wind-card:nth-child(2).expanded .wind-card-img {
-    transform: scale(1.22);
+    transform: none;
+    -webkit-transform: none;
+    background-size: cover;
 }
 
 .wind-card:hover .wind-card-img {
@@ -671,7 +682,7 @@
     min-width: 0;
     width: 100%;
     max-width: none;
-    min-height: 360px;
+    min-height: 400px;
     max-height: none;
     display: flex;
     flex-direction: column;
@@ -744,7 +755,7 @@
 .wind-project-card-body {
     flex: 1 1 0;
     min-height: 0;
-    padding: 1.15rem 1.1rem 1.55rem 1.1rem;
+    padding: 1.15rem 1.1rem 1.75rem 1.1rem;
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
@@ -795,6 +806,7 @@
     align-items: center;
     flex-shrink: 0;
     margin-top: auto;
+    margin-bottom: 0.75rem;
     padding: 0.65rem 1.2rem;
     font-size: 0.95rem;
     font-weight: 600;
@@ -950,9 +962,10 @@ a.wind-project-card-cta:hover {
         min-height: 600px;
     }
     
-    /* Ampliar las cards (Ciudades, Industria, ID + I) */
+    /* Franjas un poco más anchas en pantallas grandes (evita recortes extremos) */
     .wind-card {
         min-height: 600px;
+        min-width: 150px;
     }
     
     /* Aumentar altura mínima del contenedor de cards */
@@ -1006,7 +1019,7 @@ a.wind-project-card-cta:hover {
         min-width: 0;
         width: 100%;
         max-width: none;
-        min-height: 424px;
+        min-height: 464px;
     }
 
     .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-img {
@@ -1016,19 +1029,22 @@ a.wind-project-card-cta:hover {
     }
 
     .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-body {
-        padding: 1.15rem 1.1rem 1.6rem 1.1rem;
+        padding: 1.15rem 1.1rem 1.85rem 1.1rem;
         gap: 0.5rem;
     }
 }
 
-/* Pantalla muy ancha: las 3 cards principales un poco más contenidas; al expandir no se encogen las mini cards */
+/* Pantalla muy ancha: antes max-width 82% aplastaba las 4 franjas; usamos todo el ancho útil */
 @media (min-width: 1500px) {
+    .wind-wrap {
+        max-width: min(100vw - 2.5rem, 1680px);
+    }
     .wind-cards-wrap {
-        justify-content: center;
+        justify-content: stretch;
     }
     .wind-cards:not(.is-expanded) {
-        max-width: 82%;
-        margin: 0 auto;
+        max-width: 100%;
+        margin: 0;
     }
 }
 
@@ -1324,7 +1340,7 @@ a.wind-project-card-cta:hover {
     }
 
     .wind-card.expanded .wind-project-card-body {
-        padding: 0.5rem 0.5rem 0.7rem;
+        padding: 0.5rem 0.5rem 0.85rem;
     }
 
     .wind-card.expanded .wind-project-card-title {
@@ -1339,7 +1355,7 @@ a.wind-project-card-cta:hover {
     .wind-card.expanded .wind-project-card-cta {
         font-size: 0.9rem;
         padding: 0.55rem 1rem;
-        margin-bottom: 1rem;
+        margin-bottom: 1.15rem;
     }
     
     /* Botón ver más - mismo ancho que las mini cards; más espacio arriba y abajo */
@@ -1430,6 +1446,7 @@ a.wind-project-card-cta:hover {
     .wind-card.expanded .wind-project-card-cta {
         font-size: 0.85rem;
         padding: 0.5rem 0.9rem;
+        margin-bottom: 1rem;
     }
 
     .wind-card-title {
