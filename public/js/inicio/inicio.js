@@ -4,6 +4,31 @@ var sectionsCache = [];
 var navbarIsScrolled = false;
 var isHomePage = document.body && document.body.classList.contains('page-home');
 
+// Safari/iOS: si autoplay o codec fallan en el hero, mostrar fallback y evitar fondo negro.
+function setupHeroVideoFallback() {
+    var hero = document.querySelector('.hero');
+    var heroVideo = document.querySelector('.hero-video-bg');
+    if (!hero || !heroVideo) return;
+
+    heroVideo.muted = true;
+    heroVideo.setAttribute('muted', '');
+    heroVideo.setAttribute('playsinline', '');
+    heroVideo.setAttribute('webkit-playsinline', 'true');
+
+    function showHeroFallback() {
+        hero.classList.add('hero-video-failed');
+    }
+
+    heroVideo.addEventListener('error', showHeroFallback);
+    heroVideo.addEventListener('stalled', showHeroFallback);
+    heroVideo.addEventListener('abort', showHeroFallback);
+
+    var playPromise = heroVideo.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(showHeroFallback);
+    }
+}
+
 function refreshSectionsCache() {
     sectionsCache = Array.from(document.querySelectorAll('section'));
 }
@@ -73,6 +98,7 @@ function onScrollNavbar() {
 
 refreshSectionsCache();
 updateNavbarColor();
+setupHeroVideoFallback();
 window.addEventListener('scroll', onScrollNavbar, { passive: true });
 window.addEventListener('resize', function() {
     refreshSectionsCache();

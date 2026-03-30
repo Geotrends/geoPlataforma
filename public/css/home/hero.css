@@ -44,8 +44,19 @@ body.page-home .navbar.scrolled .logo-img {
 
 /* Sin transición en la parte inferior - corte directo */
 
-/* Sin fallback: no mostrar nada hasta que cargue la animación Luma */
+/* Fallback del hero para navegadores que bloquean autoplay o no soportan codec */
 .hero-bg-fallback {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url('../img_video/home/image.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Si el video falla, forzamos fallback visual */
+.hero.hero-video-failed .hero-video-wrap {
     display: none;
 }
 
