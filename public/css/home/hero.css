@@ -207,11 +207,11 @@ body.page-home .navbar.scrolled .logo-img {
         transform: scale(0.5) rotate(-8deg);
     }
     60% {
-        opacity: 0.95;
+        opacity: 1;
         transform: scale(1.05) rotate(2deg);
     }
     100% {
-        opacity: 0.95;
+        opacity: 1;
         transform: scale(1) rotate(0deg);
     }
 }
@@ -333,6 +333,16 @@ body.page-home .navbar.scrolled .logo-img {
     .hero-content {
         max-width: 100%;
         margin-top: 1rem;
+    }
+    /* Blanco puro en viewport estrechos (evita aspecto gris por herencia o subpixel) */
+    .hero-title,
+    .hero-tagline {
+        color: #ffffff;
+        -webkit-text-fill-color: #ffffff;
+    }
+    .hero-data-logo .hero-logo-img,
+    .hero-data-logo svg {
+        opacity: 1;
     }
     .hero-title {
         font-size: clamp(1.75rem, 4.5vw, 2.75rem);
