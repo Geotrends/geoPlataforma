@@ -37,7 +37,7 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
 /* Sección superior: óvalos de servicios (estilo Proyectos). Modo claro = fondo blanco */
 .section-services-top {
     flex: 0 0 auto;
-    padding: 0.85rem 2rem 0.85rem; /* más espacio arriba y abajo de los tags */
+    padding: 0.55rem 2rem 0.55rem; /* un poco más compacto: deja más altura útil al panel */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -449,9 +449,10 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
     inset: 0;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: stretch;
     justify-content: flex-start;
-    padding: 0.75rem 0 0.75rem 0;
+    min-height: 0;
+    padding: 0.45rem 0 0.65rem 0;
     background: transparent;
     opacity: 0;
     visibility: hidden;
@@ -499,6 +500,7 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
     aspect-ratio: 16/9;
     max-height: 100%;
     align-self: center;
+    min-height: 0;
 }
 
 .section-card-image {
@@ -709,12 +711,12 @@ html:not([data-theme="dark"]) .section-card-image {
     position: relative;
     z-index: 2;
     flex: 1 1 58%;
-    min-width: 320px;
+    min-width: min(320px, 100%);
     max-width: none;
     width: 100%;
-    min-height: auto;
+    min-height: 0;
     max-height: none;
-    align-self: center;
+    align-self: stretch;
     margin: 0;
     padding: 1rem 2rem 1.25rem;
     overflow-y: auto;
@@ -765,7 +767,7 @@ html:not([data-theme="dark"]) .section-card-image {
     color: #313131;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    margin: 1.5rem 0 0.75rem 0;
+    margin: 0.65rem 0 0.75rem 0;
     line-height: 1.2;
 }
 
