@@ -97,7 +97,11 @@ body.page-about .navbar.scrolled .nav-container {
   min-height: 100vh;
   overflow-x: hidden;
   overflow-y: visible; /* Sin scroll interno, solo el del body */
-  padding: 0 0 3rem;
+  /* Reserva bajo el navbar fijo (top 1rem + pastilla); vmin ayuda al hacer zoom */
+  padding-top: calc(env(safe-area-inset-top, 0px) + clamp(6rem, 4.5rem + 9vmin, 11rem));
+  padding-bottom: 3rem;
+  padding-left: 0;
+  padding-right: 0;
   color: var(--about-ink);
   /* Tamaño base igual que la página de inicio */
   font-size: 1rem;
@@ -110,6 +114,20 @@ body.page-about {
   height: auto;
   max-height: none;
   background: #000 !important;
+  /* Anclas / foco: no quedar bajo el navbar al hacer zoom */
+  scroll-padding-top: calc(env(safe-area-inset-top, 0px) + clamp(5.75rem, 4.25rem + 9vmin, 10.5rem));
+}
+
+@media (max-width: 900px) {
+  body.page-about {
+    scroll-padding-top: calc(env(safe-area-inset-top, 0px) + clamp(6.75rem, 5rem + 11vmin, 12rem));
+  }
+}
+
+@media (max-width: 560px) {
+  body.page-about {
+    scroll-padding-top: calc(env(safe-area-inset-top, 0px) + clamp(6.5rem, 4.75rem + 11vmin, 11.5rem));
+  }
 }
 html body.page-about {
   background: #000 !important;
@@ -350,14 +368,18 @@ html body.page-about {
   text-transform: uppercase;
 }
 
-/* Layout: mismo ancho que el navbar central (1600px max), centrado */
+/* Layout: mismo ancho exterior que .nav-container (navbar.css) */
 .about-layout {
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
   width: min(1600px, calc(100% - 4rem));
   max-width: 1600px;
-  margin: 2rem auto 0;
-  padding: 0 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+  padding: 0;
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.75rem;
@@ -365,10 +387,29 @@ html body.page-about {
   overflow: visible; /* Sin scroll interno */
 }
 
-/* Pantallas extendidas: aumentar margin-top del contenido */
+@media (min-width: 1648px) {
+  .about-layout {
+    width: 1600px;
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Igual que navbar: tablet ancha (navbar.css mismo rango) */
+@media (max-width: 1200px) and (min-width: 1101px) {
+  .about-layout {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    width: min(1600px, calc(100% - 3rem));
+    max-width: 1600px;
+  }
+}
+
+/* Pantallas extendidas: el hueco bajo el navbar lo marca .about-page (padding-top) */
 @media (min-width: 1400px) {
   .about-layout {
-    margin-top: 6rem; /* Más espacio en pantallas extendidas */
+    margin-top: 1.25rem;
   }
 }
 
@@ -2091,16 +2132,64 @@ body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-center
 }
 
 @media (max-width: 900px) {
+  .about-page {
+    padding-top: calc(env(safe-area-inset-top, 0px) + clamp(7.25rem, 5.25rem + 12vmin, 12.5rem));
+  }
+
   .about-layout {
-    padding: 0 1.5rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    width: min(1600px, calc(100% - 3rem));
+    max-width: 1600px;
+    padding: 0;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     gap: 1.25rem;
-    margin-top: 5.5rem; /* Aumentado para separar más del navbar */
+    margin-top: 0;
   }
-  
+
+  .about-main-card {
+    padding-top: 2.15rem;
+  }
+
+  .about-tabs {
+    margin-bottom: 1.75rem;
+  }
+
   .about-hero {
     margin-top: 11rem; /* Aumentado para separar más del navbar */
+  }
+
+  /* Valores: sin pastilla ni círculo gris detrás del icono (móvil / angosto) */
+  .about-panel-body .about-valores-in-panel .about-valores-card {
+    padding: 0.9rem 0;
+  }
+
+  .about-valores-card {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0.9rem 0;
+  }
+
+  .about-valores-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .about-valores-card-circle,
+  .about-valores-card-innovation .about-valores-card-circle,
+  .about-valores-card-rigor .about-valores-card-circle,
+  .about-valores-card-territorio .about-valores-card-circle {
+    background: transparent;
+    color: #fff;
+  }
+
+  .about-valores-card-circle .about-valores-card-icon-img {
+    width: 32px;
+    height: 32px;
   }
 
   .about-recon-clientes-seccion {
@@ -2144,13 +2233,17 @@ body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-center
 
 @media (max-width: 560px) {
   .about-page {
-    padding-top: 0;
+    padding-top: calc(env(safe-area-inset-top, 0px) + clamp(7rem, 5rem + 12vmin, 12rem));
     padding-bottom: 2rem;
   }
 
   .about-layout {
-    padding: 0 1rem;
-    margin-top: 5rem; /* Aumentado para separar más del navbar */
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: min(1600px, calc(100% - 2rem));
+    max-width: 1600px;
+    padding: 0;
+    margin-top: 0;
   }
 
   .about-hero {
@@ -2163,7 +2256,7 @@ body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-center
   }
 
   .about-main-card {
-    padding: 1.5rem 1.25rem;
+    padding: 2rem 1.25rem 1.5rem;
   }
 
   /* Logos Reconocimientos y Clientes: aún más pequeños en móvil */
@@ -2203,6 +2296,17 @@ body:has(#about-panel[data-tab-active="reconocimientos-clientes"]) .about-center
     text-align: center;
     flex-shrink: 0 !important; /* No permitir que se reduzcan */
     white-space: nowrap !important; /* No permitir que el texto se divida */
+  }
+}
+
+/* Mismo corte que .nav-container en navbar.css (414–430px) */
+@media (max-width: 430px) {
+  .about-layout {
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+    width: calc(100% - 1.5rem);
+    max-width: none;
+    padding: 0;
   }
 }
 
