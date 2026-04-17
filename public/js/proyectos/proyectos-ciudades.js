@@ -471,7 +471,41 @@
         slides[panelCarouselIndex].classList.add('active');
     }
 
+    /** Alinea el panel al carrusel de cards (no a los tags): top y max-height en escritorio */
+    function syncProyectoPanelDesktopLayout() {
+        var pg = document.querySelector('.proyectos-page');
+        var anchor = document.querySelector('.proyectos-cards-container');
+        if (!pg) return;
+        if (window.matchMedia('(max-width: 900px)').matches) {
+            pg.style.removeProperty('--proyecto-panel-top-px');
+            pg.style.removeProperty('--proyecto-panel-max-h-px');
+            return;
+        }
+        if (!anchor) return;
+        var rect = anchor.getBoundingClientRect();
+        var marginBottom = 0;
+        var topPx = Math.max(8, Math.round(rect.top));
+        var maxH = Math.max(240, Math.round(window.innerHeight - topPx - marginBottom));
+        pg.style.setProperty('--proyecto-panel-top-px', topPx + 'px');
+        pg.style.setProperty('--proyecto-panel-max-h-px', maxH + 'px');
+    }
+
+    var syncProyectoPanelScheduled = false;
+    function scheduleSyncProyectoPanelDesktopLayout() {
+        if (!document.body.classList.contains('proyecto-panel-open')) return;
+        if (window.matchMedia('(max-width: 900px)').matches) return;
+        if (syncProyectoPanelScheduled) return;
+        syncProyectoPanelScheduled = true;
+        window.requestAnimationFrame(function() {
+            syncProyectoPanelScheduled = false;
+            syncProyectoPanelDesktopLayout();
+        });
+    }
+    window.addEventListener('resize', scheduleSyncProyectoPanelDesktopLayout, { passive: true });
+    window.addEventListener('scroll', scheduleSyncProyectoPanelDesktopLayout, { passive: true });
+
     function openProyectoPanel() {
+        syncProyectoPanelDesktopLayout();
         if (page) page.classList.add('proyecto-panel-open');
         document.body.classList.add('proyecto-panel-open');
         if (panel) { 
@@ -482,9 +516,16 @@
             backdrop.setAttribute('aria-hidden', 'false');
             backdrop.style.pointerEvents = 'auto';
         }
+        window.requestAnimationFrame(function() {
+            syncProyectoPanelDesktopLayout();
+        });
     }
     function closeProyectoPanel() {
-        if (page) page.classList.remove('proyecto-panel-open');
+        if (page) {
+            page.classList.remove('proyecto-panel-open');
+            page.style.removeProperty('--proyecto-panel-top-px');
+            page.style.removeProperty('--proyecto-panel-max-h-px');
+        }
         document.body.classList.remove('proyecto-panel-open');
         if (panel) { 
             panel.setAttribute('aria-hidden', 'true');
