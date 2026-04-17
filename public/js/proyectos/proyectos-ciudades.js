@@ -471,23 +471,19 @@
         slides[panelCarouselIndex].classList.add('active');
     }
 
-    /** Alinea el panel al carrusel de cards (no a los tags): top y max-height en escritorio */
+    /** Alinea el borde superior del panel al carrusel (no a los tags). La altura la marcan top + bottom en CSS (mejor con zoom). */
     function syncProyectoPanelDesktopLayout() {
         var pg = document.querySelector('.proyectos-page');
         var anchor = document.querySelector('.proyectos-cards-container');
         if (!pg) return;
         if (window.matchMedia('(max-width: 900px)').matches) {
             pg.style.removeProperty('--proyecto-panel-top-px');
-            pg.style.removeProperty('--proyecto-panel-max-h-px');
             return;
         }
         if (!anchor) return;
         var rect = anchor.getBoundingClientRect();
-        var marginBottom = 0;
         var topPx = Math.max(8, Math.round(rect.top));
-        var maxH = Math.max(240, Math.round(window.innerHeight - topPx - marginBottom));
         pg.style.setProperty('--proyecto-panel-top-px', topPx + 'px');
-        pg.style.setProperty('--proyecto-panel-max-h-px', maxH + 'px');
     }
 
     var syncProyectoPanelScheduled = false;
@@ -503,6 +499,10 @@
     }
     window.addEventListener('resize', scheduleSyncProyectoPanelDesktopLayout, { passive: true });
     window.addEventListener('scroll', scheduleSyncProyectoPanelDesktopLayout, { passive: true });
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', scheduleSyncProyectoPanelDesktopLayout);
+        window.visualViewport.addEventListener('scroll', scheduleSyncProyectoPanelDesktopLayout);
+    }
 
     function openProyectoPanel() {
         syncProyectoPanelDesktopLayout();
@@ -524,7 +524,6 @@
         if (page) {
             page.classList.remove('proyecto-panel-open');
             page.style.removeProperty('--proyecto-panel-top-px');
-            page.style.removeProperty('--proyecto-panel-max-h-px');
         }
         document.body.classList.remove('proyecto-panel-open');
         if (panel) { 

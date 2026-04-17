@@ -847,7 +847,7 @@ body.proyecto-panel-open .proyectos-filters-container {
 }
 
 
-/* Panel escritorio: top / max-height por JS (--proyecto-panel-*) al carrusel; pegado a la derecha */
+/* Panel escritorio: top por JS + bottom en viewport (sin max-height en px) → no se recorta con zoom */
 /* Animación: entra/sale deslizando desde la derecha */
 .proyecto-panel {
     position: fixed;
@@ -876,7 +876,6 @@ body.proyecto-panel-open .proyectos-filters-container {
 @media (min-width: 1100px) {
     .proyecto-panel {
         width: min(960px, 86vw);
-        bottom: auto; /* altura la marca el contenido (ver bloque ≥901px); top viene del bloque ≥901px */
     }
 
     .proyecto-panel-backdrop {
@@ -904,18 +903,18 @@ body.proyecto-panel-open .proyectos-filters-container {
 }
 
 /*
- * Escritorio: sin bottom fijo el panel no “rellena” todo el viewport → desaparece el bloque vacío bajo imagen+texto.
- * Si el texto es muy largo, max-height + overflow-y en el panel permiten scroll.
+ * Escritorio: top (al carrusel) + bottom anclado al viewport → altura = hueco útil;
+ * con zoom/layout el navegador recalcula; overflow-y en el panel para textos largos.
  */
 @media (min-width: 901px) {
     .proyecto-panel {
         top: var(--proyecto-panel-top-px, clamp(11.5rem, 20vh + 6rem, 24rem));
         left: auto;
         right: 0;
-        bottom: auto;
-        height: fit-content;
-        max-height: var(--proyecto-panel-max-h-px, calc(100vh - clamp(11rem, 20vh + 6rem, 25rem)));
-        max-height: var(--proyecto-panel-max-h-px, calc(100dvh - clamp(11rem, 20vh + 6rem, 25rem)));
+        bottom: max(0.25rem, env(safe-area-inset-bottom, 0px));
+        height: auto;
+        max-height: none;
+        min-height: 0;
         overflow-x: hidden;
         overflow-y: auto;
     }
@@ -923,6 +922,7 @@ body.proyecto-panel-open .proyectos-filters-container {
     .proyecto-panel-inner {
         align-items: flex-start;
         height: auto;
+        min-height: 100%;
         max-height: none;
     }
 }
@@ -1860,10 +1860,10 @@ body.proyecto-imagen-modal-open .navbar {
         right: 0 !important;
         width: min(900px, 88vw) !important;
         transform: translateX(100%) !important;
-        bottom: auto !important;
-        height: fit-content !important;
-        max-height: var(--proyecto-panel-max-h-px, calc(100vh - clamp(11rem, 20vh + 6rem, 25rem))) !important;
-        max-height: var(--proyecto-panel-max-h-px, calc(100dvh - clamp(11rem, 20vh + 6rem, 25rem))) !important;
+        bottom: max(0.25rem, env(safe-area-inset-bottom, 0px)) !important;
+        height: auto !important;
+        max-height: none !important;
+        min-height: 0 !important;
         overflow-x: hidden !important;
         overflow-y: auto !important;
         border-radius: 22px 0 0 22px !important;
