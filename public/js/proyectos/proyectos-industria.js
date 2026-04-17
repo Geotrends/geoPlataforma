@@ -49,6 +49,9 @@
             card.style.animation = '';
             card.style.animationDelay = (index * 0.05) + 's';
         });
+        if (typeof window.geoLazyVideosRefresh === 'function') {
+            window.requestAnimationFrame(function () { window.geoLazyVideosRefresh(); });
+        }
     }
     
     var emptyMsg = document.getElementById('proyectos-empty-message');
@@ -154,6 +157,9 @@
         
         // Si son las mismas cards, no hacer nada
         if (visibleIds === toShowIds && visibleIds.length > 0) {
+            if (typeof window.geoLazyVideosRefresh === 'function') {
+                window.requestAnimationFrame(function () { window.geoLazyVideosRefresh(); });
+            }
             return;
         }
         

@@ -47,6 +47,9 @@
             card.style.animation = '';
             card.style.animationDelay = (index * 0.05) + 's';
         });
+        if (typeof window.geoLazyVideosRefresh === 'function') {
+            window.requestAnimationFrame(function () { window.geoLazyVideosRefresh(); });
+        }
     }
     
     function updateCornarePortada(servicioActivo) {
@@ -192,6 +195,9 @@
             updateAmvaPortada(servicioActivo);
             updateModeloPortada(servicioActivo);
             updateObservatorioPortada(servicioActivo);
+            if (typeof window.geoLazyVideosRefresh === 'function') {
+                window.requestAnimationFrame(function () { window.geoLazyVideosRefresh(); });
+            }
             return;
         }
         

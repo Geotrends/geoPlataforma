@@ -122,7 +122,7 @@
 
     <main class="proyectos-page">
         <div class="proyectos-hero-bg" aria-hidden="true">
-            <video class="proyectos-hero-video" autoplay muted loop playsinline aria-hidden="true">
+            <video class="proyectos-hero-video" autoplay muted loop playsinline preload="none" aria-hidden="true">
                 <source src="../img_video/proyectos/fondos/industria.mp4" type="video/mp4">
             </video>
         </div>
@@ -243,7 +243,7 @@
                                 data-proyecto-img-interna-fit-fotogrametria="16:9">
                                 <div class="proyecto-card-link-wrap" role="button" tabindex="0" aria-label="View ARCLAD details">
                                     <div class="proyecto-card-img">
-                                        <video class="proyecto-card-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+                                        <video class="proyecto-card-video" autoplay muted loop playsinline preload="none" aria-hidden="true">
                                             <source src="../img_video/industria/controlRuido/generadores/portada.mp4" type="video/mp4">
                                         </video>
                                     </div>
@@ -330,7 +330,7 @@
                                 >
                                 <div class="proyecto-card-link-wrap" role="button" tabindex="0" aria-label="View Cerrejón details">
                                     <div class="proyecto-card-img">
-                                        <video class="proyecto-card-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+                                        <video class="proyecto-card-video" autoplay muted loop playsinline preload="none" aria-hidden="true">
                                             <source src="../img_video/industria/holografia/zonaRegulacion/portada.mp4" type="video/mp4">
                                         </video>
                                     </div>
@@ -442,6 +442,7 @@
     <script src="proyectos/data/cerrejon-images.js"></script>
     <script src="proyectos/data/spia-images.js"></script>
     <script src="../js/transitions.js"></script>
+    <script src="../js/lazy-videos.js"></script>
     <script src="../js/proyectos/proyectos-industria.js"></script>
     <script src="../js/nav.js"></script>
     <script src="../js/theme.js"></script>

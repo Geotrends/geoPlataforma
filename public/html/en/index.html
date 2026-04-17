@@ -163,7 +163,7 @@
 
     <section id="servicios" class="wind-section">
         <div class="wind-video-bg-wrap" aria-hidden="true">
-            <video class="wind-video-bg" autoplay muted loop playsinline preload="auto">
+            <video class="wind-video-bg" autoplay muted loop playsinline preload="none">
                 <source src="../img_video/home/portafolio.mp4?v=2" type="video/mp4">
             </video>
         </div>
@@ -444,7 +444,7 @@
     <section class="process-section home-projects-section">
         <div class="process-section-bg" aria-hidden="true"></div>
         <div class="home-projects-video-wrap" aria-hidden="true">
-            <video class="home-projects-video-bg" autoplay muted loop playsinline preload="auto">
+            <video class="home-projects-video-bg" autoplay muted loop playsinline preload="none">
                 <source src="../img_video/home/proyectosInicio.mp4?v=3" type="video/mp4">
             </video>
         </div>
@@ -651,12 +651,12 @@
         <div class="footer-bg" aria-hidden="true">
             <div class="footer-bg-fallback"></div>
             <div class="footer-video-container">
-                <video class="footer-video-bg" autoplay muted loop playsinline aria-hidden="true">
+                <video class="footer-video-bg" autoplay muted loop playsinline preload="none" aria-hidden="true">
                     <source src="../img_video/home/hero.mp4?v=3" type="video/mp4">
                 </video>
             </div>
             <div class="footer-luma-wrap footer-video-hero-wrap" aria-hidden="true">
-                <video class="footer-video-hero" autoplay muted loop playsinline aria-hidden="true">
+                <video class="footer-video-hero" autoplay muted loop playsinline preload="none" aria-hidden="true">
                     <source src="../img_video/home/hero.mp4?v=3" type="video/mp4">
                 </video>
             </div>
@@ -712,6 +712,7 @@
     </footer>
 
     <script src="../js/transitions.js"></script>
+    <script src="../js/lazy-videos.js"></script>
     <script src="../js/inicio/inicio.js"></script>
     <script src="../js/nav.js"></script>
     <script src="../js/theme.js"></script>

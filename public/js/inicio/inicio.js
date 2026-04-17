@@ -20,8 +20,8 @@ function setupHeroVideoFallback() {
     }
 
     heroVideo.addEventListener('error', showHeroFallback);
-    heroVideo.addEventListener('stalled', showHeroFallback);
-    heroVideo.addEventListener('abort', showHeroFallback);
+    // No usar 'stalled' ni 'abort': son habituales al bufferizar o al coordinar con lazy-videos.js
+    // y ocultaban el hero por error (clase .hero-video-failed).
 
     var playPromise = heroVideo.play();
     if (playPromise && typeof playPromise.catch === 'function') {

@@ -123,7 +123,7 @@
 
     <main class="proyectos-page">
         <div class="proyectos-hero-bg" aria-hidden="true">
-            <video class="proyectos-hero-video" autoplay muted loop playsinline aria-hidden="true">
+            <video class="proyectos-hero-video" autoplay muted loop playsinline preload="none" aria-hidden="true">
                 <source src="../img_video/proyectos/fondos/ciudades.mp4" type="video/mp4">
             </video>
         </div>
@@ -192,7 +192,7 @@
                                 data-proyecto-cliente="Universidad de San Buenaventura Medellín – Área Metropolitana del Valle del Aburrá">
                                 <div class="proyecto-card-link-wrap" role="button" tabindex="0" aria-label="Ver detalle AMVA-USB">
                                     <div class="proyecto-card-img proyecto-card-img-amva">
-                                        <video class="proyecto-card-video proyecto-card-portada-iot" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+                                        <video class="proyecto-card-video proyecto-card-portada-iot" autoplay muted loop playsinline preload="none" aria-hidden="true">
                                             <source src="../img_video/proyectos/amvausb/portada.mp4" type="video/mp4">
                                         </video>
                                         <img class="proyecto-card-img-static proyecto-card-portada-webgis" src="../img_video/ciudades/ecosistemasGIS/amva/portada.webp" alt="Proyecto AMVA-USB - Ecosistema WEBGIS" aria-hidden="true" style="display: none;">
@@ -220,12 +220,12 @@
                                 data-proyecto-cliente="Universidad de Antioquia - CORNARE">
                                 <div class="proyecto-card-link-wrap" role="button" tabindex="0" aria-label="Ver detalle CORNARE - Municipio de Rionegro">
                                     <div class="proyecto-card-img proyecto-card-img-cornare">
-                                        <video class="proyecto-card-video proyecto-card-portada-iot" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+                                        <video class="proyecto-card-video proyecto-card-portada-iot" autoplay muted loop playsinline preload="none" aria-hidden="true">
                                             <source src="../img_video/ciudades/iot/cornare/portada.mp4" type="video/mp4">
                                         </video>
                                         <img class="proyecto-card-img-static proyecto-card-portada-mapas-ruido" src="../img_video/ciudades/mapasRuido/cornare/portada.webp" alt="Proyecto CORNARE - Mapas de ruido" aria-hidden="true" style="display: none;">
                                         <img class="proyecto-card-img-static proyecto-card-portada-webgis" src="../img_video/ciudades/ecosistemasGIS/cornare/portada.webp" alt="Proyecto CORNARE - Ecosistema WEBGIS" aria-hidden="true" style="display: none;">
-                                        <video class="proyecto-card-video proyecto-card-portada-descontaminacion" autoplay muted loop playsinline preload="auto" aria-hidden="true" style="display: none;">
+                                        <video class="proyecto-card-video proyecto-card-portada-descontaminacion" autoplay muted loop playsinline preload="none" aria-hidden="true" style="display: none;">
                                             <source src="../img_video/ciudades/descontaminacion/cornare/portada.mp4" type="video/mp4">
                                         </video>
                                     </div>
@@ -248,10 +248,10 @@
                                 data-proyecto-cliente="Universidad de Antioquia - Secretaría de Medio Ambiente Distrito de Medellín">
                                 <div class="proyecto-card-link-wrap" role="button" tabindex="0" aria-label="Ver detalle Modelo de Gestión Medellín">
                                     <div class="proyecto-card-img proyecto-card-img-modelo">
-                                        <video class="proyecto-card-video proyecto-card-portada-iot" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+                                        <video class="proyecto-card-video proyecto-card-portada-iot" autoplay muted loop playsinline preload="none" aria-hidden="true">
                                             <source src="../img_video/ciudades/iot/modeloGestion/portada.mp4" type="video/mp4">
                                         </video>
-                                        <video class="proyecto-card-video proyecto-card-portada-descontaminacion" autoplay muted loop playsinline preload="auto" aria-hidden="true" style="display: none;">
+                                        <video class="proyecto-card-video proyecto-card-portada-descontaminacion" autoplay muted loop playsinline preload="none" aria-hidden="true" style="display: none;">
                                             <source src="../img_video/ciudades/descontaminacion/modelo/portada.mp4" type="video/mp4">
                                         </video>
                                     </div>
@@ -340,6 +340,7 @@
     </main>
 
     <script src="../js/transitions.js"></script>
+    <script src="../js/lazy-videos.js"></script>
     <script src="/html/proyectos/data/amva-usb-images.js"></script>
     <script src="../js/proyectos/proyectos-ciudades.js"></script>
     <script src="../js/nav.js"></script>

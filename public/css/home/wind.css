@@ -1,9 +1,11 @@
 /* Sección Servicios - Home: pantalla completa como original; responsive se sobrescribe abajo */
 .wind-section {
     position: relative;
-    min-height: 85vh;
-    padding: 0 2rem;
-    margin-top: -220px; /* mayor solapa con geotrends para que el difuminado sea suave */
+    /* Sección más larga: las franjas y el texto respiran y se ven completas */
+    min-height: min(108vh, max(90vh, 44rem));
+    padding: 0 2rem clamp(2.5rem, 5vh, 4.5rem);
+    /* Menos agresivo al zoom alto (viewport lógico estrecho): evita solapes con la sección superior */
+    margin-top: clamp(-10rem, -14vw, -3.5rem);
     overflow-x: hidden;
     overflow-y: visible;
     display: flex;
@@ -80,9 +82,10 @@
     width: 100%;
     max-width: 1480px;
     margin: 0 auto;
-    min-height: 85vh;
-    align-items: center;
-    padding: 0.5rem 0;
+    min-height: min(100vh, max(88vh, 46rem));
+    /* stretch: al zoom, centrar columnas distintas altura solapaba filas de cards */
+    align-items: stretch;
+    padding: 0.75rem 0 clamp(1.25rem, 3vh, 2.5rem);
     box-sizing: border-box;
     overflow-x: hidden;
 }
@@ -92,7 +95,7 @@
     display: flex;
     align-items: center;
     padding: 1.25rem 1.25rem 1.25rem 0;
-    min-height: 85vh;
+    min-height: min(100vh, max(88vh, 46rem));
     min-width: 0;
 }
 
@@ -100,8 +103,8 @@
 .wind-intro {
     max-width: 100%;
     width: 100%;
-    min-height: 500px;
-    padding: 2.5rem 2rem 2.5rem 2rem;
+    min-height: clamp(22rem, 48vmin, 38rem);
+    padding: clamp(2rem, 3.5vh, 3rem) 2rem clamp(2.25rem, 4vh, 3.25rem) 2rem;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
@@ -189,10 +192,10 @@
 /* Columna derecha: carrusel de 3 servicios */
 .wind-carousel-col {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 0.35rem 2rem 0.75rem;
-    min-height: 85vh;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: clamp(1.5rem, 3vh, 2.75rem) 0.35rem clamp(1.75rem, 3.5vh, 3rem) 0.75rem;
+    min-height: min(100vh, max(88vh, 46rem));
     overflow-x: hidden;
     overflow-y: visible;
     min-width: 0;
@@ -207,7 +210,7 @@
     max-width: 100%;
     min-width: 0;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     gap: 0.35rem;
     padding-left: 0;
     box-sizing: border-box;
@@ -221,7 +224,8 @@
     flex: 1;
     min-width: 0;
     gap: 0;
-    min-height: 500px;
+    min-height: clamp(22rem, 48vmin, 38rem);
+    align-self: stretch;
     overflow-x: auto;
     overflow-y: visible;
     scroll-snap-type: x mandatory;
@@ -241,6 +245,9 @@
     scroll-snap-type: none;
     width: 100%;
     max-width: 100%;
+    /* Sin altura mínima de “franja completa”: evita hueco vacío bajo las mini-cards */
+    min-height: auto;
+    align-items: flex-start;
 }
 
 .wind-cards::-webkit-scrollbar {
@@ -255,7 +262,8 @@
     width: 100%;
     border-radius: 12px;
     overflow: hidden;
-    min-height: 500px;
+    min-height: clamp(22rem, 48vmin, 38rem);
+    align-self: stretch;
     cursor: pointer;
     background: transparent;
     border: none;
@@ -308,8 +316,9 @@
     border-right: 1px solid rgba(255, 255, 255, 0.2);
     opacity: 1;
     visibility: visible;
-    /* Prevenir overflow horizontal */
-    overflow: hidden;
+    /* Cortar solo desborde horizontal; el vertical debe poder crecer (mini-cards en columna) */
+    overflow-x: hidden;
+    overflow-y: visible;
     box-sizing: border-box;
 }
 
@@ -491,7 +500,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 1.75rem 1.25rem;
+    padding: clamp(1.5rem, 3.2vh, 2.25rem) clamp(1rem, 2vw, 1.35rem) clamp(1.35rem, 2.8vh, 2rem);
     background: linear-gradient(to top, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.12) 60%, transparent 100%);
     color: #fff;
     display: flex;
@@ -617,9 +626,17 @@
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: stretch;
+    justify-content: flex-start;
     box-sizing: border-box;
+}
+
+/* Panel expandido: el ancho real decide 3 en fila o 3 en columna (nunca 2+1 por auto-fit) */
+.wind-card.expanded .wind-inner-carousel-wrap {
+    container-type: inline-size;
+    container-name: wind-mini;
+    height: auto;
+    min-height: 0;
 }
 
 .wind-inner-carousel-prev,
@@ -659,11 +676,106 @@
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
-    bottom: 0;
+    /* bottom: 0 estiraba el bloque absoluto a toda la altura del contenedor (~viewport) */
+    bottom: auto;
     max-height: none;
-    padding-bottom: 7rem;
-    margin-top: 5rem;
-    align-items: stretch;
+    padding-bottom: clamp(3rem, 7vh, 4.25rem);
+    margin-top: clamp(1rem, 3vh, 2.25rem);
+    /* start: en fila de 3 las mini-cards no se estiran a la altura de la más alta */
+    align-items: start;
+}
+
+/* Mini-cards: solo 3 en una fila o 3 en columna (nunca 2+1), según ancho real del panel expandido */
+@container wind-mini (max-width: 719px) {
+    .wind-card.expanded .wind-project-cards,
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-cards {
+        display: grid;
+        grid-auto-flow: row;
+        grid-auto-columns: unset;
+        grid-template-columns: 1fr;
+        align-items: start;
+        padding-bottom: clamp(4rem, 12vh, 6rem);
+    }
+
+    /* Columna: la tarjeta crece con el contenido (sin “mocha” por flex + line-clamp) */
+    .wind-card.expanded .wind-project-card,
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card {
+        min-height: 0;
+        height: auto;
+        max-height: none;
+        overflow: visible;
+    }
+
+    .wind-card.expanded .wind-project-card-img,
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-img {
+        height: clamp(9.5rem, 26vmin, 12rem);
+        min-height: clamp(8.5rem, 22vmin, 10rem);
+        max-height: clamp(10rem, 28vmin, 13rem);
+        flex-shrink: 0;
+    }
+
+    .wind-card.expanded .wind-project-card-body,
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-body {
+        flex: 0 1 auto;
+        min-height: auto;
+        overflow: visible;
+    }
+
+    .wind-card.expanded .wind-project-card-title,
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-title {
+        min-height: 0;
+    }
+
+    .wind-card.expanded .wind-project-card-desc,
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-desc {
+        display: block;
+        -webkit-line-clamp: unset;
+        line-clamp: unset;
+        overflow: visible;
+        min-height: 0;
+        flex: 0 1 auto;
+        text-overflow: clip;
+    }
+
+    .wind-card.expanded .wind-project-card-cta,
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-cta {
+        margin-top: 0.75rem;
+    }
+}
+
+@container wind-mini (min-width: 720px) {
+    .wind-card.expanded .wind-project-cards,
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-cards {
+        display: grid;
+        grid-auto-flow: row;
+        grid-auto-columns: unset;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: start;
+    }
+
+    .wind-card.expanded .wind-project-card,
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card {
+        align-self: start;
+        min-height: 0;
+        height: auto;
+    }
+
+    .wind-card.expanded .wind-project-card-body,
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-body {
+        flex: 0 1 auto;
+        min-height: auto;
+    }
+
+    .wind-card.expanded .wind-project-card-desc,
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-desc {
+        flex: 0 1 auto;
+        min-height: 0;
+    }
+
+    .wind-card.expanded .wind-project-card-cta,
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-cta {
+        margin-top: 0.65rem;
+    }
 }
 
 /* Fondo muy blur cuando se despliegan las 3 cards: se extiende hasta abajo; título y botón van encima */
@@ -695,7 +807,7 @@
     min-width: 0;
     width: 100%;
     max-width: none;
-    min-height: 382px;
+    min-height: clamp(15rem, 42vmin, 23.875rem);
     max-height: none;
     display: flex;
     flex-direction: column;
@@ -717,6 +829,10 @@
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     background: rgba(255, 255, 255, 0.12);
+    /* No heredar el min-height alto de .wind-project-card: en fila de 3 no estirar */
+    min-height: 0;
+    height: auto;
+    align-self: start;
 }
 
 .wind-project-card:hover {
@@ -785,6 +901,13 @@
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     background: rgba(255, 255, 255, 0.08);
+    flex: 0 1 auto;
+    min-height: auto;
+}
+
+.wind-card.expanded .wind-project-card-desc {
+    flex: 0 1 auto;
+    min-height: 0;
 }
 
 .wind-project-card-title {
@@ -966,55 +1089,75 @@ a.wind-project-card-cta:hover {
     /* Ampliar el contenedor principal */
     .wind-wrap {
         max-width: 1600px;
-        padding: 1rem 0;
+        padding: 1rem 0 clamp(1.5rem, 3vh, 2.75rem);
+        min-height: min(110vh, max(92vh, 50rem));
     }
     
     /* Ampliar el contenedor de "Portafolio De Servicios" */
     .wind-intro {
-        padding: 3rem 2.5rem 3rem 2.5rem;
-        min-height: 600px;
+        padding: 3rem 2.5rem 3.25rem 2.5rem;
+        min-height: clamp(26rem, 50vmin, 44rem);
     }
     
     /* Franjas un poco más anchas en pantallas grandes (evita recortes extremos) */
     .wind-card {
-        min-height: 600px;
+        min-height: clamp(26rem, 50vmin, 44rem);
         min-width: 150px;
     }
     
     /* Aumentar altura mínima del contenedor de cards */
     .wind-cards {
-        min-height: 600px;
+        min-height: clamp(26rem, 50vmin, 44rem);
     }
     
     /* Aumentar altura mínima de la columna de cards */
     .wind-carousel-col {
-        min-height: 85vh;
+        min-height: min(110vh, max(92vh, 50rem));
     }
     
     /* Aumentar altura mínima de la columna de intro */
     .wind-intro-col {
-        min-height: 85vh;
+        min-height: min(110vh, max(92vh, 50rem));
     }
 
     /* Card expandida: más ancho a la derecha; mini cards proporcionadas (ligero tope para no verse gigantes) */
     .wind-section.wind-card-expanded .wind-wrap {
         grid-template-columns: minmax(0, 28%) minmax(0, 1fr);
         max-width: min(100vw - 1.5rem, 1780px);
+        min-height: auto;
     }
 
     .wind-section.wind-card-expanded .wind-intro-col {
         padding-right: 1rem;
+        min-height: auto;
     }
 
     .wind-section.wind-card-expanded .wind-carousel-col {
         padding-left: 0.35rem;
         padding-right: 0.35rem;
+        min-height: auto;
+        align-items: flex-start;
+    }
+
+    .wind-section.wind-card-expanded .wind-intro {
+        min-height: auto;
+    }
+
+    .wind-section.wind-card-expanded .wind-cards-wrap {
+        align-items: flex-start;
+    }
+
+    .wind-section.wind-card-expanded .wind-cards {
+        min-height: auto;
+        align-items: flex-start;
     }
 
     .wind-section.wind-card-expanded .wind-card.expanded {
         flex: 1 1 100%;
         min-width: 0;
         max-width: 100%;
+        align-self: flex-start;
+        min-height: auto;
     }
 
     .wind-section.wind-card-expanded .wind-card.expanded .wind-project-cards {
@@ -1025,14 +1168,27 @@ a.wind-project-card-cta:hover {
         gap: 1.1rem;
         padding-left: 0.35rem;
         padding-right: 0.35rem;
+        align-items: start;
     }
 
     .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card {
-        align-self: stretch;
+        align-self: start;
         min-width: 0;
         width: 100%;
         max-width: none;
-        min-height: 448px;
+        min-height: 0;
+        height: auto;
+    }
+
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-body {
+        flex: 0 1 auto;
+        min-height: auto;
+        padding: 1.15rem 1.1rem 1.45rem 1.1rem;
+        gap: 0.5rem;
+    }
+
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-cta {
+        margin-top: 0.65rem;
     }
 
     .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-img {
@@ -1040,10 +1196,113 @@ a.wind-project-card-cta:hover {
         min-height: 228px;
         max-height: 228px;
     }
+}
+
+/* >1320px: las mini-cards en flujo normal para que la card tenga altura real (evita panel vacío bajo la fila de 3) */
+@media (min-width: 1321px) {
+    .wind-card.expanded .wind-project-cards {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        transform: none;
+        width: 100%;
+        max-width: min(960px, calc(100% - 2rem));
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: clamp(1rem, 3vh, 2.25rem);
+        padding-bottom: clamp(3rem, 7vh, 4.25rem);
+        justify-content: center;
+    }
+
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-cards {
+        max-width: 100%;
+    }
+}
+
+/* Zoom / ancho lógico medio: posicionamiento relativo; columnas del grid las define @container wind-mini (1 o 3, nunca 2+1). */
+@media (max-width: 1320px) {
+    .wind-card.expanded .wind-project-cards {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        grid-auto-flow: row;
+        grid-auto-columns: unset;
+        justify-content: stretch;
+        margin-top: 1rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-cards {
+        width: 100%;
+        max-width: 100%;
+        grid-auto-flow: row;
+        grid-auto-columns: unset;
+        transform: none;
+        left: auto;
+    }
+
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card {
+        min-height: 0;
+        height: auto;
+        align-self: start;
+    }
+
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-img {
+        height: clamp(9.5rem, 26vmin, 14.25rem);
+        min-height: clamp(9.5rem, 26vmin, 14.25rem);
+        max-height: clamp(9.5rem, 26vmin, 14.25rem);
+    }
 
     .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-body {
-        padding: 1.15rem 1.1rem 1.45rem 1.1rem;
-        gap: 0.5rem;
+        flex: 0 1 auto;
+        min-height: auto;
+    }
+
+    .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-cta {
+        margin-top: 0.65rem;
+    }
+}
+
+/* Navegadores sin @container: una sola fila de 3 con scroll horizontal si falta sitio (evita rejilla 2+1) */
+@supports not (container-type: inline-size) {
+    @media (max-width: 1320px) {
+        .wind-card.expanded .wind-project-cards,
+        .wind-section.wind-card-expanded .wind-card.expanded .wind-project-cards {
+            display: grid;
+            grid-auto-flow: row;
+            grid-auto-columns: unset;
+            grid-template-columns: repeat(3, minmax(200px, 1fr));
+            align-items: start;
+            overflow-x: auto;
+            overflow-y: visible;
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x proximity;
+            padding-bottom: 2.5rem;
+        }
+
+        .wind-card.expanded .wind-project-card,
+        .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card {
+            align-self: start;
+            min-height: 0;
+            height: auto;
+        }
+
+        .wind-card.expanded .wind-project-card-body,
+        .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-body {
+            flex: 0 1 auto;
+            min-height: auto;
+        }
+
+        .wind-card.expanded .wind-project-card-cta,
+        .wind-section.wind-card-expanded .wind-card.expanded .wind-project-card-cta {
+            margin-top: 0.65rem;
+        }
     }
 }
 
@@ -1077,13 +1336,25 @@ a.wind-project-card-cta:hover {
         min-width: 100%;
         max-width: 100%;
         flex: 1 1 auto;
-        min-height: 300px;
+        min-height: clamp(17.5rem, 42vmin, 24rem);
         border-right: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         /* Forzar visibilidad en responsive */
         opacity: 1 !important;
         transform: translateY(0) !important;
         visibility: visible !important;
+    }
+
+    /* translateY en hover solapaba la tarjeta de encima al zoom / columna */
+    .wind-card:hover {
+        transform: none !important;
+        -webkit-transform: none !important;
+    }
+
+    .wind-card-idi:hover,
+    .wind-card[data-idi="true"]:hover {
+        transform: none;
+        -webkit-transform: none;
     }
 
     .wind-card:last-child {
@@ -1136,6 +1407,30 @@ a.wind-project-card-cta:hover {
         min-width: 100%;
         max-width: 100%;
         flex: 0 0 auto;
+        min-height: auto;
+        height: auto;
+        overflow: visible;
+    }
+
+    .wind-card.expanded .wind-project-card-body {
+        flex: 0 1 auto;
+        min-height: auto;
+        overflow: visible;
+    }
+
+    .wind-card.expanded .wind-project-card-desc {
+        display: block;
+        -webkit-line-clamp: unset;
+        line-clamp: unset;
+        overflow: visible;
+        min-height: 0;
+        text-overflow: clip;
+    }
+
+    .wind-card.expanded .wind-project-card-img {
+        height: clamp(8.5rem, 22vmin, 11rem);
+        min-height: clamp(7.5rem, 18vmin, 9rem);
+        max-height: clamp(9.5rem, 24vmin, 12rem);
     }
     /* CARD EXPANDIDA: ampliar contenedor a la derecha y reducir espacio vacío */
     .wind-section.wind-card-expanded {
@@ -1175,7 +1470,7 @@ a.wind-project-card-cta:hover {
 @media (max-width: 1100px) {
     /* Layout en columna - igual que iPad Air */
     .wind-section {
-        margin-top: -180px;
+        margin-top: clamp(-6rem, -12vw, -2rem);
         padding: 0 1rem 4rem;
         min-height: auto;
     }
@@ -1266,7 +1561,7 @@ a.wind-project-card-cta:hover {
     }
     
     .wind-card {
-        min-height: 250px;
+        min-height: clamp(16rem, 40vmin, 22rem);
         opacity: 1 !important;
         transform: translateY(0) !important;
         visibility: visible !important;
@@ -1291,6 +1586,8 @@ a.wind-project-card-cta:hover {
         order: -1;
         box-sizing: border-box;
         max-width: 100%;
+        overflow-x: hidden;
+        overflow-y: visible;
     }
 
     [data-theme="dark"] .wind-card.expanded {
@@ -1343,31 +1640,47 @@ a.wind-project-card-cta:hover {
         min-width: 100%;
         max-width: 100%;
         min-height: auto;
+        height: auto;
+        max-height: none;
         margin: 0;
         flex: 0 0 auto;
+        overflow: visible;
     }
 
     .wind-card.expanded .wind-project-card-img {
-        height: 80px;
-        min-height: 80px;
+        height: clamp(8.5rem, 22vmin, 11rem);
+        min-height: clamp(7.5rem, 18vmin, 9rem);
+        max-height: clamp(9.5rem, 24vmin, 12rem);
     }
 
     .wind-card.expanded .wind-project-card-body {
-        padding: 0.5rem 0.5rem 0.65rem;
+        padding: 0.65rem 0.65rem 0.85rem;
+        flex: 0 1 auto;
+        min-height: auto;
+        overflow: visible;
     }
 
     .wind-card.expanded .wind-project-card-title {
         font-size: 1rem;
+        min-height: 0;
     }
     
     .wind-card.expanded .wind-project-card-desc {
         font-size: 0.95rem;
-        line-height: 1.4;
+        line-height: 1.45;
+        display: block;
+        -webkit-line-clamp: unset;
+        line-clamp: unset;
+        overflow: visible;
+        min-height: 0;
+        flex: 0 1 auto;
+        text-overflow: clip;
     }
 
     .wind-card.expanded .wind-project-card-cta {
         font-size: 0.9rem;
         padding: 0.55rem 1rem;
+        margin-top: 0.65rem;
         margin-bottom: 0.85rem;
     }
     
@@ -1389,9 +1702,9 @@ a.wind-project-card-cta:hover {
         box-sizing: border-box;
     }
 
-    /* Asegurar que el contenedor del botón esté centrado */
+    /* stretch: alinea el grid de mini-cards al ancho completo y evita recortar altura */
     .wind-card.expanded .wind-inner-carousel-wrap {
-        align-items: center;
+        align-items: stretch;
     }
 
     /* Card expandida: espacio inferior sin barra visible */
@@ -1440,12 +1753,13 @@ a.wind-project-card-cta:hover {
     }
 
     .wind-card {
-        min-height: 220px;
+        min-height: clamp(14rem, 38vmin, 19rem);
     }
     
     .wind-card.expanded .wind-project-card-img {
-        height: 60px;
-        min-height: 60px;
+        height: clamp(6.5rem, 20vmin, 9rem);
+        min-height: clamp(6rem, 18vmin, 8rem);
+        max-height: clamp(7rem, 22vmin, 10rem);
     }
     
     .wind-card.expanded .wind-project-card-title {
@@ -1454,6 +1768,10 @@ a.wind-project-card-cta:hover {
 
     .wind-card.expanded .wind-project-card-desc {
         font-size: 0.9rem;
+        display: block;
+        -webkit-line-clamp: unset;
+        line-clamp: unset;
+        overflow: visible;
     }
 
     .wind-card.expanded .wind-project-card-cta {
