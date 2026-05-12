@@ -183,7 +183,6 @@ function translateCommonUI(html) {
       'class="trabaja-vacancy-btn trabaja-vacancy-btn--ghost trabaja-vacancy-btn--unflip">Volver</button>',
       'class="trabaja-vacancy-btn trabaja-vacancy-btn--ghost trabaja-vacancy-btn--unflip">Back</button>'
     ],
-    ['class="trabaja-vacancy-btn">Postularme</a>', 'class="trabaja-vacancy-btn">Apply</a>'],
 
     // Home — bloque únete al equipo (solo index; cadenas únicas con markup)
     ['aria-label="Carreras y equipo"', 'aria-label="Careers and team"'],
