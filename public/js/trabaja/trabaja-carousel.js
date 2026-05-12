@@ -205,10 +205,11 @@
     });
   }
 
-  root.addEventListener('click', function(e) {
+  document.addEventListener('click', function(e) {
     var flipBtn = e.target.closest('.trabaja-vacancy-btn--flip');
     var unflipBtn = e.target.closest('.trabaja-vacancy-btn--unflip');
     if (flipBtn) {
+      if (!root.contains(flipBtn)) return;
       e.preventDefault();
       var card = flipBtn.closest('.trabaja-vacancy-card');
       if (!card || !card.classList.contains('is-front')) return;
@@ -222,11 +223,15 @@
       return;
     }
     if (unflipBtn) {
-      e.preventDefault();
       if (root.classList.contains('trabaja-carousel--vacancy-modal-open')) {
-        closeMobileModal();
-        return;
+        if (modalBackFace && modalBackFace.contains(unflipBtn)) {
+          e.preventDefault();
+          closeMobileModal();
+          return;
+        }
       }
+      if (!root.contains(unflipBtn)) return;
+      e.preventDefault();
       var c = unflipBtn.closest('.trabaja-vacancy-card');
       if (c) c.classList.remove('is-flipped');
       root.classList.remove('trabaja-carousel--flip-expanded');

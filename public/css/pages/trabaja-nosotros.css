@@ -1168,6 +1168,29 @@ html:not([data-theme="dark"]) body.trabaja-vacancy-modal-open .trabaja-vacancy-b
   background: rgba(255, 255, 255, 0.1);
 }
 
+/* Logo a inicio: sin “lavado”; botón subir siempre visible y flecha blanca sobre el hero */
+body.page-trabaja .navbar .logo {
+  opacity: 1 !important;
+}
+
+body.page-trabaja .navbar .logo-img {
+  opacity: 1 !important;
+  filter: brightness(0) invert(1) !important;
+  -webkit-filter: brightness(0) invert(1) !important;
+}
+
+body.page-trabaja .scroll-top-btn {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  background: rgba(30, 35, 42, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+body.page-trabaja .scroll-top-btn svg {
+  stroke: #fff !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .trabaja-vacancy-card {
     transition-duration: 0.01ms;

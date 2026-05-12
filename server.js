@@ -132,6 +132,12 @@ app.use(
 app.use('/cookies', express.static(path.join(__dirname, 'public', 'cookies')));
 app.use('/proyectos/data', express.static(path.join(__dirname, 'public', 'html', 'proyectos', 'data')));
 
+const FAVICON_PNG = path.join(__dirname, 'public', 'img_video', 'home', 'isologo-01.png');
+app.get('/favicon.ico', (req, res) => {
+    res.type('image/png');
+    return res.sendFile(FAVICON_PNG);
+});
+
 // Rutas EN primero (no forzar cookie aquí: el idioma lo decide Accept-Language; usar /prefer-en para fijar)
 app.get('/en', (req, res) => {
     return sendHtmlPage(EN_LANG, 'index', res);
