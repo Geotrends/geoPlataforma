@@ -1,0 +1,31 @@
+                                            <div class="trabaja-vacancy-back-scroll" tabindex="0">
+                                                <p class="trabaja-vacancy-back-role">Convocatoria inclusiva – Ingeniero/a de Desarrollo o áreas afines</p>
+                                                <p class="trabaja-vacancy-conv-p">En el marco de nuestro compromiso con la inclusión laboral y la participación de personas con discapacidad en procesos asociados a tecnología, ambiente e innovación pública, abrimos convocatoria para el siguiente perfil:</p>
+                                                <p class="trabaja-vacancy-conv-p"><strong>Cargo:</strong> Ingeniero/a de Desarrollo, Ingeniero/a de Sistemas, Ingeniero/a Ambiental con énfasis tecnológico, profesional en áreas afines o estudiante avanzado con experiencia demostrable.</p>
+                                                <p class="trabaja-vacancy-conv-sub">Propósito del perfil</p>
+                                                <p class="trabaja-vacancy-conv-p">Apoyar actividades relacionadas con el desarrollo, administración, actualización y representación de información ambiental mediante herramientas digitales, sistemas de información geográfica, visualización de indicadores ambientales y tecnologías IoT aplicadas al monitoreo ambiental.</p>
+                                                <p class="trabaja-vacancy-conv-sub">Conocimientos deseables</p>
+                                                <ul class="trabaja-vacancy-conv-list">
+                                                    <li>Sistemas de información geográfica —SIG/GIS—.</li>
+                                                    <li>Geoportales, mapas web o visualización geoespacial.</li>
+                                                    <li>Bases de datos y gestión de información ambiental.</li>
+                                                    <li>Desarrollo o administración de plataformas web.</li>
+                                                    <li>Indicadores ambientales y tableros de visualización.</li>
+                                                    <li>IoT aplicado a redes de monitoreo ambiental, calidad del aire, ruido ambiental o variables meteorológicas.</li>
+                                                    <li>Manejo de datos, analítica básica o integración de información desde sensores.</li>
+                                                </ul>
+                                                <p class="trabaja-vacancy-conv-sub">Funciones generales</p>
+                                                <ul class="trabaja-vacancy-conv-list">
+                                                    <li>Apoyar la representación gráfica y geográfica de indicadores ambientales.</li>
+                                                    <li>Participar en la actualización de información en plataformas digitales ambientales.</li>
+                                                    <li>Apoyar la integración, organización y visualización de datos provenientes de sistemas IoT o fuentes ambientales.</li>
+                                                    <li>Contribuir al fortalecimiento de herramientas digitales para la consulta ciudadana de información ambiental.</li>
+                                                    <li>Documentar actividades, avances técnicos y soportes asociados al proceso.</li>
+                                                </ul>
+                                                <p class="trabaja-vacancy-conv-sub">Convocatoria dirigida especialmente a</p>
+                                                <p class="trabaja-vacancy-conv-p">Personas con discapacidad que cumplan con el perfil técnico requerido, en concordancia con las condiciones especiales de ejecución en favor de personas con discapacidad previstas para el proceso contractual.</p>
+                                                <p class="trabaja-vacancy-conv-p trabaja-vacancy-conv-dates"><span class="trabaja-vacancy-date-open"><strong>Apertura:</strong> 18:00 del 12 de mayo de 2026</span><br><span class="trabaja-vacancy-date-close"><strong>Cierre:</strong> 8:00 del 14 de mayo de 2026</span></p>
+                                                <p class="trabaja-vacancy-conv-p"><strong>Modalidad:</strong> Presencial.<br><strong>Lugar:</strong> Área Metropolitana del Valle de Aburrá / modalidad híbrida o remota según actividades.</p>
+                                                <p class="trabaja-vacancy-conv-p"><strong>Interesados/as:</strong> Enviar hoja de vida y soportes de experiencia o formación al correo: <a href="mailto:info@geotrends.co?subject=Convocatoria%20inclusiva" class="trabaja-vacancy-conv-link">info@geotrends.co</a></p>
+                                                <p class="trabaja-vacancy-conv-note"><strong>Nota:</strong> La participación en esta convocatoria no garantiza vinculación automática. Las hojas de vida serán evaluadas de acuerdo con el cumplimiento del perfil, la experiencia acreditada y las necesidades específicas de ejecución del proyecto.</p>
+                                            </div>

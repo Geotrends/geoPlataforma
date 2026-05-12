@@ -15,6 +15,7 @@ const pages = [
   'blog-detalle.html',
   'politicas-privacidad.html',
   'representaciones-distribucion.html',
+  'trabaja-con-nosotros.html',
 ];
 
 function ensureDir(p) {
@@ -54,6 +55,8 @@ function translateCommonUI(html) {
     ['>Servicios<', '>Services<'],
     ['>Proyectos<', '>Projects<'],
     ['>Nosotros<', '>About<'],
+    ['>Trabaja con nosotros<', '>Work with us<'],
+    ['>Únete al equipo<', '>Join the team<'],
     ['>Contacto<', '>Contact<'],
     ['>Ciudades<', '>Cities<'],
     ['>Industria<', '>Industry<'],
@@ -109,6 +112,90 @@ function translateCommonUI(html) {
     ['Correo', 'Email'],
     ['Horario', 'Hours'],
     ['Atención técnica y comercial.', 'Technical and commercial support.'],
+    ['Conocer más', 'Learn more'],
+    ['aria-label="Carreras"', 'aria-label="Careers"'],
+    [
+      'Construye soluciones en acústica, datos y territorio con un equipo que apuesta por la innovación y el impacto real.',
+      'Build solutions in acoustics, data, and territory with a team committed to innovation and real impact.'
+    ],
+    ['¿Por qué Geotrends?', 'Why Geotrends?'],
+    [
+      'Trabajamos en proyectos de ciudades e industria con IoT, modelación acústica y analítica geoespacial. Valoramos la curiosidad técnica, el trabajo en equipo y la integridad.',
+      'We work on city and industry projects with IoT, acoustic modeling, and geospatial analytics. We value technical curiosity, teamwork, and integrity.'
+    ],
+    [
+      'Si compartes nuestra visión, envíanos tu CV y una breve presentación. Revisamos cada mensaje con atención.',
+      'If you share our vision, send your CV and a short introduction. We review every message carefully.'
+    ],
+    ['Enviar candidatura', 'Send application'],
+    ['aria-label="Proceso de selección"', 'aria-label="Hiring process"'],
+    ['Proceso', 'Process'],
+    [
+      '1. Envío de CV y carta o nota breve.<br>2. Conversación inicial con el equipo.<br>3. Encuentro técnico según el rol.',
+      '1. Send your CV and a short letter or note.<br>2. Introductory conversation with the team.<br>3. Technical meeting depending on the role.'
+    ],
+    [
+      'También puedes escribirnos a <a href="mailto:info@geotrends.co" class="contacto-email-link">info@geotrends.co</a> con el asunto «Candidatura».',
+      'You can also reach us at <a href="mailto:info@geotrends.co" class="contacto-email-link">info@geotrends.co</a> with the subject line “Application.”'
+    ],
+    ['Buscamos talento en acústica, datos e ingeniería. Envíanos tu perfil.', 'We hire talent in acoustics, data, and engineering. Send us your profile.'],
+
+    // Página trabaja-con-nosotros (hero + carrusel)
+    ['aria-label="Trabaja con nosotros"', 'aria-label="Work with us"'],
+    ['aria-roledescription="carrusel"', 'aria-roledescription="carousel"'],
+    ['aria-label="Vacantes abiertas"', 'aria-label="Open positions"'],
+    ['aria-label="Vacante anterior"', 'aria-label="Previous opening"'],
+    ['aria-label="Vacante siguiente"', 'aria-label="Next opening"'],
+    [
+      'role="img" aria-label="Entorno de trabajo con monitoreo ambiental, datos y desarrollo de software"',
+      'role="img" aria-label="Workplace with environmental monitoring, data visualization and software development"'
+    ],
+    [
+      '<span class="trabaja-carousel-toast__inner">No hay más vacantes en este momento.</span>',
+      '<span class="trabaja-carousel-toast__inner">There are no more openings at the moment.</span>'
+    ],
+    [
+      'Haz visible lo invisible. En Geotrends diseñamos plataformas, sensores y modelos que convierten datos ambientales y acústicos en decisiones para ciudades y para operaciones industriales.',
+      'Make the invisible visible. At Geotrends we design platforms, sensors, and models that turn environmental and acoustic data into decisions for cities and industrial operations.'
+    ],
+    [
+      'Tu trabajo puede dejar huella en territorios reales: buscamos personas con rigor técnico, curiosidad y ganas de construir soluciones con impacto medible.',
+      'Your work can leave a mark on real territories: we look for people with technical rigor, curiosity, and the drive to build solutions with measurable impact.'
+    ],
+    [
+      '<h3 class="trabaja-vacancy-title">Convocatoria inclusiva – Ingeniero/a de Desarrollo o áreas afines</h3>',
+      '<h3 class="trabaja-vacancy-title">Inclusive recruitment – Software / systems / environmental engineer or related fields</h3>'
+    ],
+    [
+      '<p class="trabaja-vacancy-front-dates" role="group" aria-label="Fechas de la convocatoria">\n                                                <span class="trabaja-vacancy-date-open"><strong>Apertura:</strong> 18:00 del 12 de mayo de 2026</span>\n                                                <span class="trabaja-vacancy-date-close"><strong>Cierre:</strong> 8:00 del 14 de mayo de 2026</span>\n                                            </p>',
+      '<p class="trabaja-vacancy-front-dates" role="group" aria-label="Call timeline">\n                                                <span class="trabaja-vacancy-date-open"><strong>Opens:</strong> 12 May 2026, 6:00 p.m.</span>\n                                                <span class="trabaja-vacancy-date-close"><strong>Closes:</strong> 14 May 2026, 8:00 a.m.</span>\n                                            </p>'
+    ],
+    ['class="trabaja-vacancy-btn">Ver más</a>', 'class="trabaja-vacancy-btn">See more</a>'],
+    [
+      '¿Tienes alguna duda respecto a la vacante? Comunícate con nosotros a través de:',
+      'Do you have any questions about the opening? Contact us through:'
+    ],
+    ['aria-label="Correo info@geotrends.co"', 'aria-label="Email info@geotrends.co"'],
+    ['aria-label="LinkedIn Geotrends"', 'aria-label="Geotrends on LinkedIn"'],
+    ['subject=Consulta%20sobre%20vacante"', 'subject=Question%20about%20job%20opening"'],
+    ['class="trabaja-vacancy-btn trabaja-vacancy-btn--flip">Ver más</button>', 'class="trabaja-vacancy-btn trabaja-vacancy-btn--flip">See more</button>'],
+    [
+      'class="trabaja-vacancy-btn trabaja-vacancy-btn--ghost trabaja-vacancy-btn--unflip">Volver</button>',
+      'class="trabaja-vacancy-btn trabaja-vacancy-btn--ghost trabaja-vacancy-btn--unflip">Back</button>'
+    ],
+    ['class="trabaja-vacancy-btn">Postularme</a>', 'class="trabaja-vacancy-btn">Apply</a>'],
+
+    // Home — bloque únete al equipo (solo index; cadenas únicas con markup)
+    ['aria-label="Carreras y equipo"', 'aria-label="Careers and team"'],
+    ['aria-label="Secciones y carreras"', 'aria-label="Sections and careers"'],
+    ['¿Quieres construir tecnología con nosotros?', 'Do you want to build technology with us?'],
+    ['En Geotrends buscamos personas apasionadas por:', 'At Geotrends we look for people passionate about:'],
+    ['<li class="home-join-tag" role="listitem">analítica geoespacial</li>', '<li class="home-join-tag" role="listitem">Geospatial analytics</li>'],
+    ['<li class="home-join-tag" role="listitem">acústica</li>', '<li class="home-join-tag" role="listitem">Acoustics</li>'],
+    ['<li class="home-join-tag" role="listitem">visualización de datos</li>', '<li class="home-join-tag" role="listitem">Data visualization</li>'],
+    ['<li class="home-join-tag" role="listitem">IA</li>', '<li class="home-join-tag" role="listitem">AI</li>'],
+    ['<li class="home-join-tag" role="listitem">software</li>', '<li class="home-join-tag" role="listitem">Software</li>'],
+    ['Conoce cómo unirte', 'See how to join'],
 
     // Common CTAs
     ['Conoce más', 'Learn more'],
@@ -377,6 +464,17 @@ function translateCommonUI(html) {
     ['Medición de Velocidad de Partículas', 'Particle Velocity Measurement'],
   ];
 
+  const convScrollEsPath = path.join(ROOT, 'scripts', 'trabaja-conv-scroll-es.txt');
+  const convScrollEnPath = path.join(ROOT, 'scripts', 'trabaja-conv-scroll-en.txt');
+  if (fs.existsSync(convScrollEsPath) && fs.existsSync(convScrollEnPath)) {
+    replacements.unshift([
+      fs.readFileSync(convScrollEsPath, 'utf8'),
+      fs.readFileSync(convScrollEnPath, 'utf8'),
+    ]);
+  }
+
+  replacements.push(['subject=Convocatoria%20inclusiva"', 'subject=Inclusive%20recruitment"']);
+
   for (const [a, b] of replacements) {
     html = html.split(a).join(b);
   }
@@ -431,6 +529,15 @@ function translateMeta(html) {
   swapDescription(
     'Contacta a GeoPlataforma. Consultoría en ingeniería acústica, mapas de ruido y analítica geoespacial. Medellín, Colombia.',
     'Contact GeoPlataforma. Consulting in acoustic engineering, noise maps, and geospatial analytics. Medellín, Colombia.'
+  );
+
+  swapTitle(
+    'Trabaja con nosotros | Carreras e ingeniería acústica | GeoPlataforma',
+    'Work with us | Careers and acoustic engineering | GeoPlataforma'
+  );
+  swapDescription(
+    'Únete a Geotrends: acústica, IoT, analítica geoespacial y equipos multidisciplinarios en Medellín, Colombia.',
+    'Join Geotrends: acoustics, IoT, geospatial analytics, and multidisciplinary teams in Medellín, Colombia.'
   );
 
   swapTitle(

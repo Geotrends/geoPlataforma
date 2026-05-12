@@ -1,0 +1,107 @@
+/* Home: bloque “únete al equipo” antes del footer */
+.home-join-section {
+  position: relative;
+  padding: 4.5rem 2rem 5rem;
+  background: rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.home-join-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.home-join-title {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-weight: 700;
+  color: #313131;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0 0 1rem;
+}
+
+.home-join-lead {
+  font-size: clamp(1rem, 1.8vw, 1.125rem);
+  color: rgba(49, 49, 49, 0.85);
+  margin: 0 0 1.5rem;
+  line-height: 1.5;
+}
+
+.home-join-tags {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem 0.75rem;
+}
+
+.home-join-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #313131;
+  background: #fff;
+  border: 1px solid rgba(49, 49, 49, 0.12);
+  border-radius: 999px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.home-join-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: #313131;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.home-join-cta:hover {
+  background: #1a1a1a;
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .home-join-section {
+  background: #1a1a1a;
+}
+
+[data-theme="dark"] .home-join-title {
+  color: #fff;
+}
+
+[data-theme="dark"] .home-join-lead {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+[data-theme="dark"] .home-join-tag {
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+}
+
+[data-theme="dark"] .home-join-cta {
+  background: #fff;
+  color: #313131;
+}
+
+[data-theme="dark"] .home-join-cta:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 520px) {
+  .home-join-section {
+    padding: 3.25rem 1.25rem 3.5rem;
+  }
+}

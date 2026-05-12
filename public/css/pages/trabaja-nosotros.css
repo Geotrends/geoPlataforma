@@ -1,0 +1,1179 @@
+/* Página Trabaja con nosotros: hero dos columnas + panel texto (glass navbar) + carrusel tipo cover flow */
+/*
+ * .contacto-page tiene min-height: 100vh (contacto.css). Si el hero + contenido es más bajo que el viewport,
+ * queda una franja del fondo #313131 del main antes del footer. En esta página solo hay hero: quitamos ese mínimo.
+ */
+body.page-trabaja .contacto-page {
+  min-height: unset;
+}
+
+body.page-trabaja .contacto-hero {
+  /* Centra el bloque .trabaja-hero-inner en el alto disponible (aire arriba y abajo respecto al navbar) */
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  min-height: min(100vh, 960px);
+  padding-top: clamp(5.75rem, 11vh, 7.5rem);
+  padding-bottom: clamp(2.25rem, 4vh, 3.5rem);
+  box-sizing: border-box;
+  /* Las tarjetas laterales salen del eje central; el vídeo sigue recortado en .contacto-hero-luma-wrap */
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+/* Al expandir el reverso de la vacante, la tarjeta crece hacia la izquierda: no recortar */
+body.page-trabaja .contacto-hero:has(.trabaja-carousel--flip-expanded),
+body.page-trabaja .contacto-hero:has(.trabaja-carousel--vacancy-modal-open) {
+  overflow-x: visible;
+}
+
+@media (max-width: 900px) {
+  body.page-trabaja .contacto-hero {
+    min-height: auto;
+    /* Aire claro bajo la navbar flotante + panel “Trabaja con nosotros” */
+    padding-top: clamp(5.35rem, 11vh, 6.75rem);
+    padding-bottom: 1.75rem;
+  }
+
+  /* Menos aire en la barra superior (solo esta página) */
+  body.page-trabaja .navbar {
+    top: 0.45rem;
+  }
+
+  body.page-trabaja .navbar.scrolled,
+  body.page-trabaja .navbar.scrolled.section-image,
+  body.page-trabaja .navbar.scrolled.section-dark {
+    top: 0.45rem;
+  }
+
+  body.page-trabaja .navbar .nav-container {
+    padding: 0.45rem 1rem;
+  }
+
+  body.page-trabaja .navbar .logo-img {
+    height: 34px;
+  }
+}
+
+/* Mismo ancho horizontal que .nav-container (navbar.css) */
+.trabaja-hero-inner {
+  position: relative;
+  z-index: 2;
+  width: min(1600px, calc(100% - 4rem));
+  max-width: 1600px;
+  margin: 0 2rem;
+  padding: 0 0 3rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, min(640px, 44vw));
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+  align-content: start;
+}
+
+.trabaja-hero-inner > * {
+  min-width: 0;
+}
+
+/* Ver más: oculta panel izquierdo (título, textos, contacto, Proceso); la vacante usa todo el ancho del hero */
+.trabaja-hero-inner:has(.trabaja-carousel--flip-expanded) {
+  grid-template-columns: 1fr;
+  gap: 0;
+  align-items: stretch;
+}
+
+.trabaja-hero-inner:has(.trabaja-carousel--flip-expanded) .trabaja-hero-copy {
+  display: none;
+}
+
+.trabaja-hero-inner:has(.trabaja-carousel--flip-expanded) .trabaja-carousel {
+  width: 100%;
+  max-width: none;
+  align-self: stretch;
+}
+
+.trabaja-hero-copy,
+.trabaja-carousel {
+  align-self: start;
+}
+
+@media (min-width: 1648px) {
+  .trabaja-hero-inner {
+    width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 1101px) {
+  .trabaja-hero-inner {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    width: min(1600px, calc(100% - 3rem));
+  }
+}
+
+@media (max-width: 900px) {
+  .trabaja-hero-inner {
+    grid-template-columns: 1fr;
+    margin-top: 0;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    width: min(1600px, calc(100% - 3rem));
+    padding-bottom: 1.35rem;
+    gap: 0.7rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .trabaja-hero-inner {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: min(1600px, calc(100% - 2rem));
+  }
+}
+
+.trabaja-hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: none;
+}
+
+@media (max-width: 900px) {
+  .trabaja-hero-copy {
+    margin: 0 auto;
+    gap: 0.65rem;
+  }
+}
+
+/* Mismo cristal oscuro que .navbar.scrolled .nav-container */
+.trabaja-hero-copy-panel {
+  padding: 1.75rem 1.85rem 2rem;
+  background: rgba(15, 20, 25, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+@media (max-width: 900px) {
+  .trabaja-hero-copy-panel {
+    text-align: left;
+    padding: 1.2rem 1.15rem 1.35rem;
+  }
+}
+
+.trabaja-hero-title {
+  font-size: clamp(1.85rem, 3.5vw, 2.75rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.65rem;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.trabaja-hero-underline {
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin: 0 0 1.35rem;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 900px) {
+  .trabaja-hero-underline {
+    margin-left: 0;
+  }
+}
+
+.trabaja-hero-intro {
+  font-size: clamp(1rem, 1.35vw, 1.12rem);
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 1rem;
+  overflow-wrap: break-word;
+}
+
+.trabaja-hero-intro:last-of-type {
+  margin-bottom: 0;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-hero-copy-panel {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-hero-title {
+  color: #1a1a1a;
+  text-shadow: none;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-hero-intro {
+  color: rgba(30, 30, 30, 0.88);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-hero-underline {
+  background: var(--geo-military-green, #5c6b4a);
+  box-shadow: none;
+}
+
+/* Tarjeta Proceso: mismo ancho y cristal que el panel superior */
+.trabaja-hero-process-panel {
+  padding: 1.35rem 1.85rem 1.55rem;
+  background: rgba(15, 20, 25, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .trabaja-hero-process-panel {
+    text-align: left;
+    padding: 1.1rem 1.15rem 1.25rem;
+  }
+}
+
+.trabaja-hero-process-title {
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.7rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.trabaja-hero-process-text {
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 0.85rem;
+}
+
+.trabaja-hero-process-text:last-child {
+  margin-bottom: 0;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-hero-process-panel {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-hero-process-title {
+  color: #1a1a1a;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-hero-process-text {
+  color: rgba(30, 30, 30, 0.88);
+}
+
+.trabaja-hero-process-panel .contacto-email-link {
+  color: rgba(200, 230, 210, 0.98);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.trabaja-hero-process-panel .contacto-email-link:hover {
+  color: #fff;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-hero-process-panel .contacto-email-link {
+  color: var(--geo-military-green, #5c6b4a);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-hero-process-panel .contacto-email-link:hover {
+  color: #3d4a32;
+}
+
+.trabaja-hero-contact {
+  margin-top: 1.35rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.trabaja-hero-contact-text {
+  margin: 0 0 1rem;
+  font-size: clamp(0.9rem, 1.15vw, 1rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.9);
+  overflow-wrap: break-word;
+}
+
+.trabaja-hero-contact-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 0.75rem;
+  align-items: center;
+}
+
+.trabaja-hero-contact-links li {
+  margin: 0;
+}
+
+.trabaja-hero-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.86rem;
+  font-weight: 600;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.trabaja-hero-contact-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.trabaja-hero-contact-icon {
+  flex-shrink: 0;
+  opacity: 0.95;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-hero-contact {
+  border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-hero-contact-text {
+  color: rgba(30, 30, 30, 0.88);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-hero-contact-link {
+  color: #1a1a1a;
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-hero-contact-link:hover {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.16);
+}
+
+/* Carrusel cover flow: centro grande, laterales más pequeños; al avanzar, la lateral crece hacia el centro */
+.trabaja-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  overflow: visible;
+}
+
+@media (max-width: 900px) {
+  .trabaja-carousel {
+    margin: 0 auto;
+    max-width: min(460px, 100%);
+  }
+
+  .trabaja-carousel-stack {
+    /* Menos hueco entre la tarjeta y las flechas en columna */
+    height: clamp(420px, 50vh, 540px);
+  }
+
+  .trabaja-carousel-controls {
+    margin-top: 0.4rem;
+    max-height: 3.25rem;
+  }
+}
+
+.trabaja-carousel-stack {
+  position: relative;
+  width: 100%;
+  /* Siempre un poco más alto que la tarjeta frontal para que top:0 + translate no “suba” el mazo por encima del panel izquierdo */
+  height: clamp(560px, 60vh, 660px);
+  margin: 0 auto;
+  overflow: visible;
+  perspective: 1100px;
+}
+
+@media (max-width: 560px) {
+  body.page-trabaja .contacto-hero {
+    padding-top: clamp(5.1rem, 10.5vh, 6.5rem);
+    padding-bottom: 1.35rem;
+  }
+
+  .trabaja-hero-inner {
+    padding-bottom: 1.1rem;
+    gap: 0.55rem;
+  }
+
+  .trabaja-carousel-stack {
+    height: clamp(400px, 48vh, 500px);
+  }
+
+  .trabaja-carousel-controls {
+    margin-top: 0.3rem;
+  }
+}
+
+.trabaja-stack-cards {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.trabaja-vacancy-card {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 90%;
+  max-width: 380px;
+  height: clamp(440px, 52vh, 540px);
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 18px;
+  overflow: visible;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  transition:
+    transform 0.58s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.45s ease,
+    filter 0.45s ease,
+    box-shadow 0.45s ease,
+    width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    max-width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+  pointer-events: none;
+  transform: translate(-50%, 0) scale(0.65);
+  opacity: 0;
+}
+
+/* Reverso a pantalla completa del carrusel: ocultar vecinas y controles, ampliar tarjeta frontal */
+.trabaja-carousel--flip-expanded .trabaja-vacancy-card:not(.is-front) {
+  opacity: 0 !important;
+  visibility: hidden;
+  pointer-events: none !important;
+  transition:
+    opacity 0.32s ease,
+    visibility 0.32s ease;
+}
+
+.trabaja-carousel--flip-expanded .trabaja-vacancy-card.is-front.is-flipped {
+  width: min(100%, min(1600px, calc(100vw - 4rem)));
+  max-width: none;
+  height: min(82vh, 720px);
+  z-index: 80;
+  left: 50%;
+  right: auto;
+  transform: translate(-50%, 0) scale(1) !important;
+  transform-origin: top center;
+  filter: brightness(1) !important;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.55);
+}
+
+.trabaja-carousel--flip-expanded .trabaja-carousel-stack {
+  height: min(86vh, 780px);
+  transition: height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.trabaja-carousel--flip-expanded .trabaja-carousel-controls,
+.trabaja-carousel--vacancy-modal-open .trabaja-carousel-controls {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  max-height: 0;
+  margin-top: 0;
+  overflow: hidden;
+  transition:
+    opacity 0.28s ease,
+    visibility 0.28s ease,
+    max-height 0.35s ease,
+    margin 0.35s ease;
+}
+
+/* Tipografía tipo .proyecto-panel solo al ampliar la tarjeta (no en el carrusel normal) */
+.trabaja-carousel--flip-expanded .trabaja-vacancy-title {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.trabaja-carousel--flip-expanded .trabaja-vacancy-front-dates {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.trabaja-carousel--flip-expanded .trabaja-vacancy-back-role,
+body.trabaja-vacancy-modal-open .trabaja-vacancy-back-role {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.trabaja-carousel--flip-expanded .trabaja-vacancy-conv-p,
+.trabaja-carousel--flip-expanded .trabaja-vacancy-conv-list,
+.trabaja-carousel--flip-expanded .trabaja-vacancy-reqs,
+body.trabaja-vacancy-modal-open .trabaja-vacancy-conv-p,
+body.trabaja-vacancy-modal-open .trabaja-vacancy-conv-list,
+body.trabaja-vacancy-modal-open .trabaja-vacancy-reqs {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.trabaja-carousel--flip-expanded .trabaja-vacancy-conv-sub,
+.trabaja-carousel--flip-expanded .trabaja-vacancy-back-label,
+body.trabaja-vacancy-modal-open .trabaja-vacancy-conv-sub,
+body.trabaja-vacancy-modal-open .trabaja-vacancy-back-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.trabaja-carousel--flip-expanded .trabaja-vacancy-conv-note,
+body.trabaja-vacancy-modal-open .trabaja-vacancy-conv-note {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@media (max-width: 900px) {
+  .trabaja-carousel--flip-expanded .trabaja-vacancy-card.is-front.is-flipped {
+    width: min(100%, calc(100vw - 2.5rem));
+    height: min(78vh, 680px);
+  }
+}
+
+@media (max-width: 560px) {
+  .trabaja-carousel--flip-expanded .trabaja-vacancy-card.is-front.is-flipped {
+    width: min(100%, calc(100vw - 2rem));
+    height: min(72vh, 600px);
+  }
+
+  .trabaja-carousel--flip-expanded .trabaja-carousel-stack {
+    height: min(78vh, 660px);
+  }
+}
+
+.trabaja-vacancy-flip {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+  border-radius: 18px;
+}
+
+.trabaja-vacancy-card.is-flipped .trabaja-vacancy-flip {
+  transform: rotateY(180deg);
+}
+
+.trabaja-vacancy-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Mismo cristal que .trabaja-hero-copy-panel / .trabaja-hero-process-panel (tarjeta sin extender) */
+  background: rgba(15, 20, 25, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Vista expandida (desktop) o modal móvil: panel denso */
+.trabaja-carousel--flip-expanded .trabaja-vacancy-face,
+body.trabaja-vacancy-modal-open .trabaja-vacancy-face--back.is-modal-mounted {
+  background: rgba(15, 20, 25, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+}
+
+.trabaja-vacancy-face--back {
+  transform: rotateY(180deg);
+}
+
+.trabaja-vacancy-face--back.is-modal-mounted {
+  transform: none !important;
+  backface-visibility: visible;
+  -webkit-backface-visibility: visible;
+}
+
+body.trabaja-vacancy-modal-open {
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+@media (max-width: 900px) {
+  body.trabaja-vacancy-modal-open .trabaja-vacancy-face--back.is-modal-mounted {
+    position: fixed;
+    inset: 0;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: none;
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: auto;
+    max-height: none;
+    z-index: 1100;
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  body.trabaja-vacancy-modal-open .trabaja-vacancy-face--back.is-modal-mounted .trabaja-vacancy-back-inner {
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: calc(0.65rem + env(safe-area-inset-top, 0px)) calc(0.85rem + env(safe-area-inset-right, 0px))
+      calc(0.85rem + env(safe-area-inset-bottom, 0px)) calc(0.85rem + env(safe-area-inset-left, 0px));
+  }
+}
+
+.trabaja-vacancy-back-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0.65rem 0.5rem 0.75rem 0.85rem;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.trabaja-vacancy-back-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.35rem 0.45rem 0.5rem 0.15rem;
+  scrollbar-gutter: stable;
+}
+
+.trabaja-vacancy-back-scroll:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.45);
+  outline-offset: 2px;
+}
+
+.trabaja-vacancy-back-role {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1rem, 2.1vw, 1.2rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.trabaja-vacancy-conv-p {
+  margin: 0 0 0.75rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.trabaja-vacancy-conv-sub {
+  margin: 0.35rem 0 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.trabaja-vacancy-conv-list {
+  margin: 0 0 0.85rem;
+  padding: 0 0 0 1.1rem;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.trabaja-vacancy-conv-list li {
+  margin-bottom: 0.35rem;
+}
+
+.trabaja-vacancy-conv-list li:last-child {
+  margin-bottom: 0;
+}
+
+.trabaja-vacancy-conv-link {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.trabaja-vacancy-conv-link:hover {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.trabaja-vacancy-conv-note {
+  margin: 0.85rem 0 0;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.trabaja-vacancy-back-label {
+  margin: 0 0 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.trabaja-vacancy-reqs {
+  margin: 0 0 1rem;
+  padding: 0 0 0 1.1rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.trabaja-vacancy-reqs li {
+  margin-bottom: 0.35rem;
+}
+
+.trabaja-vacancy-reqs li:last-child {
+  margin-bottom: 0;
+}
+
+.trabaja-vacancy-back-actions {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 0.5rem;
+}
+
+.trabaja-vacancy-card.is-front {
+  z-index: 30;
+  transform: translate(-50%, 0) scale(1);
+  opacity: 1;
+  filter: brightness(1);
+  pointer-events: auto;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5);
+}
+
+/* Siguiente vacante: a la derecha, más pequeña (mismo plano, sin apilar en Z) */
+.trabaja-vacancy-card.is-behind-right {
+  z-index: 20;
+  transform: translate(calc(-50% + 56%), 0) scale(0.74);
+  opacity: 0.92;
+  filter: brightness(0.94);
+}
+
+/* Anterior: a la izquierda, más pequeña */
+.trabaja-vacancy-card.is-behind-left {
+  z-index: 20;
+  transform: translate(calc(-50% - 56%), 0) scale(0.74);
+  opacity: 0.92;
+  filter: brightness(0.94);
+}
+
+@media (max-width: 560px) {
+  .trabaja-vacancy-card {
+    height: clamp(400px, 48vh, 500px);
+  }
+
+  .trabaja-vacancy-card.is-behind-right {
+    transform: translate(calc(-50% + 38%), 0) scale(0.66);
+    opacity: 0.88;
+  }
+
+  .trabaja-vacancy-card.is-behind-left {
+    transform: translate(calc(-50% - 38%), 0) scale(0.66);
+    opacity: 0.88;
+  }
+}
+
+@media (max-width: 400px) {
+  .trabaja-vacancy-card.is-behind-right {
+    transform: translate(calc(-50% + 32%), 0) scale(0.62);
+  }
+
+  .trabaja-vacancy-card.is-behind-left {
+    transform: translate(calc(-50% - 32%), 0) scale(0.62);
+  }
+}
+
+/* Más de 3 slides (por si crece) */
+.trabaja-vacancy-card.is-hidden-back {
+  z-index: 5;
+  transform: translate(-50%, 0) scale(0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.45s ease, opacity 0.35s ease;
+}
+
+.trabaja-vacancy-img {
+  flex: 1;
+  min-height: 46%;
+  background-color: #1a1f26;
+  background-image: url('../../img_video/trabaja/b96bd895-ef15-4ecd-9639-6cbcb5633a99.png');
+  background-size: cover;
+  background-position: center top;
+}
+
+.trabaja-vacancy-body {
+  flex-shrink: 0;
+  padding: 1.15rem 1.25rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  align-items: flex-start;
+}
+
+.trabaja-vacancy-title {
+  margin: 0;
+  font-size: clamp(0.88rem, 2vw, 1.12rem);
+  font-weight: 700;
+  line-height: 1.35;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.trabaja-vacancy-front-dates {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+@media (min-width: 480px) {
+  .trabaja-vacancy-front-dates {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 1rem;
+    row-gap: 0.25rem;
+  }
+}
+
+.trabaja-vacancy-date-open {
+  color: #4ade80;
+}
+
+.trabaja-vacancy-date-close {
+  color: #f87171;
+}
+
+.trabaja-vacancy-conv-dates .trabaja-vacancy-date-open {
+  color: #4ade80;
+}
+
+.trabaja-vacancy-conv-dates .trabaja-vacancy-date-close {
+  color: #f87171;
+}
+
+.trabaja-vacancy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  background: #fff;
+  border: none;
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.trabaja-vacancy-btn:hover {
+  background: rgba(255, 255, 255, 0.92);
+  transform: translateY(-1px);
+}
+
+.trabaja-vacancy-btn--ghost {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.trabaja-vacancy-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.trabaja-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.15rem;
+  max-height: 5rem;
+  transition:
+    opacity 0.28s ease,
+    visibility 0.28s ease,
+    max-height 0.35s ease,
+    margin 0.35s ease;
+}
+
+.trabaja-carousel-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(15, 20, 25, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.trabaja-carousel-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.trabaja-carousel-dots {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.trabaja-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.trabaja-carousel-dot[aria-current="true"] {
+  background: #fff;
+  transform: scale(1.15);
+}
+
+.trabaja-carousel-toast {
+  position: absolute;
+  left: 50%;
+  bottom: 4.5rem;
+  transform: translateX(-50%) translateY(8px);
+  max-width: min(320px, calc(100% - 1.5rem));
+  padding: 0.65rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  text-align: center;
+  color: #fff;
+  background: rgba(12, 16, 22, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease,
+    transform 0.25s ease;
+  z-index: 90;
+}
+
+.trabaja-carousel-toast.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel-toast {
+  color: #1a1a1a;
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Tema claro: cristal como paneles hero; expandido vuelve a panel oscuro denso */
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-vacancy-face:not(.is-modal-mounted) {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel--flip-expanded .trabaja-vacancy-face,
+html:not([data-theme="dark"]) body.trabaja-vacancy-modal-open .trabaja-vacancy-face--back.is-modal-mounted {
+  background: rgba(15, 20, 25, 0.92);
+  border-color: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel:not(.trabaja-carousel--flip-expanded) .trabaja-vacancy-title {
+  color: #313131;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel:not(.trabaja-carousel--flip-expanded) .trabaja-vacancy-btn:not(.trabaja-vacancy-btn--ghost) {
+  background: #313131;
+  color: #fff;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel:not(.trabaja-carousel--flip-expanded) .trabaja-vacancy-btn:not(.trabaja-vacancy-btn--ghost):hover {
+  background: #1a1a1a;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel:not(.trabaja-carousel--flip-expanded) .trabaja-vacancy-back-role {
+  color: #1a1a1a;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel:not(.trabaja-carousel--flip-expanded) .trabaja-vacancy-back-label {
+  color: rgba(30, 30, 30, 0.5);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel:not(.trabaja-carousel--flip-expanded) .trabaja-vacancy-back-scroll:focus-visible {
+  outline-color: rgba(30, 30, 30, 0.35);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel:not(.trabaja-carousel--flip-expanded) .trabaja-vacancy-conv-p,
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel:not(.trabaja-carousel--flip-expanded) .trabaja-vacancy-conv-list {
+  color: rgba(30, 30, 30, 0.9);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel:not(.trabaja-carousel--flip-expanded) .trabaja-vacancy-conv-sub {
+  color: rgba(30, 30, 30, 0.55);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel:not(.trabaja-carousel--flip-expanded) .trabaja-vacancy-conv-link {
+  color: #1a5a8a;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel:not(.trabaja-carousel--flip-expanded) .trabaja-vacancy-conv-link:hover {
+  color: #134a72;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel:not(.trabaja-carousel--flip-expanded) .trabaja-vacancy-conv-note {
+  color: rgba(30, 30, 30, 0.72);
+  border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel:not(.trabaja-carousel--flip-expanded) .trabaja-vacancy-date-open {
+  color: #15803d;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel:not(.trabaja-carousel--flip-expanded) .trabaja-vacancy-date-close {
+  color: #b91c1c;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel:not(.trabaja-carousel--flip-expanded) .trabaja-vacancy-reqs {
+  color: rgba(30, 30, 30, 0.88);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel:not(.trabaja-carousel--flip-expanded) .trabaja-vacancy-btn--ghost {
+  color: #313131;
+  border-color: rgba(0, 0, 0, 0.22);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel:not(.trabaja-carousel--flip-expanded) .trabaja-vacancy-btn--ghost:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel--flip-expanded .trabaja-vacancy-conv-p,
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel--flip-expanded .trabaja-vacancy-conv-list,
+html:not([data-theme="dark"]) body.trabaja-vacancy-modal-open .trabaja-vacancy-conv-p,
+html:not([data-theme="dark"]) body.trabaja-vacancy-modal-open .trabaja-vacancy-conv-list {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel--flip-expanded .trabaja-vacancy-conv-sub,
+html:not([data-theme="dark"]) body.trabaja-vacancy-modal-open .trabaja-vacancy-conv-sub {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel--flip-expanded .trabaja-vacancy-conv-note,
+html:not([data-theme="dark"]) body.trabaja-vacancy-modal-open .trabaja-vacancy-conv-note {
+  color: rgba(255, 255, 255, 0.75);
+  border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel--flip-expanded .trabaja-vacancy-conv-link,
+html:not([data-theme="dark"]) body.trabaja-vacancy-modal-open .trabaja-vacancy-conv-link {
+  color: #93c5fd;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel--flip-expanded .trabaja-vacancy-conv-link:hover,
+html:not([data-theme="dark"]) body.trabaja-vacancy-modal-open .trabaja-vacancy-conv-link:hover {
+  color: #bfdbfe;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel--flip-expanded .trabaja-vacancy-back-role,
+html:not([data-theme="dark"]) body.trabaja-vacancy-modal-open .trabaja-vacancy-back-role {
+  color: #fff;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel--flip-expanded .trabaja-vacancy-date-open,
+html:not([data-theme="dark"]) body.trabaja-vacancy-modal-open .trabaja-vacancy-date-open {
+  color: #4ade80;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel--flip-expanded .trabaja-vacancy-date-close,
+html:not([data-theme="dark"]) body.trabaja-vacancy-modal-open .trabaja-vacancy-date-close {
+  color: #f87171;
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel--flip-expanded .trabaja-vacancy-btn--ghost,
+html:not([data-theme="dark"]) body.trabaja-vacancy-modal-open .trabaja-vacancy-btn--ghost {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+html:not([data-theme="dark"]) body.page-trabaja .trabaja-carousel--flip-expanded .trabaja-vacancy-btn--ghost:hover,
+html:not([data-theme="dark"]) body.trabaja-vacancy-modal-open .trabaja-vacancy-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trabaja-vacancy-card {
+    transition-duration: 0.01ms;
+  }
+
+  .trabaja-vacancy-flip {
+    transition-duration: 0.01ms;
+  }
+}

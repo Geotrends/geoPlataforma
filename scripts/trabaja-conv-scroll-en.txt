@@ -1,0 +1,31 @@
+                                            <div class="trabaja-vacancy-back-scroll" tabindex="0">
+                                                <p class="trabaja-vacancy-back-role">Inclusive recruitment – Software / systems / environmental engineer or related fields</p>
+                                                <p class="trabaja-vacancy-conv-p">As part of our commitment to inclusive employment and the participation of people with disabilities in processes linked to technology, the environment, and public innovation, we are opening a call for the following profile:</p>
+                                                <p class="trabaja-vacancy-conv-p"><strong>Role:</strong> Software engineer, systems engineer, environmental engineer with a technology focus, a related professional, or an advanced student with demonstrable experience.</p>
+                                                <p class="trabaja-vacancy-conv-sub">Purpose of the role</p>
+                                                <p class="trabaja-vacancy-conv-p">Support activities related to the development, administration, updating, and presentation of environmental information using digital tools, geographic information systems, visualization of environmental indicators, and IoT technologies applied to environmental monitoring.</p>
+                                                <p class="trabaja-vacancy-conv-sub">Desired knowledge</p>
+                                                <ul class="trabaja-vacancy-conv-list">
+                                                    <li>Geographic information systems —GIS—.</li>
+                                                    <li>Geoportals, web maps, or geospatial visualization.</li>
+                                                    <li>Databases and environmental information management.</li>
+                                                    <li>Web platform development or administration.</li>
+                                                    <li>Environmental indicators and visualization dashboards.</li>
+                                                    <li>IoT applied to environmental monitoring networks, air quality, environmental noise, or meteorological variables.</li>
+                                                    <li>Data handling, basic analytics, or integration of information from sensors.</li>
+                                                </ul>
+                                                <p class="trabaja-vacancy-conv-sub">General duties</p>
+                                                <ul class="trabaja-vacancy-conv-list">
+                                                    <li>Support graphical and geographic representation of environmental indicators.</li>
+                                                    <li>Participate in updating information on digital environmental platforms.</li>
+                                                    <li>Support integration, organization, and visualization of data from IoT systems or environmental sources.</li>
+                                                    <li>Contribute to strengthening digital tools for public access to environmental information.</li>
+                                                    <li>Document activities, technical progress, and related deliverables.</li>
+                                                </ul>
+                                                <p class="trabaja-vacancy-conv-sub">Especially aimed at</p>
+                                                <p class="trabaja-vacancy-conv-p">People with disabilities who meet the required technical profile, in line with the special contractual conditions in favor of people with disabilities set out for this process.</p>
+                                                <p class="trabaja-vacancy-conv-p trabaja-vacancy-conv-dates"><span class="trabaja-vacancy-date-open"><strong>Opens:</strong> 12 May 2026, 6:00 p.m.</span><br><span class="trabaja-vacancy-date-close"><strong>Closes:</strong> 14 May 2026, 8:00 a.m.</span></p>
+                                                <p class="trabaja-vacancy-conv-p"><strong>Mode:</strong> On-site.<br><strong>Location:</strong> Aburrá Valley metropolitan area / hybrid or remote depending on activities.</p>
+                                                <p class="trabaja-vacancy-conv-p"><strong>Interested applicants:</strong> Send your CV and supporting evidence of education or experience to: <a href="mailto:info@geotrends.co?subject=Inclusive%20recruitment" class="trabaja-vacancy-conv-link">info@geotrends.co</a></p>
+                                                <p class="trabaja-vacancy-conv-note"><strong>Note:</strong> Applying does not guarantee automatic hiring. CVs will be assessed according to profile fit, accredited experience, and project execution needs.</p>
+                                            </div>

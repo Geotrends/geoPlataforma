@@ -92,7 +92,7 @@
         };
     }
 
-    var tabs = document.querySelectorAll('.about-tab');
+    var tabs = document.querySelectorAll('.about-tab[data-tab]');
     var panel = document.getElementById('about-panel');
     var panelTitle = document.getElementById('about-panel-title');
     var panelBody = document.getElementById('about-panel-body');
