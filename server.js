@@ -77,18 +77,41 @@ function browserPreferredLang(req) {
 }
 
 /**
- * Prioridad: 1) Accept-Language si incluye español o inglés (así no quedas “atascado” en inglés
- *    por una cookie vieja site_lang=en tras visitar /en una vez).
- * 2) Cookie site_lang si el navegador no declara es ni en.
+ * Prioridad: 1) Cookie site_lang (elección explícita vía /prefer-es, /prefer-en o selector Idioma).
+ * 2) Accept-Language si declara español o inglés.
  * 3) Español por defecto.
+ *
+ * Antes Accept-Language ganaba siempre y redirigía /nosotros → /en/nosotros aunque el usuario
+ * hubiera elegido español en el navbar; el selector parecía “aleatorio”.
  */
 function detectPreferredLang(req) {
+    const cookie = getCookieValue(req, COOKIE_LANG);
+    if (cookie === EN_LANG || cookie === DEFAULT_LANG) return cookie;
+
     const fromBrowser = browserPreferredLang(req);
     if (fromBrowser !== null) return fromBrowser;
 
-    const cookie = getCookieValue(req, COOKIE_LANG);
-    if (cookie === EN_LANG || cookie === DEFAULT_LANG) return cookie;
     return DEFAULT_LANG;
+}
+
+/** Redirección tras /prefer-*: solo rutas internas (/foo, /en/bar, con ?query opcional). */
+function safeRedirectTarget(raw) {
+    if (raw == null || typeof raw !== 'string') return null;
+    let t = raw.trim();
+    if (!t.startsWith('/') || t.startsWith('//')) return null;
+    if (t.includes('://')) return null;
+    if (/[\r\n]/.test(t)) return null;
+    const q = t.indexOf('?');
+    const pathPart = q === -1 ? t : t.slice(0, q);
+    if (pathPart.includes('..')) return null;
+    return t;
+}
+
+function getNextParam(req) {
+    const n = req.query.next;
+    if (Array.isArray(n)) return safeRedirectTarget(String(n[0]));
+    if (typeof n === 'string') return safeRedirectTarget(n);
+    return null;
 }
 
 function resolvePagePath(lang, page) {
@@ -132,6 +155,7 @@ app.use(
 app.use('/cookies', express.static(path.join(__dirname, 'public', 'cookies')));
 app.use('/proyectos/data', express.static(path.join(__dirname, 'public', 'html', 'proyectos', 'data')));
 
+<<<<<<< Updated upstream
 const FAVICON_PNG = path.join(__dirname, 'public', 'img_video', 'home', 'isologo-01.png');
 app.get('/favicon.ico', (req, res) => {
     res.type('image/png');
@@ -139,6 +163,9 @@ app.get('/favicon.ico', (req, res) => {
 });
 
 // Rutas EN primero (no forzar cookie aquí: el idioma lo decide Accept-Language; usar /prefer-en para fijar)
+=======
+// Rutas EN primero (detección de idioma: cookie site_lang > Accept-Language; ver /prefer-es, /prefer-en)
+>>>>>>> Stashed changes
 app.get('/en', (req, res) => {
     return sendHtmlPage(EN_LANG, 'index', res);
 });
@@ -182,10 +209,14 @@ app.get('/robots.txt', (req, res) => {
 const COOKIE_OPTS = { maxAge: 365 * 24 * 60 * 60 * 1000, sameSite: 'lax', path: '/' };
 app.get('/prefer-es', (req, res) => {
     res.cookie(COOKIE_LANG, DEFAULT_LANG, COOKIE_OPTS);
+    const next = getNextParam(req);
+    if (next) return res.redirect(302, next);
     return res.redirect(302, '/');
 });
 app.get('/prefer-en', (req, res) => {
     res.cookie(COOKIE_LANG, EN_LANG, COOKIE_OPTS);
+    const next = getNextParam(req);
+    if (next) return res.redirect(302, next);
     return res.redirect(302, '/en');
 });
 
