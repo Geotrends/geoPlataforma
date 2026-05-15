@@ -1,10 +1,27 @@
 /**
- * Enlaces "Idioma / Language": apuntan a /prefer-es y /prefer-en con ?next=
- * para (1) fijar cookie site_lang y (2) abrir la misma ruta + query en ES o EN.
- * Así no gana Accept-Language por encima de la elección del usuario.
+ * Selector Idioma / Language:
+ * - Enlace directo a la misma página en ES o EN (funciona en hosting estático: S3, CloudFront, etc.).
+ * - Al hacer clic se guarda la cookie site_lang (1 año) para que un servidor Express, si existe,
+ *   pueda alinear URL con la elección del usuario. En estático puro, solo importa la URL destino.
  */
 (function () {
     'use strict';
+
+    var COOKIE_MAX_AGE = 365 * 24 * 60 * 60;
+
+    function setLangCookie(value) {
+        if (value !== 'es' && value !== 'en') return;
+        var parts = [
+            'site_lang=' + encodeURIComponent(value),
+            'path=/',
+            'max-age=' + COOKIE_MAX_AGE,
+            'SameSite=Lax',
+        ];
+        if (window.location.protocol === 'https:') {
+            parts.push('Secure');
+        }
+        document.cookie = parts.join('; ');
+    }
 
     function buildLangHrefs() {
         if (window.location.protocol === 'file:') return;
@@ -48,12 +65,28 @@
         document.querySelectorAll('a.nav-lang-option[lang]').forEach(function (a) {
             var lang = a.getAttribute('lang');
             if (lang === 'es') {
-                a.setAttribute('href', '/prefer-es?next=' + encodeURIComponent(esPath));
+                a.setAttribute('href', esPath);
             } else if (lang === 'en') {
-                a.setAttribute('href', '/prefer-en?next=' + encodeURIComponent(enPath));
+                a.setAttribute('href', enPath);
             }
         });
     }
+
+    /** Cookie antes de seguir el enlace (útil con Express + middleware de idioma). */
+    document.addEventListener(
+        'click',
+        function (e) {
+            var a = e.target && e.target.closest && e.target.closest('a.nav-lang-option[lang]');
+            if (!a) return;
+            var lang = a.getAttribute('lang');
+            if (lang === 'es') {
+                setLangCookie('es');
+            } else if (lang === 'en') {
+                setLangCookie('en');
+            }
+        },
+        true
+    );
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', buildLangHrefs);
