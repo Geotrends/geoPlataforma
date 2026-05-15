@@ -1,5 +1,11 @@
 (function() {
-    var isEnglish = (document.documentElement.lang || '').toLowerCase().startsWith('en') || window.location.pathname.startsWith('/en/');
+    var pathLower = (window.location.pathname || '').toLowerCase();
+    var isEnglish =
+        (document.documentElement.lang || '').toLowerCase().startsWith('en') ||
+        pathLower.startsWith('/en/') ||
+        pathLower === '/en' ||
+        pathLower.indexOf('/html/en/') !== -1 ||
+        pathLower.endsWith('/html/en');
     var content = {
         'quienes-somos': {
             title: 'Quiénes somos',
@@ -99,6 +105,35 @@
     var gridWrap = document.getElementById('about-equipo-grid');
     var detalleWrap = document.querySelector('.about-equipo-detalle-wrap');
 
+    /** Sincroniza título y cuerpo con el idioma activo al cargar (evita HTML inicial en ES en /en). */
+    function syncInitialPanelFromContent() {
+        var activeTabEl = document.querySelector('.about-tab.active[data-tab]');
+        var key = activeTabEl ? activeTabEl.getAttribute('data-tab') : 'quienes-somos';
+        var c = content[key];
+        if (!c || !panelTitle || !panelBody) return;
+        panelTitle.textContent = key === 'reconocimientos-clientes' ? '' : c.title;
+        panelBody.innerHTML = c.body;
+        if (gridWrap) {
+            if (key === 'quienes-somos') {
+                gridWrap.removeAttribute('hidden');
+                gridWrap.setAttribute('aria-hidden', 'false');
+                gridWrap.style.opacity = '1';
+            } else {
+                gridWrap.setAttribute('hidden', '');
+                gridWrap.setAttribute('aria-hidden', 'true');
+            }
+        }
+        if (detalleWrap) {
+            if (key === 'quienes-somos') {
+                detalleWrap.setAttribute('data-visible', 'true');
+                detalleWrap.style.display = 'block';
+            } else {
+                detalleWrap.setAttribute('data-visible', 'false');
+                detalleWrap.style.display = 'none';
+            }
+        }
+    }
+
     function showPanel(key) {
         var c = content[key];
         if (!c) return;
@@ -142,6 +177,8 @@
             }
         }
     }
+
+    syncInitialPanelFromContent();
 
     tabs.forEach(function(tab) {
         tab.addEventListener('click', function() {

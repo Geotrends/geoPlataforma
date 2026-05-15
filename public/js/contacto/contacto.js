@@ -1,4 +1,4 @@
 document.querySelector('.contacto-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    /* aquí enviar formulario */
+    /* hook: send form data to backend */
 });

@@ -14,23 +14,34 @@
             path = path.slice(0, -1);
         }
         var search = window.location.search || '';
-        var isEn = path === '/en' || path.indexOf('/en/') === 0;
+        var hash = window.location.hash || '';
+        var suffix = search + hash;
+        var isEn =
+            path === '/en' ||
+            path.indexOf('/en/') === 0 ||
+            path.indexOf('/html/en') !== -1;
 
         var esPath;
         var enPath;
         if (isEn) {
-            enPath = path + search;
-            if (path === '/en') {
-                esPath = '/' + search;
+            enPath = path + suffix;
+            if (path.indexOf('/html/en') !== -1) {
+                esPath = '/html' + path.slice('/html/en'.length) + suffix;
+            } else if (path === '/en') {
+                esPath = '/' + suffix;
             } else {
-                esPath = path.slice('/en'.length) + search;
+                esPath = path.slice('/en'.length) + suffix;
             }
         } else {
-            esPath = path + search;
-            if (!path || path === '/') {
-                enPath = '/en' + search;
+            esPath = path + suffix;
+            if (path.indexOf('/html/') === 0 && path.indexOf('/html/en') === -1) {
+                var enFromHtml = path.replace(/^\/html\//, '/html/en/');
+                if (enFromHtml === '/html/en/') enFromHtml = '/html/en';
+                enPath = enFromHtml + suffix;
+            } else if (!path || path === '/') {
+                enPath = '/en' + suffix;
             } else {
-                enPath = '/en' + path + search;
+                enPath = '/en' + path + suffix;
             }
         }
 
