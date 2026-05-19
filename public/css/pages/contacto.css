@@ -406,6 +406,18 @@ html:not([data-theme="dark"]) body.page-contacto .contacto-hero {
   transform: none;
 }
 
+/* Honeypot: invisible para humanos, atractivo para bots. No usar display:none (algunos bots lo evitan). */
+.contacto-honeypot {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Mensajes del formulario */
 .contacto-form-mensaje {
   padding: 0.875rem 1rem;

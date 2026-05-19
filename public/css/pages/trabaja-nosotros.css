@@ -70,7 +70,7 @@ body.page-trabaja .contacto-hero:has(.trabaja-carousel--vacancy-modal-open) {
   align-content: start;
 }
 
-.trabaja-hero-inner > * {
+.trabaja-hero-inner>* {
   min-width: 0;
 }
 
@@ -653,8 +653,7 @@ body.trabaja-vacancy-modal-open {
   body.trabaja-vacancy-modal-open .trabaja-vacancy-face--back.is-modal-mounted .trabaja-vacancy-back-inner {
     max-width: 100%;
     box-sizing: border-box;
-    padding: calc(0.65rem + env(safe-area-inset-top, 0px)) calc(0.85rem + env(safe-area-inset-right, 0px))
-      calc(0.85rem + env(safe-area-inset-bottom, 0px)) calc(0.85rem + env(safe-area-inset-left, 0px));
+    padding: calc(0.65rem + env(safe-area-inset-top, 0px)) calc(0.85rem + env(safe-area-inset-right, 0px)) calc(0.85rem + env(safe-area-inset-bottom, 0px)) calc(0.85rem + env(safe-area-inset-left, 0px));
   }
 }
 

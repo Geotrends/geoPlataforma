@@ -1,9 +1,15 @@
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Body parser para el endpoint POST /api/contacto (JSON pequeño, sin archivos)
+app.use(express.json({ limit: '20kb' }));
 
 const COOKIE_LANG = 'site_lang';
 const DEFAULT_LANG = 'es';
@@ -221,6 +227,144 @@ app.get('/favicon.ico', (req, res) => {
     if (!filePath) return res.status(404).end();
     res.type('image/png');
     return res.sendFile(filePath);
+});
+
+// ============================================================
+// API: Formulario de contacto -> envía email a CONTACT_TO
+// Usa Nodemailer + SMTP (recomendado: Resend). Variables en .env
+// ============================================================
+
+/** Crea (o reutiliza) el transporte SMTP a partir de variables de entorno. */
+let cachedTransporter = null;
+function getTransporter() {
+    if (cachedTransporter) return cachedTransporter;
+    const host = process.env.SMTP_HOST;
+    const port = parseInt(process.env.SMTP_PORT || '465', 10);
+    const user = process.env.SMTP_USER;
+    const pass = process.env.SMTP_PASS;
+    if (!host || !user || !pass) return null;
+    cachedTransporter = nodemailer.createTransport({
+        host,
+        port,
+        secure: String(process.env.SMTP_SECURE || 'true') === 'true',
+        auth: { user, pass },
+    });
+    return cachedTransporter;
+}
+
+/** Rate-limit en memoria por IP: 5 envíos cada 10 min. Mitiga abuso básico sin pegarle a DB. */
+const RATE_WINDOW_MS = 10 * 60 * 1000;
+const RATE_MAX = 5;
+const rateMap = new Map();
+function isRateLimited(ip) {
+    const now = Date.now();
+    const entry = rateMap.get(ip) || { count: 0, resetAt: now + RATE_WINDOW_MS };
+    if (now > entry.resetAt) {
+        entry.count = 0;
+        entry.resetAt = now + RATE_WINDOW_MS;
+    }
+    entry.count += 1;
+    rateMap.set(ip, entry);
+    return entry.count > RATE_MAX;
+}
+
+function escapeHtml(s) {
+    return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+/** Email simple, válido en RFC práctico (no perfecto, pero suficiente para frontend de contacto). */
+function isValidEmail(value) {
+    return typeof value === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value.trim());
+}
+
+app.post('/api/contacto', async (req, res) => {
+    try {
+        const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown')
+            .toString()
+            .split(',')[0]
+            .trim();
+
+        if (isRateLimited(ip)) {
+            return res.status(429).json({ ok: false, error: 'rate_limited' });
+        }
+
+        const { nombre, email, telefono, mensaje, company, lang } = req.body || {};
+
+        // Honeypot: bots suelen rellenar el campo oculto "company". Respondemos 200 fingiendo éxito.
+        if (typeof company === 'string' && company.trim() !== '') {
+            return res.status(200).json({ ok: true });
+        }
+
+        const nombreTrim = (nombre || '').toString().trim();
+        const emailTrim = (email || '').toString().trim();
+        const telefonoTrim = (telefono || '').toString().trim();
+        const mensajeTrim = (mensaje || '').toString().trim();
+
+        if (!nombreTrim || nombreTrim.length > 120) {
+            return res.status(400).json({ ok: false, error: 'invalid_nombre' });
+        }
+        if (!isValidEmail(emailTrim) || emailTrim.length > 200) {
+            return res.status(400).json({ ok: false, error: 'invalid_email' });
+        }
+        if (telefonoTrim.length > 40) {
+            return res.status(400).json({ ok: false, error: 'invalid_telefono' });
+        }
+        if (mensajeTrim.length > 5000) {
+            return res.status(400).json({ ok: false, error: 'invalid_mensaje' });
+        }
+
+        const transporter = getTransporter();
+        if (!transporter) {
+            console.error('[contacto] SMTP no configurado: revisa .env (SMTP_HOST, SMTP_USER, SMTP_PASS)');
+            return res.status(500).json({ ok: false, error: 'smtp_not_configured' });
+        }
+
+        const to = process.env.CONTACT_TO || 'info@geotrends.co';
+        const from = process.env.CONTACT_FROM || `GeoPlataforma <${process.env.SMTP_USER}>`;
+        const subject = (lang === 'en' ? 'New contact from website' : 'Nuevo contacto desde el sitio web')
+            + ` — ${nombreTrim}`;
+
+        const htmlBody = `
+            <div style="font-family:Inter,Arial,sans-serif;max-width:600px;margin:0 auto;color:#313131;">
+                <h2 style="color:#39513B;margin-bottom:1rem;">${escapeHtml(lang === 'en' ? 'New contact form submission' : 'Nuevo mensaje desde el formulario de contacto')}</h2>
+                <p><strong>${escapeHtml(lang === 'en' ? 'Name' : 'Nombre')}:</strong> ${escapeHtml(nombreTrim)}</p>
+                <p><strong>Email:</strong> <a href="mailto:${escapeHtml(emailTrim)}">${escapeHtml(emailTrim)}</a></p>
+                ${telefonoTrim ? `<p><strong>${escapeHtml(lang === 'en' ? 'Phone' : 'Teléfono')}:</strong> ${escapeHtml(telefonoTrim)}</p>` : ''}
+                ${mensajeTrim ? `<p><strong>${escapeHtml(lang === 'en' ? 'Message' : 'Mensaje')}:</strong></p>
+                <div style="white-space:pre-wrap;padding:12px 16px;background:#F4F0EF;border-radius:8px;">${escapeHtml(mensajeTrim)}</div>` : ''}
+                <hr style="margin:2rem 0;border:none;border-top:1px solid #E4E4E4;">
+                <p style="font-size:0.85rem;color:#888;">IP: ${escapeHtml(ip)} — ${new Date().toISOString()}</p>
+            </div>
+        `;
+
+        const textBody = [
+            lang === 'en' ? 'New contact form submission' : 'Nuevo mensaje desde el formulario de contacto',
+            '',
+            `${lang === 'en' ? 'Name' : 'Nombre'}: ${nombreTrim}`,
+            `Email: ${emailTrim}`,
+            telefonoTrim ? `${lang === 'en' ? 'Phone' : 'Teléfono'}: ${telefonoTrim}` : null,
+            mensajeTrim ? `\n${lang === 'en' ? 'Message' : 'Mensaje'}:\n${mensajeTrim}` : null,
+        ].filter(Boolean).join('\n');
+
+        await transporter.sendMail({
+            from,
+            to,
+            replyTo: `${nombreTrim} <${emailTrim}>`,
+            subject,
+            text: textBody,
+            html: htmlBody,
+        });
+
+        return res.status(200).json({ ok: true });
+    } catch (err) {
+        console.error('[contacto] Error enviando email:', err && err.message ? err.message : err);
+        return res.status(500).json({ ok: false, error: 'send_failed' });
+    }
 });
 
 // Rutas EN primero (detección de idioma: cookie site_lang > Accept-Language; ver /prefer-es, /prefer-en)

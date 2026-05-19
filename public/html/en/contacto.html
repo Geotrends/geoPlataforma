@@ -145,25 +145,31 @@
         <section class="contacto-main" aria-label="Form and contact details">
             <div class="contacto-main-wrap">
                 <div class="contacto-form-col">
-                    <form class="contacto-form" action="#" method="post" aria-label="Contact form">
+                    <form class="contacto-form" action="https://api.web3forms.com/submit" method="POST" aria-label="Contact form" novalidate>
                         <div class="contacto-form-row-two">
                             <div class="contacto-form-row">
                                 <label class="contacto-label" for="contacto-email">Email</label>
-                                <input type="email" id="contacto-email" name="email" class="contacto-input" placeholder="you@company.com" required>
+                                <input type="email" id="contacto-email" name="email" class="contacto-input" placeholder="you@company.com" required autocomplete="email">
                             </div>
                             <div class="contacto-form-row">
                                 <label class="contacto-label" for="contacto-telefono">Phone</label>
-                                <input type="tel" id="contacto-telefono" name="telefono" class="contacto-input" placeholder="Phone (optional)">
+                                <input type="tel" id="contacto-telefono" name="telefono" class="contacto-input" placeholder="Phone (optional)" autocomplete="tel">
                             </div>
                         </div>
                         <div class="contacto-form-row">
                             <label class="contacto-label" for="contacto-nombre">Name</label>
-                            <input type="text" id="contacto-nombre" name="nombre" class="contacto-input" placeholder="Full name" required>
+                            <input type="text" id="contacto-nombre" name="nombre" class="contacto-input" placeholder="Full name" required autocomplete="name">
                         </div>
                         <div class="contacto-form-row">
                             <label class="contacto-label" for="contacto-mensaje">Message</label>
                             <textarea id="contacto-mensaje" name="mensaje" class="contacto-input contacto-textarea" placeholder="Tell us about your project" rows="4"></textarea>
                         </div>
+                        <!-- Honeypot anti-spam (botcheck is Web3Forms' built-in field): invisible to humans, bots usually fill it -->
+                        <div class="contacto-honeypot" aria-hidden="true">
+                            <label for="contacto-botcheck">Do not fill this field</label>
+                            <input type="text" id="contacto-botcheck" name="botcheck" tabindex="-1" autocomplete="off">
+                        </div>
+                        <div class="contacto-form-mensaje" role="status" aria-live="polite" hidden></div>
                         <button type="submit" class="contacto-submit">Send message</button>
                     </form>
                 </div>
