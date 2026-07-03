@@ -212,10 +212,10 @@ app.use('/proyectos/data', express.static(path.join(__dirname, 'public', 'html',
 
 app.use(redirectUrlToMatchLangCookie);
 
-/** Mismo ícono que theme.js (favicon-hero.png); respaldo si solo existe isologo-01 en disco. */
+/** Mismo ícono que theme.js (logo-geo.png); respaldo si falta el archivo principal. */
 function resolveFaviconFilePath() {
     const dir = path.join(__dirname, 'public', 'img_video', 'home');
-    for (const name of ['favicon-hero.png', 'isologo-01.png']) {
+    for (const name of ['logo-geo.png', 'favicon-hero.png', 'isologo-01.png']) {
         const full = path.join(dir, name);
         if (fs.existsSync(full)) return full;
     }
@@ -226,6 +226,7 @@ app.get('/favicon.ico', (req, res) => {
     const filePath = resolveFaviconFilePath();
     if (!filePath) return res.status(404).end();
     res.type('image/png');
+    res.setHeader('Cache-Control', 'public, max-age=86400');
     return res.sendFile(filePath);
 });
 

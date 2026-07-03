@@ -11,7 +11,7 @@
     });
 
     // Icono de pestaña: misma marca que el hero, pero en PNG cuadrado 256×256 (logo.webp es muy ancho y se veía “aplastado”)
-    var FAVICON_HERO = '/img_video/home/favicon-hero.png?v=2';
+    var FAVICON_HERO = '/img_video/home/logo-geo.png?v=4';
     var favicon = document.querySelector('link[rel="icon"]');
     if (!favicon) {
       favicon = document.createElement('link');
