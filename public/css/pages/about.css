@@ -1429,10 +1429,12 @@ a.about-tab.about-tab--link {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
   gap: 1px;
   margin: 0 auto;
   width: fit-content;
-  max-width: min(calc(4 * 220px + 3 * 1px + 5.5rem), 100% - 1rem);
+  max-width: min(calc(3 * 220px + 2 * 1px + 5.5rem), 100% - 1rem);
   padding: 1.75rem;
   box-sizing: border-box;
 }
@@ -1743,7 +1745,8 @@ a.about-tab.about-tab--link {
   }
 
   .about-equipo-meet-grid--dynamic {
-    max-width: min(calc(4 * 140px + 3 * 1px + 3.5rem), 100% - 1rem);
+    max-width: min(calc(3 * 140px + 2 * 1px + 3.5rem), 100% - 1rem);
+    justify-content: center;
     gap: 0;
     padding: 1.25rem;
   }
