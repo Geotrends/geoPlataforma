@@ -517,14 +517,22 @@ html:not([data-theme="dark"]) body.page-servicios .section-content {
     background-repeat: no-repeat;
 }
 
-/* Ecosistemas y Analítica: imagen completa dentro del margen 16:9, sin relleno ni zoom; borde como en panel de proyectos */
-.section-card[data-servicio="webgis"] .section-card-image,
+/* Ecosistemas WEBGIS: imagen a todo el contenedor */
+.section-card[data-servicio="webgis"] .section-card-image {
+    object-fit: cover;
+    object-position: center;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+/* Analítica geoespacial: imagen completa dentro del margen 16:9 */
 .section-card[data-servicio="geoespacial"] .section-card-image {
     object-fit: contain;
     object-position: center;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
-html:not([data-theme="dark"]) .section-card[data-servicio="webgis"] .section-card-image,
 html:not([data-theme="dark"]) .section-card[data-servicio="geoespacial"] .section-card-image {
     border-color: rgba(0, 0, 0, 0.12);
 }
@@ -560,9 +568,19 @@ html:not([data-theme="dark"]) .section-card[data-servicio="geoespacial"] .sectio
     padding-top: 0.25rem;
 }
 
-/* Control de ruido: encuadre para destacar la fachada del edificio principal */
+/* Control de ruido: encuadre centrado de la fachada */
 .section-card[data-servicio="control-ruido"] .section-card-image {
-    background-position: 55% 35%;
+    background-position: center center;
+    background-size: cover;
+}
+
+/* Fotogrametría: imagen a todo el contenedor */
+.section-card[data-servicio="fotogrametria"] .section-card-image {
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* Videos ocupan todo el espacio */
@@ -718,11 +736,11 @@ html:not([data-theme="dark"]) .section-card-image {
     max-height: none;
     align-self: stretch;
     margin: 0;
-    padding: 1rem 2rem 1.25rem;
+    padding: 1.5rem 2rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-start;
     text-align: left;
     -webkit-overflow-scrolling: touch;
@@ -767,7 +785,7 @@ html:not([data-theme="dark"]) .section-card-image {
     color: #313131;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    margin: 0.65rem 0 0.75rem 0;
+    margin: 0 0 0.75rem 0;
     line-height: 1.2;
 }
 
@@ -791,7 +809,8 @@ html:not([data-theme="dark"]) .section-card-image {
     padding: 0.5rem 1rem;
     border-radius: 9999px;
     transition: background 0.2s, color 0.2s;
-    margin-bottom: 2.5rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0;
 }
 
 .section-card-proyectos-link:hover {
@@ -962,7 +981,9 @@ html:not([data-theme="dark"]) .section-card-image {
         margin: 0;
     }
 
-    .section-card[data-servicio="webgis"] .section-card-image,
+    .section-card[data-servicio="webgis"] .section-card-image {
+        object-fit: cover;
+    }
     .section-card[data-servicio="geoespacial"] .section-card-image {
         object-fit: contain;
     }

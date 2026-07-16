@@ -48,10 +48,22 @@
             card.style.animationDelay = (index * 0.05) + 's';
         });
         if (typeof window.geoLazyVideosRefresh === 'function') {
-            window.requestAnimationFrame(function () { window.geoLazyVideosRefresh(); });
+            window.requestAnimationFrame(function () {
+                window.geoLazyVideosRefresh();
+                setTimeout(function () { window.geoLazyVideosRefresh(); }, 200);
+            });
         }
     }
     
+    function refreshCardVideos() {
+        if (typeof window.geoLazyVideosRefresh !== 'function') return;
+        window.requestAnimationFrame(function () {
+            window.geoLazyVideosRefresh();
+            // Segundo intento tras layout/animación (Safari/iOS)
+            setTimeout(function () { window.geoLazyVideosRefresh(); }, 200);
+        });
+    }
+
     function updateCornarePortada(servicioActivo) {
         var cornareCard = document.querySelector('.proyecto-card-cornare');
         if (!cornareCard) return;
@@ -66,6 +78,7 @@
         mapasEl.style.display = servicioActivo === 'mapas-ruido' ? 'block' : 'none';
         webgisEl.style.display = servicioActivo === 'webgis' ? 'block' : 'none';
         if (descontEl) descontEl.style.display = servicioActivo === 'descontaminacion' ? 'block' : 'none';
+        refreshCardVideos();
     }
 
     function updateAmvaPortada(servicioActivo) {
@@ -83,6 +96,7 @@
             videoEl.style.display = 'block';
             imgEl.style.display = 'none';
         }
+        refreshCardVideos();
     }
 
     function updateModeloPortada(servicioActivo) {
@@ -90,11 +104,11 @@
         if (!modeloCard) return;
         var imgWrap = modeloCard.querySelector('.proyecto-card-img-modelo');
         if (!imgWrap) return;
-        var videoIot = imgWrap.querySelector('.proyecto-card-portada-iot');
-        var videoDescont = imgWrap.querySelector('.proyecto-card-portada-descontaminacion');
-        if (!videoIot || !videoDescont) return;
-        videoIot.style.display = servicioActivo === 'iot' ? 'block' : 'none';
-        videoDescont.style.display = servicioActivo === 'descontaminacion' ? 'block' : 'none';
+        var imgIot = imgWrap.querySelector('.proyecto-card-portada-iot');
+        var imgDescont = imgWrap.querySelector('.proyecto-card-portada-descontaminacion');
+        if (!imgIot || !imgDescont) return;
+        imgIot.style.display = servicioActivo === 'iot' ? 'block' : 'none';
+        imgDescont.style.display = servicioActivo === 'descontaminacion' ? 'block' : 'none';
     }
 
     function updateObservatorioPortada(servicioActivo) {
@@ -196,11 +210,14 @@
             updateModeloPortada(servicioActivo);
             updateObservatorioPortada(servicioActivo);
             if (typeof window.geoLazyVideosRefresh === 'function') {
-                window.requestAnimationFrame(function () { window.geoLazyVideosRefresh(); });
+                window.requestAnimationFrame(function () {
+                    window.geoLazyVideosRefresh();
+                    setTimeout(function () { window.geoLazyVideosRefresh(); }, 200);
+                });
             }
             return;
         }
-        
+
         // Limpiar todas las clases de animación
         allCards.forEach(function(card) {
             card.classList.remove('exiting', 'animating');

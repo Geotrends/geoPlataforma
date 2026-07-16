@@ -13,7 +13,7 @@ body.page-trabaja .contacto-hero {
   justify-content: center;
   text-align: left;
   min-height: min(100vh, 960px);
-  padding-top: clamp(5.75rem, 11vh, 7.5rem);
+  padding-top: clamp(7.25rem, 14vh, 9.5rem);
   padding-bottom: clamp(2.25rem, 4vh, 3.5rem);
   box-sizing: border-box;
   /* Las tarjetas laterales salen del eje central; el vídeo sigue recortado en .contacto-hero-luma-wrap */
@@ -31,7 +31,7 @@ body.page-trabaja .contacto-hero:has(.trabaja-carousel--vacancy-modal-open) {
   body.page-trabaja .contacto-hero {
     min-height: auto;
     /* Aire claro bajo la navbar flotante + panel “Trabaja con nosotros” */
-    padding-top: clamp(5.35rem, 11vh, 6.75rem);
+    padding-top: clamp(6.75rem, 13vh, 8.5rem);
     padding-bottom: 1.75rem;
   }
 
@@ -61,7 +61,7 @@ body.page-trabaja .contacto-hero:has(.trabaja-carousel--vacancy-modal-open) {
   z-index: 2;
   width: min(1600px, calc(100% - 4rem));
   max-width: 1600px;
-  margin: 0 2rem;
+  margin: 1.5rem 2rem 0;
   padding: 0 0 3rem;
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(300px, min(640px, 44vw));
@@ -115,7 +115,7 @@ body.page-trabaja .contacto-hero:has(.trabaja-carousel--vacancy-modal-open) {
 @media (max-width: 900px) {
   .trabaja-hero-inner {
     grid-template-columns: 1fr;
-    margin-top: 0;
+    margin-top: 1rem;
     margin-left: 1.5rem;
     margin-right: 1.5rem;
     width: min(1600px, calc(100% - 3rem));

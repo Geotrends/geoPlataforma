@@ -15,10 +15,12 @@
     var params = new URLSearchParams(window.location.search);
     var servicio = params.get('servicio') || 'control-ruido';
     var tagMap = {
-        'control-ruido': 0, 'clasificacion-fuentes': 1, 'modelacion-ruido': 2,
-        'holografia-acustica': 3, 'medicion-vibraciones': 4,
-        'modelacion-ruido-subacuatico': 5, 'medicion-ruido-subacuatico': 6,
-        geoespacial: 7, fotogrametria: 8
+        'control-ruido': 0,
+        'modelacion-ruido': 1,
+        'holografia-acustica': 2,
+        'modelacion-ruido-subacuatico': 3,
+        'medicion-ruido-subacuatico': 4,
+        fotogrametria: 5
     };
     var tags = document.querySelectorAll('.proyectos-tag');
     var idx = tagMap[servicio] !== undefined ? tagMap[servicio] : 0;
@@ -50,7 +52,10 @@
             card.style.animationDelay = (index * 0.05) + 's';
         });
         if (typeof window.geoLazyVideosRefresh === 'function') {
-            window.requestAnimationFrame(function () { window.geoLazyVideosRefresh(); });
+            window.requestAnimationFrame(function () {
+                window.geoLazyVideosRefresh();
+                setTimeout(function () { window.geoLazyVideosRefresh(); }, 200);
+            });
         }
     }
     
@@ -70,9 +75,6 @@
         
         // CCR Palagua en industria: aparece en "control-ruido" y "fotogrametria"
         var serviciosPermitidosCCRPalagua = ['control-ruido', 'fotogrametria'];
-        
-        // Campaña política en industria: SOLO aparece en "geoespacial"
-        var servicioPermitidoCampanaPolitica = 'geoespacial';
         
         // Obtener todas las cards visibles actualmente ANTES de ocultar
         var visibleCards = Array.from(allCards).filter(function(card) {
@@ -99,14 +101,6 @@
                     cardsToShow.push(card);
                 }
                 return;
-            }
-            
-            // Campaña política: SOLO aparece en "geoespacial"
-            if (proyectoId === 'campana-politica') {
-                if (servicioActivo === servicioPermitidoCampanaPolitica) {
-                    cardsToShow.push(card);
-                }
-                return; // No verificar más para Campaña política
             }
             
             // Para otras cards, verificar sus servicios
@@ -158,7 +152,10 @@
         // Si son las mismas cards, no hacer nada
         if (visibleIds === toShowIds && visibleIds.length > 0) {
             if (typeof window.geoLazyVideosRefresh === 'function') {
-                window.requestAnimationFrame(function () { window.geoLazyVideosRefresh(); });
+                window.requestAnimationFrame(function () {
+                    window.geoLazyVideosRefresh();
+                    setTimeout(function () { window.geoLazyVideosRefresh(); }, 200);
+                });
             }
             return;
         }
@@ -220,7 +217,6 @@
         ARCLAD_IMAGES: typeof ARCLAD_IMAGES !== 'undefined' ? ARCLAD_IMAGES : [],
         SEGOVIA_IMAGES: typeof SEGOVIA_IMAGES !== 'undefined' ? SEGOVIA_IMAGES : [],
         CCR_PALAGUA_IMAGES: typeof CCR_PALAGUA_IMAGES !== 'undefined' ? CCR_PALAGUA_IMAGES : [],
-        COLCAFE_IMAGES: typeof COLCAFE_IMAGES !== 'undefined' ? COLCAFE_IMAGES : [],
         CERREJON_IMAGES: typeof CERREJON_IMAGES !== 'undefined' ? CERREJON_IMAGES : [],
         SPIA_IMAGES: typeof SPIA_IMAGES !== 'undefined' ? SPIA_IMAGES : [],
         CORNARE_IMAGES: typeof CORNARE_IMAGES !== 'undefined' ? CORNARE_IMAGES : [],
@@ -388,8 +384,8 @@
     var panelCarouselIndex = 0;
     var panelCarouselImages = [];
 
-    /* Servicios (tags) que muestran botón "Ver imagen ampliada" en Industria: modelación de ruido, modelación subacuática, analítica geoespacial */
-    var serviciosConVerAmpliadaIndustria = ['modelacion-ruido', 'modelacion-ruido-subacuatico', 'geoespacial'];
+    /* Servicios (tags) que muestran botón "Ver imagen ampliada" en Industria: modelación de ruido, modelación subacuática */
+    var serviciosConVerAmpliadaIndustria = ['modelacion-ruido', 'modelacion-ruido-subacuatico'];
     var btnVerAmpliada = document.getElementById('proyecto-panel-ver-ampliada');
     var imagenModal = document.getElementById('proyecto-imagen-modal');
     var imagenModalImg = document.getElementById('proyecto-imagen-modal-img');
@@ -418,10 +414,6 @@
             images = CCR_PALAGUA_IMAGES;
             base = '../img_video/proyectos/promigas/';
             return { images: images, base: base };
-        } else if (proyectoId === 'colcafe' && typeof COLCAFE_IMAGES !== 'undefined' && COLCAFE_IMAGES.length) {
-            images = COLCAFE_IMAGES;
-            base = '../img_video/proyectos/colcafe/';
-            return { images: images, base: base };
         } else if (proyectoId === 'cerrejon' && typeof CERREJON_IMAGES !== 'undefined' && CERREJON_IMAGES.length) {
             images = CERREJON_IMAGES;
             base = '../img_video/proyectos/cerrejon/';
@@ -433,9 +425,6 @@
         } else if (proyectoId === 'cornare' && typeof CORNARE_IMAGES !== 'undefined' && CORNARE_IMAGES.length) {
             images = CORNARE_IMAGES;
             folder = 'CORNARE';
-        } else if (proyectoId === 'campana-politica' && typeof CAMPANA_POLITICA_IMAGES !== 'undefined' && CAMPANA_POLITICA_IMAGES.length) {
-            images = CAMPANA_POLITICA_IMAGES;
-            folder = 'campanaPolitica';
         }
         var base = folder ? (INDUSTRIA_IMAGES_BASE + folder + '/') : '';
         return { images: images, base: base };
@@ -457,10 +446,9 @@
         img.className = 'proyecto-panel-img proyecto-panel-img-fit-16-9';
         slide.appendChild(img);
         
-        // Agregar botón de ampliar imagen para ARCLAD en Modelación de ruido (Evaluación de impacto acústico), SPIA en Modelación de ruido subacuático, y Campaña política en Analítica geoespacial
+        // Agregar botón de ampliar imagen para ARCLAD en Modelación de ruido y SPIA en Modelación de ruido subacuático
         var shouldAddExpandBtn = (servicioActivo === 'modelacion-ruido' && proyectoId === 'arclad' && titulo === 'Evaluación de impacto acústico') ||
-                                 (servicioActivo === 'modelacion-ruido-subacuatico' && proyectoId === 'spia') ||
-                                 (servicioActivo === 'geoespacial' && proyectoId === 'campana-politica');
+                                 (servicioActivo === 'modelacion-ruido-subacuatico' && proyectoId === 'spia');
         
         if (shouldAddExpandBtn) {
             var expandBtn = document.createElement('button');
@@ -694,8 +682,8 @@
     var openProyectoId = openParams.get('proyecto');
     var proyectoToServicio = {
         'refineria-cartagena': 'control-ruido', 'alma-magdalena': 'control-ruido', 'arclad': 'control-ruido',
-        'segovia': 'medicion-vibraciones', 'ccr-palagua': 'control-ruido', 'colcafe': 'control-ruido',
-        'cerrejon': 'holografia-acustica', 'cafe-verde': 'holografia-acustica', 'campana-politica': 'geoespacial',
+        'segovia': 'medicion-vibraciones', 'ccr-palagua': 'control-ruido',
+        'cerrejon': 'holografia-acustica', 'cafe-verde': 'holografia-acustica',
         'spia': 'modelacion-ruido-subacuatico'
     };
 

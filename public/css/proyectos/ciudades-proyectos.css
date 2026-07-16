@@ -366,11 +366,41 @@ body:has(.proyectos-page) {
     object-fit: cover; /* Todas las imágenes 16:9, relleno uniforme */
 }
 
-/* Ciudades > Ecosistemas WEBGIS: en portadas queremos ver la imagen completa (sin recorte) */
-.proyecto-card-portada-webgis {
-    object-fit: contain !important;
-    object-position: center;
-    background-color: #313131; /* mantiene estética si hay letterboxing */
+/* Ciudades > Ecosistemas WEBGIS: portadas a todo el contenedor (mismo tamaño en todas las cards) */
+.proyecto-card-portada-webgis,
+.proyecto-card-portada-geoespacial {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover !important;
+    object-position: center center;
+    background-color: transparent;
+}
+
+/* AMVA, CORNARE y Observatorio: misma caja 16:9 que el resto de proyectos */
+.proyecto-card-amva-usb .proyecto-card-img,
+.proyecto-card-cornare .proyecto-card-img,
+.proyecto-card-observatorio-envigado .proyecto-card-img,
+.proyecto-card-modelo-gestion-medellin .proyecto-card-img {
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+}
+
+.proyecto-card-amva-usb .proyecto-card-video,
+.proyecto-card-modelo-gestion-medellin .proyecto-card-img-static {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.proyecto-card-amva-usb .proyecto-card-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 /* IoT y Mapas de ruido: mismo 16:9 */
 .proyecto-card-portada-mapas-ruido {
@@ -380,11 +410,16 @@ body:has(.proyectos-page) {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center center;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
     display: block;
+    background-color: #313131;
+    /* Evita capas negras / flash en Safari al bufferizar */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 .proyecto-card-img::after {
