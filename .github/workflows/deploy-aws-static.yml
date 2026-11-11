@@ -22,11 +22,27 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Sync static files to S3
+      # Dos pasadas para fijar Cache-Control (tarea M04):
+      #  - Assets (CSS, JS, imágenes, vídeos): 1 día. Subir a 1 año + immutable
+      #    cuando los nombres de archivo lleven versión/hash (tarea M10).
+      #  - HTML: 5 minutos, para que los cambios de contenido se vean rápido.
+      # Los --exclude de una pasada también evitan que su --delete borre lo de la otra.
+      # No hace falta excluir .bak/.DS_Store: CI solo tiene archivos versionados y
+      # .gitignore los bloquea; así --delete además los limpia del bucket si quedaron.
+      - name: Sync assets to S3
         run: |
           aws s3 sync public "s3://${{ secrets.S3_BUCKET_NAME }}" \
             --delete \
-            --exclude ".DS_Store"
+            --exclude "*.html" \
+            --cache-control "public, max-age=86400"
+
+      - name: Sync HTML to S3
+        run: |
+          aws s3 sync public "s3://${{ secrets.S3_BUCKET_NAME }}" \
+            --delete \
+            --exclude "*" \
+            --include "*.html" \
+            --cache-control "public, max-age=300, must-revalidate"
 
       - name: Invalidate CloudFront cache
         run: |

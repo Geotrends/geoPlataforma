@@ -121,7 +121,7 @@ def update_file_references(file_path, conversions):
         return False
 
 def main():
-    base_dir = Path(__file__).parent
+    base_dir = Path(__file__).resolve().parent.parent / 'public'
     img_dir = base_dir / 'img_video'
     
     if not img_dir.exists():

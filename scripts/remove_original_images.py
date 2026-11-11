@@ -53,7 +53,7 @@ def remove_original_images(directory):
     print(f"{'='*50}")
 
 def main():
-    base_dir = Path(__file__).parent
+    base_dir = Path(__file__).resolve().parent.parent / 'public'
     img_dir = base_dir / 'img_video'
     
     if not img_dir.exists():
